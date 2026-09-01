@@ -1,0 +1,1258 @@
+{
+  "sessions": {
+    "be67abdc-7069-4548-9873-cd78f63ec479": {
+      "id": "be67abdc-7069-4548-9873-cd78f63ec479",
+      "title": "Why is BTC volatile today?",
+      "created_at": "2026-09-01T16:22:12.458886+00:00",
+      "updated_at": "2026-09-01T16:22:12.483702+00:00",
+      "messages": [
+        {
+          "id": "b68c4a6e-c9fa-467a-9d88-e8cade03b2bb",
+          "role": "user",
+          "content": "Why is BTC volatile today?",
+          "metadata": {},
+          "created_at": "2026-09-01T16:22:12.458886+00:00"
+        },
+        {
+          "id": "c776d337-d334-4915-87f8-5f15c9c51e70",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.74",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: fear sentiment",
+                "value": "velocity=1.87",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc etf",
+                "value": "velocity=1.77",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.54,
+                    0.36,
+                    0.43,
+                    0.42,
+                    0.57,
+                    0.55,
+                    0.62
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "fear sentiment",
+                    "btc etf"
+                  ],
+                  "values": [
+                    3.74,
+                    1.87,
+                    1.77
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "bf173de4b8fb5591a3ab773bd1ff52931a0cab73da12c51208ca5dfceb4da6cc",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "b2a985b85e00ae0eeee596ae0b1eed00d9036cefc73264d0ed4eea54966bb446",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 16:22:12.468991+00:00",
+              "blockchain_tx_id": "a6ee5b70-566"
+            }
+          },
+          "created_at": "2026-09-01T16:22:12.483702+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    },
+    "09c26779-fd34-4e7f-bf6e-d5c275a172fc": {
+      "id": "09c26779-fd34-4e7f-bf6e-d5c275a172fc",
+      "title": "Analyze coffee trends for winter launch",
+      "created_at": "2026-09-01T16:22:14.825083+00:00",
+      "updated_at": "2026-09-01T16:22:14.852575+00:00",
+      "messages": [
+        {
+          "id": "60bf97a2-3b8a-4241-ab06-4e9ed71fe871",
+          "role": "user",
+          "content": "Analyze coffee trends for winter launch",
+          "metadata": {},
+          "created_at": "2026-09-01T16:22:14.825083+00:00"
+        },
+        {
+          "id": "d6404dd8-25bf-48ec-9dd2-6625026e6778",
+          "role": "assistant",
+          "content": "**Domain:** Consumer Intelligence\n\n**Observed:** In the **consumer/coffee** space, Cold Brew is the fastest-growing trend with strong cross-platform momentum. Winter seasonal demand is elevated (+34% projected lift).\n\n**Inferred:** Young consumers (42%) are driving this trend, motivated by convenience and health-conscious formulations.\n\n**Predicted:** Cold brew concentrate and functional coffee products are likely to see sustained Q1 demand.\n\n**Recommended:**\n- Launch a **Winter Cold Brew Concentrate** targeting 18-34 urban consumers\n- Partner with micro-influencers in the coffee/lifestyle niche\n- Campaign timeline: teasers in 2 weeks, full launch early winter\n\n**Limitations:** Demographic segments are probabilistic aggregates. Confidence: 78%.",
+          "metadata": {
+            "intent": "strategy",
+            "domain": "consumer",
+            "domain_label": "Consumer Intelligence",
+            "entities": [
+              "coffee"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "demographics",
+              "domain",
+              "visualization",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.84",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=1.35",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "demographic",
+                "label": "18-34 Urban",
+                "value": "42%",
+                "confidence": 0.68,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "demographic",
+                "label": "25-44 Professionals",
+                "value": "31%",
+                "confidence": 0.62,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "domain",
+                "label": "Product Opportunity",
+                "value": "Cold Brew Concentrate",
+                "confidence": 0.82,
+                "source": "domain_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.64,
+                    0.46,
+                    0.53,
+                    0.52,
+                    0.67,
+                    0.65,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee"
+                  ],
+                  "values": [
+                    2.84,
+                    1.35
+                  ]
+                }
+              },
+              {
+                "type": "demographic_pie",
+                "title": "Audience Segments",
+                "data": {
+                  "labels": [
+                    "18-34 Urban",
+                    "25-44 Professionals",
+                    "35-54 Health-conscious",
+                    "Other"
+                  ],
+                  "values": [
+                    42,
+                    31,
+                    18,
+                    9
+                  ]
+                }
+              },
+              {
+                "type": "opportunity_matrix",
+                "title": "Product Opportunities",
+                "data": {
+                  "opportunities": [
+                    {
+                      "product": "Cold Brew Concentrate",
+                      "score": 0.82,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Functional Coffee (adaptogens)",
+                      "score": 0.71,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Premium Single-Origin Pods",
+                      "score": 0.65,
+                      "season": "year-round"
+                    }
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "cb38be68aa29285fe4152cdc29c81511e7d31a099f0021300ba9d3a3b8afb052",
+              "insight_hash": "28f878fc6ec5eb5b4a0514bf137dbf1df0ab0d8db4050fe7d4d7a91b4ce62523",
+              "evidence_hash": "0366f3d47826b81446d66c929face4058be4ac9529b149caf6558120d3dab3fc",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 16:22:14.838490+00:00",
+              "blockchain_tx_id": "8f5c58c5-687"
+            }
+          },
+          "created_at": "2026-09-01T16:22:14.852575+00:00"
+        }
+      ],
+      "last_domain": "consumer"
+    },
+    "9b94787c-6824-491a-8fff-088b69506a2c": {
+      "id": "9b94787c-6824-491a-8fff-088b69506a2c",
+      "title": "Analyze coffee trends and tell me what product I should laun\u2026",
+      "created_at": "2026-09-01T16:27:52.714642+00:00",
+      "updated_at": "2026-09-01T16:28:25.393876+00:00",
+      "messages": [
+        {
+          "id": "b8e4aead-9777-4c93-a015-afd147daf526",
+          "role": "user",
+          "content": "Analyze coffee trends and tell me what product I should launch this winter.",
+          "metadata": {},
+          "created_at": "2026-09-01T16:27:52.714642+00:00"
+        },
+        {
+          "id": "912a35d3-628b-4e96-89e3-3b99dd9a8c7b",
+          "role": "assistant",
+          "content": "**Domain:** Consumer Intelligence\n\n**Observed:** In the **consumer/coffee** space, Cold Brew is the fastest-growing trend with strong cross-platform momentum. Winter seasonal demand is elevated (+34% projected lift).\n\n**Inferred:** Young consumers (42%) are driving this trend, motivated by convenience and health-conscious formulations.\n\n**Predicted:** Cold brew concentrate and functional coffee products are likely to see sustained Q1 demand.\n\n**Recommended:**\n- Launch a **Winter Cold Brew Concentrate** targeting 18-34 urban consumers\n- Partner with micro-influencers in the coffee/lifestyle niche\n- Campaign timeline: teasers in 2 weeks, full launch early winter\n\n**Limitations:** Demographic segments are probabilistic aggregates. Confidence: 78%.",
+          "metadata": {
+            "intent": "strategy",
+            "domain": "consumer",
+            "domain_label": "Consumer Intelligence",
+            "entities": [
+              "coffee"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "demographics",
+              "domain",
+              "visualization",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "visualization",
+              "insight",
+              "provenance",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis"
+            ],
+            "sources_used": [
+              "x",
+              "sample",
+              "reddit",
+              "news"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.84",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=1.35",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "demographic",
+                "label": "18-34 Urban",
+                "value": "42%",
+                "confidence": 0.68,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "demographic",
+                "label": "25-44 Professionals",
+                "value": "31%",
+                "confidence": 0.62,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "domain",
+                "label": "Product Opportunity",
+                "value": "Cold Brew Concentrate",
+                "confidence": 0.82,
+                "source": "domain_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.64,
+                    0.46,
+                    0.53,
+                    0.52,
+                    0.67,
+                    0.65,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee"
+                  ],
+                  "values": [
+                    2.84,
+                    1.35
+                  ]
+                }
+              },
+              {
+                "type": "demographic_pie",
+                "title": "Audience Segments",
+                "data": {
+                  "labels": [
+                    "18-34 Urban",
+                    "25-44 Professionals",
+                    "35-54 Health-conscious",
+                    "Other"
+                  ],
+                  "values": [
+                    42,
+                    31,
+                    18,
+                    9
+                  ]
+                }
+              },
+              {
+                "type": "opportunity_matrix",
+                "title": "Product Opportunities",
+                "data": {
+                  "opportunities": [
+                    {
+                      "product": "Cold Brew Concentrate",
+                      "score": 0.82,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Functional Coffee (adaptogens)",
+                      "score": 0.71,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Premium Single-Origin Pods",
+                      "score": 0.65,
+                      "season": "year-round"
+                    }
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "9a65e9c8f58fddddb393e5f918573e763ed5027e7d328cf73f231b19a3a4a670",
+              "insight_hash": "28f878fc6ec5eb5b4a0514bf137dbf1df0ab0d8db4050fe7d4d7a91b4ce62523",
+              "evidence_hash": "0366f3d47826b81446d66c929face4058be4ac9529b149caf6558120d3dab3fc",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 16:27:52.737409+00:00",
+              "blockchain_tx_id": "9438a5ad-dc2"
+            }
+          },
+          "created_at": "2026-09-01T16:27:52.760351+00:00"
+        },
+        {
+          "id": "bdd144bc-1330-48a8-9729-83207e932a2c",
+          "role": "user",
+          "content": "give me about btc",
+          "metadata": {},
+          "created_at": "2026-09-01T16:28:25.359583+00:00"
+        },
+        {
+          "id": "b94af7c8-f2e2-4317-814e-82d573fbc3af",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "visualization",
+              "insight",
+              "provenance",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis"
+            ],
+            "sources_used": [
+              "x",
+              "sample",
+              "reddit",
+              "news"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.74",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: fear sentiment",
+                "value": "velocity=1.87",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc etf",
+                "value": "velocity=1.77",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.54,
+                    0.36,
+                    0.43,
+                    0.42,
+                    0.57,
+                    0.55,
+                    0.62
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "fear sentiment",
+                    "btc etf"
+                  ],
+                  "values": [
+                    3.74,
+                    1.87,
+                    1.77
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "82e1169294756cf3346c6c64cb2c465124aabe35823a8d61ab7bd4dd8cc72525",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "b2a985b85e00ae0eeee596ae0b1eed00d9036cefc73264d0ed4eea54966bb446",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 16:28:25.367649+00:00",
+              "blockchain_tx_id": "654f3c09-8a0"
+            }
+          },
+          "created_at": "2026-09-01T16:28:25.393876+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    },
+    "d47bf604-3b22-424d-b3e0-57008717bd1c": {
+      "id": "d47bf604-3b22-424d-b3e0-57008717bd1c",
+      "title": "Analyze coffee trends and tell me what product I should laun\u2026",
+      "created_at": "2026-09-01T16:35:57.597206+00:00",
+      "updated_at": "2026-09-01T16:35:57.621534+00:00",
+      "messages": [
+        {
+          "id": "93a23218-064b-43db-86b5-1187997bb8ca",
+          "role": "user",
+          "content": "Analyze coffee trends and tell me what product I should launch this winter.",
+          "metadata": {},
+          "created_at": "2026-09-01T16:35:57.597206+00:00"
+        },
+        {
+          "id": "73d1541e-db12-43f4-a8ce-98be5b0c077f",
+          "role": "assistant",
+          "content": "**Domain:** Consumer Intelligence\n\n**Observed:** In the **consumer/coffee** space, Cold Brew is the fastest-growing trend with strong cross-platform momentum. Winter seasonal demand is elevated (+34% projected lift).\n\n**Inferred:** Young consumers (42%) are driving this trend, motivated by convenience and health-conscious formulations.\n\n**Predicted:** Cold brew concentrate and functional coffee products are likely to see sustained Q1 demand.\n\n**Recommended:**\n- Launch a **Winter Cold Brew Concentrate** targeting 18-34 urban consumers\n- Partner with micro-influencers in the coffee/lifestyle niche\n- Campaign timeline: teasers in 2 weeks, full launch early winter\n\n**Limitations:** Demographic segments are probabilistic aggregates. Confidence: 78%.",
+          "metadata": {
+            "intent": "strategy",
+            "domain": "consumer",
+            "domain_label": "Consumer Intelligence",
+            "entities": [
+              "coffee"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "demographics",
+              "domain",
+              "visualization",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.84",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=1.35",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "demographic",
+                "label": "18-34 Urban",
+                "value": "42%",
+                "confidence": 0.68,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "demographic",
+                "label": "25-44 Professionals",
+                "value": "31%",
+                "confidence": 0.62,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "domain",
+                "label": "Product Opportunity",
+                "value": "Cold Brew Concentrate",
+                "confidence": 0.82,
+                "source": "domain_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.64,
+                    0.46,
+                    0.53,
+                    0.52,
+                    0.67,
+                    0.65,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee"
+                  ],
+                  "values": [
+                    2.84,
+                    1.35
+                  ]
+                }
+              },
+              {
+                "type": "demographic_pie",
+                "title": "Audience Segments",
+                "data": {
+                  "labels": [
+                    "18-34 Urban",
+                    "25-44 Professionals",
+                    "35-54 Health-conscious",
+                    "Other"
+                  ],
+                  "values": [
+                    42,
+                    31,
+                    18,
+                    9
+                  ]
+                }
+              },
+              {
+                "type": "opportunity_matrix",
+                "title": "Product Opportunities",
+                "data": {
+                  "opportunities": [
+                    {
+                      "product": "Cold Brew Concentrate",
+                      "score": 0.82,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Functional Coffee (adaptogens)",
+                      "score": 0.71,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Premium Single-Origin Pods",
+                      "score": 0.65,
+                      "season": "year-round"
+                    }
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "abd7e6d697878c3b5858f555a074b28031368ad781127ad3b50ae160b9132654",
+              "insight_hash": "28f878fc6ec5eb5b4a0514bf137dbf1df0ab0d8db4050fe7d4d7a91b4ce62523",
+              "evidence_hash": "0366f3d47826b81446d66c929face4058be4ac9529b149caf6558120d3dab3fc",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 16:35:57.601532+00:00",
+              "blockchain_tx_id": "429e3573-ca6"
+            }
+          },
+          "created_at": "2026-09-01T16:35:57.621534+00:00"
+        }
+      ],
+      "last_domain": "consumer"
+    },
+    "53ba6bc3-1f64-472c-aac1-a2b77e8aa551": {
+      "id": "53ba6bc3-1f64-472c-aac1-a2b77e8aa551",
+      "title": "Analyze coffee trends and tell me what product I should laun\u2026",
+      "created_at": "2026-09-01T17:15:37.758280+00:00",
+      "updated_at": "2026-09-01T17:19:08.930081+00:00",
+      "messages": [
+        {
+          "id": "70576f5f-5152-43eb-afc4-1229c08bb90e",
+          "role": "user",
+          "content": "Analyze coffee trends and tell me what product I should launch this winter.",
+          "metadata": {},
+          "created_at": "2026-09-01T17:15:37.758280+00:00"
+        },
+        {
+          "id": "33796567-080f-4c12-96fb-53be79ead431",
+          "role": "assistant",
+          "content": "**Domain:** Consumer Intelligence\n\n**Observed:** In the **consumer/coffee** space, Cold Brew is the fastest-growing trend with strong cross-platform momentum. Winter seasonal demand is elevated (+34% projected lift).\n\n**Inferred:** Young consumers (42%) are driving this trend, motivated by convenience and health-conscious formulations.\n\n**Predicted:** Cold brew concentrate and functional coffee products are likely to see sustained Q1 demand.\n\n**Recommended:**\n- Launch a **Winter Cold Brew Concentrate** targeting 18-34 urban consumers\n- Partner with micro-influencers in the coffee/lifestyle niche\n- Campaign timeline: teasers in 2 weeks, full launch early winter\n\n**Limitations:** Demographic segments are probabilistic aggregates. Confidence: 78%.",
+          "metadata": {
+            "intent": "strategy",
+            "domain": "consumer",
+            "domain_label": "Consumer Intelligence",
+            "entities": [
+              "coffee"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "demographics",
+              "domain",
+              "visualization",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "domain_analytics",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample",
+              "reddit"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.84",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=1.35",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "demographic",
+                "label": "18-34 Urban",
+                "value": "42%",
+                "confidence": 0.68,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "demographic",
+                "label": "25-44 Professionals",
+                "value": "31%",
+                "confidence": 0.62,
+                "source": "demographic_segmenter"
+              },
+              {
+                "type": "domain",
+                "label": "Product Opportunity",
+                "value": "Cold Brew Concentrate",
+                "confidence": 0.82,
+                "source": "domain_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.64,
+                    0.46,
+                    0.53,
+                    0.52,
+                    0.67,
+                    0.65,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee"
+                  ],
+                  "values": [
+                    2.84,
+                    1.35
+                  ]
+                }
+              },
+              {
+                "type": "demographic_pie",
+                "title": "Audience Segments",
+                "data": {
+                  "labels": [
+                    "18-34 Urban",
+                    "25-44 Professionals",
+                    "35-54 Health-conscious",
+                    "Other"
+                  ],
+                  "values": [
+                    42,
+                    31,
+                    18,
+                    9
+                  ]
+                }
+              },
+              {
+                "type": "opportunity_matrix",
+                "title": "Product Opportunities",
+                "data": {
+                  "opportunities": [
+                    {
+                      "product": "Cold Brew Concentrate",
+                      "score": 0.82,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Functional Coffee (adaptogens)",
+                      "score": 0.71,
+                      "season": "winter"
+                    },
+                    {
+                      "product": "Premium Single-Origin Pods",
+                      "score": 0.65,
+                      "season": "year-round"
+                    }
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "b3fb5b439f35ab1d907f020fb35b8a900025e75ba0922da351e75223a494d59f",
+              "insight_hash": "28f878fc6ec5eb5b4a0514bf137dbf1df0ab0d8db4050fe7d4d7a91b4ce62523",
+              "evidence_hash": "0366f3d47826b81446d66c929face4058be4ac9529b149caf6558120d3dab3fc",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 17:15:37.764090+00:00",
+              "blockchain_tx_id": "b1db9928-6b3"
+            }
+          },
+          "created_at": "2026-09-01T17:15:37.782982+00:00"
+        },
+        {
+          "id": "c93ae2de-29b1-4410-9912-41681121a049",
+          "role": "user",
+          "content": "tell me about btc",
+          "metadata": {},
+          "created_at": "2026-09-01T17:19:08.905203+00:00"
+        },
+        {
+          "id": "c22d2b19-c1a0-4cae-89ef-6294e6121e7a",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample",
+              "reddit",
+              "telegram",
+              "news"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.74",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: fear sentiment",
+                "value": "velocity=1.87",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc etf",
+                "value": "velocity=1.77",
+                "confidence": 0.8,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.54,
+                    0.36,
+                    0.43,
+                    0.42,
+                    0.57,
+                    0.55,
+                    0.62
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "fear sentiment",
+                    "btc etf"
+                  ],
+                  "values": [
+                    3.74,
+                    1.87,
+                    1.77
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "9718bc5b363eaa0b98242b0f9114685d2c3eb973b191d1952f98d56219a50329",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "b2a985b85e00ae0eeee596ae0b1eed00d9036cefc73264d0ed4eea54966bb446",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-01 17:19:08.910195+00:00",
+              "blockchain_tx_id": "5a4db99e-3f2"
+            }
+          },
+          "created_at": "2026-09-01T17:19:08.930081+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    }
+  }
+}

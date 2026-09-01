@@ -1,0 +1,39 @@
+{
+  "name": "SOCIALIQ Master Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "socialiq",
+        "responseMode": "responseNode"
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://backend:8000/api/v1/chat",
+        "method": "POST",
+        "jsonParameters": true,
+        "bodyParametersJson": "={{ JSON.stringify({ message: $json.body.message, session_id: $json.body.session_id }) }}"
+      },
+      "name": "Call SOCIALIQ API",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [750, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Call SOCIALIQ API", "type": "main", "index": 0 }]] },
+    "Call SOCIALIQ API": { "main": [[{ "node": "Respond", "type": "main", "index": 0 }]] }
+  }
+}

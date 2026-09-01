@@ -1,0 +1,43 @@
+[
+  {
+    "id": "btc-1",
+    "platform": "x",
+    "text": "BTC volatility is insane today. Whipsaw action on every macro headline.",
+    "author": "@cryptotrader",
+    "timestamp": "2026-01-15T09:00:00Z",
+    "engagement": {"likes": 892, "reposts": 234, "replies": 156}
+  },
+  {
+    "id": "btc-2",
+    "platform": "reddit",
+    "text": "Fear index spiking again. Are we heading for a correction or just normal volatile range?",
+    "author": "u/bitcoin_daily",
+    "timestamp": "2026-01-15T10:30:00Z",
+    "engagement": {"likes": 456, "reposts": 89, "replies": 203}
+  },
+  {
+    "id": "btc-3",
+    "platform": "x",
+    "text": "ETF inflows still strong despite the volatility. Institutional demand remains bullish long-term.",
+    "author": "@etfwatch",
+    "timestamp": "2026-01-15T11:15:00Z",
+    "engagement": {"likes": 678, "reposts": 189, "replies": 87},
+    "mentions": ["@cryptotrader"]
+  },
+  {
+    "id": "btc-4",
+    "platform": "telegram",
+    "text": "Regulatory uncertainty causing short-term fear. Support at 94k looking shaky.",
+    "author": "@macro_crypto",
+    "timestamp": "2026-01-15T13:00:00Z",
+    "engagement": {"likes": 345, "reposts": 78, "replies": 112}
+  },
+  {
+    "id": "btc-5",
+    "platform": "x",
+    "text": "Mixed signals everywhere. Volume divergence suggests range-bound trading ahead.",
+    "author": "@chartmaster",
+    "timestamp": "2026-01-15T15:30:00Z",
+    "engagement": {"likes": 567, "reposts": 145, "replies": 67}
+  }
+]
