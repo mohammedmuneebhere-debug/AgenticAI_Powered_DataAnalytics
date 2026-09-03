@@ -1,0 +1,38 @@
+[
+  {
+    "id": "g-1",
+    "platform": "google_search",
+    "text": "Coffee trends 2026: Cold brew and functional coffee lead winter beverage market growth",
+    "author": "foodbusinessnews.net",
+    "timestamp": "2026-01-15T07:00:00Z",
+    "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+    "url": "https://example.com/coffee-trends-2026"
+  },
+  {
+    "id": "g-2",
+    "platform": "google_search",
+    "text": "Young consumers driving premium coffee demand — convenience formats see 34% YoY lift",
+    "author": "marketresearch.com",
+    "timestamp": "2026-01-14T18:00:00Z",
+    "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+    "url": "https://example.com/consumer-coffee-report"
+  },
+  {
+    "id": "g-3",
+    "platform": "google_search",
+    "text": "Bitcoin volatility spikes amid ETF flow uncertainty and macro headwinds",
+    "author": "coindesk.com",
+    "timestamp": "2026-01-15T09:30:00Z",
+    "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+    "url": "https://example.com/btc-volatility"
+  },
+  {
+    "id": "g-4",
+    "platform": "google_search",
+    "text": "Instagram Reels outperform static posts 2.4x for coffee and lifestyle brands",
+    "author": "socialmediatoday.com",
+    "timestamp": "2026-01-15T11:00:00Z",
+    "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+    "url": "https://example.com/instagram-reels-study"
+  }
+]

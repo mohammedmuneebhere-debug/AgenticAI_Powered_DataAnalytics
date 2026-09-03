@@ -1,0 +1,122 @@
+{
+  "name": "SOCIALIQ X/Twitter Recent Search",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "socialiq/twitter-search",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "twitter-search-webhook",
+      "name": "Twitter Search Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        260,
+        300
+      ],
+      "webhookId": "socialiq-twitter-search"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.x.com/2/tweets/search/recent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json.body && $json.body.query ? $json.body.query : '\"AI\" -is:retweet lang:en' }}"
+            },
+            {
+              "name": "max_results",
+              "value": "={{ $json.body && $json.body.max_results ? $json.body.max_results : 10 }}"
+            },
+            {
+              "name": "tweet.fields",
+              "value": "created_at,author_id,public_metrics,lang,conversation_id"
+            },
+            {
+              "name": "expansions",
+              "value": "author_id"
+            },
+            {
+              "name": "user.fields",
+              "value": "name,username,profile_image_url"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ 'Bearer ' + $env.X_BEARER_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "x-recent-search",
+      "name": "Search X Recent Posts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "twitter-search-response",
+      "name": "Return Twitter Results",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        780,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Twitter Search Request": {
+      "main": [
+        [
+          {
+            "node": "Search X Recent Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search X Recent Posts": {
+      "main": [
+        [
+          {
+            "node": "Return Twitter Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "socialiq-twitter-search-v1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {}
+}

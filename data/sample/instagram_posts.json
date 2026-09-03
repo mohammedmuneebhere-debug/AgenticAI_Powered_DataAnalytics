@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ig-1",
+    "platform": "instagram",
+    "text": "Cold brew aesthetic reels are taking over my feed — minimalist coffee content is everywhere",
+    "author": "@coffeesthetics",
+    "timestamp": "2026-01-15T09:00:00Z",
+    "engagement": {"likes": 1240, "reposts": 0, "replies": 89, "saves": 456},
+    "url": "https://instagram.com/p/sample1"
+  },
+  {
+    "id": "ig-2",
+    "platform": "instagram",
+    "text": "POV: making the perfect latte art for your morning reel ☕✨ #coffee #latteart",
+    "author": "@barista.daily",
+    "timestamp": "2026-01-15T11:30:00Z",
+    "engagement": {"likes": 890, "reposts": 0, "replies": 45, "saves": 210},
+    "url": "https://instagram.com/p/sample2"
+  },
+  {
+    "id": "ig-3",
+    "platform": "instagram",
+    "text": "Winter coffee recipe carousel: 5 cozy drinks you need to try 🎄☕ Save for later!",
+    "author": "@homebarista",
+    "timestamp": "2026-01-15T14:00:00Z",
+    "engagement": {"likes": 2100, "reposts": 0, "replies": 156, "saves": 890},
+    "url": "https://instagram.com/p/sample3"
+  },
+  {
+    "id": "ig-4",
+    "platform": "instagram",
+    "text": "Functional mushroom coffee unboxing — adaptogens + coffee = focus mode activated",
+    "author": "@wellness.brew",
+    "timestamp": "2026-01-15T16:20:00Z",
+    "engagement": {"likes": 567, "reposts": 0, "replies": 34, "saves": 178},
+    "url": "https://instagram.com/p/sample4"
+  }
+]

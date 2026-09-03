@@ -1,0 +1,52 @@
+[
+  {
+    "id": "coffee-1",
+    "platform": "x",
+    "text": "Cold brew concentrate is literally changing my mornings. So convenient for winter!",
+    "author": "@coffeeenthusiast",
+    "timestamp": "2026-01-15T08:30:00Z",
+    "engagement": {"likes": 342, "reposts": 89, "replies": 23},
+    "mentions": ["@coldbrewco"]
+  },
+  {
+    "id": "coffee-2",
+    "platform": "telegram",
+    "text": "Anyone tried adaptogen mushroom coffee? Seeing it everywhere in my feed lately.",
+    "author": "@healthbrew",
+    "timestamp": "2026-01-15T10:15:00Z",
+    "engagement": {"likes": 156, "reposts": 45, "replies": 31}
+  },
+  {
+    "id": "coffee-3",
+    "platform": "x",
+    "text": "Premium single-origin pods are underrated. Best gift for coffee lovers this winter.",
+    "author": "@brewreview",
+    "timestamp": "2026-01-15T12:00:00Z",
+    "engagement": {"likes": 278, "reposts": 67, "replies": 18}
+  },
+  {
+    "id": "coffee-4",
+    "platform": "x",
+    "text": "Young consumers are driving the cold brew trend — convenience + quality is the winning combo.",
+    "author": "@marketpulse",
+    "timestamp": "2026-01-15T14:30:00Z",
+    "engagement": {"likes": 521, "reposts": 134, "replies": 42},
+    "mentions": ["@coffeeenthusiast"]
+  },
+  {
+    "id": "coffee-5",
+    "platform": "telegram",
+    "text": "Functional coffee with lion's mane is trending hard. Great for focus during winter work days.",
+    "author": "@nootropic_ninja",
+    "timestamp": "2026-01-15T16:45:00Z",
+    "engagement": {"likes": 198, "reposts": 56, "replies": 27}
+  },
+  {
+    "id": "coffee-6",
+    "platform": "x",
+    "text": "Winter coffee season is here! Cold brew sales up across urban markets. Excited for new launches.",
+    "author": "@retailwatch",
+    "timestamp": "2026-01-15T18:00:00Z",
+    "engagement": {"likes": 445, "reposts": 112, "replies": 35}
+  }
+]
