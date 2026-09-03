@@ -173,7 +173,7 @@ class MasterAgent:
             plan.agents_used = self.ALL_AGENTS.copy()
 
         if enabled_sources:
-            plan.platforms = [s for s in enabled_sources if s not in ("sample", "news", "reddit")]
+            plan.platforms = [s for s in enabled_sources if s != "sample"]
             plan.sources_used = enabled_sources
         else:
             plan.sources_used = plan.platforms + ["sample"]

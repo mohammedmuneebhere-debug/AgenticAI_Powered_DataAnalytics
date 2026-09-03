@@ -45,6 +45,9 @@ services:
       N8N_BASIC_AUTH_USER: admin
       N8N_BASIC_AUTH_PASSWORD: socialiq123
       WEBHOOK_URL: http://localhost:5678/
+      X_BEARER_TOKEN: ${X_BEARER_TOKEN}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      NEWS_API_KEY: ${NEWS_API_KEY}
     ports:
       - "5678:5678"
     volumes:

@@ -21,6 +21,8 @@ PLATFORM_SAMPLE_FILES = {
     "instagram": {"default": "instagram_posts.json"},
     "pinterest": {"default": "pinterest_pins.json"},
     "google_search": {"coffee": "google_search_results.json", "btc": "google_search_results.json", "default": "google_search_results.json"},
+    "news": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
+    "reddit": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
 }
 
 
@@ -50,11 +52,13 @@ class DataAcquisitionAgent:
                 bool(self.settings.google_search_api_key and self.settings.google_search_cx),
                 self._fetch_google_search,
             ),
+            "news": (bool(self.settings.news_api_key), self._fetch_news),
+            "reddit": (bool(self.settings.reddit_client_id), self._fetch_reddit),
         }
 
         active_platforms = [p for p in platforms if p != "sample"]
         if not active_platforms:
-            active_platforms = ["x", "telegram", "instagram", "pinterest", "google_search"]
+            active_platforms = ["x", "telegram", "instagram", "pinterest", "google_search", "news", "reddit"]
 
         for platform in active_platforms:
             has_creds, fetcher = fetchers.get(platform, (False, None))
@@ -264,6 +268,91 @@ class DataAcquisitionAgent:
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "engagement": {"likes": 0, "reposts": 0, "replies": 0},
                 "url": item.get("link"),
+            })
+        return records
+
+    async def _fetch_news(self, query: str, entities: list[str]) -> list[dict]:
+        """NewsAPI search — https://newsapi.org/docs/endpoints/everything"""
+        if not self.settings.news_api_key:
+            return []
+        search_query = self._build_search_query(query, entities)
+        params = {
+            "apiKey": self.settings.news_api_key,
+            "q": search_query,
+            "language": "en",
+            "sortBy": "publishedAt",
+            "pageSize": 10,
+        }
+        async with httpx.AsyncClient(timeout=20) as client:
+            resp = await client.get("https://newsapi.org/v2/everything", params=params)
+            resp.raise_for_status()
+            data = resp.json()
+
+        records = []
+        for article in data.get("articles", []):
+            title = article.get("title") or "News article"
+            description = article.get("description") or ""
+            records.append({
+                "id": article.get("url") or article.get("publishedAt") or title,
+                "platform": "news",
+                "text": f"{title} — {description}".strip(" — "),
+                "author": article.get("source", {}).get("name", "news"),
+                "timestamp": article.get("publishedAt") or datetime.now(timezone.utc).isoformat(),
+                "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+                "url": article.get("url"),
+            })
+        return records
+
+    async def _fetch_reddit(self, query: str, entities: list[str]) -> list[dict]:
+        """Reddit search via OAuth client credentials — https://www.reddit.com/dev/api/"""
+        client_id = self.settings.reddit_client_id
+        client_secret = self.settings.reddit_client_secret
+        if not client_id or not client_secret:
+            return []
+
+        search_query = self._build_search_query(query, entities)
+        user_agent = "socialiq/0.1"
+        auth = httpx.BasicAuth(client_id, client_secret)
+        headers = {"User-Agent": user_agent}
+
+        async with httpx.AsyncClient(timeout=20) as client:
+            token_resp = await client.post(
+                "https://www.reddit.com/api/v1/access_token",
+                data={"grant_type": "client_credentials"},
+                auth=auth,
+                headers=headers,
+            )
+            token_resp.raise_for_status()
+            token = token_resp.json().get("access_token")
+            if not token:
+                return []
+
+            search_resp = await client.get(
+                "https://oauth.reddit.com/search",
+                params={"q": search_query, "restrict_sr": "false", "sort": "relevance", "limit": 10, "t": "week"},
+                headers={**headers, "Authorization": f"bearer {token}"},
+            )
+            search_resp.raise_for_status()
+            data = search_resp.json()
+
+        records = []
+        for item in data.get("data", {}).get("children", []):
+            post = item.get("data", {})
+            title = post.get("title") or "Reddit discussion"
+            selftext = post.get("selftext") or ""
+            text = f"{title} — {selftext}".strip(" — ")
+            records.append({
+                "id": str(post.get("id", "")),
+                "platform": "reddit",
+                "text": text,
+                "author": post.get("author", "reddit"),
+                "timestamp": datetime.fromtimestamp(post.get("created_utc", 0), tz=timezone.utc).isoformat(),
+                "engagement": {
+                    "likes": post.get("ups", 0),
+                    "reposts": 0,
+                    "replies": post.get("num_comments", 0),
+                },
+                "url": f"https://www.reddit.com{post.get('permalink', '')}",
             })
         return records
 

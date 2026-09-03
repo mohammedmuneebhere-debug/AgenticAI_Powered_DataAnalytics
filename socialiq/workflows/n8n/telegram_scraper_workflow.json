@@ -1,0 +1,119 @@
+{
+  "name": "SOCIALIQ Telegram Updates",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "socialiq/telegram-updates",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "telegram-updates-webhook",
+      "name": "Telegram Updates Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        260,
+        300
+      ],
+      "webhookId": "socialiq-telegram-updates"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'https://api.telegram.org/bot' + $env.TELEGRAM_BOT_TOKEN + '/getUpdates' }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "={{ $json.body && $json.body.limit ? $json.body.limit : 100 }}"
+            },
+            {
+              "name": "allowed_updates",
+              "value": "[\"message\",\"channel_post\"]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "telegram-get-updates",
+      "name": "Get Telegram Updates",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const requestedQuery = (($('Telegram Updates Request').first().json.body || {}).query || '').trim().toLowerCase();\nconst updates = Array.isArray($json.result) ? $json.result : [];\nconst records = updates\n  .map((update) => {\n    const message = update.message || update.channel_post;\n    if (!message || typeof message.text !== 'string') return null;\n    return {\n      update_id: update.update_id,\n      message_id: message.message_id,\n      chat_id: message.chat?.id,\n      chat_title: message.chat?.title || message.chat?.username || message.chat?.first_name,\n      sender_id: message.from?.id,\n      sender_username: message.from?.username,\n      text: message.text,\n      date: message.date ? new Date(message.date * 1000).toISOString() : undefined\n    };\n  })\n  .filter((record) => record && (!requestedQuery || record.text.toLowerCase().includes(requestedQuery)));\nreturn records.map((record) => ({ json: record }));"
+      },
+      "id": "telegram-normalize",
+      "name": "Normalize and Filter Messages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { count: $input.all().length, messages: $input.all().map(item => item.json) } }}"
+      },
+      "id": "telegram-updates-response",
+      "name": "Return Telegram Messages",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Telegram Updates Request": {
+      "main": [
+        [
+          {
+            "node": "Get Telegram Updates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Telegram Updates": {
+      "main": [
+        [
+          {
+            "node": "Normalize and Filter Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize and Filter Messages": {
+      "main": [
+        [
+          {
+            "node": "Return Telegram Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "socialiq-telegram-updates-v1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {}
+}
