@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     pinterest_access_token: str = ""
     google_search_api_key: str = ""
     google_search_cx: str = ""
+    news_api_key: str = ""
+    reddit_client_id: str = ""
+    reddit_client_secret: str = ""
     n8n_webhook_url: str = "http://localhost:5678/webhook/socialiq"
     api_host: str = "0.0.0.0"
     api_port: int = 8000

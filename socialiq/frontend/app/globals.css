@@ -1,8 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
 
 :root {
   --bg-app: #131314;
