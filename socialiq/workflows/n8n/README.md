@@ -62,6 +62,34 @@ consumed by the Bot API, so repeated calls can return no messages after updates 
 acknowledged. This workflow does not scrape arbitrary public Telegram content; the bot must
 be a member of the relevant chat/channel.
 
+## NewsAPI search workflow
+
+`newsapi_search_workflow.json` searches NewsAPI's `/v2/everything` endpoint using a query
+provided in the webhook request. It reads `NEWS_API_KEY` from the n8n container environment;
+the token is not stored in the workflow JSON.
+
+### Setup and test
+
+1. Ensure `NEWS_API_KEY` is set in the project-root `.env`.
+2. Restart n8n to load the current value:
+
+   ```bash
+   docker compose -f docker/docker-compose.yml up -d --force-recreate n8n
+   ```
+
+3. Import `workflows/n8n/newsapi_search_workflow.json` into n8n.
+4. Call the webhook with a query:
+
+   ```bash
+   curl -X POST http://localhost:5678/webhook/socialiq/news-search ^
+     -H "Content-Type: application/json" ^
+     -d "{\"query\":\"renewable energy\",\"page_size\":10,\"language\":\"en\",\"sort_by\":\"relevancy\"}"
+   ```
+
+The `query` field defaults to `artificial intelligence`. `page_size` is capped at 100,
+`language` defaults to `en`, and `sort_by` defaults to `relevancy`. The response includes
+the NewsAPI status, result count, and normalized article fields.
+
 ## Flow
 
 ```
