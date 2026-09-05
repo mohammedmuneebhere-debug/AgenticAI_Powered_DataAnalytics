@@ -1,3 +1,991 @@
 {
-  "sessions": {}
+  "sessions": {
+    "c4f3ea3e-3f50-4871-be34-c8b555aa3b63": {
+      "id": "c4f3ea3e-3f50-4871-be34-c8b555aa3b63",
+      "title": "Why is BTC volatile today?",
+      "created_at": "2026-09-03T14:23:53.421809+00:00",
+      "updated_at": "2026-09-03T14:23:53.432319+00:00",
+      "messages": [
+        {
+          "id": "d6a639c9-804c-4494-a22a-10fe908c1a18",
+          "role": "user",
+          "content": "Why is BTC volatile today?",
+          "metadata": {},
+          "created_at": "2026-09-03T14:23:53.421835+00:00"
+        },
+        {
+          "id": "5da01820-4a1b-4be9-9588-f6a7e2ce8234",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.19",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.74",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=2.07",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.4,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.66
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "cold brew",
+                    "functional coffee",
+                    "btc etf",
+                    "fear sentiment"
+                  ],
+                  "values": [
+                    3.19,
+                    2.74,
+                    2.07,
+                    2.07,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "9e8819ebc3c1d423cfd8c4d1dcd644d830bb240301371fdd76005a357dcf3293",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "66f088019ac36596eac3e1220f6a4cc10534346d442779753fceb0314192ea74",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-03 14:23:53.429827+00:00",
+              "blockchain_tx_id": "8d510417-39b"
+            }
+          },
+          "created_at": "2026-09-03T14:23:53.432319+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    },
+    "20aa2a0f-0652-4885-bb1d-7173b1930552": {
+      "id": "20aa2a0f-0652-4885-bb1d-7173b1930552",
+      "title": "Why is BTC volatile today?",
+      "created_at": "2026-09-03T16:09:54.931565+00:00",
+      "updated_at": "2026-09-03T16:09:54.944529+00:00",
+      "messages": [
+        {
+          "id": "e15f28c2-a348-4ed4-bb1e-db06176f83ef",
+          "role": "user",
+          "content": "Why is BTC volatile today?",
+          "metadata": {},
+          "created_at": "2026-09-03T16:09:54.931598+00:00"
+        },
+        {
+          "id": "e27420dd-bd6f-402c-9174-c2c6b9351cfe",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.19",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.74",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=2.07",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.4,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.66
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "cold brew",
+                    "functional coffee",
+                    "btc etf",
+                    "fear sentiment"
+                  ],
+                  "values": [
+                    3.19,
+                    2.74,
+                    2.07,
+                    2.07,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "69f5f01a93b7dbaa6c3ef6222dbb972f24dacf87fa4e01da597108d87f4afe18",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "66f088019ac36596eac3e1220f6a4cc10534346d442779753fceb0314192ea74",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-03 16:09:54.940432+00:00",
+              "blockchain_tx_id": "4675b2dd-aec"
+            }
+          },
+          "created_at": "2026-09-03T16:09:54.944529+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    },
+    "445875e3-cda8-4f26-947a-1fa14caa73bd": {
+      "id": "445875e3-cda8-4f26-947a-1fa14caa73bd",
+      "title": "Why is BTC volatile today?",
+      "created_at": "2026-09-03T17:44:26.272671+00:00",
+      "updated_at": "2026-09-03T17:44:26.288034+00:00",
+      "messages": [
+        {
+          "id": "5f50e4cc-0298-4f81-9501-a90469521330",
+          "role": "user",
+          "content": "Why is BTC volatile today?",
+          "metadata": {},
+          "created_at": "2026-09-03T17:44:26.272671+00:00"
+        },
+        {
+          "id": "63f813ab-e4a0-450a-9b3d-a6f05fcf2493",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.19",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.74",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=2.07",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.4,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.66
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "cold brew",
+                    "functional coffee",
+                    "btc etf",
+                    "fear sentiment"
+                  ],
+                  "values": [
+                    3.19,
+                    2.74,
+                    2.07,
+                    2.07,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "fddd2dfbe6c4598d89fae08c38715bb67799360b02e8f44782e418fc8c38f429",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "66f088019ac36596eac3e1220f6a4cc10534346d442779753fceb0314192ea74",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-03 17:44:26.281680+00:00",
+              "blockchain_tx_id": "54fb5eee-18d"
+            }
+          },
+          "created_at": "2026-09-03T17:44:26.288034+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    },
+    "eef4ec23-2896-4037-9d30-a64d1d3af3f3": {
+      "id": "eef4ec23-2896-4037-9d30-a64d1d3af3f3",
+      "title": "Why is BTC volatile today?",
+      "created_at": "2026-09-03T17:45:27.050417+00:00",
+      "updated_at": "2026-09-03T17:45:27.065606+00:00",
+      "messages": [
+        {
+          "id": "96c495b5-ff65-436d-ae91-479f37c6917d",
+          "role": "user",
+          "content": "Why is BTC volatile today?",
+          "metadata": {},
+          "created_at": "2026-09-03T17:45:27.050417+00:00"
+        },
+        {
+          "id": "6959d6f1-f540-47b8-814d-a9afb45bb58a",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.19",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.74",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=2.07",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.4,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.66
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "cold brew",
+                    "functional coffee",
+                    "btc etf",
+                    "fear sentiment"
+                  ],
+                  "values": [
+                    3.19,
+                    2.74,
+                    2.07,
+                    2.07,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "a11e7dce1603fcd12f198fe162f9c57f65415ac425dd1c9a3c3e61bf7a473cd7",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "66f088019ac36596eac3e1220f6a4cc10534346d442779753fceb0314192ea74",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-03 17:45:27.058327+00:00",
+              "blockchain_tx_id": "9fea5873-bd1"
+            }
+          },
+          "created_at": "2026-09-03T17:45:27.065606+00:00"
+        }
+      ],
+      "last_domain": "financial"
+    },
+    "0c9d7855-8144-4784-b311-8158d9a95e71": {
+      "id": "0c9d7855-8144-4784-b311-8158d9a95e71",
+      "title": "Valorant news",
+      "created_at": "2026-09-03T17:51:12.948550+00:00",
+      "updated_at": "2026-09-03T17:53:06.930542+00:00",
+      "messages": [
+        {
+          "id": "c09c04c9-3b19-4cb6-b954-74c46fd6a9ae",
+          "role": "user",
+          "content": "Valorant news",
+          "metadata": {},
+          "created_at": "2026-09-03T17:51:12.948584+00:00"
+        },
+        {
+          "id": "85729705-5711-4a7f-a269-0819ddaea97a",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.55) across 28 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample",
+              "reddit",
+              "news"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.41,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.67
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
+                  ],
+                  "values": [
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "f9f3b368db60b1bdebc77040384de54c56f96df7f9914daf66c9076954df7911",
+              "insight_hash": "01613fc66875c1b66b08275270fea2e088b36312c67f3e8c390555ddcad6365d",
+              "evidence_hash": "cd553632d4c7482f0deff3566d37761bbf281e709b03d069eb6c6b01944b9192",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-03 17:51:12.957927+00:00",
+              "blockchain_tx_id": "b86c6e65-ef8"
+            }
+          },
+          "created_at": "2026-09-03T17:51:12.962855+00:00"
+        },
+        {
+          "id": "e318fcd4-a73e-43a5-a775-bf534f1322ec",
+          "role": "user",
+          "content": "Valorant news",
+          "metadata": {},
+          "created_at": "2026-09-03T17:53:06.916805+00:00"
+        },
+        {
+          "id": "fca5d93a-8e10-4684-b2f7-cdba48821469",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.55) across 28 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search",
+              "sample",
+              "news",
+              "reddit"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.41,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.67
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
+                  ],
+                  "values": [
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "bbb154f8d71f1327437de5e05c3e4ae069d83057fe6edc34a3b33bedba552e99",
+              "insight_hash": "01613fc66875c1b66b08275270fea2e088b36312c67f3e8c390555ddcad6365d",
+              "evidence_hash": "cd553632d4c7482f0deff3566d37761bbf281e709b03d069eb6c6b01944b9192",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-03 17:53:06.926057+00:00",
+              "blockchain_tx_id": "52a83248-84d"
+            }
+          },
+          "created_at": "2026-09-03T17:53:06.930542+00:00"
+        }
+      ],
+      "last_domain": "general"
+    }
+  }
 }
