@@ -15,11 +15,14 @@
       "parameters": {
         "url": "http://host.docker.internal:8000/api/v1/chat",
         "method": "POST",
-        "jsonParameters": true,
-        "bodyParametersJson": "={{ JSON.stringify({ message: ($json.body || $json).message, session_id: ($json.body || $json).session_id, tools: ($json.body || $json).tools }) }}"
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: ($json.body || $json).message, session_id: ($json.body || $json).session_id, tools: ($json.body || $json).tools }) }}"
       },
       "name": "Call SOCIALIQ API",
       "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [500, 300]
     },
     {

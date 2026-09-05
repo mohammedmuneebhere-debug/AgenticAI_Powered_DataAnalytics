@@ -64,7 +64,7 @@ class QueryPlan:
     domain: str = "general"
     domain_label: str = "General Social Intelligence"
     time_range: str = "recent"
-    platforms: list[str] = field(default_factory=lambda: ["x", "telegram", "instagram", "pinterest", "google_search"])
+    platforms: list[str] = field(default_factory=lambda: ["x", "telegram", "instagram", "pinterest", "google_search", "news"])
     workflow: list[str] = field(default_factory=list)
     required_capabilities: list[str] = field(default_factory=list)
     agents_used: list[str] = field(default_factory=list)
@@ -191,8 +191,13 @@ class MasterAgent:
             platforms=plan.platforms,
             time_range=plan.time_range,
         )
+        plan.sources_used = raw_data.get("platforms", plan.sources_used)
 
         cleaned = await self.intelligence_agent.process(raw_data)
+        news_articles = self._top_news_articles(
+            cleaned.get("records", []),
+            raw_data.get("live_sources", []),
+        )
 
         social_analytics = {}
         if "data_acquisition" in plan.agents_used or "social_intelligence" in plan.agents_used:
@@ -225,9 +230,10 @@ class MasterAgent:
             domain=plan.domain,
             domain_label=plan.domain_label,
         )
+        response_text = self._append_news_articles(response["text"], news_articles)
 
         return {
-            "response": response["text"],
+            "response": response_text,
             "intent": plan.intent,
             "domain": plan.domain,
             "domain_label": plan.domain_label,
@@ -238,6 +244,39 @@ class MasterAgent:
             "workflow": plan.workflow,
             "agents_used": plan.agents_used,
             "sources_used": plan.sources_used,
+            "news_articles": news_articles,
             "dataset_snapshot": cleaned.get("snapshot", {}),
             "model_version": response.get("model_version", "socialiq-0.1"),
         }
+
+    def _top_news_articles(
+        self, records: list[dict[str, Any]], live_sources: list[str]
+    ) -> list[dict[str, Any]]:
+        """Return only the top three articles actually retrieved from NewsAPI."""
+        if "news" not in live_sources:
+            return []
+
+        articles = []
+        for record in records:
+            if record.get("platform") != "news" or not record.get("url"):
+                continue
+            articles.append({
+                "title": record.get("title") or record.get("text", "News article"),
+                "description": record.get("description", ""),
+                "source": record.get("source") or record.get("author", "news"),
+                "published_at": record.get("published_at") or record.get("timestamp"),
+                "url": record["url"],
+            })
+        return articles[:3]
+
+    def _append_news_articles(self, response: str, articles: list[dict[str, Any]]) -> str:
+        if not articles:
+            return response
+
+        lines = ["**Top 3 relevant news from NewsAPI:**"]
+        for index, article in enumerate(articles, start=1):
+            title = article["title"].replace("[", "\\[").replace("]", "\\]")
+            lines.append(f"{index}. [{title}]({article['url']}) — {article['source']}")
+            if article["description"]:
+                lines.append(f"   {article['description']}")
+        return f"{response.rstrip()}\n\n" + "\n".join(lines)

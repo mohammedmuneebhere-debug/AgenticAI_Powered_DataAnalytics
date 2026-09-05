@@ -80,6 +80,14 @@ class VisualizationSpec(BaseModel):
     data: dict[str, Any]
 
 
+class NewsArticle(BaseModel):
+    title: str
+    description: str = ""
+    source: str
+    published_at: Optional[str] = None
+    url: str
+
+
 class ProvenanceRecord(BaseModel):
     dataset_hash: str
     insight_hash: str
@@ -104,6 +112,7 @@ class ChatResponse(BaseModel):
     workflow_used: list[str] = []
     agents_used: list[str] = []
     sources_used: list[str] = []
+    news_articles: list[NewsArticle] = []
 
 
 class SessionSummary(BaseModel):

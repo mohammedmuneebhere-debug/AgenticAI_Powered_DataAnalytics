@@ -42,6 +42,7 @@ class DataAcquisitionAgent:
     ) -> dict[str, Any]:
         records: list[dict] = []
         sources_hit: list[str] = []
+        live_sources: list[str] = []
 
         fetchers: dict[str, tuple[bool, Callable[..., Awaitable[list[dict]]]]] = {
             "x": (bool(self.settings.x_bearer_token), self._fetch_x),
@@ -67,6 +68,8 @@ class DataAcquisitionAgent:
             if fetcher and has_creds:
                 try:
                     platform_records = await fetcher(query, entities)
+                    if platform_records:
+                        live_sources.append(platform)
                 except Exception as exc:
                     logger.warning("Live fetch failed for %s: %s", platform, exc)
 
@@ -88,6 +91,7 @@ class DataAcquisitionAgent:
         return {
             "records": records,
             "platforms": sources_hit or platforms,
+            "live_sources": live_sources,
             "query": query,
             "time_range": time_range,
             "snapshot_id": snapshot_id,
@@ -280,8 +284,8 @@ class DataAcquisitionAgent:
             "apiKey": self.settings.news_api_key,
             "q": search_query,
             "language": "en",
-            "sortBy": "publishedAt",
-            "pageSize": 10,
+            "sortBy": "relevancy",
+            "pageSize": 20,
         }
         async with httpx.AsyncClient(timeout=20) as client:
             resp = await client.get("https://newsapi.org/v2/everything", params=params)
@@ -300,6 +304,10 @@ class DataAcquisitionAgent:
                 "timestamp": article.get("publishedAt") or datetime.now(timezone.utc).isoformat(),
                 "engagement": {"likes": 0, "reposts": 0, "replies": 0},
                 "url": article.get("url"),
+                "title": title,
+                "description": description,
+                "source": article.get("source", {}).get("name", "news"),
+                "published_at": article.get("publishedAt"),
             })
         return records
 

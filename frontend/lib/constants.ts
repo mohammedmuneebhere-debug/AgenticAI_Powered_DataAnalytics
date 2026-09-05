@@ -17,7 +17,7 @@ export const DEFAULT_AGENTS = [
   "domain_analytics", "graph_analysis", "visualization", "insight", "provenance",
 ];
 
-export const DEFAULT_SOURCES = ["x", "telegram", "instagram", "pinterest", "google_search", "sample"];
+export const DEFAULT_SOURCES = ["x", "telegram", "instagram", "pinterest", "google_search", "news", "sample"];
 
 /** Fallback catalog — used if API is stale/unreachable; must match backend tools_registry.py */
 export const FALLBACK_SOURCES = [

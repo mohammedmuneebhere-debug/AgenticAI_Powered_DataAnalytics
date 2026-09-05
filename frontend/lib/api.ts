@@ -17,6 +17,14 @@ export interface VisualizationSpec {
   data: Record<string, unknown>;
 }
 
+export interface NewsArticle {
+  title: string;
+  description: string;
+  source: string;
+  published_at?: string;
+  url: string;
+}
+
 export interface ProvenanceRecord {
   dataset_hash: string;
   insight_hash: string;
@@ -47,6 +55,7 @@ export interface ChatResponse {
   workflow_used: string[];
   agents_used: string[];
   sources_used: string[];
+  news_articles: NewsArticle[];
 }
 
 export interface SessionSummary {

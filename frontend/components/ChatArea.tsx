@@ -49,6 +49,7 @@ export default function ChatArea({ sessionId, onSessionId, toolConfig }: Props) 
           workflow_used: m.metadata.workflow_used as string[],
           agents_used: m.metadata.agents_used as string[],
           sources_used: m.metadata.sources_used as string[],
+          news_articles: (m.metadata.news_articles as ChatResponse["news_articles"]) || [],
         } : undefined,
       })));
     }).catch(() => setMessages([]));
