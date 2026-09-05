@@ -13,10 +13,10 @@
     },
     {
       "parameters": {
-        "url": "http://backend:8000/api/v1/chat",
+        "url": "http://host.docker.internal:8000/api/v1/chat",
         "method": "POST",
         "jsonParameters": true,
-        "bodyParametersJson": "={{ JSON.stringify({ message: $json.body.message, session_id: $json.body.session_id }) }}"
+        "bodyParametersJson": "={{ JSON.stringify({ message: ($json.body || $json).message, session_id: ($json.body || $json).session_id, tools: ($json.body || $json).tools }) }}"
       },
       "name": "Call SOCIALIQ API",
       "type": "n8n-nodes-base.httpRequest",

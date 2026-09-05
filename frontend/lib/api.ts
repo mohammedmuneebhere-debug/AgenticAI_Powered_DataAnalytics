@@ -1,4 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+const N8N_WEBHOOK_URL =
+  process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL ||
+  "http://localhost:5678/webhook/socialiq";
 
 export interface EvidenceItem {
   type: string;
@@ -106,10 +109,13 @@ export async function sendMessage(
   sessionId?: string,
   tools?: ToolConfig
 ): Promise<ChatResponse> {
-  return apiFetch<ChatResponse>("/chat", {
+  const res = await fetch(N8N_WEBHOOK_URL, {
+    headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({ message, session_id: sessionId, tools }),
   });
+  if (!res.ok) throw new Error(`n8n webhook error: ${res.status}`);
+  return res.json();
 }
 
 export async function verifyInsight(insightHash: string, datasetHash: string) {
