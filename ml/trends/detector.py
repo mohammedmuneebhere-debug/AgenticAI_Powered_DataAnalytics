@@ -2,6 +2,7 @@
 
 from typing import Any
 from collections import Counter
+import re
 
 
 TREND_KEYWORDS = {
@@ -35,6 +36,31 @@ class TrendDetector:
                     "engagement": engagement,
                     "velocity": round(velocity, 2),
                     "confidence": min(0.95, 0.5 + mentions * 0.1),
+                })
+
+        if not trends:
+            stop_words = {
+                "about", "after", "and", "are", "from", "into", "that", "the",
+                "this", "with", "what", "signal", "discussion",
+            }
+            counts = Counter(
+                word
+                for word in re.findall(r"[a-z0-9][a-z0-9-]+", text_corpus)
+                if word not in stop_words and len(word) > 2
+            )
+            for topic, mentions in counts.most_common(5):
+                engagement = sum(
+                    r.get("engagement", {}).get("likes", 0)
+                    + r.get("engagement", {}).get("reposts", 0)
+                    for r in records
+                    if topic in r.get("text", "").lower()
+                )
+                trends.append({
+                    "topic": topic,
+                    "mentions": mentions,
+                    "engagement": engagement,
+                    "velocity": round(mentions * 0.3 + engagement * 0.001, 2),
+                    "confidence": min(0.9, 0.4 + mentions * 0.1),
                 })
 
         trends.sort(key=lambda t: t["velocity"], reverse=True)

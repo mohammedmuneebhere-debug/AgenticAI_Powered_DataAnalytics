@@ -1,359 +1,95 @@
-import type { ChatResponse, ProvenanceRecord, VisualizationSpec, EvidenceItem } from "./api";
+import type { ChatResponse } from "./api";
 
-export interface DashboardMetric {
-  title: string;
-  value: string;
-  subValue?: string;
-  note: string;
-  badge?: string;
-  badgeType?: "positive" | "warning" | "error" | "neutral";
-}
-
-export interface TrajectoryPoint {
-  time: string;
-  volume: number;
-  lineValue: number;
-}
-
-export interface TrendDriverItem {
-  rank: string;
-  title: string;
-  source: string;
-  growth: string;
-  strength: "High Strength" | "Med Strength" | "Low Strength";
-}
-
-export interface NarrativeItem {
-  title: string;
-  subtitle: string;
-  growth: string;
-  color: string;
-}
-
-export interface SourceContributionItem {
-  name: string;
-  signals: string;
-  percentage: number;
-  dotColor: string;
-}
-
-export interface AudienceSegmentItem {
-  label: string;
-  percentage: number;
-  barColor: string;
-}
+export interface DashboardMetric { title: string; value: string; subValue?: string; note: string; badge?: string; badgeType?: "positive" | "warning" | "error" | "neutral"; }
+export interface TrajectoryPoint { time: string; volume: number; lineValue: number; }
+export interface TrendDriverItem { rank: string; title: string; source: string; growth: string; strength: "High Strength" | "Med Strength" | "Low Strength"; }
+export interface NarrativeItem { title: string; subtitle: string; growth: string; color: string; }
+export interface SourceContributionItem { name: string; signals: string; percentage: number; dotColor: string; }
+export interface AudienceSegmentItem { label: string; percentage: number; barColor: string; }
 
 export interface NormalizedDashboardData {
-  topic: string;
-  lastUpdated: string;
-  signalsAnalyzed: string;
-  activeSourcesCount: number;
-  totalSourcesCount: number;
-  metrics: {
-    totalMentions: DashboardMetric;
-    engagementVolume: DashboardMetric;
-    sentimentScore: DashboardMetric;
-    trendVelocity: DashboardMetric;
-    activeSources: DashboardMetric;
-  };
-  executiveSynthesis: {
-    title: string;
-    confidence: number;
-    sourcesCount: number;
-    signalsCount: number;
-    text: string;
-    primaryVectors: string[];
-  };
-  trajectory: {
-    peakVolume: string;
-    meanVelocity: string;
-    spikeEvent: string;
-    points: TrajectoryPoint[];
-  };
-  sentimentDrivers: {
-    netScore: string;
-    signalsCount: string;
-    polarity: {
-      positive: number;
-      neutral: number;
-      negative: number;
-    };
-    emotions: Array<{
-      label: string;
-      percentage: number;
-      icon: string;
-      color: "secondary" | "slate" | "tertiary" | "error";
-    }>;
-  };
-  trendDrivers: TrendDriverItem[];
-  narratives: NarrativeItem[];
-  sourceContribution: SourceContributionItem[];
-  networkIntelligence: {
-    graphDensity: string;
-    topCommunity: string;
-    fastestGrowing: string;
-    topInfluencer: string;
-    nodes: Array<{ id: string; label: string; inf: string; border: string; text: string }>;
-  };
+  topic: string; lastUpdated: string; signalsAnalyzed: string; activeSourcesCount: number; totalSourcesCount: number;
+  metrics: { totalMentions: DashboardMetric; engagementVolume: DashboardMetric; sentimentScore: DashboardMetric; trendVelocity: DashboardMetric; activeSources: DashboardMetric; };
+  executiveSynthesis: { title: string; confidence: number; sourcesCount: number; signalsCount: number; text: string; primaryVectors: string[]; };
+  trajectory: { peakVolume: string; meanVelocity: string; spikeEvent: string; points: TrajectoryPoint[]; };
+  sentimentDrivers: { netScore: string; signalsCount: string; polarity: { positive: number; neutral: number; negative: number; }; emotions: Array<{ label: string; percentage: number; icon: string; color: "secondary" | "slate" | "tertiary" | "error"; }>; };
+  trendDrivers: TrendDriverItem[]; narratives: NarrativeItem[]; sourceContribution: SourceContributionItem[];
+  networkIntelligence: { graphDensity: string; topCommunity: string; fastestGrowing: string; topInfluencer: string; nodes: Array<{ id: string; label: string; inf: string; border: string; text: string }>; };
   audienceSegments: AudienceSegmentItem[];
-  provenance: {
-    datasetSnapshot: string;
-    timestamp: string;
-    pipeline: string;
-    blockchainAnchoring: string;
-    insightHash?: string;
-    datasetHash?: string;
-  };
+  provenance: { datasetSnapshot: string; timestamp: string; pipeline: string; blockchainAnchoring: string; insightHash?: string; datasetHash?: string; };
 }
 
-/**
- * Normalizes backend ChatResponse (and any embedded visualizations/evidence)
- * into a typed structure for the Dashboard Mode components.
- */
-export function normalizeDashboardData(
-  response: ChatResponse | null | undefined,
-  topic: string
-): NormalizedDashboardData {
-  const isAiAgents = topic.toLowerCase().includes("agent") || topic.toLowerCase().includes("ai");
-  const isBtc = topic.toLowerCase().includes("btc") || topic.toLowerCase().includes("bitcoin");
+const colors = ["bg-white", "bg-secondary", "bg-tertiary", "bg-slate-500", "bg-[#292e3a]"];
+const sourceNames: Record<string, string> = { x: "X", telegram: "Telegram", instagram: "Instagram", pinterest: "Pinterest", google_search: "Google Search", google_trends: "Google Trends", news: "News API", reddit: "Reddit", sample: "Sample Data" };
 
-  // Extract from backend visualizations if available
-  const vizMap = new Map<string, VisualizationSpec>();
-  if (response?.visualizations) {
-    for (const v of response.visualizations) {
-      vizMap.set(v.type, v);
-    }
-  }
+export type DashboardRange = "1H" | "24H" | "7D" | "30D";
 
-  // Extract evidence
-  const evidenceList = response?.evidence || [];
-  const sentimentEv = evidenceList.find((e) => e.type === "statistical" || e.label.toLowerCase().includes("sentiment"));
-  const trendEvs = evidenceList.filter((e) => e.type === "semantic" || e.label.toLowerCase().includes("trend"));
-  const demoEvs = evidenceList.filter((e) => e.type === "demographic");
-  const networkEv = evidenceList.find((e) => e.type === "network");
-
-  // 1. Metrics & Sentiment
-  let sentimentScore = "+64";
-  let sentimentBadge = "Net Positive";
-  let polarity = { positive: 64, neutral: 22, negative: 14 };
-
-  if (sentimentEv) {
-    const val = String(sentimentEv.value).toLowerCase();
-    if (val.includes("pos")) {
-      sentimentScore = "+68";
-      sentimentBadge = "Net Positive";
-      polarity = { positive: 68, neutral: 20, negative: 12 };
-    } else if (val.includes("neg")) {
-      sentimentScore = "-42";
-      sentimentBadge = "Net Negative";
-      polarity = { positive: 18, neutral: 32, negative: 50 };
-    } else {
-      sentimentScore = "+12";
-      sentimentBadge = "Neutral / Mixed";
-      polarity = { positive: 38, neutral: 45, negative: 17 };
-    }
-  }
-
-  // 2. Trend Velocity & Mentions
-  const mentionsVal = isAiAgents ? "128.4K" : isBtc ? "492.1K" : "84.2K";
-  const mentionsChange = isAiAgents ? "+312%" : isBtc ? "+184%" : "+94%";
-  const velocityVal = isAiAgents ? "94/100" : isBtc ? "88/100" : "76/100";
-
-  // 3. Synthesis text
-  let synthesisText = response?.message;
-  if (!synthesisText || synthesisText.trim() === "") {
-    if (isAiAgents) {
-      synthesisText =
-        "AI Agents are experiencing rapid cross-platform expansion driven primarily by developer communities and open-source orchestrators. Positive sentiment dominates technical circles, while enterprise governance and token cost concerns emerge as secondary friction points.";
-    } else if (isBtc) {
-      synthesisText =
-        "Bitcoin conversation velocity indicates strong institutional and retail divergence, with macro ETF inflow chatter offsetting short-term derivatives volatility. Technical sentiment remains constructive while regulatory narratives stabilize.";
-    } else {
-      synthesisText = `${topic} is exhibiting elevated social velocity across technical hubs and news aggregation nodes. Real-time signal clustering indicates expanding multi-channel discussion with positive underlying engagement trends.`;
-    }
-  } else {
-    // Clean markdown headings if any for executive summary card
-    synthesisText = synthesisText
-      .replace(/^#+\s+/gm, "")
-      .replace(/\*\*/g, "")
-      .trim();
-  }
-
-  // 4. Primary vector tags
-  const primaryVectors =
-    trendEvs.length > 0
-      ? trendEvs.slice(0, 3).map((t) => `#${t.label.replace(/^Trend:\s*/i, "").replace(/\s+/g, "-").toLowerCase()}`)
-      : isAiAgents
-      ? ["#multi-agent-frameworks", "#enterprise-automation", "#token-cost-telemetry"]
-      : isBtc
-      ? ["#etf-inflow-dynamics", "#macro-liquidity", "#hashrate-expansion"]
-      : [`#${topic.toLowerCase().replace(/\s+/g, "-")}`, "#cross-platform-momentum", "#ecosystem-shift"];
-
-  // 5. Trajectory points
-  const points: TrajectoryPoint[] = [
-    { time: "00:00 UTC", volume: 30, lineValue: 150 },
-    { time: "04:00", volume: 45, lineValue: 142 },
-    { time: "08:00", volume: 60, lineValue: 118 },
-    { time: "12:00", volume: 140, lineValue: 28 }, // Peak
-    { time: "16:00", volume: 125, lineValue: 44 },
-    { time: "20:00", volume: 115, lineValue: 52 },
-    { time: "CURRENT", volume: 138, lineValue: 20 },
-  ];
-
-  // 6. Trend Drivers list
-  const trendDrivers: TrendDriverItem[] =
-    trendEvs.length > 0
-      ? trendEvs.map((t, idx) => ({
-          rank: `0${idx + 1}`,
-          title: t.label.replace(/^Trend:\s*/i, ""),
-          source: t.source === "trend_detector" ? "GitHub & X" : t.source || "Social Feeds",
-          growth: String(t.value).includes("velocity")
-            ? `+${Math.round(parseFloat(String(t.value).split("=")[1] || "3") * 60)}% Growth`
-            : "+180% Growth",
-          strength: idx < 2 ? "High Strength" : "Med Strength",
-        }))
-      : [
-          { rank: "01", title: "New open-source multi-agent frameworks", source: "GitHub & X", growth: "+410% Growth", strength: "High Strength" },
-          { rank: "02", title: "Autonomous enterprise workflow pilots", source: "Tech News", growth: "+280% Growth", strength: "High Strength" },
-          { rank: "03", title: "Developer productivity benchmarks", source: "Reddit", growth: "+195% Growth", strength: "Med Strength" },
-          { rank: "04", title: "AI automation security audit discussions", source: "HackerNews & X", growth: "+140% Growth", strength: "Med Strength" },
-          { rank: "05", title: "Venture capital seed deals in Agent tech", source: "Financial News", growth: "+85% Growth", strength: "Med Strength" },
-        ];
-
-  // 7. Emerging narratives
-  const narratives: NarrativeItem[] = [
-    { title: "Multi-Agent Systems", subtitle: "Dominant technical narrative (41% share)", growth: "+52%", color: "bg-white" },
-    { title: "AI Automation Guardrails", subtitle: "Safety & governance consensus (22% share)", growth: "+38%", color: "bg-tertiary" },
-    { title: "Autonomous Workflows", subtitle: "Enterprise tooling & efficiency (16% share)", growth: "+29%", color: "bg-secondary" },
-    { title: "Agentic Token Economics", subtitle: "Cost per step optimization (12% share)", growth: "+18%", color: "bg-slate-500" },
-    { title: "Enterprise Integration", subtitle: "Legacy ERP & CRM connectors (9% share)", growth: "+11%", color: "bg-[#292e3a]" },
-  ];
-
-  // 8. Source contribution
-  const activeSources = response?.sources_used || ["x", "reddit", "google_search", "news", "telegram", "instagram"];
-  const sourceContribution: SourceContributionItem[] = [
-    { name: "X (Twitter)", signals: "42,821 signals", percentage: 33, dotColor: "bg-white" },
-    { name: "Reddit", signals: "28,482 signals", percentage: 22, dotColor: "bg-secondary" },
-    { name: "Google Search", signals: "18,904 queries", percentage: 15, dotColor: "bg-tertiary" },
-    { name: "News API", signals: "14,291 signals", percentage: 11, dotColor: "bg-slate-400" },
-    { name: "Telegram", signals: "13,932 signals", percentage: 11, dotColor: "bg-slate-500" },
-    { name: "Instagram", signals: "10,000 signals", percentage: 8, dotColor: "bg-[#292e3a]" },
-  ];
-
-  // 9. Audience segments
-  let audienceSegments: AudienceSegmentItem[] = [
-    { label: "Software Developers & Engineers", percentage: 38, barColor: "bg-white" },
-    { label: "Tech Enthusiasts & Early Adopters", percentage: 26, barColor: "bg-secondary" },
-    { label: "Startup Founders & Operators", percentage: 18, barColor: "bg-tertiary" },
-    { label: "Enterprise IT & Solutions Architects", percentage: 12, barColor: "bg-slate-500" },
-    { label: "Venture & Angel Investors", percentage: 6, barColor: "bg-[#292e3a]" },
-  ];
-
-  if (demoEvs.length > 0) {
-    const customSegments = demoEvs.map((d, i) => ({
-      label: d.label,
-      percentage: parseInt(String(d.value).replace(/[^0-9]/g, "")) || 25,
-      barColor: i === 0 ? "bg-white" : i === 1 ? "bg-secondary" : i === 2 ? "bg-tertiary" : "bg-slate-500",
-    }));
-    if (customSegments.length >= 2) {
-      audienceSegments = customSegments;
-    }
-  }
-
-  // 10. Provenance details
-  const prov = response?.provenance;
-  const provenance = {
-    datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "#DS-88492-AGENT-INTEL",
-    timestamp: prov?.timestamp ? new Date(prov.timestamp).toISOString().replace("T", " ").replace(/\..+/, " UTC") : "2025-05-18 14:22:04 UTC",
-    pipeline: prov?.model_version ? `SOCIALIQ Multi-Agent v${prov.model_version}` : "SOCIALIQ Multi-Agent v4.2.0",
-    blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Confirmed Block #1948201",
-    insightHash: prov?.insight_hash,
-    datasetHash: prov?.dataset_hash,
-  };
+export function normalizeDashboardData(response: ChatResponse, topic: string, range: DashboardRange = "24H"): NormalizedDashboardData {
+  const analytics = response.analytics || {};
+  const sentiment = asRecord(analytics.sentiment);
+  const distribution = asRecord(sentiment.distribution);
+  const allRecords = numberValue(analytics.record_count);
+  const score = numberValue(sentiment.average_score, 0.5);
+  const counts = { positive: numberValue(distribution.positive), neutral: numberValue(distribution.neutral), negative: numberValue(distribution.negative) };
+  const total = Math.max(1, counts.positive + counts.neutral + counts.negative);
+  const polarity = { positive: percent(counts.positive, total), neutral: percent(counts.neutral, total), negative: percent(counts.negative, total) };
+  const trends = listRecords(asRecord(analytics.trends).top_trends);
+  const rangeDays = { "1H": 1, "24H": 1, "7D": 7, "30D": 30 }[range];
+  const cutoff = Date.now() - rangeDays * 24 * 60 * 60 * 1000;
+  const temporal = listRecords(asRecord(analytics.temporal).timeline).filter((point) => {
+    const timestamp = Date.parse(String(point.period || ""));
+    return Number.isNaN(timestamp) || timestamp >= cutoff;
+  });
+  const records = temporal.length ? temporal.reduce((sum, point) => sum + numberValue(point.signal_count), 0) : 0;
+  const scopedFactor = allRecords ? records / allRecords : 0;
+  const scopedScore = temporal.length
+    ? temporal.reduce((sum, point) => sum + numberValue(point.sentiment_score, score) * numberValue(point.signal_count), 0) / Math.max(1, records)
+    : 0.5;
+  const scopedCounts = temporal.reduce((result, point) => {
+    const distribution = asRecord(point.distribution);
+    result.positive += numberValue(distribution.positive);
+    result.neutral += numberValue(distribution.neutral);
+    result.negative += numberValue(distribution.negative);
+    return result;
+  }, { positive: 0, neutral: 0, negative: 0 });
+  const scopedTotal = Math.max(1, scopedCounts.positive + scopedCounts.neutral + scopedCounts.negative);
+  const scopedPolarity = { positive: percent(scopedCounts.positive, scopedTotal), neutral: percent(scopedCounts.neutral, scopedTotal), negative: percent(scopedCounts.negative, scopedTotal) };
+  const sources = response.sources_used?.length ? response.sources_used : ["sample"];
+  const topVelocity = trends.length ? numberValue(trends[0].velocity) : 0;
+  const trendDrivers = trends.map((trend, index) => ({ rank: String(index + 1).padStart(2, "0"), title: String(trend.topic || "Signal"), source: `${range} signal stream`, growth: `${(numberValue(trend.velocity) * scopedFactor).toFixed(2)} velocity`, strength: index === 0 ? "High Strength" : index < 3 ? "Med Strength" : "Low Strength" } as TrendDriverItem));
+  const points = temporal.map((point, index) => ({ time: String(point.period || `Signal ${index + 1}`), volume: Math.max(0, numberValue(point.signal_count, records / Math.max(1, temporal.length))), lineValue: Math.round(numberValue(point.sentiment_score, score) * 100) }));
+  const emotionDistribution = asRecord(analytics.emotion).distribution;
+  const emotions = Object.entries(asRecord(emotionDistribution)).filter(([, value]) => numberValue(value) > 0).map(([label, value], index) => ({ label: label.replace(/\b\w/g, (char) => char.toUpperCase()), percentage: percent(numberValue(value), Math.max(1, records)), icon: index === 0 ? "mood" : "psychology", color: (index % 3 === 0 ? "secondary" : index % 3 === 1 ? "slate" : "tertiary") as "secondary" | "slate" | "tertiary" }));
+  const segments = listRecords(asRecord(analytics.demographics).segments).map((segment, index) => ({ label: String(segment.label || "Audience"), percentage: numberValue(segment.percentage), barColor: colors[index % colors.length] }));
+  const network = asRecord(analytics.network);
+  const nodes = listRecords(network.nodes).map((node, index) => ({ id: String(node.id || index), label: String(node.label || node.id || "Node"), inf: `${numberValue(node.size)} impact`, border: colors[index % colors.length].replace("bg-", "border-"), text: "text-white" }));
+  const sourceContribution = sources.map((source, index) => ({ name: sourceNames[source] || source, signals: `${Math.round(records / sources.length)} signals`, percentage: Math.round(100 / sources.length), dotColor: colors[index % colors.length] }));
+  const primaryVectors = trends.slice(0, 5).map((trend) => `#${String(trend.topic || "signal").replace(/\s+/g, "-").toLowerCase()}`);
+  const prov = response.provenance;
+  const avgVelocity = trends.length ? trends.reduce((sum, trend) => sum + numberValue(trend.velocity), 0) / trends.length : 0;
 
   return {
-    topic,
-    lastUpdated: "Last updated 2 min ago",
-    signalsAnalyzed: isAiAgents ? "128,430 signals analyzed" : isBtc ? "492,100 signals analyzed" : "84,200 signals analyzed",
-    activeSourcesCount: activeSources.length || 6,
-    totalSourcesCount: 8,
+    topic, lastUpdated: `Updated ${new Date().toLocaleTimeString()}`, signalsAnalyzed: `${records.toLocaleString()} signals analyzed`, activeSourcesCount: sources.length, totalSourcesCount: sources.length,
     metrics: {
-      totalMentions: {
-        title: "Total Mentions",
-        value: mentionsVal,
-        subValue: mentionsChange,
-        note: "Rolling 24h timeline",
-        badge: mentionsChange,
-        badgeType: "positive",
-      },
-      engagementVolume: {
-        title: "Engagement Volume",
-        value: isAiAgents ? "1.84M" : isBtc ? "4.12M" : "920K",
-        subValue: "Int.",
-        note: "Shares, repos & replies",
-      },
-      sentimentScore: {
-        title: "Sentiment Score",
-        value: sentimentScore,
-        note: "High consensus spread",
-        badge: sentimentBadge,
-        badgeType: "positive",
-      },
-      trendVelocity: {
-        title: "Trend Velocity",
-        value: velocityVal,
-        note: "Peak inflection point",
-        badge: "High Accel",
-        badgeType: "warning",
-      },
-      activeSources: {
-        title: "Active Sources",
-        value: `${activeSources.length || 6}/8`,
-        subValue: "Connected",
-        note: "2 connectors pending key",
-      },
+      totalMentions: metric("Total Mentions", records.toLocaleString(), "Live records", "Current query context"),
+      engagementVolume: metric("Engagement Volume", records.toLocaleString(), "Observed", "Returned signal set"),
+      sentimentScore: metric("Sentiment Score", `${scopedScore >= 0.5 ? "+" : ""}${Math.round((scopedScore - 0.5) * 200)}`, sentimentLabel(scopedScore), `Computed from ${range} records`),
+      trendVelocity: metric("Trend Velocity", topVelocity.toFixed(2), "Velocity", "Top generated trend", topVelocity > 1 ? "High Accel" : "Emerging", "warning"),
+      activeSources: metric("Active Sources", `${sources.length}/${sources.length}`, "Connected", "Sources returned"),
     },
-    executiveSynthesis: {
-      title: "SOCIALIQ Intelligence Executive Synthesis",
-      confidence: Math.round((response?.confidence || 0.96) * 100),
-      sourcesCount: activeSources.length || 6,
-      signalsCount: isAiAgents ? 128430 : isBtc ? 492100 : 84200,
-      text: synthesisText,
-      primaryVectors,
-    },
-    trajectory: {
-      peakVolume: isAiAgents ? "14,892 / hr" : "48,210 / hr",
-      meanVelocity: "+28.4%",
-      spikeEvent: "Spike Event: Framework Release 2.0",
-      points,
-    },
-    sentimentDrivers: {
-      netScore: `${sentimentScore} NET`,
-      signalsCount: `${mentionsVal} Signals`,
-      polarity,
-      emotions: [
-        { label: "Excitement", percentage: 42, icon: "sentiment_very_satisfied", color: "secondary" },
-        { label: "Curiosity", percentage: 31, icon: "psychology_alt", color: "slate" },
-        { label: "Concern", percentage: 16, icon: "warning", color: "tertiary" },
-        { label: "Frustration", percentage: 11, icon: "sentiment_frustrated", color: "error" },
-      ],
-    },
-    trendDrivers,
-    narratives,
-    sourceContribution,
-    networkIntelligence: {
-      graphDensity: "0.78",
-      topCommunity: networkEv ? String(networkEv.value) : "r/LocalLLaMA",
-      fastestGrowing: "@LangChain Hub",
-      topInfluencer: "@karpathy",
-      nodes: [
-        { id: "dev", label: "DEV CORE", inf: "54% Inf", border: "border-white", text: "text-white" },
-        { id: "ent", label: "ENTERPRISE", inf: "24% Inf", border: "border-secondary", text: "text-secondary" },
-        { id: "vc", label: "TECH VC", inf: "14% Inf", border: "border-tertiary", text: "text-tertiary" },
-        { id: "media", label: "MEDIA", inf: "8% Inf", border: "border-slate-500", text: "text-slate-300" },
-      ],
-    },
-    audienceSegments,
-    provenance,
+    executiveSynthesis: { title: "SOCIALIQ Intelligence Executive Synthesis", confidence: Math.round(response.confidence * 100), sourcesCount: sources.length, signalsCount: records, text: cleanText(response.message), primaryVectors },
+    trajectory: { peakVolume: `${Math.max(...points.map((point) => point.volume), 0).toLocaleString()} / period`, meanVelocity: `${avgVelocity.toFixed(2)} avg`, spikeEvent: points.length ? `Latest period: ${points[points.length - 1].time}` : "No temporal spike detected", points },
+    sentimentDrivers: { netScore: `${Math.round((scopedScore - 0.5) * 200)} NET`, signalsCount: `${records.toLocaleString()} Signals`, polarity: scopedPolarity, emotions },
+    trendDrivers, narratives: trends.map((trend, index) => ({ title: String(trend.topic || "Signal"), subtitle: `${numberValue(trend.mentions)} mentions in returned context`, growth: `${Math.round(numberValue(trend.confidence) * 100)}% confidence`, color: colors[index % colors.length] })),
+    sourceContribution, networkIntelligence: { graphDensity: nodes.length ? `${nodes.length} nodes` : "No graph data", topCommunity: String(network.community_count || "No community data"), fastestGrowing: trendDrivers[0]?.title || "No trend data", topInfluencer: nodes[0]?.label || "No influencer data", nodes },
+    audienceSegments: segments, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
   };
 }
+
+function metric(title: string, value: string, subValue: string, note: string, badge?: string, badgeType: DashboardMetric["badgeType"] = "neutral"): DashboardMetric { return { title, value, subValue, note, badge, badgeType }; }
+function asRecord(value: unknown): Record<string, any> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, any> : {}; }
+function listRecords(value: unknown): Record<string, any>[] { return Array.isArray(value) ? value.filter((item): item is Record<string, any> => !!item && typeof item === "object") : []; }
+function numberValue(value: unknown, fallback = 0): number { const parsed = Number(value); return Number.isFinite(parsed) ? parsed : fallback; }
+function percent(value: number, total: number): number { return Math.round((value / total) * 100); }
+function sentimentLabel(score: number): string { return score > 0.55 ? "Positive" : score < 0.45 ? "Negative" : "Neutral"; }
+function cleanText(value: string): string { return value.replace(/^#+\s+/gm, "").replace(/\*\*/g, "").trim(); }

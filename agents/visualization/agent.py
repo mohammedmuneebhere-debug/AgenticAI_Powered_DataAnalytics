@@ -15,13 +15,15 @@ class VisualizationAgent:
         viz = []
 
         sentiment = social_analytics.get("sentiment", {})
-        if sentiment:
+        temporal = social_analytics.get("temporal", {})
+        timeline = temporal.get("timeline", [])
+        if timeline:
             viz.append({
                 "type": "sentiment_timeline",
                 "title": "Sentiment Over Time",
                 "data": {
-                    "labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-                    "values": self._generate_timeline(sentiment.get("average_score", 0.5)),
+                    "labels": [point["period"] for point in timeline],
+                    "values": [point["sentiment_score"] for point in timeline],
                 },
             })
 
@@ -55,7 +57,7 @@ class VisualizationAgent:
                 "data": {"nodes": network["nodes"], "edges": network["edges"]},
             })
 
-        if domain_analytics.get("domain") == "financial":
+        if domain_analytics.get("scenarios"):
             viz.append({
                 "type": "scenario_matrix",
                 "title": "Scenario Analysis",
@@ -73,8 +75,3 @@ class VisualizationAgent:
             })
 
         return viz
-
-    def _generate_timeline(self, base_score: float) -> list[float]:
-        import random
-        random.seed(42)
-        return [round(max(0, min(1, base_score + random.uniform(-0.15, 0.15))), 2) for _ in range(7)]

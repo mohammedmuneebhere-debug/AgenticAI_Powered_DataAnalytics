@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import APIRouter, HTTPException
 from backend.models.schemas import (
     ChatRequest, ChatResponse, VerifyRequest, VerifyResponse,
@@ -7,6 +9,7 @@ from backend.services.orchestrator import OrchestratorService
 
 router = APIRouter()
 orchestrator = OrchestratorService()
+logger = logging.getLogger(__name__)
 
 
 @router.get("/health", response_model=HealthResponse)
@@ -48,13 +51,15 @@ async def delete_session(session_id: str):
 async def chat(request: ChatRequest):
     try:
         return await orchestrator.process_query(request)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception:
+        logger.exception("Chat request failed")
+        raise HTTPException(status_code=500, detail="Unable to process chat request")
 
 
 @router.post("/verify", response_model=VerifyResponse)
 async def verify_insight(request: VerifyRequest):
     try:
         return await orchestrator.verify_insight(request)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception:
+        logger.exception("Insight verification failed")
+        raise HTTPException(status_code=500, detail="Unable to verify insight")

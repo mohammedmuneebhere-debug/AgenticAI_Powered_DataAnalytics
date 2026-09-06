@@ -17,7 +17,7 @@ export const DEFAULT_AGENTS = [
   "domain_analytics", "graph_analysis", "visualization", "insight", "provenance",
 ];
 
-export const DEFAULT_SOURCES = ["x", "telegram", "instagram", "pinterest", "google_search", "sample"];
+export const DEFAULT_SOURCES = ["x", "telegram", "instagram", "pinterest", "google_search", "google_trends", "sample"];
 
 export const DEMO_SESSION_ID = "local-demo-showcase";
 export const DEMO_SESSION_TITLE = "Demo Showcase (read-only)";
@@ -60,7 +60,8 @@ export const FALLBACK_SOURCES = [
   { id: "telegram", name: "Telegram", description: "Channel & group messages", default_enabled: true, requires_key: "TELEGRAM_BOT_TOKEN" },
   { id: "instagram", name: "Instagram", description: "Reels, posts & captions", default_enabled: true, requires_key: "INSTAGRAM_ACCESS_TOKEN" },
   { id: "pinterest", name: "Pinterest", description: "Pins, trends & saves", default_enabled: true, requires_key: "PINTEREST_ACCESS_TOKEN" },
-  { id: "google_search", name: "Google Search", description: "Web & news search results", default_enabled: true, requires_key: "GOOGLE_SEARCH_API_KEY" },
+  { id: "google_search", name: "Google Search", description: "Google web results through SerpAPI", default_enabled: true, requires_key: "SERPAPI_API_KEY" },
+  { id: "google_trends", name: "Google Trends", description: "Search interest over time through SerpAPI", default_enabled: true, requires_key: "SERPAPI_API_KEY" },
   { id: "reddit", name: "Reddit", description: "Subreddit discussions", default_enabled: false, requires_key: "REDDIT_CLIENT_ID" },
   { id: "news", name: "News API", description: "Headlines & articles", default_enabled: false, requires_key: "NEWS_API_KEY" },
   { id: "sample", name: "Sample Data", description: "Offline demo datasets", default_enabled: true },
@@ -72,6 +73,7 @@ export const SOURCE_ICONS: Record<string, string> = {
   instagram: "📸",
   pinterest: "📌",
   google_search: "🔍",
+  google_trends: "📊",
   reddit: "🔴",
   news: "📰",
   sample: "💾",

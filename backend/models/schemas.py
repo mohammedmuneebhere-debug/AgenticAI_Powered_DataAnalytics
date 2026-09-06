@@ -66,6 +66,30 @@ class ChatRequest(BaseModel):
     tools: Optional[ToolConfig] = None
 
 
+class UserRegisterRequest(BaseModel):
+    email: str
+    password: str = Field(min_length=8, max_length=128)
+    name: str = Field(min_length=1, max_length=120)
+
+
+class UserLoginRequest(BaseModel):
+    email: str
+    password: str
+
+
+class UserResponse(BaseModel):
+    id: str
+    email: str
+    name: str
+    created_at: datetime
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserResponse
+
+
 class EvidenceItem(BaseModel):
     type: str
     label: str
@@ -113,6 +137,7 @@ class ChatResponse(BaseModel):
     agents_used: list[str] = []
     sources_used: list[str] = []
     news_articles: list[NewsArticle] = []
+    analytics: dict[str, Any] = {}
 
 
 class SessionSummary(BaseModel):

@@ -9,7 +9,7 @@ interface DashboardSearchProps {
 }
 
 export default function DashboardSearch({ onAnalyze, loading }: DashboardSearchProps) {
-  const { activeTopic, setActiveTopic } = useSocialIQ();
+  const { activeTopic, setActiveTopic, toolConfig } = useSocialIQ();
   const [searchValue, setSearchValue] = useState(activeTopic);
   const [showSourcesDropdown, setShowSourcesDropdown] = useState(false);
 
@@ -57,7 +57,7 @@ export default function DashboardSearch({ onAnalyze, loading }: DashboardSearchP
             className="flex items-center gap-2 bg-surface-high hover:bg-surface-highest border border-surface-border px-3.5 py-2 rounded-xl transition-colors font-sans text-xs font-medium text-slate-200"
           >
             <span className="material-symbols-outlined text-[16px] text-secondary">tune</span>
-            <span>All Sources (6 active)</span>
+            <span>All Sources ({toolConfig.enabled_sources?.length || 0} active)</span>
             <span className="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
           </button>
 
@@ -104,7 +104,7 @@ export default function DashboardSearch({ onAnalyze, loading }: DashboardSearchP
           Search any topic, brand, person, market or trend, or select from Trending Now.
         </span>
         <span className="font-mono text-[10px] text-slate-300 tracking-wider uppercase">
-          Query Ingestion Rate: 1.4k req/sec
+          Live query ingestion
         </span>
       </div>
     </div>

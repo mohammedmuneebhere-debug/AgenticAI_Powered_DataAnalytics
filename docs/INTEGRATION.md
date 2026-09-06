@@ -70,8 +70,10 @@ cp .env.example .env
 | `INSTAGRAM_ACCESS_TOKEN` | Instagram Graph API | https://developers.facebook.com/docs/instagram-api/getting-started |
 | `INSTAGRAM_USER_ID` | Instagram Business Account ID | Same portal (Graph API Explorer) |
 | `PINTEREST_ACCESS_TOKEN` | Pinterest API v5 | https://developers.pinterest.com/apps/ |
-| `GOOGLE_SEARCH_API_KEY` | Google Custom Search | https://developers.google.com/custom-search/v1/introduction |
-| `GOOGLE_SEARCH_CX` | Custom Search Engine ID | https://programmablesearchengine.google.com/controlpanel/all |
+| `SERPAPI_API_KEY` | SerpAPI Google Search and Google Trends | https://serpapi.com/manage-api-key |
+| `SERPAPI_GOOGLE_DOMAIN` | Google domain used for search localization | `google.com` |
+| `SERPAPI_TRENDS_GEO` | Optional Google Trends country/region code | SerpAPI Google Trends docs |
+| `SERPAPI_TRENDS_DATE` | Google Trends time window | `today 12-m` |
 | `NEWS_API_KEY` | NewsAPI (optional) | https://newsapi.org/register |
 | `REDDIT_CLIENT_ID` | Reddit API (optional) | https://www.reddit.com/prefs/apps |
 
@@ -84,6 +86,7 @@ cp .env.example .env
 | **Instagram** | `agents/data_acquisition/agent.py` | `_fetch_instagram()` |
 | **Pinterest** | `agents/data_acquisition/agent.py` | `_fetch_pinterest()` |
 | **Google Search** | `agents/data_acquisition/agent.py` | `_fetch_google_search()` |
+| **Google Trends** | `agents/data_acquisition/agent.py` | `_fetch_google_trends()` |
 | **Reddit** | `agents/data_acquisition/agent.py` | Add `_fetch_reddit()` |
 | **News** | `agents/data_acquisition/agent.py` | Add `_fetch_news()` |
 | **LLM (OpenAI)** | `agents/insight/agent.py` | Already wired via `_llm_generate()` |
@@ -119,22 +122,22 @@ Fetches recent media captions from your connected business account, filtered by 
 
 Uses the `/v5/search/pins` endpoint to find pins matching the query.
 
-### Google Custom Search JSON API
+### SerpAPI — Google Search and Google Trends
 
-**API key:** https://developers.google.com/custom-search/v1/introduction  
-**Search engine (CX):** https://programmablesearchengine.google.com/controlpanel/all
+**API key:** https://serpapi.com/manage-api-key
 
-1. Enable **Custom Search API** in Google Cloud Console
-2. Create an API key
-3. Create a Programmable Search Engine (can search entire web)
-4. Copy the **Search engine ID** (CX)
-5. Add to `.env`:
+1. Create a SerpAPI account and copy your API key.
+2. Add to `.env`:
    ```
-   GOOGLE_SEARCH_API_KEY=your_api_key
-   GOOGLE_SEARCH_CX=your_search_engine_id
+   SERPAPI_API_KEY=your_api_key
+   SERPAPI_GOOGLE_DOMAIN=google.com
+   SERPAPI_TRENDS_GEO=
+   SERPAPI_TRENDS_DATE=today 12-m
    ```
 
-Returns web/news snippets relevant to the user query.
+SerpAPI's `google` engine returns web results, while its `google_trends`
+engine returns interest-over-time points. Both are normalized into the
+SOCIALIQ acquisition records and participate in downstream trend analysis.
 
 ### X (Twitter) API — example stub
 

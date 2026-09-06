@@ -31,9 +31,9 @@ function renderChart(viz: VisualizationSpec) {
   const data = viz.data;
 
   if (viz.type === "sentiment_timeline") {
-    const chartData = (data.labels as string[]).map((label, i) => ({
+    const chartData = toLabeledValues(data).map(({ label, value }) => ({
       day: label,
-      score: (data.values as number[])[i],
+      score: value,
     }));
     return (
       <ResponsiveContainer width="100%" height={150}>
@@ -48,9 +48,9 @@ function renderChart(viz: VisualizationSpec) {
   }
 
   if (viz.type === "trend_bars") {
-    const chartData = (data.labels as string[]).map((label, i) => ({
+    const chartData = toLabeledValues(data).map(({ label, value }) => ({
       topic: label,
-      velocity: (data.values as number[])[i],
+      velocity: value,
     }));
     return (
       <ResponsiveContainer width="100%" height={150}>
@@ -65,9 +65,9 @@ function renderChart(viz: VisualizationSpec) {
   }
 
   if (viz.type === "demographic_pie") {
-    const chartData = (data.labels as string[]).map((label, i) => ({
+    const chartData = toLabeledValues(data).map(({ label, value }) => ({
       name: label,
-      value: (data.values as number[])[i],
+      value,
     }));
     return (
       <ResponsiveContainer width="100%" height={150}>
@@ -84,14 +84,16 @@ function renderChart(viz: VisualizationSpec) {
   }
 
   if (viz.type === "network_graph") {
-    const nodes = data.nodes as { id: string; label: string; size: number }[];
+    const nodes = Array.isArray(data.nodes)
+      ? (data.nodes as { id: string; label: string; size?: number }[])
+      : [];
     return (
       <div className="flex flex-wrap gap-2">
         {nodes.slice(0, 6).map((n) => (
           <span
             key={n.id}
             className="text-xs px-2 py-1 rounded-full border border-[var(--accent)]"
-            style={{ opacity: Math.min(1, 0.4 + n.size / 500) }}
+            style={{ opacity: Math.min(1, 0.4 + (n.size || 0) / 500) }}
           >
             {n.label}
           </span>
@@ -100,5 +102,44 @@ function renderChart(viz: VisualizationSpec) {
     );
   }
 
+  if (viz.type === "scenario_matrix") {
+    const scenarios = Array.isArray(data.scenarios) ? data.scenarios as { name: string; probability: number }[] : [];
+    return (
+      <ResponsiveContainer width="100%" height={150}>
+        <BarChart data={scenarios.map((scenario) => ({ name: scenario.name, probability: scenario.probability * 100 }))}>
+          <XAxis dataKey="name" tick={{ fill: "#9090a0", fontSize: 9 }} />
+          <YAxis unit="%" tick={{ fill: "#9090a0", fontSize: 10 }} />
+          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <Bar dataKey="probability" fill="#22c55e" radius={[4, 4, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    );
+  }
+
+  if (viz.type === "opportunity_matrix") {
+    const opportunities = Array.isArray(data.opportunities)
+      ? data.opportunities as { product: string; score: number }[]
+      : [];
+    return (
+      <ResponsiveContainer width="100%" height={150}>
+        <BarChart data={opportunities.map((item) => ({ name: item.product, score: item.score * 100 }))}>
+          <XAxis dataKey="name" tick={{ fill: "#9090a0", fontSize: 9 }} />
+          <YAxis unit="%" tick={{ fill: "#9090a0", fontSize: 10 }} />
+          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <Bar dataKey="score" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    );
+  }
+
   return <p className="text-xs text-[var(--text-secondary)]">Chart: {viz.type}</p>;
+}
+
+function toLabeledValues(data: Record<string, unknown>): { label: string; value: number }[] {
+  const labels = Array.isArray(data.labels) ? data.labels : [];
+  const values = Array.isArray(data.values) ? data.values : [];
+  return labels.flatMap((label, index) => {
+    const value = Number(values[index]);
+    return Number.isFinite(value) ? [{ label: String(label), value }] : [];
+  });
 }

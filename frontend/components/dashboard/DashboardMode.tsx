@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSocialIQ } from "@/context/SocialIQContext";
-import { normalizeDashboardData } from "@/lib/adapter";
+import { normalizeDashboardData, type DashboardRange } from "@/lib/adapter";
 import DashboardSearch from "./DashboardSearch";
 import TrendingVectorsStrip from "./TrendingVectorsStrip";
 import DossierHeader from "./DossierHeader";
@@ -19,13 +19,15 @@ import ProvenanceModule from "./ProvenanceModule";
 import DashboardFooter from "./DashboardFooter";
 
 export default function DashboardMode() {
-  const { activeTopic, setActiveTopic, analysisCache, runTopicAnalysis, isAnalyzing } =
+  const { activeTopic, setActiveTopic, analysisCache, runTopicAnalysis, isAnalyzing, chatMessages } =
     useSocialIQ();
   const [loadingTopic, setLoadingTopic] = useState<string | undefined>();
+  const [activeRange, setActiveRange] = useState<DashboardRange>("24H");
 
   // Fetch or retrieve normalized data for activeTopic
-  const cachedResponse = analysisCache[activeTopic];
-  const normalizedData = cachedResponse ? normalizeDashboardData(cachedResponse, activeTopic) : null;
+  const latestResponse = [...chatMessages].reverse().find((message) => message.response)?.response;
+  const cachedResponse = analysisCache[activeTopic] || latestResponse;
+  const normalizedData = cachedResponse ? normalizeDashboardData(cachedResponse, activeTopic, activeRange) : null;
 
   const handleAnalyze = async (query: string) => {
     setLoadingTopic(query);
@@ -65,7 +67,7 @@ export default function DashboardMode() {
         <ExecutiveSynthesis data={normalizedData} />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Module A: Conversation Volume & Trajectory (8 cols) */}
-        <TrajectoryModule data={normalizedData} />
+        <TrajectoryModule data={normalizedData} activeRange={activeRange} onRangeChange={setActiveRange} />
 
         {/* Module B: Sentiment Drivers (4 cols) */}
         <SentimentDriversModule data={normalizedData} />

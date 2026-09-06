@@ -59,6 +59,7 @@ class OrchestratorService:
             "visualizations": plan.get("visualizations"),
             "provenance": provenance.model_dump() if provenance else None,
             "news_articles": plan.get("news_articles", []),
+            "analytics": plan.get("analytics", {}),
         }
         self.chat_store.add_message(session_id, "assistant", plan["response"], metadata)
 
@@ -77,6 +78,7 @@ class OrchestratorService:
             agents_used=plan.get("agents_used", []),
             sources_used=plan.get("sources_used", []),
             news_articles=plan.get("news_articles", []),
+            analytics=plan.get("analytics", {}),
         )
 
     async def verify_insight(self, request: VerifyRequest) -> VerifyResponse:

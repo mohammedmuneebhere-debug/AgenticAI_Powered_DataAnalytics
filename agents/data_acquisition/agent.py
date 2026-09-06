@@ -21,6 +21,7 @@ PLATFORM_SAMPLE_FILES = {
     "instagram": {"default": "instagram_posts.json"},
     "pinterest": {"default": "pinterest_pins.json"},
     "google_search": {"coffee": "google_search_results.json", "btc": "google_search_results.json", "default": "google_search_results.json"},
+    "google_trends": {"coffee": "google_search_results.json", "btc": "google_search_results.json", "default": "google_search_results.json"},
     "news": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
     "reddit": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
 }
@@ -50,8 +51,12 @@ class DataAcquisitionAgent:
             "instagram": (bool(self.settings.instagram_access_token), self._fetch_instagram),
             "pinterest": (bool(self.settings.pinterest_access_token), self._fetch_pinterest),
             "google_search": (
-                bool(self.settings.google_search_api_key and self.settings.google_search_cx),
+                bool(self.settings.serpapi_api_key),
                 self._fetch_google_search,
+            ),
+            "google_trends": (
+                bool(self.settings.serpapi_api_key),
+                self._fetch_google_trends,
             ),
             "news": (bool(self.settings.news_api_key), self._fetch_news),
             "reddit": (bool(self.settings.reddit_client_id), self._fetch_reddit),
@@ -59,7 +64,7 @@ class DataAcquisitionAgent:
 
         active_platforms = [p for p in platforms if p != "sample"]
         if not active_platforms:
-            active_platforms = ["x", "telegram", "instagram", "pinterest", "google_search", "news", "reddit"]
+            active_platforms = ["x", "telegram", "instagram", "pinterest", "google_search", "google_trends", "news", "reddit"]
 
         for platform in active_platforms:
             has_creds, fetcher = fetchers.get(platform, (False, None))
@@ -71,7 +76,14 @@ class DataAcquisitionAgent:
                     if platform_records:
                         live_sources.append(platform)
                 except Exception as exc:
-                    logger.warning("Live fetch failed for %s: %s", platform, exc)
+                    if isinstance(exc, httpx.HTTPStatusError):
+                        logger.warning(
+                            "Live fetch failed for %s with HTTP status %s",
+                            platform,
+                            exc.response.status_code,
+                        )
+                    else:
+                        logger.warning("Live fetch failed for %s: %s", platform, type(exc).__name__)
 
             if not platform_records:
                 platform_records = self._load_platform_sample(platform, entities, query, domain)
@@ -244,34 +256,69 @@ class DataAcquisitionAgent:
         return records
 
     async def _fetch_google_search(self, query: str, entities: list[str]) -> list[dict]:
-        """Google Custom Search JSON API — https://developers.google.com/custom-search/v1/overview"""
+        """Google Search results through SerpAPI."""
         search_query = self._build_search_query(query, entities)
         params = {
-            "key": self.settings.google_search_api_key,
-            "cx": self.settings.google_search_cx,
+            "api_key": self.settings.serpapi_api_key,
+            "engine": "google",
             "q": search_query,
             "num": 10,
+            "hl": "en",
         }
+        if self.settings.serpapi_google_domain:
+            params["google_domain"] = self.settings.serpapi_google_domain
         async with httpx.AsyncClient(timeout=20) as client:
-            resp = await client.get(
-                "https://www.googleapis.com/customsearch/v1",
-                params=params,
-            )
+            resp = await client.get("https://serpapi.com/search.json", params=params)
             resp.raise_for_status()
             data = resp.json()
 
         records = []
-        for item in data.get("items", []):
+        for item in data.get("organic_results", [])[:10]:
             snippet = item.get("snippet", "")
             title = item.get("title", "")
             records.append({
-                "id": item.get("cacheId") or item.get("link", "")[:32],
+                "id": str(item.get("position") or item.get("link", "")[:32]),
                 "platform": "google_search",
                 "text": f"{title} — {snippet}",
-                "author": item.get("displayLink", "web"),
+                "author": item.get("source") or item.get("displayed_link", "web"),
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "engagement": {"likes": 0, "reposts": 0, "replies": 0},
                 "url": item.get("link"),
+            })
+        return records
+
+    async def _fetch_google_trends(self, query: str, entities: list[str]) -> list[dict]:
+        """Google Trends interest-over-time data through SerpAPI."""
+        search_query = self._build_search_query(query, entities)
+        params = {
+            "api_key": self.settings.serpapi_api_key,
+            "engine": "google_trends",
+            "q": search_query,
+            "hl": "en",
+        }
+        if self.settings.serpapi_trends_date:
+            params["date"] = self.settings.serpapi_trends_date
+        if self.settings.serpapi_trends_geo:
+            params["geo"] = self.settings.serpapi_trends_geo
+
+        async with httpx.AsyncClient(timeout=20) as client:
+            resp = await client.get("https://serpapi.com/search.json", params=params)
+            resp.raise_for_status()
+            data = resp.json()
+
+        records = []
+        for point in data.get("interest_over_time", {}).get("timeline_data", []):
+            values = point.get("values") or []
+            value = values[0].get("value", 0) if values else 0
+            records.append({
+                "id": f"google-trends-{point.get('timestamp', point.get('date', 'unknown'))}",
+                "platform": "google_trends",
+                "text": f"{search_query} search interest: {value}",
+                "author": "Google Trends",
+                "timestamp": point.get("timestamp") or point.get("date") or datetime.now(timezone.utc).isoformat(),
+                "engagement": {"likes": int(value or 0), "reposts": 0, "replies": 0},
+                "trend_value": value,
+                "url": "https://trends.google.com/",
             })
         return records
 
@@ -369,6 +416,8 @@ class DataAcquisitionAgent:
     def _load_platform_sample(
         self, platform: str, entities: list[str], query: str, domain: str
     ) -> list[dict]:
+        if domain == "general" and self._resolve_entity_key(entities, query, domain) == "general":
+            return []
         files = PLATFORM_SAMPLE_FILES.get(platform)
         if not files:
             return []
@@ -385,6 +434,19 @@ class DataAcquisitionAgent:
 
     def _load_domain_sample(self, entities: list[str], query: str, domain: str) -> list[dict]:
         entity_key = self._resolve_entity_key(entities, query, domain)
+        if domain == "general" and entity_key not in {"coffee", "btc"}:
+            now = datetime.now(timezone.utc).isoformat()
+            return [
+                {
+                    "id": f"query-sample-{index}",
+                    "platform": "sample",
+                    "text": f"{query} discussion signal {index}",
+                    "author": f"sample_source_{index}",
+                    "timestamp": now,
+                    "engagement": {"likes": 10 + index * 4, "reposts": index},
+                }
+                for index in range(1, 6)
+            ]
         domain_files = {
             "financial": "btc_posts.json",
             "consumer": "coffee_posts.json",

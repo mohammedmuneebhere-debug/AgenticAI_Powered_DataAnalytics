@@ -64,7 +64,7 @@ class QueryPlan:
     domain: str = "general"
     domain_label: str = "General Social Intelligence"
     time_range: str = "recent"
-    platforms: list[str] = field(default_factory=lambda: ["x", "telegram", "instagram", "pinterest", "google_search", "news"])
+    platforms: list[str] = field(default_factory=lambda: ["x", "telegram", "instagram", "pinterest", "google_search", "google_trends", "news"])
     workflow: list[str] = field(default_factory=list)
     required_capabilities: list[str] = field(default_factory=list)
     agents_used: list[str] = field(default_factory=list)
@@ -231,6 +231,7 @@ class MasterAgent:
             domain_label=plan.domain_label,
         )
         response_text = self._append_news_articles(response["text"], news_articles)
+        analytics = {**social_analytics, **domain_analytics}
 
         return {
             "response": response_text,
@@ -245,6 +246,7 @@ class MasterAgent:
             "agents_used": plan.agents_used,
             "sources_used": plan.sources_used,
             "news_articles": news_articles,
+            "analytics": analytics,
             "dataset_snapshot": cleaned.get("snapshot", {}),
             "model_version": response.get("model_version", "socialiq-0.1"),
         }

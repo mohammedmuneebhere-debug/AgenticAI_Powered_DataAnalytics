@@ -44,6 +44,7 @@ export interface ChatResponse {
   workflow_used: string[];
   agents_used: string[];
   sources_used: string[];
+  analytics?: Record<string, unknown>;
 }
 
 export interface SessionSummary {

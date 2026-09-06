@@ -4,7 +4,7 @@
       "id": "local-demo-showcase",
       "title": "AI Agents topic analysis and social signal telemetry",
       "created_at": "2026-09-06T13:16:50.830765+00:00",
-      "updated_at": "2026-09-06T13:17:30.034674+00:00",
+      "updated_at": "2026-09-06T17:28:45.428217+00:00",
       "messages": [
         {
           "id": "ca7a6951-f41d-4017-8b4c-44f3af708b7c",
@@ -404,6 +404,4310 @@
             "news_articles": []
           },
           "created_at": "2026-09-06T13:17:30.034674+00:00"
+        },
+        {
+          "id": "9d834fff-a353-434c-94f8-24b2faaac2df",
+          "role": "user",
+          "content": "AI Agents topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T14:24:15.076162+00:00"
+        },
+        {
+          "id": "9d747836-d700-44ee-9ffe-e8edb559437b",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.61,
+                    0.42,
+                    0.5,
+                    0.48,
+                    0.64,
+                    0.62,
+                    0.68
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
+                  ],
+                  "values": [
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "04ba4ae963297b5979ed3f41bdceeaa338965e1c57e11a60d96d610d221a9a28",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 14:24:15.078114+00:00",
+              "blockchain_tx_id": "dd02e755-c58"
+            },
+            "news_articles": []
+          },
+          "created_at": "2026-09-06T14:24:15.078958+00:00"
+        },
+        {
+          "id": "4f7c1093-68ba-4f5d-ab01-08745ca70d61",
+          "role": "user",
+          "content": "Bitcoin topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T14:25:36.174259+00:00"
+        },
+        {
+          "id": "afb885a2-21b5-48d3-b636-47f15f3416b2",
+          "role": "assistant",
+          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.",
+          "metadata": {
+            "intent": "market",
+            "domain": "financial",
+            "domain_label": "Market Intelligence",
+            "entities": [
+              "btc"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "market",
+              "sentiment",
+              "trends",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=3.19",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=2.74",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=2.07",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "temporal",
+                "label": "Volatility Level",
+                "value": "HIGH",
+                "confidence": 0.8,
+                "source": "market_analytics"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.59,
+                    0.4,
+                    0.48,
+                    0.46,
+                    0.62,
+                    0.6,
+                    0.66
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility",
+                    "cold brew",
+                    "functional coffee",
+                    "btc etf",
+                    "fear sentiment"
+                  ],
+                  "values": [
+                    3.19,
+                    2.74,
+                    2.07,
+                    2.07,
+                    0.72
+                  ]
+                }
+              },
+              {
+                "type": "scenario_matrix",
+                "title": "Scenario Analysis",
+                "data": {
+                  "scenarios": [
+                    {
+                      "name": "Bull continuation",
+                      "probability": 0.35,
+                      "trigger": "ETF inflows + positive macro"
+                    },
+                    {
+                      "name": "Range-bound",
+                      "probability": 0.4,
+                      "trigger": "Mixed sentiment, low volume"
+                    },
+                    {
+                      "name": "Correction",
+                      "probability": 0.25,
+                      "trigger": "Regulatory headline + fear spike"
+                    }
+                  ],
+                  "volatility": {
+                    "level": "HIGH",
+                    "index": 0.78
+                  }
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "7db37dd236ba57cc06920f10a280df72bac9f7db84bfe587887bd5579d8b04c1",
+              "insight_hash": "adeec51e4a29039f0c7a0879d01d74d01c220d8b56bd9925c90f7c3b65656a9e",
+              "evidence_hash": "66f088019ac36596eac3e1220f6a4cc10534346d442779753fceb0314192ea74",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 14:25:36.178118+00:00",
+              "blockchain_tx_id": "a2eb7373-72e"
+            },
+            "news_articles": []
+          },
+          "created_at": "2026-09-06T14:25:36.178642+00:00"
+        },
+        {
+          "id": "3dcf6dfa-5df7-43c3-b4cc-4c5ad0cc3d4f",
+          "role": "user",
+          "content": "iPhone topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T14:25:38.439817+00:00"
+        },
+        {
+          "id": "e0685238-f9a1-4600-9e04-7644ba0eb709",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.61,
+                    0.42,
+                    0.5,
+                    0.48,
+                    0.64,
+                    0.62,
+                    0.68
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
+                  ],
+                  "values": [
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "3fb71a2452a9c10813752291c9b0e4dee80fc60bb0fa2472d95ba51841cbabff",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 14:25:38.442176+00:00",
+              "blockchain_tx_id": "acb58a07-801"
+            },
+            "news_articles": []
+          },
+          "created_at": "2026-09-06T14:25:38.442715+00:00"
+        },
+        {
+          "id": "d3adc3f5-a939-4689-9686-39978e7d534a",
+          "role": "user",
+          "content": "Electric Vehicles topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T14:25:39.160399+00:00"
+        },
+        {
+          "id": "27c9304f-21c4-4333-9996-9dfd1d197cf7",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.61,
+                    0.42,
+                    0.5,
+                    0.48,
+                    0.64,
+                    0.62,
+                    0.68
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
+                  ],
+                  "values": [
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "55ab07999381cf1cf5db7abaf787abc1786f9ad8b1b15d0ad2239d45a4882a34",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 14:25:39.163159+00:00",
+              "blockchain_tx_id": "9f053868-ca9"
+            },
+            "news_articles": []
+          },
+          "created_at": "2026-09-06T14:25:39.163700+00:00"
+        },
+        {
+          "id": "6a39ae35-0c9e-4b1a-b560-9aa685065228",
+          "role": "user",
+          "content": "Formula 1 topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T14:25:39.950253+00:00"
+        },
+        {
+          "id": "3d5ad3f4-38bf-4fb8-8731-8c904c411444",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "positive",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+                  ],
+                  "values": [
+                    0.61,
+                    0.42,
+                    0.5,
+                    0.48,
+                    0.64,
+                    0.62,
+                    0.68
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
+                  ],
+                  "values": [
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "cc40552d7c1e6fa2580ffb1dfc942790207de33728e65f5b61f1ab36c9a157d8",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 14:25:39.955108+00:00",
+              "blockchain_tx_id": "28f4c76a-01f"
+            },
+            "news_articles": []
+          },
+          "created_at": "2026-09-06T14:25:39.955751+00:00"
+        },
+        {
+          "id": "be875704-b9f3-488e-9c2f-7edda5b715da",
+          "role": "user",
+          "content": "semiconductor business trends topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:19:10.377430+00:00"
+        },
+        {
+          "id": "21c06259-e4c4-475e-862f-6880a7941d2f",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "trend",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: semiconductor",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: business",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: trends",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "semiconductor",
+                    "business",
+                    "trends",
+                    "topic",
+                    "analysis"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "67c5b879cbae69832b64a984d53aba34ae8629436dc1d9b3f2e6c626200c8b2b",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "4bb5deb0029639122a85f17f0134472bb2ff33d523374a798aa43ba9e7c6b29e",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:19:10.382560+00:00",
+              "blockchain_tx_id": "2aedc809-4fa"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "semiconductor",
+                    "count": 5
+                  },
+                  {
+                    "term": "business",
+                    "count": 5
+                  },
+                  {
+                    "term": "trends",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 9
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "semiconductor",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "business",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "trends",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:19:10.383829+00:00"
+        },
+        {
+          "id": "216f0e78-815f-4402-a304-42faa0f7ce0e",
+          "role": "user",
+          "content": "AI Agents topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:21:45.351716+00:00"
+        },
+        {
+          "id": "3eb477ef-b6c4-48c0-a587-4f7e951bed81",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: agents",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "agents",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "bdb9212edc6a9ffa511e7a5c83f656523c7d25aa1899bb6cb405f7266b595784",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "dd3b7871e2da576071c564f3d51f6445171dbb90a48956bf0fe060133bab0183",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:21:45.357208+00:00",
+              "blockchain_tx_id": "7cade0d1-7e4"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "agents",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "agents",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:21:45.359435+00:00"
+        },
+        {
+          "id": "91bc7edd-2ff0-43c7-b81c-2541d2fb00e1",
+          "role": "user",
+          "content": "topic topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:22:10.661527+00:00"
+        },
+        {
+          "id": "6e4ec227-7323-4312-8261-dc706609d6b5",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=3.12",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: social",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    3.12,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "52a8cb3aa33f321cdb81a59684878959875a0181d68e4df6d6911e477dfa8dae",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "0feb6ba0dbc1f4c473f141c132bc8aebb377738b9e6acb1e000def5f6e685669",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:22:10.665867+00:00",
+              "blockchain_tx_id": "6a452417-688"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "topic",
+                    "count": 10
+                  },
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 6
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "topic",
+                    "mentions": 10,
+                    "engagement": 125,
+                    "velocity": 3.12,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 4
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:22:10.667145+00:00"
+        },
+        {
+          "id": "e260400e-86b7-405e-83d2-5bdef0ad986b",
+          "role": "user",
+          "content": "analysis topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:22:14.349350+00:00"
+        },
+        {
+          "id": "bfc7056c-a4b7-4377-ae15-f949f57c4ae9",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=3.12",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: social",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "analysis",
+                    "topic",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    3.12,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "7f782a1e50309cfb2ea3d404e74c10b23e7a3b4e172bb88407e581334ec1ca5f",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "12b04a269ff4c78949d6ac22949e04234685dbf27f4fbac1c5339bbcbe6101a0",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:22:14.353907+00:00",
+              "blockchain_tx_id": "21e2da43-f93"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "analysis",
+                    "count": 10
+                  },
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 6
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "analysis",
+                    "mentions": 10,
+                    "engagement": 125,
+                    "velocity": 3.12,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 4
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:22:14.355486+00:00"
+        },
+        {
+          "id": "b33ffe43-f4ac-45f0-96a8-542ea4e9b154",
+          "role": "user",
+          "content": "social topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:22:16.034569+00:00"
+        },
+        {
+          "id": "e4a1cc7d-8ff0-474a-acd2-a83eb8317c58",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: social",
+                "value": "velocity=3.12",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "social",
+                    "topic",
+                    "analysis",
+                    "telemetry"
+                  ],
+                  "values": [
+                    3.12,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "2ba0751677336c150a2f2c34d137e4be2878b1ad8b71bfbd97da478017d5d07d",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "78ae926d91925e0762f96418f4e9416abfc40a13ab4a036a8fa491c1ac7afdf9",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:22:16.040331+00:00",
+              "blockchain_tx_id": "a8ad6c0d-58c"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "social",
+                    "count": 10
+                  },
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 6
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "social",
+                    "mentions": 10,
+                    "engagement": 125,
+                    "velocity": 3.12,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 4
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:22:16.042399+00:00"
+        },
+        {
+          "id": "6ac1ef60-6611-4316-913c-b275f9296ead",
+          "role": "user",
+          "content": "telemetry topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:22:21.906506+00:00"
+        },
+        {
+          "id": "d8e77dd1-7988-48a9-878d-07098888c036",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: telemetry",
+                "value": "velocity=3.12",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "telemetry",
+                    "topic",
+                    "analysis",
+                    "social"
+                  ],
+                  "values": [
+                    3.12,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "d9413607bae0171c9cc7216c11acff5ca7372d7faa14309bd5187286bf799e79",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "7143b609d268c71ee322ce54711352ec2a84fe01ba2ed17458c6be358277161a",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:22:21.911994+00:00",
+              "blockchain_tx_id": "a6bf6128-17f"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "telemetry",
+                    "count": 10
+                  },
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 6
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "telemetry",
+                    "mentions": 10,
+                    "engagement": 125,
+                    "velocity": 3.12,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 4
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:22:21.914812+00:00"
+        },
+        {
+          "id": "208eaa61-d7a2-41fb-af77-a0e5470d9364",
+          "role": "user",
+          "content": "semiconductor topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:22:36.886805+00:00"
+        },
+        {
+          "id": "746e2c1d-46fe-435d-8b83-b64d742aea4e",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: semiconductor",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "semiconductor",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "d74eb1dce36c215e66119287d1743e6313c982c68e8690504e4646bf0bf885a3",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "030a191e47be1460c4ab4b3243e45beca35f48c1599c2f830fe369642c0bb2cb",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:22:36.892723+00:00",
+              "blockchain_tx_id": "b6a757a0-573"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "semiconductor",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "semiconductor",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:22:36.895211+00:00"
+        },
+        {
+          "id": "b45a5dbd-dde6-4219-8a2d-1034ff87a16f",
+          "role": "user",
+          "content": "business topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:23:17.031796+00:00"
+        },
+        {
+          "id": "4f875a91-b82e-4b31-86fd-155afaf20f9d",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: business",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "business",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "027753c651ed46bfecc19df2214e11002a42355e9bd754e45c7118ba65904d77",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "b92cd970f676baedf3d001ca39d473194726b4c1dccd79c40f50de5307d7844b",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:23:17.037648+00:00",
+              "blockchain_tx_id": "dcb54caa-131"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "business",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "business",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:23:17.040253+00:00"
+        },
+        {
+          "id": "88e7586d-a90c-4553-b20c-9eb1536bd26c",
+          "role": "user",
+          "content": "business topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:23:26.404975+00:00"
+        },
+        {
+          "id": "78cebed9-e0f3-4678-a385-d0c2c36271b2",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: business",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "business",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "c887511968409c7479c0fa9a957551534d90c04dd1dc3bbea4894ffaf4d42a43",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "b92cd970f676baedf3d001ca39d473194726b4c1dccd79c40f50de5307d7844b",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:23:26.409548+00:00",
+              "blockchain_tx_id": "e1420984-13b"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "business",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "business",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:23:26.411595+00:00"
+        },
+        {
+          "id": "b1c7edfa-e6a2-4475-9c32-89be6d948d09",
+          "role": "user",
+          "content": "gaming topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:28:15.583770+00:00"
+        },
+        {
+          "id": "7d0d0f96-4061-43a4-9cba-1eba08966aa1",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: gaming",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "gaming",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "7a14a4dc472ec7ad9a802691c17e5d54822fbba9606d52c2b4a008083b6532e5",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "bf255acedd72ed2d2efb51bebecabd06730bdc08032a5d73535b0393197079ef",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:28:15.590746+00:00",
+              "blockchain_tx_id": "e8156000-e0f"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "gaming",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "gaming",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:28:15.592834+00:00"
+        },
+        {
+          "id": "dad62d0d-00f4-4e55-843c-cd29aba0f4e0",
+          "role": "user",
+          "content": "gaming topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:28:22.549257+00:00"
+        },
+        {
+          "id": "2063c614-8b9e-417d-af70-c2b85932f8fb",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: gaming",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "gaming",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "fc447887d53ea968963ca97982dff21d9e48869320750a14a1ef9faaeb435a76",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "bf255acedd72ed2d2efb51bebecabd06730bdc08032a5d73535b0393197079ef",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:28:22.555150+00:00",
+              "blockchain_tx_id": "b36967e7-00c"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "gaming",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "gaming",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:28:22.557126+00:00"
+        },
+        {
+          "id": "8d43b82e-2290-4517-a257-fca649dde3e1",
+          "role": "user",
+          "content": "gaming topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-06T17:28:45.420225+00:00"
+        },
+        {
+          "id": "cb892100-d8eb-41d6-8b18-d291a69d7152",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 5 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "sample"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: gaming",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: topic",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: analysis",
+                "value": "velocity=1.62",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-06"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "gaming",
+                    "topic",
+                    "analysis",
+                    "social",
+                    "telemetry"
+                  ],
+                  "values": [
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62,
+                    1.62
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "dfaf94e204390c26d9a36387d8909fab73ca307e554b011e926eb808c1d07fd2",
+              "insight_hash": "e3040590ce8a67292153cb36ee616c796b9817f7faa8ddc2e5273940894a5552",
+              "evidence_hash": "bf255acedd72ed2d2efb51bebecabd06730bdc08032a5d73535b0393197079ef",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 17:28:45.425667+00:00",
+              "blockchain_tx_id": "29f9c1d6-394"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 5,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 5
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 0,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.5
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "signal",
+                    "count": 10
+                  },
+                  {
+                    "term": "gaming",
+                    "count": 5
+                  },
+                  {
+                    "term": "topic",
+                    "count": 5
+                  },
+                  {
+                    "term": "analysis",
+                    "count": 5
+                  },
+                  {
+                    "term": "social",
+                    "count": 5
+                  },
+                  {
+                    "term": "telemetry",
+                    "count": 5
+                  },
+                  {
+                    "term": "discussion",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 7
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "gaming",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "topic",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "analysis",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "social",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "telemetry",
+                    "mentions": 5,
+                    "engagement": 125,
+                    "velocity": 1.62,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-06T17:28:45.428217+00:00"
+        }
+      ],
+      "last_domain": "general"
+    },
+    "e24af893-82d9-46d0-94f7-20f27a268c22": {
+      "id": "e24af893-82d9-46d0-94f7-20f27a268c22",
+      "title": "Valorant Tournament",
+      "created_at": "2026-09-06T21:33:10.681423+00:00",
+      "updated_at": "2026-09-06T21:33:10.704522+00:00",
+      "messages": [
+        {
+          "id": "9b12d534-ee45-4184-9ddf-6cc21f5eb384",
+          "role": "user",
+          "content": "Valorant Tournament",
+          "metadata": {},
+          "created_at": "2026-09-06T21:33:10.681423+00:00"
+        },
+        {
+          "id": "a8dbd41e-ee75-43b6-97a0-5dc3c496d875",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.51) across 63 signals.\n\n**Evidence:** 2 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [Riot\u2019s 2027 open ecosystem faces scrutiny after VALORANT LCQ chaos](https://cryptobriefing.com/riot-2027-open-ecosystem-valorant-lcq-chaos/) \u2014 Crypto Briefing\n   Riot's ambitious 2027 open ecosystem risks operational challenges, potentially impacting competitive integrity and player experience.\nThe post Riot\u2019s 2027 open ecosystem faces scrutiny after VALORANT LCQ chaos appeared first on Crypto Briefing.\n2. [Decisive Showdown in Barcelona: OMODA 4 Makes Its European Debut as CYBER MECHA Takes Center Stage at VCT EMEA](https://financialpost.com/globe-newswire/decisive-showdown-in-barcelona-omoda-4-makes-its-european-debut-as-cyber-mecha-takes-center-stage-at-vct-emea) \u2014 Financial Post\n   BARCELONA, Spain, Aug. 30, 2026 (GLOBE NEWSWIRE) \u2014 On August 28, the 2026 VALORANT Champions Tour (VCT) EMEA Finals officially kicked off in Barcelona. As the first-ever Official Automotive Partner of VALORANT Esports EMEA, OMODA brought the all-new OMODA 4 t\u2026\n3. [100 Thieves dominates SadFamous 2-0 at EWC26 CS2 open qualifier](https://cryptobriefing.com/100-thieves-sadfamous-ewc26-cs2-qualifier/) \u2014 Crypto Briefing\n   100 Thieves' decisive win highlights their potential dominance in esports, setting a high bar for competitors and influencing future tournament dynamics.\nThe post 100 Thieves dominates SadFamous 2-0 at EWC26 CS2 open qualifier appeared first on Crypto Briefin\u2026",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "google_search",
+              "google_trends",
+              "news"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: btc volatility",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-08-06",
+                    "2026-08-07",
+                    "2026-08-11",
+                    "2026-08-13",
+                    "2026-08-18",
+                    "2026-08-20",
+                    "2026-08-25",
+                    "2026-08-26",
+                    "2026-08-27",
+                    "2026-08-31",
+                    "2026-09-06",
+                    "Signal 10",
+                    "Signal 11",
+                    "Signal 12",
+                    "Signal 13",
+                    "Signal 14",
+                    "Signal 15",
+                    "Signal 16",
+                    "Signal 17",
+                    "Signal 18",
+                    "Signal 19",
+                    "Signal 20",
+                    "Signal 21",
+                    "Signal 22",
+                    "Signal 23",
+                    "Signal 24",
+                    "Signal 25",
+                    "Signal 26",
+                    "Signal 27",
+                    "Signal 28",
+                    "Signal 29",
+                    "Signal 30",
+                    "Signal 31",
+                    "Signal 32",
+                    "Signal 33",
+                    "Signal 34",
+                    "Signal 35",
+                    "Signal 36",
+                    "Signal 37",
+                    "Signal 38",
+                    "Signal 39",
+                    "Signal 40",
+                    "Signal 41",
+                    "Signal 42",
+                    "Signal 43",
+                    "Signal 44",
+                    "Signal 45",
+                    "Signal 46",
+                    "Signal 47",
+                    "Signal 48",
+                    "Signal 49",
+                    "Signal 50"
+                  ],
+                  "values": [
+                    0.5,
+                    0.5,
+                    0.575,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.55,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "btc volatility"
+                  ],
+                  "values": [
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "0c5b06153eee8938cb2c5a976510229607aa1d5fce03b223d1772062edd66a31",
+              "insight_hash": "28d143d04716525ba024ce1cda2b4bf088c686852dfdc51c10f6f4b9c167990a",
+              "evidence_hash": "4f780e881d86a148dc3110d34ed2d942e717e37561a4dde0ef3f1887c3504f39",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-06 21:33:10.695558+00:00",
+              "blockchain_tx_id": "e536b507-719"
+            },
+            "news_articles": [
+              {
+                "title": "Riot\u2019s 2027 open ecosystem faces scrutiny after VALORANT LCQ chaos",
+                "description": "Riot's ambitious 2027 open ecosystem risks operational challenges, potentially impacting competitive integrity and player experience.\nThe post Riot\u2019s 2027 open ecosystem faces scrutiny after VALORANT LCQ chaos appeared first on Crypto Briefing.",
+                "source": "Crypto Briefing",
+                "published_at": "2026-08-11T10:18:41Z",
+                "url": "https://cryptobriefing.com/riot-2027-open-ecosystem-valorant-lcq-chaos/"
+              },
+              {
+                "title": "Decisive Showdown in Barcelona: OMODA 4 Makes Its European Debut as CYBER MECHA Takes Center Stage at VCT EMEA",
+                "description": "BARCELONA, Spain, Aug. 30, 2026 (GLOBE NEWSWIRE) \u2014 On August 28, the 2026 VALORANT Champions Tour (VCT) EMEA Finals officially kicked off in Barcelona. As the first-ever Official Automotive Partner of VALORANT Esports EMEA, OMODA brought the all-new OMODA 4 t\u2026",
+                "source": "Financial Post",
+                "published_at": "2026-08-31T03:54:29Z",
+                "url": "https://financialpost.com/globe-newswire/decisive-showdown-in-barcelona-omoda-4-makes-its-european-debut-as-cyber-mecha-takes-center-stage-at-vct-emea"
+              },
+              {
+                "title": "100 Thieves dominates SadFamous 2-0 at EWC26 CS2 open qualifier",
+                "description": "100 Thieves' decisive win highlights their potential dominance in esports, setting a high bar for competitors and influencing future tournament dynamics.\nThe post 100 Thieves dominates SadFamous 2-0 at EWC26 CS2 open qualifier appeared first on Crypto Briefin\u2026",
+                "source": "Crypto Briefing",
+                "published_at": "2026-08-07T18:03:28Z",
+                "url": "https://cryptobriefing.com/100-thieves-sadfamous-ewc26-cs2-qualifier/"
+              }
+            ],
+            "analytics": {
+              "record_count": 63,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.51,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 4,
+                  "negative": 0,
+                  "neutral": 59
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.65,
+                  0.65,
+                  0.5,
+                  0.65,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.65,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "support",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 3,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-08-06",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-07",
+                    "sentiment_score": 0.5,
+                    "signal_count": 2,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 2,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-11",
+                    "sentiment_score": 0.575,
+                    "signal_count": 2,
+                    "distribution": {
+                      "positive": 1,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-13",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-18",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-20",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-25",
+                    "sentiment_score": 0.5,
+                    "signal_count": 2,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 2,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-26",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-27",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-31",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-09-06",
+                    "sentiment_score": 0.55,
+                    "signal_count": 9,
+                    "distribution": {
+                      "positive": 3,
+                      "neutral": 6,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 10",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 11",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 12",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 13",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 14",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 15",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 16",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 17",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 18",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 19",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 20",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 21",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 22",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 23",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 24",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 25",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 26",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 27",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 28",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 29",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 30",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 31",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 32",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 33",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 34",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 35",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 36",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 37",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 38",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 39",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 40",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 41",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 42",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 43",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 44",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 45",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 46",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 47",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 48",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 49",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 50",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "valorant",
+                    "count": 63
+                  },
+                  {
+                    "term": "tournament",
+                    "count": 46
+                  },
+                  {
+                    "term": "search",
+                    "count": 41
+                  },
+                  {
+                    "term": "interest",
+                    "count": 41
+                  },
+                  {
+                    "term": "esports",
+                    "count": 21
+                  },
+                  {
+                    "term": "tournaments",
+                    "count": 10
+                  },
+                  {
+                    "term": "first",
+                    "count": 8
+                  },
+                  {
+                    "term": "post",
+                    "count": 7
+                  },
+                  {
+                    "term": "from",
+                    "count": 6
+                  },
+                  {
+                    "term": "appeared",
+                    "count": 6
+                  }
+                ],
+                "topic_count": 10
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "btc volatility",
+                    "mentions": 1,
+                    "engagement": 0,
+                    "velocity": 0.3,
+                    "confidence": 0.6
+                  }
+                ],
+                "trend_count": 1
+              }
+            }
+          },
+          "created_at": "2026-09-06T21:33:10.704522+00:00"
         }
       ],
       "last_domain": "general"

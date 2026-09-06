@@ -9,14 +9,6 @@ interface TrendingTopic {
   icons: string[];
 }
 
-const TRENDING_TOPICS: TrendingTopic[] = [
-  { rank: "01", topic: "AI Agents", icons: [] },
-  { rank: "02", topic: "Bitcoin", icons: ["language", "forum"] },
-  { rank: "03", topic: "iPhone", icons: ["public", "share"] },
-  { rank: "04", topic: "Electric Vehicles", icons: ["rss_feed"] },
-  { rank: "05", topic: "Formula 1", icons: ["chat_bubble"] },
-];
-
 interface TrendingVectorsStripProps {
   onSelectTopic: (topic: string) => void;
   loadingTopic?: string;
@@ -26,7 +18,16 @@ export default function TrendingVectorsStrip({
   onSelectTopic,
   loadingTopic,
 }: TrendingVectorsStripProps) {
-  const { activeTopic } = useSocialIQ();
+  const { activeTopic, analysisCache, chatMessages } = useSocialIQ();
+  const response = analysisCache[activeTopic] || [...chatMessages].reverse().find((message) => message.response)?.response;
+  const trends = Array.isArray(response?.analytics?.trends && (response.analytics.trends as Record<string, unknown>).top_trends)
+    ? ((response?.analytics?.trends as Record<string, unknown>).top_trends as Array<Record<string, unknown>>)
+    : [];
+  const trendingTopics: TrendingTopic[] = trends.slice(0, 5).map((trend, index) => ({
+    rank: String(index + 1).padStart(2, "0"),
+    topic: String(trend.topic || "Signal"),
+    icons: [],
+  }));
 
   return (
     <div className="flex flex-col bg-surface rounded-2xl border border-surface-border/60 overflow-hidden shadow-sm">
@@ -55,7 +56,7 @@ export default function TrendingVectorsStrip({
 
       {/* Horizontal Discovery Cells */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-surface-border/60 bg-surface-low">
-        {TRENDING_TOPICS.map((item) => {
+        {trendingTopics.map((item) => {
           const isActive =
             activeTopic.toLowerCase().trim() === item.topic.toLowerCase().trim();
           const isLoading = loadingTopic === item.topic;
