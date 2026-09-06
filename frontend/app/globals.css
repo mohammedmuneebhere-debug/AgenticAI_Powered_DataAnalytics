@@ -1,82 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 :root {
-  --bg-app: #131314;
-  --bg-sidebar: #1e1f20;
-  --bg-surface: #282a2c;
-  --bg-elevated: #303134;
-  --bg-input: #1e1f20;
-  --accent: #8ab4f8;
-  --accent-strong: #aecbfa;
-  --accent-bg: rgba(138, 180, 248, 0.12);
-  --text-primary: #e3e3e3;
-  --text-secondary: #9aa0a6;
-  --text-muted: #5f6368;
-  --border: #3c4043;
-  --border-subtle: #2d2e30;
-  --success: #81c995;
-  --warning: #fdd663;
-  --domain-consumer: #81c995;
-  --domain-financial: #f28b82;
-  --domain-creator: #c58af9;
-  --domain-general: #8ab4f8;
-  --sidebar-width: 280px;
-  --tools-width: 300px;
+  --bg-app: #090a0f;
+  --bg-sidebar: #0e1015;
+  --bg-surface: #13151b;
+  --bg-elevated: #1a1d24;
+  --bg-input: #13151b;
+  --border: #292e3a;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --primary: #ffffff;
+  --secondary: #34D399;
+  --tertiary: #FBBF24;
+  --error: #F87171;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --tools-width: 24%;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-body {
-  background: var(--bg-app);
-  color: var(--text-primary);
-  font-family: "Roboto", "Google Sans Flex", system-ui, sans-serif;
+html, body {
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  background-color: #090a0f;
+  color: #e2e8f0;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
-.chat-scroll::-webkit-scrollbar { width: 8px; }
-.chat-scroll::-webkit-scrollbar-track { background: transparent; }
-.chat-scroll::-webkit-scrollbar-thumb {
-  background: var(--border);
+/* Material Symbols Outlined Font Configuration */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f222a;
   border-radius: 4px;
 }
-
-.sidebar-scroll::-webkit-scrollbar { width: 4px; }
-.sidebar-scroll::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
-  border-radius: 2px;
+::-webkit-scrollbar-thumb:hover {
+  background: #2e323b;
 }
 
-.prose-socialiq strong { color: var(--text-primary); font-weight: 600; }
-.prose-socialiq p { margin: 0.5rem 0; line-height: 1.6; }
-.prose-socialiq ul { margin: 0.5rem 0; padding-left: 1.25rem; }
-.prose-socialiq li { margin: 0.25rem 0; }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-.toggle-track {
-  transition: background 0.2s;
+/* Prose for AI Markdown responses */
+.prose-socialiq strong {
+  color: #ffffff;
+  font-weight: 600;
 }
-.toggle-track.on { background: var(--accent); }
-.toggle-track.off { background: var(--border); }
-
-.tool-chip {
-  transition: all 0.15s ease;
+.prose-socialiq p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
 }
-.tool-chip.active {
-  background: var(--accent-bg);
-  border-color: var(--accent);
-  color: var(--accent-strong);
+.prose-socialiq ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
 }
-.tool-chip.inactive {
-  background: transparent;
-  border-color: var(--border);
-  color: var(--text-secondary);
+.prose-socialiq li {
+  margin: 0.25rem 0;
+}
+.prose-socialiq code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85em;
+  background: #1a1d24;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.9); }
 }
-.live-dot { animation: pulse-dot 2s ease-in-out infinite; }
+.live-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}

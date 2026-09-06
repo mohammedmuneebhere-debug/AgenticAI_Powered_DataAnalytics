@@ -1,22 +1,22 @@
 {
   "sessions": {
-    "7e166782-063c-48fa-9842-b0444464219d": {
-      "id": "7e166782-063c-48fa-9842-b0444464219d",
-      "title": "Latest News about America",
-      "created_at": "2026-09-05T19:14:32.943481+00:00",
-      "updated_at": "2026-09-05T19:14:32.960383+00:00",
+    "local-demo-showcase": {
+      "id": "local-demo-showcase",
+      "title": "AI Agents topic analysis and social signal telemetry",
+      "created_at": "2026-09-06T13:16:50.830765+00:00",
+      "updated_at": "2026-09-06T13:17:30.034674+00:00",
       "messages": [
         {
-          "id": "712a1990-8743-4b51-b3b9-cef5bb59d0db",
+          "id": "ca7a6951-f41d-4017-8b4c-44f3af708b7c",
           "role": "user",
-          "content": "Latest News about America",
+          "content": "AI Agents topic analysis and social signal telemetry",
           "metadata": {},
-          "created_at": "2026-09-05T19:14:32.943481+00:00"
+          "created_at": "2026-09-06T13:16:50.830765+00:00"
         },
         {
-          "id": "cbd38a78-01b6-4ca9-b242-f6c0c7e44a57",
+          "id": "b00d66ac-fe44-4679-94cd-b67e55f94c57",
           "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 10 signals.\n\n**Evidence:** 2 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
           "metadata": {
             "intent": "general",
             "domain": "general",
@@ -44,727 +44,40 @@
               "provenance"
             ],
             "sources_used": [
-              "news"
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
             ],
             "evidence": [
               {
                 "type": "statistical",
                 "label": "Overall Sentiment",
-                "value": "neutral",
+                "value": "positive",
                 "confidence": 0.72,
                 "source": "sentiment_model"
               },
               {
                 "type": "semantic",
-                "label": "Trend: fear sentiment",
-                "value": "velocity=0.30",
-                "confidence": 0.6,
-                "source": "trend_detector"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.54,
-                    0.36,
-                    0.43,
-                    0.42,
-                    0.57,
-                    0.55,
-                    0.62
-                  ]
-                }
-              },
-              {
-                "type": "trend_bars",
-                "title": "Top Trends",
-                "data": {
-                  "labels": [
-                    "fear sentiment"
-                  ],
-                  "values": [
-                    0.3
-                  ]
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "37c3a81a418dae27d244e91f27be6f381345b959a20d3186345dc11d799876a0",
-              "insight_hash": "18ad63c5c9fa736d2a0bf4fc418dac4ec115d5c7d5f8a76af5b3370c62ba8d42",
-              "evidence_hash": "3ff259aaac02108367cad1050d310780da19f8e5bb15fd764079f4b9a9cc3628",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:14:32.952054+00:00",
-              "blockchain_tx_id": "dfd50814-a1c"
-            }
-          },
-          "created_at": "2026-09-05T19:14:32.960383+00:00"
-        }
-      ],
-      "last_domain": "general"
-    },
-    "65fb051d-98a1-4efa-8e4b-9a734cbe4d68": {
-      "id": "65fb051d-98a1-4efa-8e4b-9a734cbe4d68",
-      "title": "Latest news about America",
-      "created_at": "2026-09-05T19:16:34.341755+00:00",
-      "updated_at": "2026-09-05T19:16:34.356537+00:00",
-      "messages": [
-        {
-          "id": "489eecb3-c0b1-4831-a066-5b6260372e48",
-          "role": "user",
-          "content": "Latest news about America",
-          "metadata": {},
-          "created_at": "2026-09-05T19:16:34.341755+00:00"
-        },
-        {
-          "id": "2d94a643-80d6-4d9e-a484-de3449846c4d",
-          "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 10 signals.\n\n**Evidence:** 2 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
-          "metadata": {
-            "intent": "general",
-            "domain": "general",
-            "domain_label": "General Social Intelligence",
-            "entities": [
-              "general"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "trends",
-              "sentiment",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              },
-              {
-                "type": "semantic",
-                "label": "Trend: fear sentiment",
-                "value": "velocity=0.30",
-                "confidence": 0.6,
-                "source": "trend_detector"
-              }
-            ],
-            "visualizations": [],
-            "provenance": {
-              "dataset_hash": "e405e83734b4f84e1a578b68cda8d98a828756c0e7194f1aa7f1898d0af3f17d",
-              "insight_hash": "18ad63c5c9fa736d2a0bf4fc418dac4ec115d5c7d5f8a76af5b3370c62ba8d42",
-              "evidence_hash": "3ff259aaac02108367cad1050d310780da19f8e5bb15fd764079f4b9a9cc3628",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:16:34.350019+00:00",
-              "blockchain_tx_id": "fab8de69-fbb"
-            }
-          },
-          "created_at": "2026-09-05T19:16:34.356537+00:00"
-        }
-      ],
-      "last_domain": "general"
-    },
-    "b9a6c0d3-e40c-4e35-8cf0-e0a8e3798e0b": {
-      "id": "b9a6c0d3-e40c-4e35-8cf0-e0a8e3798e0b",
-      "title": "Latest news about America",
-      "created_at": "2026-09-05T19:17:11.081804+00:00",
-      "updated_at": "2026-09-05T19:17:11.097380+00:00",
-      "messages": [
-        {
-          "id": "715042b2-8c79-4f0c-9d80-89526580d167",
-          "role": "user",
-          "content": "Latest news about America",
-          "metadata": {},
-          "created_at": "2026-09-05T19:17:11.081804+00:00"
-        },
-        {
-          "id": "3272f742-d47c-4c4d-b57c-4f5436ae80d5",
-          "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 10 signals.\n\n**Evidence:** 2 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
-          "metadata": {
-            "intent": "general",
-            "domain": "general",
-            "domain_label": "General Social Intelligence",
-            "entities": [
-              "general"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "trends",
-              "sentiment",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              },
-              {
-                "type": "semantic",
-                "label": "Trend: fear sentiment",
-                "value": "velocity=0.30",
-                "confidence": 0.6,
-                "source": "trend_detector"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.54,
-                    0.36,
-                    0.43,
-                    0.42,
-                    0.57,
-                    0.55,
-                    0.62
-                  ]
-                }
-              },
-              {
-                "type": "trend_bars",
-                "title": "Top Trends",
-                "data": {
-                  "labels": [
-                    "fear sentiment"
-                  ],
-                  "values": [
-                    0.3
-                  ]
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "494978f7ac20fd007372e72642e9875f575aa53233a657010068d36e1ed2db04",
-              "insight_hash": "18ad63c5c9fa736d2a0bf4fc418dac4ec115d5c7d5f8a76af5b3370c62ba8d42",
-              "evidence_hash": "3ff259aaac02108367cad1050d310780da19f8e5bb15fd764079f4b9a9cc3628",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:17:11.089334+00:00",
-              "blockchain_tx_id": "704fbc17-f10"
-            }
-          },
-          "created_at": "2026-09-05T19:17:11.097380+00:00"
-        }
-      ],
-      "last_domain": "general"
-    },
-    "0e69ba08-08c9-40c3-80bb-b4ff47e38c0a": {
-      "id": "0e69ba08-08c9-40c3-80bb-b4ff47e38c0a",
-      "title": "Valorant news",
-      "created_at": "2026-09-05T19:26:22.528477+00:00",
-      "updated_at": "2026-09-05T19:30:16.869895+00:00",
-      "messages": [
-        {
-          "id": "093c45ae-5f21-42e3-828c-7a4ebae18871",
-          "role": "user",
-          "content": "Valorant news",
-          "metadata": {},
-          "created_at": "2026-09-05T19:26:22.528477+00:00"
-        },
-        {
-          "id": "2f41b710-d827-457a-baeb-30854b2eb896",
-          "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.51) across 13 signals.\n\n**Evidence:** 1 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [\u2018X-Men \u201997\u2019 Star Talks Bringing Polaris to Animated Life](https://gizmodo.com/x-men-97-star-talks-bringing-polaris-to-animated-life-2000797532) \u2014 Gizmodo.com\n   'Overwatch' actor Carolina Ravassa opens up on playing the big new addition to the heroes of 'X-Men '97.'\n2. [The Corsair Nightsword V2 Wireless should feel like an upgrade, but I'm quite upset to see that it's lost a key selling feature of the original model](https://www.techradar.com/computing/mice/corsair-nightsword-v2-wireless-review) \u2014 TechRadar\n   The Corsair Nightsword V2 Wireless is a decent ergonomic gaming mouse, but it unfortunately feels a bit like a downgrade from its predecessor.\n3. [X-Men '97: Carolina Ravassa Talks Polaris, Voiceover Advantages & More](https://bleedingcool.com/tv/x-men-97-carolina-ravassa-talks-polaris-voiceover-advantages-more/) \u2014 Bleeding Cool News\n   One advantage of being part of an ensemble cast like X-Men '97 is how each character is allowed to shine in their own right, which is something that Carolina Ravassa has seen first had as one of the newer additions to the cast, playing Polaris, the powerful d\u2026",
-          "metadata": {
-            "intent": "general",
-            "domain": "general",
-            "domain_label": "General Social Intelligence",
-            "entities": [
-              "general"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "trends",
-              "sentiment",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.55,
-                    0.37,
-                    0.44,
-                    0.43,
-                    0.58,
-                    0.57,
-                    0.63
-                  ]
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "8ff66e3da7ca96166f5beb18bd44b56b78c4303d84ded207d25628d73b3a2e34",
-              "insight_hash": "08d2ea38197f84f21d3e3d66454ebefa9b644300943b38bf41b88b56b97d6a32",
-              "evidence_hash": "ae300ec53418a9729111b5d6092db666d21017ad599940d5b5fa82d95f6d80b6",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:26:22.539176+00:00",
-              "blockchain_tx_id": "91fa25d7-806"
-            },
-            "news_articles": [
-              {
-                "title": "\u2018X-Men \u201997\u2019 Star Talks Bringing Polaris to Animated Life",
-                "description": "'Overwatch' actor Carolina Ravassa opens up on playing the big new addition to the heroes of 'X-Men '97.'",
-                "source": "Gizmodo.com",
-                "published_at": "2026-08-12T17:00:39Z",
-                "url": "https://gizmodo.com/x-men-97-star-talks-bringing-polaris-to-animated-life-2000797532"
-              },
-              {
-                "title": "The Corsair Nightsword V2 Wireless should feel like an upgrade, but I'm quite upset to see that it's lost a key selling feature of the original model",
-                "description": "The Corsair Nightsword V2 Wireless is a decent ergonomic gaming mouse, but it unfortunately feels a bit like a downgrade from its predecessor.",
-                "source": "TechRadar",
-                "published_at": "2026-08-11T15:28:34Z",
-                "url": "https://www.techradar.com/computing/mice/corsair-nightsword-v2-wireless-review"
-              },
-              {
-                "title": "X-Men '97: Carolina Ravassa Talks Polaris, Voiceover Advantages & More",
-                "description": "One advantage of being part of an ensemble cast like X-Men '97 is how each character is allowed to shine in their own right, which is something that Carolina Ravassa has seen first had as one of the newer additions to the cast, playing Polaris, the powerful d\u2026",
-                "source": "Bleeding Cool News",
-                "published_at": "2026-08-06T21:37:08Z",
-                "url": "https://bleedingcool.com/tv/x-men-97-carolina-ravassa-talks-polaris-voiceover-advantages-more/"
-              }
-            ]
-          },
-          "created_at": "2026-09-05T19:26:22.548685+00:00"
-        },
-        {
-          "id": "8146fe97-6310-46a0-9fad-e21277b3a947",
-          "role": "user",
-          "content": "America News",
-          "metadata": {},
-          "created_at": "2026-09-05T19:26:38.421504+00:00"
-        },
-        {
-          "id": "f4f89393-e73d-4de1-88cc-32c25ee18eb8",
-          "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.52) across 18 signals.\n\n**Evidence:** 1 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [Is this the future of America?](https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash) \u2014 The Verge\n   In 2007, the US was on the cusp of an economic recession, and Buddy Rizer was tasked with finding Loudoun County, Virginia, a new way to make money. Rizer\u2019s earlier career as a radio DJ didn\u2019t exactly make him an obvious candidate to find a solution, but he w\u2026\n2. [What app surged in downloads after Trump's 'Lake America' change? The quiz knows](https://www.npr.org/2026/09/04/g-s1-141602/what-app-surged-in-downloads-after-trumps-lake-america-change-the-quiz-knows) \u2014 NPR\n   Plus: George Santos is back in the news!\n3. [MapQuest Tops App Store Charts After Refusing 'Lake America' Change](https://www.macrumors.com/2026/08/31/mapquest-tops-app-store-charts/) \u2014 MacRumors\n   MapQuest is in the spotlight this week after refusing to change \"Lake Ontario\" to \"Lake America\" on its map, following an executive order issued by U.S. President Donald Trump last week. As of Monday morning, the MapQuest app is the top free iPhone app on App\u2026",
-          "metadata": {
-            "intent": "general",
-            "domain": "general",
-            "domain_label": "General Social Intelligence",
-            "entities": [
-              "general"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "trends",
-              "sentiment",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.56,
-                    0.37,
-                    0.45,
-                    0.43,
-                    0.59,
-                    0.57,
-                    0.63
-                  ]
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "50146d8e5becdb848f0d7d8b9a0d4978449d4d436e654e7c0b6db62545f5c853",
-              "insight_hash": "bcef6abd992322c77f359c13ec246fec28551b80c29fea5786b7b43a3151011e",
-              "evidence_hash": "ae300ec53418a9729111b5d6092db666d21017ad599940d5b5fa82d95f6d80b6",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:26:38.429332+00:00",
-              "blockchain_tx_id": "42321f24-d93"
-            },
-            "news_articles": [
-              {
-                "title": "Is this the future of America?",
-                "description": "In 2007, the US was on the cusp of an economic recession, and Buddy Rizer was tasked with finding Loudoun County, Virginia, a new way to make money. Rizer\u2019s earlier career as a radio DJ didn\u2019t exactly make him an obvious candidate to find a solution, but he w\u2026",
-                "source": "The Verge",
-                "published_at": "2026-09-02T10:02:28Z",
-                "url": "https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash"
-              },
-              {
-                "title": "What app surged in downloads after Trump's 'Lake America' change? The quiz knows",
-                "description": "Plus: George Santos is back in the news!",
-                "source": "NPR",
-                "published_at": "2026-09-04T09:01:00Z",
-                "url": "https://www.npr.org/2026/09/04/g-s1-141602/what-app-surged-in-downloads-after-trumps-lake-america-change-the-quiz-knows"
-              },
-              {
-                "title": "MapQuest Tops App Store Charts After Refusing 'Lake America' Change",
-                "description": "MapQuest is in the spotlight this week after refusing to change \"Lake Ontario\" to \"Lake America\" on its map, following an executive order issued by U.S. President Donald Trump last week. As of Monday morning, the MapQuest app is the top free iPhone app on App\u2026",
-                "source": "MacRumors",
-                "published_at": "2026-08-31T14:49:34Z",
-                "url": "https://www.macrumors.com/2026/08/31/mapquest-tops-app-store-charts/"
-              }
-            ]
-          },
-          "created_at": "2026-09-05T19:26:38.438871+00:00"
-        },
-        {
-          "id": "f60b7d3e-fb92-4c9b-9148-521704833e83",
-          "role": "user",
-          "content": "Bitcoin",
-          "metadata": {},
-          "created_at": "2026-09-05T19:27:18.599897+00:00"
-        },
-        {
-          "id": "08a669ab-00c8-4ad7-a9fd-30906aca721d",
-          "role": "assistant",
-          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.\n\n**Top 3 relevant news from NewsAPI:**\n1. [COLDCARD's Random Numbers Weren't](https://coldcard-hack.up.railway.app/) \u2014 Railway.app\n   A source-linked analysis of the COLDCARD random-number flaw, the affected firmware, and the Bitcoin sweeps that followed.\n2. [Trump Media posts a $238m quarterly loss as its bitcoin bet sours](https://thenextweb.com/news/trump-media-q2-2026-238m-loss-bitcoin) \u2014 The Next Web\n   Trump Media & Technology Group, the parent of Truth Social, reported a net loss of $238.1m for the second quarter of 2026, a figure that dwarfs the $20m loss it posted a year earlier and turns the company\u2019s slow drift from social network to crypto holding veh\u2026\n3. [XCancel\u2009\u2014\u2009An Unofficial Twitter/X Mirror](https://xcancel.com/about) \u2014 Xcancel.com",
-          "metadata": {
-            "intent": "market",
-            "domain": "financial",
-            "domain_label": "Market Intelligence",
-            "entities": [
-              "btc"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "market",
-              "sentiment",
-              "trends",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              },
-              {
-                "type": "semantic",
-                "label": "Trend: btc etf",
-                "value": "velocity=0.60",
-                "confidence": 0.7,
-                "source": "trend_detector"
-              },
-              {
-                "type": "temporal",
-                "label": "Volatility Level",
-                "value": "HIGH",
-                "confidence": 0.8,
-                "source": "market_analytics"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.55,
-                    0.37,
-                    0.44,
-                    0.42,
-                    0.58,
-                    0.56,
-                    0.63
-                  ]
-                }
-              },
-              {
-                "type": "trend_bars",
-                "title": "Top Trends",
-                "data": {
-                  "labels": [
-                    "btc etf"
-                  ],
-                  "values": [
-                    0.6
-                  ]
-                }
-              },
-              {
-                "type": "scenario_matrix",
-                "title": "Scenario Analysis",
-                "data": {
-                  "scenarios": [
-                    {
-                      "name": "Bull continuation",
-                      "probability": 0.35,
-                      "trigger": "ETF inflows + positive macro"
-                    },
-                    {
-                      "name": "Range-bound",
-                      "probability": 0.4,
-                      "trigger": "Mixed sentiment, low volume"
-                    },
-                    {
-                      "name": "Correction",
-                      "probability": 0.25,
-                      "trigger": "Regulatory headline + fear spike"
-                    }
-                  ],
-                  "volatility": {
-                    "level": "HIGH",
-                    "index": 0.78
-                  }
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "e3dc9d520e643a2b31ff572548fbac08dd8ac001d058c738dd6a387d7c221851",
-              "insight_hash": "721601635744c614d1219bca67f8b005a923b8c9270b30d59dbb607da1f56e74",
-              "evidence_hash": "2be9829901b84ab9bebe6fbc990c1fd815582848e8c9023e5d234754315ce5ae",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:27:18.609919+00:00",
-              "blockchain_tx_id": "42d950c4-3d8"
-            },
-            "news_articles": [
-              {
-                "title": "COLDCARD's Random Numbers Weren't",
-                "description": "A source-linked analysis of the COLDCARD random-number flaw, the affected firmware, and the Bitcoin sweeps that followed.",
-                "source": "Railway.app",
-                "published_at": "2026-08-05T18:16:38Z",
-                "url": "https://coldcard-hack.up.railway.app/"
-              },
-              {
-                "title": "Trump Media posts a $238m quarterly loss as its bitcoin bet sours",
-                "description": "Trump Media & Technology Group, the parent of Truth Social, reported a net loss of $238.1m for the second quarter of 2026, a figure that dwarfs the $20m loss it posted a year earlier and turns the company\u2019s slow drift from social network to crypto holding veh\u2026",
-                "source": "The Next Web",
-                "published_at": "2026-08-11T13:10:09Z",
-                "url": "https://thenextweb.com/news/trump-media-q2-2026-238m-loss-bitcoin"
-              },
-              {
-                "title": "XCancel\u2009\u2014\u2009An Unofficial Twitter/X Mirror",
-                "description": "",
-                "source": "Xcancel.com",
-                "published_at": "2026-08-16T14:33:16Z",
-                "url": "https://xcancel.com/about"
-              }
-            ]
-          },
-          "created_at": "2026-09-05T19:27:18.617576+00:00"
-        },
-        {
-          "id": "701453c6-dbc2-4250-aee9-38d47b0abb3e",
-          "role": "user",
-          "content": "Stock Market",
-          "metadata": {},
-          "created_at": "2026-09-05T19:27:30.411760+00:00"
-        },
-        {
-          "id": "679d0d47-6fae-44b1-b720-acb3aa7ba88f",
-          "role": "assistant",
-          "content": "**Domain:** Market Intelligence\n\n**Observed:** **BTC/market** volatility is **HIGH** (index: 0.78). Elevated mention velocity on X and Reddit.\n\n**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.\n\n**Predicted Scenarios:**\n- **Bull continuation** (35%): ETF inflows + positive macro\n- **Range-bound** (40%): Mixed sentiment, low volume\n- **Correction** (25%): Regulatory headline + fear spike\n\n**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.\n\n**Disclaimer:** Scenario analysis only \u2014 not financial advice. Confidence: 75%.\n\n**Top 3 relevant news from NewsAPI:**\n1. [Alibaba Drops, SoftBank Bond Sale, Bitcoin Rally | Stock Movers](https://finance.yahoo.com/video/alibaba-drops-softbank-bond-sale-142806254.html) \u2014 Yahoo Entertainment\n   Today's biggest winners and losers in the stock market. On this episode of Stock Movers: - Alibaba (BABA) is tumbling after announcing a plan to raise abou...\n2. [Bitcoin scores a rare win over S&P 500 with 2.6% rise versus 0.5% fall](https://www.coindesk.com/markets/2026/08/18/bitcoin-scored-a-rare-win-over-s-and-p-500-on-monday) \u2014 CoinDesk\n   BTC outperformed Wall Street on Monday, breaking its recent pattern of lagging behind U.S. stocks.\n3. [B HODL Stock Surges 67% in a Month on MicroStrategy Bitcoin Playbook](https://beincrypto.com/b-hodl-stock-surge-microstrategy-bitcoin-playbook/) \u2014 BeInCrypto\n   B HODL stock surged 67% in a month. A $65,000 at-the-market share sale then covered most of its latest Bitcoin buy, mirroring MicroStrategy.",
-          "metadata": {
-            "intent": "market",
-            "domain": "financial",
-            "domain_label": "Market Intelligence",
-            "entities": [
-              "btc"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "market",
-              "sentiment",
-              "trends",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              },
-              {
-                "type": "semantic",
-                "label": "Trend: btc etf",
-                "value": "velocity=1.50",
+                "label": "Trend: cold brew",
+                "value": "velocity=5.58",
                 "confidence": 0.95,
                 "source": "trend_detector"
               },
               {
                 "type": "semantic",
-                "label": "Trend: fear sentiment",
+                "label": "Trend: functional coffee",
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
                 "value": "velocity=0.30",
                 "confidence": 0.6,
                 "source": "trend_detector"
-              },
-              {
-                "type": "temporal",
-                "label": "Volatility Level",
-                "value": "HIGH",
-                "confidence": 0.8,
-                "source": "market_analytics"
               }
             ],
             "visualizations": [
@@ -782,13 +95,13 @@
                     "Sun"
                   ],
                   "values": [
-                    0.54,
-                    0.36,
-                    0.43,
+                    0.61,
                     0.42,
-                    0.57,
-                    0.55,
-                    0.62
+                    0.5,
+                    0.48,
+                    0.64,
+                    0.62,
+                    0.68
                   ]
                 }
               },
@@ -797,89 +110,46 @@
                 "title": "Top Trends",
                 "data": {
                   "labels": [
+                    "cold brew",
+                    "functional coffee",
+                    "premium pods",
                     "btc etf",
-                    "fear sentiment"
+                    "btc volatility"
                   ],
                   "values": [
-                    1.5,
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
                     0.3
                   ]
                 }
-              },
-              {
-                "type": "scenario_matrix",
-                "title": "Scenario Analysis",
-                "data": {
-                  "scenarios": [
-                    {
-                      "name": "Bull continuation",
-                      "probability": 0.35,
-                      "trigger": "ETF inflows + positive macro"
-                    },
-                    {
-                      "name": "Range-bound",
-                      "probability": 0.4,
-                      "trigger": "Mixed sentiment, low volume"
-                    },
-                    {
-                      "name": "Correction",
-                      "probability": 0.25,
-                      "trigger": "Regulatory headline + fear spike"
-                    }
-                  ],
-                  "volatility": {
-                    "level": "HIGH",
-                    "index": 0.78
-                  }
-                }
               }
             ],
             "provenance": {
-              "dataset_hash": "32087dfcccb494b83274e9efb58c62c66421a9e6b51dd95639600fb0d9f6d4af",
-              "insight_hash": "6f4ffdff49fd53413f70df54c2c6d87f969ddb3ae57a68e139e9b84f8bb36bc1",
-              "evidence_hash": "ea818add27f0ceebc45c49bc468ff0c2ea1cfff5bca9f1556f10c6d4a6626c4f",
+              "dataset_hash": "2c5320c30fd172424750c7090e889eea20447387a7ab4eece8d146d8c36a4408",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
               "model_version": "socialiq-template-0.2",
               "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:27:30.421809+00:00",
-              "blockchain_tx_id": "46401702-b5d"
+              "timestamp": "2026-09-06 13:16:50.851732+00:00",
+              "blockchain_tx_id": "2bba49c0-b23"
             },
-            "news_articles": [
-              {
-                "title": "Alibaba Drops, SoftBank Bond Sale, Bitcoin Rally | Stock Movers",
-                "description": "Today's biggest winners and losers in the stock market. On this episode of Stock Movers: - Alibaba (BABA) is tumbling after announcing a plan to raise abou...",
-                "source": "Yahoo Entertainment",
-                "published_at": "2026-08-24T14:28:06Z",
-                "url": "https://finance.yahoo.com/video/alibaba-drops-softbank-bond-sale-142806254.html"
-              },
-              {
-                "title": "Bitcoin scores a rare win over S&P 500 with 2.6% rise versus 0.5% fall",
-                "description": "BTC outperformed Wall Street on Monday, breaking its recent pattern of lagging behind U.S. stocks.",
-                "source": "CoinDesk",
-                "published_at": "2026-08-18T10:01:23Z",
-                "url": "https://www.coindesk.com/markets/2026/08/18/bitcoin-scored-a-rare-win-over-s-and-p-500-on-monday"
-              },
-              {
-                "title": "B HODL Stock Surges 67% in a Month on MicroStrategy Bitcoin Playbook",
-                "description": "B HODL stock surged 67% in a month. A $65,000 at-the-market share sale then covered most of its latest Bitcoin buy, mirroring MicroStrategy.",
-                "source": "BeInCrypto",
-                "published_at": "2026-09-03T09:11:48Z",
-                "url": "https://beincrypto.com/b-hodl-stock-surge-microstrategy-bitcoin-playbook/"
-              }
-            ]
+            "news_articles": []
           },
-          "created_at": "2026-09-05T19:27:30.430528+00:00"
+          "created_at": "2026-09-06T13:16:50.870856+00:00"
         },
         {
-          "id": "a2f95600-33cd-44b5-9fa6-fd2b5fd0a8d7",
+          "id": "8cbf5287-73ac-4d0f-8d13-e98d58ec415e",
           "role": "user",
-          "content": "Valorant Esports News",
+          "content": "Valorant topic analysis and social signal telemetry",
           "metadata": {},
-          "created_at": "2026-09-05T19:29:02.082639+00:00"
+          "created_at": "2026-09-06T13:17:09.399720+00:00"
         },
         {
-          "id": "e723b5a8-bc7a-4ffb-8e54-636b43bc54c2",
+          "id": "cd9fbbb3-5c9c-4770-8955-80610fe3a0b9",
           "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.52) across 9 signals.\n\n**Evidence:** 1 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [ROG Swift OLED PG27AQWP Hits 720Hz at 1080P for Esports](https://www.geeky-gadgets.com/rog-swift-oled-720hz-monitor-review/) \u2014 Geeky Gadgets\n   The ROG Swift OLED PG27AQWP G Edition 20 is a 27-inch monitor that introduces a 720Hz refresh rate option, designed with competitive esports players in mind. As reviewed by ETA Prime, this WOLED display offers two performance modes: 2560\u00d71440 resolution at 54\u2026\n2. [TMR vs Hall Effect: which magnetic tech is best for your gaming keyboards and controllers? It's not just about better accuracy and faster response times](https://www.techradar.com/computing/keyboards/hall-effect-vs-tmr) \u2014 TechRadar\n   TMR and Hall Effect sensors and switches are becoming more widely adopted for keyboards and controllers, but what do they mean, and which is best?\n3. [The Corsair Nightsword V2 Wireless should feel like an upgrade, but I'm quite upset to see that it's lost a key selling feature of the original model](https://www.techradar.com/computing/mice/corsair-nightsword-v2-wireless-review) \u2014 TechRadar\n   The Corsair Nightsword V2 Wireless is a decent ergonomic gaming mouse, but it unfortunately feels a bit like a downgrade from its predecessor.",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
           "metadata": {
             "intent": "general",
             "domain": "general",
@@ -907,117 +177,11 @@
               "provenance"
             ],
             "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.56,
-                    0.37,
-                    0.45,
-                    0.43,
-                    0.59,
-                    0.57,
-                    0.63
-                  ]
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "702efcda018688587625ec108045c566d81ade22df09a0339a1cfc83b8914329",
-              "insight_hash": "6847650b7c2d8b9a185d079524627a8209803c3d201187ac7b331891cc6e34f2",
-              "evidence_hash": "ae300ec53418a9729111b5d6092db666d21017ad599940d5b5fa82d95f6d80b6",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:29:02.094859+00:00",
-              "blockchain_tx_id": "fd7ec352-9df"
-            },
-            "news_articles": [
-              {
-                "title": "ROG Swift OLED PG27AQWP Hits 720Hz at 1080P for Esports",
-                "description": "The ROG Swift OLED PG27AQWP G Edition 20 is a 27-inch monitor that introduces a 720Hz refresh rate option, designed with competitive esports players in mind. As reviewed by ETA Prime, this WOLED display offers two performance modes: 2560\u00d71440 resolution at 54\u2026",
-                "source": "Geeky Gadgets",
-                "published_at": "2026-08-21T07:45:00Z",
-                "url": "https://www.geeky-gadgets.com/rog-swift-oled-720hz-monitor-review/"
-              },
-              {
-                "title": "TMR vs Hall Effect: which magnetic tech is best for your gaming keyboards and controllers? It's not just about better accuracy and faster response times",
-                "description": "TMR and Hall Effect sensors and switches are becoming more widely adopted for keyboards and controllers, but what do they mean, and which is best?",
-                "source": "TechRadar",
-                "published_at": "2026-08-15T13:00:00Z",
-                "url": "https://www.techradar.com/computing/keyboards/hall-effect-vs-tmr"
-              },
-              {
-                "title": "The Corsair Nightsword V2 Wireless should feel like an upgrade, but I'm quite upset to see that it's lost a key selling feature of the original model",
-                "description": "The Corsair Nightsword V2 Wireless is a decent ergonomic gaming mouse, but it unfortunately feels a bit like a downgrade from its predecessor.",
-                "source": "TechRadar",
-                "published_at": "2026-08-11T15:28:34Z",
-                "url": "https://www.techradar.com/computing/mice/corsair-nightsword-v2-wireless-review"
-              }
-            ]
-          },
-          "created_at": "2026-09-05T19:29:02.106258+00:00"
-        },
-        {
-          "id": "b58d17fc-c148-4146-b6e6-4f6f46ab8f4a",
-          "role": "user",
-          "content": "VCT News about Valorant Champions",
-          "metadata": {},
-          "created_at": "2026-09-05T19:29:49.810684+00:00"
-        },
-        {
-          "id": "44cc7486-92b3-4442-a88e-feab6185149c",
-          "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.60) across 6 signals.\n\n**Evidence:** 3 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
-          "metadata": {
-            "intent": "general",
-            "domain": "general",
-            "domain_label": "General Social Intelligence",
-            "entities": [
-              "general"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "trends",
-              "sentiment",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "sample"
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
             ],
             "evidence": [
               {
@@ -1030,15 +194,22 @@
               {
                 "type": "semantic",
                 "label": "Trend: cold brew",
-                "value": "velocity=2.84",
-                "confidence": 0.9,
+                "value": "velocity=5.58",
+                "confidence": 0.95,
                 "source": "trend_detector"
               },
               {
                 "type": "semantic",
                 "label": "Trend: functional coffee",
-                "value": "velocity=1.35",
-                "confidence": 0.8,
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
                 "source": "trend_detector"
               }
             ],
@@ -1057,13 +228,13 @@
                     "Sun"
                   ],
                   "values": [
+                    0.61,
+                    0.42,
+                    0.5,
+                    0.48,
                     0.64,
-                    0.46,
-                    0.53,
-                    0.52,
-                    0.67,
-                    0.65,
-                    0.72
+                    0.62,
+                    0.68
                   ]
                 }
               },
@@ -1073,39 +244,45 @@
                 "data": {
                   "labels": [
                     "cold brew",
-                    "functional coffee"
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
                   ],
                   "values": [
-                    2.84,
-                    1.35
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
                   ]
                 }
               }
             ],
             "provenance": {
-              "dataset_hash": "826d17ecedff782a5f556e6fe4bc98648a19d1bd114709ba7d87931c28d1b356",
-              "insight_hash": "c9f60bb98e5f0fe887100cfd148acddaba9889a5e8f149154ee8ac8842b3afdc",
-              "evidence_hash": "7af8dbfd8b383d98425bb9eb7e52fad6777d4712b7fbd0ac530be143f3dd3fbd",
+              "dataset_hash": "7faa1188c9e45e8c7648cc81de290438a08a9001e56360580d8dccd81f7a054d",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
               "model_version": "socialiq-template-0.2",
               "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:29:49.823508+00:00",
-              "blockchain_tx_id": "fef43089-75d"
+              "timestamp": "2026-09-06 13:17:09.427181+00:00",
+              "blockchain_tx_id": "8f723a26-f50"
             },
             "news_articles": []
           },
-          "created_at": "2026-09-05T19:29:49.837813+00:00"
+          "created_at": "2026-09-06T13:17:09.442264+00:00"
         },
         {
-          "id": "dc19008c-bc30-46bb-9934-356669560912",
+          "id": "c821718a-98e0-4aa5-be3a-6524160d4f90",
           "role": "user",
-          "content": "America newx",
+          "content": "AI Agents topic analysis and social signal telemetry",
           "metadata": {},
-          "created_at": "2026-09-05T19:30:12.077454+00:00"
+          "created_at": "2026-09-06T13:17:29.984464+00:00"
         },
         {
-          "id": "ce9c8d7b-ecb3-4ed9-be57-07db23fb2e91",
+          "id": "b491f033-b18c-40e8-b498-6d424388a3e0",
           "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.60) across 6 signals.\n\n**Evidence:** 3 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **positive** (score: 0.57) across 18 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
           "metadata": {
             "intent": "general",
             "domain": "general",
@@ -1133,7 +310,11 @@
               "provenance"
             ],
             "sources_used": [
-              "sample"
+              "x",
+              "telegram",
+              "instagram",
+              "pinterest",
+              "google_search"
             ],
             "evidence": [
               {
@@ -1146,15 +327,22 @@
               {
                 "type": "semantic",
                 "label": "Trend: cold brew",
-                "value": "velocity=2.84",
-                "confidence": 0.9,
+                "value": "velocity=5.58",
+                "confidence": 0.95,
                 "source": "trend_detector"
               },
               {
                 "type": "semantic",
                 "label": "Trend: functional coffee",
-                "value": "velocity=1.35",
-                "confidence": 0.8,
+                "value": "velocity=3.42",
+                "confidence": 0.95,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: premium pods",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
                 "source": "trend_detector"
               }
             ],
@@ -1173,13 +361,13 @@
                     "Sun"
                   ],
                   "values": [
+                    0.61,
+                    0.42,
+                    0.5,
+                    0.48,
                     0.64,
-                    0.46,
-                    0.53,
-                    0.52,
-                    0.67,
-                    0.65,
-                    0.72
+                    0.62,
+                    0.68
                   ]
                 }
               },
@@ -1189,137 +377,33 @@
                 "data": {
                   "labels": [
                     "cold brew",
-                    "functional coffee"
+                    "functional coffee",
+                    "premium pods",
+                    "btc etf",
+                    "btc volatility"
                   ],
                   "values": [
-                    2.84,
-                    1.35
+                    5.58,
+                    3.42,
+                    0.3,
+                    0.3,
+                    0.3
                   ]
                 }
               }
             ],
             "provenance": {
-              "dataset_hash": "1c8f9a3eb50cc24c8a6e00ee158526abc96cb1748d4086049d74410ebc265d6b",
-              "insight_hash": "c9f60bb98e5f0fe887100cfd148acddaba9889a5e8f149154ee8ac8842b3afdc",
-              "evidence_hash": "7af8dbfd8b383d98425bb9eb7e52fad6777d4712b7fbd0ac530be143f3dd3fbd",
+              "dataset_hash": "01ab32ca22f441348b369ec4e63d8d5475dc815b2fa3c99bd61c198b668d2c69",
+              "insight_hash": "56600868e85c67a2db5e5bc452cb0815484ac779d7404cca9ed1b61f2b6e3c1b",
+              "evidence_hash": "34d789d16938541eab19d5942c0aeef700ea41296c7c3411310f6308bfac9251",
               "model_version": "socialiq-template-0.2",
               "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:30:12.087410+00:00",
-              "blockchain_tx_id": "9e9a75bc-a6e"
+              "timestamp": "2026-09-06 13:17:30.015768+00:00",
+              "blockchain_tx_id": "bdf9a8f6-b6c"
             },
             "news_articles": []
           },
-          "created_at": "2026-09-05T19:30:12.093473+00:00"
-        },
-        {
-          "id": "d7a58d6a-2857-4f89-b979-f60123b5dbb1",
-          "role": "user",
-          "content": "America news",
-          "metadata": {},
-          "created_at": "2026-09-05T19:30:16.850796+00:00"
-        },
-        {
-          "id": "05e0b4bc-dfda-4cf8-b71f-b782a255fe50",
-          "role": "assistant",
-          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.52) across 18 signals.\n\n**Evidence:** 1 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [Is this the future of America?](https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash) \u2014 The Verge\n   In 2007, the US was on the cusp of an economic recession, and Buddy Rizer was tasked with finding Loudoun County, Virginia, a new way to make money. Rizer\u2019s earlier career as a radio DJ didn\u2019t exactly make him an obvious candidate to find a solution, but he w\u2026\n2. [What app surged in downloads after Trump's 'Lake America' change? The quiz knows](https://www.npr.org/2026/09/04/g-s1-141602/what-app-surged-in-downloads-after-trumps-lake-america-change-the-quiz-knows) \u2014 NPR\n   Plus: George Santos is back in the news!\n3. [MapQuest Tops App Store Charts After Refusing 'Lake America' Change](https://www.macrumors.com/2026/08/31/mapquest-tops-app-store-charts/) \u2014 MacRumors\n   MapQuest is in the spotlight this week after refusing to change \"Lake Ontario\" to \"Lake America\" on its map, following an executive order issued by U.S. President Donald Trump last week. As of Monday morning, the MapQuest app is the top free iPhone app on App\u2026",
-          "metadata": {
-            "intent": "general",
-            "domain": "general",
-            "domain_label": "General Social Intelligence",
-            "entities": [
-              "general"
-            ],
-            "confidence": 0.78,
-            "workflow_used": [
-              "data",
-              "trends",
-              "sentiment",
-              "correlation",
-              "llm"
-            ],
-            "agents_used": [
-              "master",
-              "data_acquisition",
-              "data_intelligence",
-              "social_intelligence",
-              "domain_analytics",
-              "graph_analysis",
-              "visualization",
-              "insight",
-              "provenance"
-            ],
-            "sources_used": [
-              "news"
-            ],
-            "evidence": [
-              {
-                "type": "statistical",
-                "label": "Overall Sentiment",
-                "value": "neutral",
-                "confidence": 0.72,
-                "source": "sentiment_model"
-              }
-            ],
-            "visualizations": [
-              {
-                "type": "sentiment_timeline",
-                "title": "Sentiment Over Time",
-                "data": {
-                  "labels": [
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
-                  ],
-                  "values": [
-                    0.56,
-                    0.37,
-                    0.45,
-                    0.43,
-                    0.59,
-                    0.57,
-                    0.63
-                  ]
-                }
-              }
-            ],
-            "provenance": {
-              "dataset_hash": "4f724be982fa970c81989c8317a6e48dbb9215aea90952ca027da9875ad91e7d",
-              "insight_hash": "bcef6abd992322c77f359c13ec246fec28551b80c29fea5786b7b43a3151011e",
-              "evidence_hash": "ae300ec53418a9729111b5d6092db666d21017ad599940d5b5fa82d95f6d80b6",
-              "model_version": "socialiq-template-0.2",
-              "analysis_version": "socialiq-0.1.0",
-              "timestamp": "2026-09-05 19:30:16.860858+00:00",
-              "blockchain_tx_id": "748d5a7b-0cd"
-            },
-            "news_articles": [
-              {
-                "title": "Is this the future of America?",
-                "description": "In 2007, the US was on the cusp of an economic recession, and Buddy Rizer was tasked with finding Loudoun County, Virginia, a new way to make money. Rizer\u2019s earlier career as a radio DJ didn\u2019t exactly make him an obvious candidate to find a solution, but he w\u2026",
-                "source": "The Verge",
-                "published_at": "2026-09-02T10:02:28Z",
-                "url": "https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash"
-              },
-              {
-                "title": "What app surged in downloads after Trump's 'Lake America' change? The quiz knows",
-                "description": "Plus: George Santos is back in the news!",
-                "source": "NPR",
-                "published_at": "2026-09-04T09:01:00Z",
-                "url": "https://www.npr.org/2026/09/04/g-s1-141602/what-app-surged-in-downloads-after-trumps-lake-america-change-the-quiz-knows"
-              },
-              {
-                "title": "MapQuest Tops App Store Charts After Refusing 'Lake America' Change",
-                "description": "MapQuest is in the spotlight this week after refusing to change \"Lake Ontario\" to \"Lake America\" on its map, following an executive order issued by U.S. President Donald Trump last week. As of Monday morning, the MapQuest app is the top free iPhone app on App\u2026",
-                "source": "MacRumors",
-                "published_at": "2026-08-31T14:49:34Z",
-                "url": "https://www.macrumors.com/2026/08/31/mapquest-tops-app-store-charts/"
-              }
-            ]
-          },
-          "created_at": "2026-09-05T19:30:16.869895+00:00"
+          "created_at": "2026-09-06T13:17:30.034674+00:00"
         }
       ],
       "last_domain": "general"

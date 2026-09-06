@@ -17,7 +17,42 @@ export const DEFAULT_AGENTS = [
   "domain_analytics", "graph_analysis", "visualization", "insight", "provenance",
 ];
 
-export const DEFAULT_SOURCES = ["x", "telegram", "instagram", "pinterest", "google_search", "news", "sample"];
+export const DEFAULT_SOURCES = ["x", "telegram", "instagram", "pinterest", "google_search", "sample"];
+
+export const DEMO_SESSION_ID = "local-demo-showcase";
+export const DEMO_SESSION_TITLE = "Demo Showcase (read-only)";
+export const DEMO_MESSAGES = [
+  {
+    role: "user" as const,
+    content: "Why is AI Agents trending today, and what are the primary friction points being discussed?",
+    timestamp: "10:41:22 UTC",
+  },
+  {
+    role: "assistant" as const,
+    content:
+      "AI Agents are experiencing significant surge in discussion velocity (+312% over 24h) across technology and developer hubs. The primary catalysts are three concurrent autonomous agent framework releases and enterprise workflow announcements.\n\n### Key observations from ingested signal stream\n\n1. **Developer Adoption:** Significant enthusiasm around autonomous code refactoring and multi-agent coordination frameworks, particularly across GitHub discussions and Reddit tech forums.\n2. **Enterprise Friction:** Increasing debate concerning hallucination risks in autonomous execution loops, API token cost escalation, and security boundaries for tool execution.\n3. **Employment Narratives:** Emerging tension regarding junior engineering role displacement, counterbalanced by discussions on 'AI agent orchestration' as a new high-demand specialization.\n\nWould you like me to inspect the top influence clusters driving this conversation, or isolate the sentiment shift across developer communities vs. general news?",
+    timestamp: "10:41:23 UTC",
+  },
+  {
+    role: "user" as const,
+    content: "Which developer communities are leading the push, and how does sentiment compare to general news?",
+    timestamp: "10:43:08 UTC",
+  },
+  {
+    role: "assistant" as const,
+    content:
+      "Developer communities (predominantly specialized subreddits and developer Discord/X clusters) represent **58%** of all technical discussions. Sentiment in technical channels remains **68% positive**—anchored in practical tooling improvements.\n\nIn contrast, mainstream news sources reflect a more cautious **42% neutral** / **34% negative** stance, focusing heavily on workplace disruption and governance risks.",
+    timestamp: "10:43:10 UTC",
+  },
+];
+
+export const FALLBACK_AGENTS = DEFAULT_AGENTS.map((id) => ({
+  id,
+  name: id.replace(/_/g, " "),
+  description: "Available SOCIALIQ analysis agent",
+  category: "core",
+  default_enabled: true,
+}));
 
 /** Fallback catalog — used if API is stale/unreachable; must match backend tools_registry.py */
 export const FALLBACK_SOURCES = [
