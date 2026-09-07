@@ -39,6 +39,10 @@ class SocialIntelligenceAgent:
             results["topics"] = self.topics.detect(texts)
             results["trends"] = self.trends.detect(records)
 
+        google_trends = self._google_trends_analysis(records)
+        if google_trends["interest_by_region"] or google_trends["related_topics"] or google_trends["related_queries"]:
+            results["google_trends"] = google_trends
+
         if "demographics" in capabilities:
             results["demographics"] = self.demographics.segment(records)
 
@@ -82,4 +86,53 @@ class SocialIntelligenceAgent:
         return {
             "timeline": timeline,
             "spike_detected": sentiment.get("average_score", 0.5) > 0.6,
+        }
+
+    def _google_trends_analysis(self, records: list[dict]) -> dict[str, list[dict]]:
+        """Extract structured Google Trends sections from normalized records."""
+        regions: dict[str, dict] = {}
+        topics: dict[tuple[str, str], dict] = {}
+        queries: dict[tuple[str, str], dict] = {}
+
+        for record in records:
+            if record.get("platform") != "google_trends":
+                continue
+
+            kind = record.get("trend_kind")
+            value = record.get("trend_value", 0)
+            if kind == "interest_by_region":
+                key = str(record.get("region_code") or record.get("region") or "")
+                if key:
+                    regions[key] = {
+                        "location": record.get("region") or key,
+                        "geo": record.get("region_code"),
+                        "value": value,
+                        "coordinates": record.get("coordinates"),
+                    }
+            elif kind == "related_topic":
+                key = (str(record.get("trend_category") or "top"), str(record.get("related_term") or ""))
+                if key[1]:
+                    topics[key] = {
+                        "label": key[1],
+                        "category": key[0],
+                        "value": value,
+                        "value_label": record.get("trend_value_label"),
+                        "type": record.get("related_type"),
+                        "url": record.get("url"),
+                    }
+            elif kind == "related_query":
+                key = (str(record.get("trend_category") or "top"), str(record.get("related_term") or ""))
+                if key[1]:
+                    queries[key] = {
+                        "label": key[1],
+                        "category": key[0],
+                        "value": value,
+                        "value_label": record.get("trend_value_label"),
+                        "url": record.get("url"),
+                    }
+
+        return {
+            "interest_by_region": sorted(regions.values(), key=lambda item: float(item.get("value") or 0), reverse=True),
+            "related_topics": sorted(topics.values(), key=lambda item: float(item.get("value") or 0), reverse=True),
+            "related_queries": sorted(queries.values(), key=lambda item: float(item.get("value") or 0), reverse=True),
         }

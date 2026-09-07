@@ -38,6 +38,18 @@ class VisualizationAgent:
                 },
             })
 
+        google_trends = social_analytics.get("google_trends", {})
+        if any(google_trends.get(key) for key in ("interest_by_region", "related_topics", "related_queries")):
+            viz.append({
+                "type": "google_trends_insights",
+                "title": "Google Trends Interest & Related Signals",
+                "data": {
+                    "regions": google_trends.get("interest_by_region", []),
+                    "related_topics": google_trends.get("related_topics", []),
+                    "related_queries": google_trends.get("related_queries", []),
+                },
+            })
+
         demographics = social_analytics.get("demographics", {})
         if demographics.get("segments"):
             viz.append({

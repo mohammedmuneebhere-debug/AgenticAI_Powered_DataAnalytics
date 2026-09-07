@@ -6,6 +6,8 @@ export interface TrendDriverItem { rank: string; title: string; source: string; 
 export interface NarrativeItem { title: string; subtitle: string; growth: string; color: string; }
 export interface SourceContributionItem { name: string; signals: string; percentage: number; dotColor: string; }
 export interface AudienceSegmentItem { label: string; percentage: number; barColor: string; }
+export interface GoogleTrendsRegion { location: string; geo?: string; value: number; coordinates?: { latitude?: number; longitude?: number; lat?: number; lng?: number; }; }
+export interface GoogleTrendsRelatedItem { label: string; category: "top" | "rising" | string; value: number; valueLabel?: string; type?: string; url?: string; }
 
 export interface NormalizedDashboardData {
   topic: string; lastUpdated: string; signalsAnalyzed: string; activeSourcesCount: number; totalSourcesCount: number;
@@ -16,6 +18,7 @@ export interface NormalizedDashboardData {
   trendDrivers: TrendDriverItem[]; narratives: NarrativeItem[]; sourceContribution: SourceContributionItem[];
   networkIntelligence: { graphDensity: string; topCommunity: string; fastestGrowing: string; topInfluencer: string; nodes: Array<{ id: string; label: string; inf: string; border: string; text: string }>; };
   audienceSegments: AudienceSegmentItem[];
+  googleTrends: { regions: GoogleTrendsRegion[]; relatedTopics: GoogleTrendsRelatedItem[]; relatedQueries: GoogleTrendsRelatedItem[]; };
   provenance: { datasetSnapshot: string; timestamp: string; pipeline: string; blockchainAnchoring: string; insightHash?: string; datasetHash?: string; };
 }
 
@@ -34,6 +37,17 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
   const total = Math.max(1, counts.positive + counts.neutral + counts.negative);
   const polarity = { positive: percent(counts.positive, total), neutral: percent(counts.neutral, total), negative: percent(counts.negative, total) };
   const trends = listRecords(asRecord(analytics.trends).top_trends);
+  const googleTrendsAnalytics = asRecord(analytics.google_trends);
+  const googleTrends = {
+    regions: listRecords(googleTrendsAnalytics.interest_by_region).map((region) => ({
+      location: String(region.location || region.geo || "Unknown region"),
+      geo: region.geo ? String(region.geo) : undefined,
+      value: numberValue(region.value),
+      coordinates: asRecord(region.coordinates) as GoogleTrendsRegion["coordinates"],
+    })),
+    relatedTopics: listRecords(googleTrendsAnalytics.related_topics).map(toRelatedTrend),
+    relatedQueries: listRecords(googleTrendsAnalytics.related_queries).map(toRelatedTrend),
+  };
   const rangeDays = { "1H": 1, "24H": 1, "7D": 7, "30D": 30 }[range];
   const cutoff = Date.now() - rangeDays * 24 * 60 * 60 * 1000;
   const temporal = listRecords(asRecord(analytics.temporal).timeline).filter((point) => {
@@ -82,7 +96,7 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
     sentimentDrivers: { netScore: `${Math.round((scopedScore - 0.5) * 200)} NET`, signalsCount: `${records.toLocaleString()} Signals`, polarity: scopedPolarity, emotions },
     trendDrivers, narratives: trends.map((trend, index) => ({ title: String(trend.topic || "Signal"), subtitle: `${numberValue(trend.mentions)} mentions in returned context`, growth: `${Math.round(numberValue(trend.confidence) * 100)}% confidence`, color: colors[index % colors.length] })),
     sourceContribution, networkIntelligence: { graphDensity: nodes.length ? `${nodes.length} nodes` : "No graph data", topCommunity: String(network.community_count || "No community data"), fastestGrowing: trendDrivers[0]?.title || "No trend data", topInfluencer: nodes[0]?.label || "No influencer data", nodes },
-    audienceSegments: segments, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
+    audienceSegments: segments, googleTrends, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
   };
 }
 
@@ -93,3 +107,13 @@ function numberValue(value: unknown, fallback = 0): number { const parsed = Numb
 function percent(value: number, total: number): number { return Math.round((value / total) * 100); }
 function sentimentLabel(score: number): string { return score > 0.55 ? "Positive" : score < 0.45 ? "Negative" : "Neutral"; }
 function cleanText(value: string): string { return value.replace(/^#+\s+/gm, "").replace(/\*\*/g, "").trim(); }
+function toRelatedTrend(item: Record<string, any>): GoogleTrendsRelatedItem {
+  return {
+    label: String(item.label || "Related signal"),
+    category: String(item.category || "top"),
+    value: numberValue(item.value),
+    valueLabel: item.value_label ? String(item.value_label) : undefined,
+    type: item.type ? String(item.type) : undefined,
+    url: item.url ? String(item.url) : undefined,
+  };
+}

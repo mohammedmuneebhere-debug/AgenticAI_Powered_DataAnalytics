@@ -2,6 +2,7 @@
 
 import React from "react";
 import type { NormalizedDashboardData } from "@/lib/adapter";
+import InterestByRegion from "./InterestByRegion";
 
 interface AudienceSegmentsModuleProps {
   data: NormalizedDashboardData;
@@ -41,6 +42,12 @@ export default function AudienceSegmentsModule({ data }: AudienceSegmentsModuleP
             </div>
           ))}
         </div>
+
+        <InterestByRegion
+          regions={data.googleTrends.regions}
+          relatedTopics={data.googleTrends.relatedTopics}
+          relatedQueries={data.googleTrends.relatedQueries}
+        />
 
         <div className="p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl flex items-center gap-2">
           <span className="material-symbols-outlined text-slate-500 text-[16px] shrink-0">info</span>

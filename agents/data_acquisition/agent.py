@@ -288,7 +288,7 @@ class DataAcquisitionAgent:
         return records
 
     async def _fetch_google_trends(self, query: str, entities: list[str]) -> list[dict]:
-        """Google Trends interest-over-time data through SerpAPI."""
+        """Google Trends chart data through SerpAPI."""
         search_query = self._build_search_query(query, entities)
         params = {
             "api_key": self.settings.serpapi_api_key,
@@ -316,11 +316,87 @@ class DataAcquisitionAgent:
                 "text": f"{search_query} search interest: {value}",
                 "author": "Google Trends",
                 "timestamp": point.get("timestamp") or point.get("date") or datetime.now(timezone.utc).isoformat(),
-                "engagement": {"likes": int(value or 0), "reposts": 0, "replies": 0},
+                "engagement": {"likes": 0, "reposts": 0, "replies": 0},
                 "trend_value": value,
+                "trend_kind": "interest_over_time",
                 "url": "https://trends.google.com/",
             })
+
+        for region in self._trend_items(data.get("interest_by_region")):
+            location = str(region.get("location") or region.get("geo") or "Unknown region")
+            value = self._trend_value(region)
+            records.append({
+                "id": f"google-trends-region-{region.get('geo', location)}",
+                "platform": "google_trends",
+                "text": f"{search_query} search interest in {location}: {value}",
+                "author": "Google Trends",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+                "trend_value": value,
+                "trend_value_label": region.get("value"),
+                "trend_kind": "interest_by_region",
+                "region": location,
+                "region_code": region.get("geo"),
+                "coordinates": region.get("coordinates"),
+                "url": "https://trends.google.com/",
+            })
+
+        for section, trend_kind, label_key in (
+            ("related_topics", "related_topic", "topic"),
+            ("related_queries", "related_query", "query"),
+        ):
+            related = data.get(section) or {}
+            if not isinstance(related, dict):
+                continue
+            for ranking, items in related.items():
+                if ranking not in {"top", "rising"}:
+                    continue
+                for item in self._trend_items(items):
+                    label = self._related_label(item, label_key)
+                    if not label:
+                        continue
+                    value = self._trend_value(item)
+                    records.append({
+                        "id": f"google-trends-{trend_kind}-{ranking}-{label}",
+                        "platform": "google_trends",
+                        "text": f"Related Google Trends {label_key} for {search_query}: {label}",
+                        "author": "Google Trends",
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "engagement": {"likes": 0, "reposts": 0, "replies": 0},
+                        "trend_value": value,
+                        "trend_value_label": item.get("value"),
+                        "trend_kind": trend_kind,
+                        "trend_category": ranking,
+                        "related_term": label,
+                        "related_type": (
+                            item.get("topic", {}).get("type")
+                            if isinstance(item.get("topic"), dict)
+                            else None
+                        ),
+                        "url": item.get("link") or "https://trends.google.com/",
+                    })
         return records
+
+    def _trend_items(self, value: Any) -> list[dict[str, Any]]:
+        if isinstance(value, list):
+            return [item for item in value if isinstance(item, dict)]
+        return []
+
+    def _trend_value(self, item: dict[str, Any]) -> float:
+        raw_value = item.get("extracted_value", item.get("value", 0))
+        if isinstance(raw_value, str):
+            match = re.search(r"-?\d+(?:\.\d+)?", raw_value.replace(",", ""))
+            raw_value = match.group(0) if match else 0
+        try:
+            return float(raw_value)
+        except (TypeError, ValueError):
+            return 0.0
+
+    def _related_label(self, item: dict[str, Any], label_key: str) -> str:
+        value = item.get(label_key)
+        if isinstance(value, dict):
+            value = value.get("title") or value.get("value")
+        return str(value or "").strip()
 
     async def _fetch_news(self, query: str, entities: list[str]) -> list[dict]:
         """NewsAPI search — https://newsapi.org/docs/endpoints/everything"""

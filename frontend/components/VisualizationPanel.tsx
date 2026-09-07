@@ -5,6 +5,8 @@ import {
   LineChart, Line, PieChart, Pie, Cell,
 } from "recharts";
 import type { VisualizationSpec } from "@/lib/api";
+import InterestByRegion from "./dashboard/InterestByRegion";
+import type { GoogleTrendsRegion, GoogleTrendsRelatedItem } from "@/lib/adapter";
 
 const COLORS = ["#6366f1", "#a855f7", "#ec4899", "#22c55e", "#f59e0b"];
 
@@ -61,6 +63,16 @@ function renderChart(viz: VisualizationSpec) {
           <Bar dataKey="velocity" fill="#a855f7" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
+    );
+  }
+
+  if (viz.type === "google_trends_insights") {
+    return (
+      <InterestByRegion
+        regions={toRegions(data.regions)}
+        relatedTopics={toRelatedItems(data.related_topics)}
+        relatedQueries={toRelatedItems(data.related_queries)}
+      />
     );
   }
 
@@ -142,4 +154,28 @@ function toLabeledValues(data: Record<string, unknown>): { label: string; value:
     const value = Number(values[index]);
     return Number.isFinite(value) ? [{ label: String(label), value }] : [];
   });
+}
+
+function toRegions(value: unknown): GoogleTrendsRegion[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is Record<string, unknown> => !!item && typeof item === "object").map((item) => ({
+      location: String(item.location || item.geo || "Unknown region"),
+      geo: item.geo ? String(item.geo) : undefined,
+      value: Number(item.value) || 0,
+      coordinates: item.coordinates as GoogleTrendsRegion["coordinates"],
+    }))
+    : [];
+}
+
+function toRelatedItems(value: unknown): GoogleTrendsRelatedItem[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is Record<string, unknown> => !!item && typeof item === "object").map((item) => ({
+      label: String(item.label || "Related signal"),
+      category: String(item.category || "top"),
+      value: Number(item.value) || 0,
+      valueLabel: item.value_label ? String(item.value_label) : undefined,
+      type: item.type ? String(item.type) : undefined,
+      url: item.url ? String(item.url) : undefined,
+    }))
+    : [];
 }
