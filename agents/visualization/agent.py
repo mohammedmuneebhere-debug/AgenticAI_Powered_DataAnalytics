@@ -50,6 +50,16 @@ class VisualizationAgent:
                 },
             })
 
+        source_content = social_analytics.get("source_content", {})
+        for source, title in (("news", "NewsAPI Results"), ("google_search", "Google Search Results")):
+            items = source_content.get(source, [])
+            if items:
+                viz.append({
+                    "type": "source_cards",
+                    "title": title,
+                    "data": {"source": source, "items": items},
+                })
+
         demographics = social_analytics.get("demographics", {})
         if demographics.get("segments"):
             viz.append({

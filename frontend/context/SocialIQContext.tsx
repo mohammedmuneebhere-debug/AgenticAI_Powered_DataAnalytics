@@ -165,13 +165,18 @@ export function SocialIQProvider({ children }: { children: React.ReactNode }) {
       setActiveTopic(normalized);
 
       // Return cached analysis if available and not forced
-      if (!force && analysisCache[normalized]) {
-        return analysisCache[normalized];
+      const cached = analysisCache[normalized];
+      const cachedGoogleTrends = cached?.analytics?.google_trends;
+      const hasRegionalInterestPayload = Boolean(
+        cachedGoogleTrends && typeof cachedGoogleTrends === "object"
+      );
+      if (!force && cached && hasRegionalInterestPayload) {
+        return cached;
       }
 
       setIsAnalyzing(true);
       try {
-        const queryText = `${normalized} topic analysis and social signal telemetry`;
+        const queryText = `${normalized} topic analysis and social signal telemetry. Include Google Trends interest by region, related topics, and related queries.`;
         const res = await sendMessage(queryText, sessionId, toolConfig);
         setAnalysisCache((prev) => ({ ...prev, [normalized]: res }));
         if (res.session_id) {

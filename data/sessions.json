@@ -3816,7 +3816,7 @@
       "id": "eb681070-c0c9-47be-8f8f-fe5ea40ae6a0",
       "title": "Valorant News",
       "created_at": "2026-09-07T04:39:26.955866+00:00",
-      "updated_at": "2026-09-07T04:39:26.992875+00:00",
+      "updated_at": "2026-09-07T06:55:33.350739+00:00",
       "messages": [
         {
           "id": "326090e4-e4b3-4a18-9f2b-764b4c9a6e8e",
@@ -4574,6 +4574,1852 @@
             }
           },
           "created_at": "2026-09-07T04:39:26.992875+00:00"
+        },
+        {
+          "id": "808d62ab-87cc-4cff-add6-5207ee8e8b25",
+          "role": "user",
+          "content": "Valorant Tournament",
+          "metadata": {},
+          "created_at": "2026-09-07T06:54:39.650832+00:00"
+        },
+        {
+          "id": "3fc606c6-8311-49ec-944e-9f473c772f9f",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.51) across 43 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "google_search",
+              "google_trends"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: valorant",
+                "value": "velocity=15.60",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: tournament",
+                "value": "velocity=10.20",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: search",
+                "value": "velocity=9.90",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-07",
+                    "Signal 11",
+                    "Signal 12",
+                    "Signal 13",
+                    "Signal 14",
+                    "Signal 15",
+                    "Signal 16",
+                    "Signal 17",
+                    "Signal 18",
+                    "Signal 19",
+                    "Signal 20",
+                    "Signal 21",
+                    "Signal 22",
+                    "Signal 23",
+                    "Signal 24",
+                    "Signal 25",
+                    "Signal 26",
+                    "Signal 27",
+                    "Signal 28",
+                    "Signal 29",
+                    "Signal 30",
+                    "Signal 31",
+                    "Signal 32",
+                    "Signal 33",
+                    "Signal 34",
+                    "Signal 35",
+                    "Signal 36",
+                    "Signal 37",
+                    "Signal 38",
+                    "Signal 39",
+                    "Signal 40",
+                    "Signal 41",
+                    "Signal 42",
+                    "Signal 43"
+                  ],
+                  "values": [
+                    0.545,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "valorant",
+                    "tournament",
+                    "search",
+                    "interest",
+                    "tournaments"
+                  ],
+                  "values": [
+                    15.6,
+                    10.2,
+                    9.9,
+                    9.9,
+                    3.0
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "df96efe5fa6a7e7db7c938bddbb84c353d7c227fed48c9287788d2943abe7507",
+              "insight_hash": "b07865354555e32773d1e936f95b2430ea3ce60d0e74c4bc504d74dfac07ef40",
+              "evidence_hash": "d61a0f4243a3b2861d327cd22efc3f583aaeecda04cdf24d2f1d3dd55c6a467d",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-07 06:54:39.669073+00:00",
+              "blockchain_tx_id": "4e194a0a-306"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 43,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.51,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 3,
+                  "negative": 0,
+                  "neutral": 40
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.65,
+                  0.65,
+                  0.5,
+                  0.65,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "support",
+                "distribution": {
+                  "excitement": 0,
+                  "anxiety": 0,
+                  "support": 1,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-07",
+                    "sentiment_score": 0.545,
+                    "signal_count": 10,
+                    "distribution": {
+                      "positive": 3,
+                      "neutral": 7,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 11",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 12",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 13",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 14",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 15",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 16",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 17",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 18",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 19",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 20",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 21",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 22",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 23",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 24",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 25",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 26",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 27",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 28",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 29",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 30",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 31",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 32",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 33",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 34",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 35",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 36",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 37",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 38",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 39",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 40",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 41",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 42",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 43",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "valorant",
+                    "count": 52
+                  },
+                  {
+                    "term": "tournament",
+                    "count": 34
+                  },
+                  {
+                    "term": "search",
+                    "count": 33
+                  },
+                  {
+                    "term": "interest",
+                    "count": 33
+                  },
+                  {
+                    "term": "tournaments",
+                    "count": 10
+                  },
+                  {
+                    "term": "esports",
+                    "count": 8
+                  },
+                  {
+                    "term": "vct",
+                    "count": 8
+                  },
+                  {
+                    "term": "champions",
+                    "count": 7
+                  },
+                  {
+                    "term": "tour",
+                    "count": 6
+                  },
+                  {
+                    "term": "from",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 10
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "valorant",
+                    "mentions": 52,
+                    "engagement": 0,
+                    "velocity": 15.6,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "tournament",
+                    "mentions": 34,
+                    "engagement": 0,
+                    "velocity": 10.2,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "search",
+                    "mentions": 33,
+                    "engagement": 0,
+                    "velocity": 9.9,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "interest",
+                    "mentions": 33,
+                    "engagement": 0,
+                    "velocity": 9.9,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "tournaments",
+                    "mentions": 10,
+                    "engagement": 0,
+                    "velocity": 3.0,
+                    "confidence": 0.9
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-07T06:54:39.685401+00:00"
+        },
+        {
+          "id": "0011855c-f2fe-40e9-b6f2-5d38b15612e4",
+          "role": "user",
+          "content": "Valorant Tournament topic analysis and social signal telemetry",
+          "metadata": {},
+          "created_at": "2026-09-07T06:55:33.312627+00:00"
+        },
+        {
+          "id": "c032be44-f3ae-422c-ad2d-163d8e4863c5",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 10 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "google_search"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: valorant",
+                "value": "velocity=3.60",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: esports",
+                "value": "velocity=2.70",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: champions",
+                "value": "velocity=1.50",
+                "confidence": 0.9,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-09-07"
+                  ],
+                  "values": [
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "valorant",
+                    "esports",
+                    "champions",
+                    "for",
+                    "games"
+                  ],
+                  "values": [
+                    3.6,
+                    2.7,
+                    1.5,
+                    1.5,
+                    1.2
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "981a5c8fdaae56aff25e2f0a9c605da591132b91847d2b35fc5b8567e568f6b1",
+              "insight_hash": "1d1be7ebff9dacdfc7699759bcef4f44f79a8d2a8703c355917e0c105122f36a",
+              "evidence_hash": "eb4e62c1ac2dda87970d959993d1cb9fde007da2877c7863ae363a5e88660e5f",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-07 06:55:33.338084+00:00",
+              "blockchain_tx_id": "5a52428f-911"
+            },
+            "news_articles": [],
+            "analytics": {
+              "record_count": 10,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.5,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 0,
+                  "negative": 0,
+                  "neutral": 10
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "support",
+                "distribution": {
+                  "excitement": 1,
+                  "anxiety": 0,
+                  "support": 2,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-09-07",
+                    "sentiment_score": 0.5,
+                    "signal_count": 10,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 10,
+                      "negative": 0
+                    }
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "valorant",
+                    "count": 12
+                  },
+                  {
+                    "term": "esports",
+                    "count": 9
+                  },
+                  {
+                    "term": "champions",
+                    "count": 5
+                  },
+                  {
+                    "term": "games",
+                    "count": 4
+                  },
+                  {
+                    "term": "all",
+                    "count": 3
+                  },
+                  {
+                    "term": "event",
+                    "count": 3
+                  },
+                  {
+                    "term": "new",
+                    "count": 3
+                  },
+                  {
+                    "term": "riot",
+                    "count": 3
+                  },
+                  {
+                    "term": "viewership",
+                    "count": 2
+                  },
+                  {
+                    "term": "total",
+                    "count": 2
+                  }
+                ],
+                "topic_count": 10
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "valorant",
+                    "mentions": 12,
+                    "engagement": 0,
+                    "velocity": 3.6,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "esports",
+                    "mentions": 9,
+                    "engagement": 0,
+                    "velocity": 2.7,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "champions",
+                    "mentions": 5,
+                    "engagement": 0,
+                    "velocity": 1.5,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "for",
+                    "mentions": 5,
+                    "engagement": 0,
+                    "velocity": 1.5,
+                    "confidence": 0.9
+                  },
+                  {
+                    "topic": "games",
+                    "mentions": 4,
+                    "engagement": 0,
+                    "velocity": 1.2,
+                    "confidence": 0.8
+                  }
+                ],
+                "trend_count": 5
+              }
+            }
+          },
+          "created_at": "2026-09-07T06:55:33.350739+00:00"
+        }
+      ],
+      "last_domain": "general"
+    },
+    "0b88cd55-f270-4ec0-b6da-66f5fa5e311d": {
+      "id": "0b88cd55-f270-4ec0-b6da-66f5fa5e311d",
+      "title": "Indian News",
+      "created_at": "2026-09-07T06:56:37.937768+00:00",
+      "updated_at": "2026-09-07T06:56:38.003901+00:00",
+      "messages": [
+        {
+          "id": "24dd6e8f-9bd7-4623-8e25-67ba71f0b5c4",
+          "role": "user",
+          "content": "Indian News",
+          "metadata": {},
+          "created_at": "2026-09-07T06:56:37.937768+00:00"
+        },
+        {
+          "id": "621249e6-46e5-4866-851c-5e566ece1e13",
+          "role": "assistant",
+          "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 63 signals.\n\n**Evidence:** 2 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [He's been frozen on Everest for 30 years, now 'Green Boots' may finally be coming home](https://www.bbc.co.uk/news/articles/cz05xn35xj7o) \u2014 BBC News\n   For decades, an Indian man's lime shoes have been a grim trail marker for many climbing the world's highest peak.\n2. [This Indian pilgrim was about to enter Tibet for her dream tour - then her WhatsApp messages stopped](https://www.bbc.com/news/articles/c70d41g40njo?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D) \u2014 BBC News\n   Her family is among hundreds anxiously waiting for news after the deadly flash floods.\n3. [Trevor Noah is hosting Google\u2019s Pixel 11 launch event](https://www.theverge.com/tech/976454/made-by-google-2026-event-pixel-11-trevor-noah) \u2014 The Verge\n   Google is set to host its next live Made by Google hardware launch event on August 12th, and the company says in a new video that comedian Trevor Noah will be hosting the show. The video indicates that the event will feature other celebrities and influencers \u2026",
+          "metadata": {
+            "intent": "general",
+            "domain": "general",
+            "domain_label": "General Social Intelligence",
+            "entities": [
+              "general"
+            ],
+            "confidence": 0.78,
+            "workflow_used": [
+              "data",
+              "trends",
+              "sentiment",
+              "correlation",
+              "llm"
+            ],
+            "agents_used": [
+              "master",
+              "data_acquisition",
+              "data_intelligence",
+              "social_intelligence",
+              "domain_analytics",
+              "graph_analysis",
+              "visualization",
+              "insight",
+              "provenance"
+            ],
+            "sources_used": [
+              "google_search",
+              "google_trends",
+              "news"
+            ],
+            "evidence": [
+              {
+                "type": "statistical",
+                "label": "Overall Sentiment",
+                "value": "neutral",
+                "confidence": 0.72,
+                "source": "sentiment_model"
+              },
+              {
+                "type": "semantic",
+                "label": "Trend: fear sentiment",
+                "value": "velocity=0.30",
+                "confidence": 0.6,
+                "source": "trend_detector"
+              }
+            ],
+            "visualizations": [
+              {
+                "type": "sentiment_timeline",
+                "title": "Sentiment Over Time",
+                "data": {
+                  "labels": [
+                    "2026-08-05",
+                    "2026-08-06",
+                    "2026-08-08",
+                    "2026-08-13",
+                    "2026-08-14",
+                    "2026-08-19",
+                    "2026-08-22",
+                    "2026-08-25",
+                    "2026-08-26",
+                    "2026-08-27",
+                    "2026-08-28",
+                    "2026-08-31",
+                    "2026-09-03",
+                    "2026-09-04",
+                    "2026-09-05",
+                    "2026-09-07",
+                    "Signal 10",
+                    "Signal 11",
+                    "Signal 12",
+                    "Signal 13",
+                    "Signal 14",
+                    "Signal 15",
+                    "Signal 16",
+                    "Signal 17",
+                    "Signal 18",
+                    "Signal 19",
+                    "Signal 20",
+                    "Signal 21",
+                    "Signal 22",
+                    "Signal 23",
+                    "Signal 24",
+                    "Signal 25",
+                    "Signal 26",
+                    "Signal 27",
+                    "Signal 28",
+                    "Signal 29",
+                    "Signal 30",
+                    "Signal 31",
+                    "Signal 32",
+                    "Signal 33",
+                    "Signal 34",
+                    "Signal 35",
+                    "Signal 36",
+                    "Signal 37",
+                    "Signal 38",
+                    "Signal 39",
+                    "Signal 40",
+                    "Signal 41",
+                    "Signal 42",
+                    "Signal 43",
+                    "Signal 44",
+                    "Signal 45",
+                    "Signal 9"
+                  ],
+                  "values": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.519,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5
+                  ]
+                }
+              },
+              {
+                "type": "trend_bars",
+                "title": "Top Trends",
+                "data": {
+                  "labels": [
+                    "fear sentiment"
+                  ],
+                  "values": [
+                    0.3
+                  ]
+                }
+              }
+            ],
+            "provenance": {
+              "dataset_hash": "23e1d9c7186e6b04d7469c79240e1ba0803ff7ea9ce79e652df2f14288db1bf7",
+              "insight_hash": "4590c1918335691c07f235cefd9d22b4ffbd9df3ff0be6eee14d1ce37c337d38",
+              "evidence_hash": "3ff259aaac02108367cad1050d310780da19f8e5bb15fd764079f4b9a9cc3628",
+              "model_version": "socialiq-template-0.2",
+              "analysis_version": "socialiq-0.1.0",
+              "timestamp": "2026-09-07 06:56:37.971306+00:00",
+              "blockchain_tx_id": "e3b687ca-99d"
+            },
+            "news_articles": [
+              {
+                "title": "He's been frozen on Everest for 30 years, now 'Green Boots' may finally be coming home",
+                "description": "For decades, an Indian man's lime shoes have been a grim trail marker for many climbing the world's highest peak.",
+                "source": "BBC News",
+                "published_at": "2026-08-08T00:29:27Z",
+                "url": "https://www.bbc.co.uk/news/articles/cz05xn35xj7o"
+              },
+              {
+                "title": "This Indian pilgrim was about to enter Tibet for her dream tour - then her WhatsApp messages stopped",
+                "description": "Her family is among hundreds anxiously waiting for news after the deadly flash floods.",
+                "source": "BBC News",
+                "published_at": "2026-08-28T11:16:11Z",
+                "url": "https://www.bbc.com/news/articles/c70d41g40njo?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D"
+              },
+              {
+                "title": "Trevor Noah is hosting Google\u2019s Pixel 11 launch event",
+                "description": "Google is set to host its next live Made by Google hardware launch event on August 12th, and the company says in a new video that comedian Trevor Noah will be hosting the show. The video indicates that the event will feature other celebrities and influencers \u2026",
+                "source": "The Verge",
+                "published_at": "2026-08-06T21:15:47Z",
+                "url": "https://www.theverge.com/tech/976454/made-by-google-2026-event-pixel-11-trevor-noah"
+              }
+            ],
+            "analytics": {
+              "record_count": 63,
+              "sentiment": {
+                "overall_label": "neutral",
+                "average_score": 0.502,
+                "confidence": 0.72,
+                "distribution": {
+                  "positive": 1,
+                  "negative": 0,
+                  "neutral": 62
+                },
+                "scores": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.65,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {
+                  "excitement": 2,
+                  "anxiety": 1,
+                  "support": 1,
+                  "frustration": 0
+                },
+                "confidence": 0.65
+              },
+              "temporal": {
+                "timeline": [
+                  {
+                    "period": "2026-08-05",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-06",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-08",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-13",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-14",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-19",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-22",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-25",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-26",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-27",
+                    "sentiment_score": 0.5,
+                    "signal_count": 2,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 2,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-28",
+                    "sentiment_score": 0.5,
+                    "signal_count": 2,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 2,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-08-31",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-09-03",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-09-04",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-09-05",
+                    "sentiment_score": 0.5,
+                    "signal_count": 2,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 2,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "2026-09-07",
+                    "sentiment_score": 0.519,
+                    "signal_count": 8,
+                    "distribution": {
+                      "positive": 1,
+                      "neutral": 7,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 10",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 11",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 12",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 13",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 14",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 15",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 16",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 17",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 18",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 19",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 20",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 21",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 22",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 23",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 24",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 25",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 26",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 27",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 28",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 29",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 30",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 31",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 32",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 33",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 34",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 35",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 36",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 37",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 38",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 39",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 40",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 41",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 42",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 43",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 44",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 45",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  },
+                  {
+                    "period": "Signal 9",
+                    "sentiment_score": 0.5,
+                    "signal_count": 1,
+                    "distribution": {
+                      "positive": 0,
+                      "neutral": 1,
+                      "negative": 0
+                    }
+                  }
+                ],
+                "spike_detected": false
+              },
+              "topics": {
+                "topics": [
+                  {
+                    "term": "news",
+                    "count": 60
+                  },
+                  {
+                    "term": "indian",
+                    "count": 46
+                  },
+                  {
+                    "term": "search",
+                    "count": 39
+                  },
+                  {
+                    "term": "interest",
+                    "count": 37
+                  },
+                  {
+                    "term": "india",
+                    "count": 22
+                  },
+                  {
+                    "term": "new",
+                    "count": 8
+                  },
+                  {
+                    "term": "world",
+                    "count": 7
+                  },
+                  {
+                    "term": "have",
+                    "count": 7
+                  },
+                  {
+                    "term": "latest",
+                    "count": 6
+                  },
+                  {
+                    "term": "breaking",
+                    "count": 5
+                  }
+                ],
+                "topic_count": 10
+              },
+              "trends": {
+                "top_trends": [
+                  {
+                    "topic": "fear sentiment",
+                    "mentions": 1,
+                    "engagement": 0,
+                    "velocity": 0.3,
+                    "confidence": 0.6
+                  }
+                ],
+                "trend_count": 1
+              }
+            }
+          },
+          "created_at": "2026-09-07T06:56:38.003901+00:00"
         }
       ],
       "last_domain": "general"

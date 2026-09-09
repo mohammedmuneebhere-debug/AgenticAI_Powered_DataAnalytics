@@ -72,7 +72,31 @@ function renderChart(viz: VisualizationSpec) {
         regions={toRegions(data.regions)}
         relatedTopics={toRelatedItems(data.related_topics)}
         relatedQueries={toRelatedItems(data.related_queries)}
+        compact
       />
+    );
+  }
+
+  if (viz.type === "source_cards") {
+    const items = Array.isArray(data.items)
+      ? data.items as { title: string; description?: string; source?: string; url?: string }[]
+      : [];
+    return (
+      <div className="space-y-2">
+        {items.map((item, index) => (
+          <a
+            key={`${item.title}-${index}`}
+            href={item.url || undefined}
+            target={item.url ? "_blank" : undefined}
+            rel={item.url ? "noreferrer" : undefined}
+            className="block rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] p-2 hover:border-[var(--accent)] transition-colors"
+          >
+            <div className="text-xs font-medium text-[var(--text-primary)] line-clamp-2">{item.title}</div>
+            <div className="mt-1 text-[10px] text-[var(--text-secondary)] line-clamp-2">{item.description}</div>
+            <div className="mt-1 text-[10px] text-[var(--accent)]">{item.source}</div>
+          </a>
+        ))}
+      </div>
     );
   }
 

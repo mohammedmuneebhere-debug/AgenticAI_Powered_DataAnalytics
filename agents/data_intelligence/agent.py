@@ -49,6 +49,7 @@ class DataIntelligenceAgent:
                 "snapshot_id": raw_data.get("snapshot_id"),
                 "data_hash": snapshot_hash,
                 "platforms": raw_data.get("platforms", []),
+                "live_sources": raw_data.get("live_sources", []),
                 "query": raw_data.get("query"),
                 "record_count": len(cleaned),
             },

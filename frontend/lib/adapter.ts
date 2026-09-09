@@ -77,8 +77,15 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
   const segments = listRecords(asRecord(analytics.demographics).segments).map((segment, index) => ({ label: String(segment.label || "Audience"), percentage: numberValue(segment.percentage), barColor: colors[index % colors.length] }));
   const network = asRecord(analytics.network);
   const nodes = listRecords(network.nodes).map((node, index) => ({ id: String(node.id || index), label: String(node.label || node.id || "Node"), inf: `${numberValue(node.size)} impact`, border: colors[index % colors.length].replace("bg-", "border-"), text: "text-white" }));
-  const sourceContribution = sources.map((source, index) => ({ name: sourceNames[source] || source, signals: `${Math.round(records / sources.length)} signals`, percentage: Math.round(100 / sources.length), dotColor: colors[index % colors.length] }));
+  const sourceCounts = asRecord(analytics.source_counts);
+  const measuredSources = Object.entries(sourceCounts)
+    .filter(([, count]) => numberValue(count) > 0)
+    .sort(([, left], [, right]) => numberValue(right) - numberValue(left));
+  const sourceTotal = Math.max(1, measuredSources.reduce((sum, [, count]) => sum + numberValue(count), 0));
+  const sourceContribution = (measuredSources.length ? measuredSources : sources.map((source) => [source, 0] as [string, number]))
+    .map(([source, count], index) => ({ name: sourceNames[source] || source, signals: `${numberValue(count)} signals`, percentage: Math.round((numberValue(count) / sourceTotal) * 100), dotColor: colors[index % colors.length] }));
   const primaryVectors = trends.slice(0, 5).map((trend) => `#${String(trend.topic || "signal").replace(/\s+/g, "-").toLowerCase()}`);
+  const emergingNarratives = buildEmergingNarratives(googleTrends, trends);
   const prov = response.provenance;
   const avgVelocity = trends.length ? trends.reduce((sum, trend) => sum + numberValue(trend.velocity), 0) / trends.length : 0;
 
@@ -94,7 +101,7 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
     executiveSynthesis: { title: "SOCIALIQ Intelligence Executive Synthesis", confidence: Math.round(response.confidence * 100), sourcesCount: sources.length, signalsCount: records, text: cleanText(response.message), primaryVectors },
     trajectory: { peakVolume: `${Math.max(...points.map((point) => point.volume), 0).toLocaleString()} / period`, meanVelocity: `${avgVelocity.toFixed(2)} avg`, spikeEvent: points.length ? `Latest period: ${points[points.length - 1].time}` : "No temporal spike detected", points },
     sentimentDrivers: { netScore: `${Math.round((scopedScore - 0.5) * 200)} NET`, signalsCount: `${records.toLocaleString()} Signals`, polarity: scopedPolarity, emotions },
-    trendDrivers, narratives: trends.map((trend, index) => ({ title: String(trend.topic || "Signal"), subtitle: `${numberValue(trend.mentions)} mentions in returned context`, growth: `${Math.round(numberValue(trend.confidence) * 100)}% confidence`, color: colors[index % colors.length] })),
+    trendDrivers, narratives: emergingNarratives,
     sourceContribution, networkIntelligence: { graphDensity: nodes.length ? `${nodes.length} nodes` : "No graph data", topCommunity: String(network.community_count || "No community data"), fastestGrowing: trendDrivers[0]?.title || "No trend data", topInfluencer: nodes[0]?.label || "No influencer data", nodes },
     audienceSegments: segments, googleTrends, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
   };
@@ -107,6 +114,31 @@ function numberValue(value: unknown, fallback = 0): number { const parsed = Numb
 function percent(value: number, total: number): number { return Math.round((value / total) * 100); }
 function sentimentLabel(score: number): string { return score > 0.55 ? "Positive" : score < 0.45 ? "Negative" : "Neutral"; }
 function cleanText(value: string): string { return value.replace(/^#+\s+/gm, "").replace(/\*\*/g, "").trim(); }
+function buildEmergingNarratives(
+  googleTrends: NormalizedDashboardData["googleTrends"],
+  trends: Record<string, any>[]
+): NarrativeItem[] {
+  const relatedSignals = [
+    ...googleTrends.relatedTopics.map((item) => ({ ...item, signalType: "Related topic" })),
+    ...googleTrends.relatedQueries.map((item) => ({ ...item, signalType: "Related query" })),
+  ];
+
+  if (relatedSignals.length) {
+    return relatedSignals.slice(0, 5).map((item, index) => ({
+      title: item.label,
+      subtitle: `${item.signalType} • ${item.category} interest`,
+      growth: item.valueLabel || `${Math.round(item.value)} interest`,
+      color: colors[index % colors.length],
+    }));
+  }
+
+  return trends.slice(0, 5).map((trend, index) => ({
+    title: String(trend.topic || "Signal"),
+    subtitle: `${numberValue(trend.mentions)} mentions in returned context`,
+    growth: `${Math.round(numberValue(trend.confidence) * 100)}% confidence`,
+    color: colors[index % colors.length],
+  }));
+}
 function toRelatedTrend(item: Record<string, any>): GoogleTrendsRelatedItem {
   return {
     label: String(item.label || "Related signal"),

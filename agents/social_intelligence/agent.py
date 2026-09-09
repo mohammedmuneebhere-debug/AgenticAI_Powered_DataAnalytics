@@ -23,21 +23,42 @@ class SocialIntelligenceAgent:
 
     async def analyze(self, dataset: dict[str, Any], capabilities: list[str]) -> dict[str, Any]:
         records = dataset.get("records", [])
-        texts = [r.get("text", "") for r in records]
+        metric_records = [
+            record for record in records
+            if record.get("platform") != "google_trends"
+        ] or records
+        texts = [r.get("text", "") for r in metric_records]
+        source_counts: dict[str, int] = {}
+        source_content: dict[str, list[dict[str, str]]] = {"news": [], "google_search": []}
+        for record in records:
+            platform = str(record.get("platform") or "unknown")
+            source_counts[platform] = source_counts.get(platform, 0) + 1
+            if platform in source_content and len(source_content[platform]) < 6:
+                source_content[platform].append({
+                    "title": str(record.get("title") or record.get("text") or "Untitled result"),
+                    "description": str(record.get("description") or record.get("text") or ""),
+                    "source": str(record.get("source") or record.get("author") or platform),
+                    "url": str(record.get("url") or ""),
+                })
 
-        results: dict[str, Any] = {"record_count": len(records)}
+        results: dict[str, Any] = {
+            "record_count": len(metric_records),
+            "source_counts": source_counts,
+            "source_content": source_content,
+            "live_sources": dataset.get("snapshot", {}).get("live_sources", []),
+        }
 
         if any(c in capabilities for c in ["data", "sentiment", "correlation", "llm"]):
             results["sentiment"] = self.sentiment.analyze_batch(texts)
             results["emotion"] = self.emotion.analyze_batch(texts)
             results["temporal"] = self._temporal_analysis(
-                records,
+                metric_records,
                 results["sentiment"],
             )
 
         if any(c in capabilities for c in ["trends", "data"]):
             results["topics"] = self.topics.detect(texts)
-            results["trends"] = self.trends.detect(records)
+            results["trends"] = self.trends.detect(metric_records)
 
         google_trends = self._google_trends_analysis(records)
         if google_trends["interest_by_region"] or google_trends["related_topics"] or google_trends["related_queries"]:

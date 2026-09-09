@@ -18,6 +18,7 @@ interface InterestByRegionProps {
   regions: GoogleTrendsRegion[];
   relatedTopics: GoogleTrendsRelatedItem[];
   relatedQueries: GoogleTrendsRelatedItem[];
+  compact?: boolean;
 }
 
 const categoryLabels: Array<{ key: InterestCategory; label: string }> = [
@@ -30,6 +31,7 @@ export default function InterestByRegion({
   regions,
   relatedTopics,
   relatedQueries,
+  compact = false,
 }: InterestByRegionProps) {
   const [activeCategory, setActiveCategory] = useState<InterestCategory>("regions");
 
@@ -38,9 +40,12 @@ export default function InterestByRegion({
     topics: relatedTopics.length,
     queries: relatedQueries.length,
   };
+  const selectedCategory = counts[activeCategory]
+    ? activeCategory
+    : categoryLabels.find(({ key }) => counts[key] > 0)?.key || activeCategory;
 
   const chartData = useMemo(() => {
-    if (activeCategory === "regions") {
+    if (selectedCategory === "regions") {
       return regions.slice(0, 8).map((item) => ({
         label: item.location,
         value: item.value,
@@ -48,23 +53,23 @@ export default function InterestByRegion({
       }));
     }
 
-    const items = activeCategory === "topics" ? relatedTopics : relatedQueries;
+    const items = selectedCategory === "topics" ? relatedTopics : relatedQueries;
     return items.slice(0, 8).map((item) => ({
       label: item.label,
       value: item.value,
       displayValue: item.valueLabel || `${item.value}`,
     }));
-  }, [activeCategory, regions, relatedQueries, relatedTopics]);
+  }, [regions, relatedQueries, relatedTopics, selectedCategory]);
 
   const hasAnyData = Object.values(counts).some((count) => count > 0);
   if (!hasAnyData) return null;
 
   return (
-    <div className="rounded-xl border border-surface-border/70 bg-surface-lowest p-3">
+    <div className={compact ? "p-0" : "rounded-xl border border-surface-border/70 bg-surface-lowest p-3"}>
       <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-wider text-slate-300 font-bold">
-            Google Trends Interest
+            Interest by Region & Related Signals
           </div>
           <div className="font-sans text-[11px] text-slate-500 mt-0.5">
             Relative search interest, not search volume
@@ -78,7 +83,7 @@ export default function InterestByRegion({
               disabled={!counts[key]}
               onClick={() => setActiveCategory(key)}
               className={`px-2 py-1 rounded-full font-mono text-[9px] uppercase tracking-wide transition-colors ${
-                activeCategory === key
+                selectedCategory === key
                   ? "bg-white text-slate-950 font-bold"
                   : counts[key]
                     ? "text-slate-400 hover:text-white"
