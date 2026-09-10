@@ -36,7 +36,7 @@ export default function DashboardSearch({ onAnalyze, loading }: DashboardSearchP
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search topic, entity, ticker or vector query..."
-            className="bg-transparent text-white font-sans text-sm w-full focus:outline-none placeholder:text-slate-500"
+            className="bg-transparent text-[var(--text-primary)] font-sans text-sm w-full focus:outline-none placeholder:text-slate-500"
           />
           {searchValue && (
             <button
@@ -90,7 +90,7 @@ export default function DashboardSearch({ onAnalyze, loading }: DashboardSearchP
         <button
           type="submit"
           disabled={loading || !searchValue.trim()}
-          className="flex items-center gap-1.5 bg-white hover:bg-slate-200 disabled:opacity-50 text-slate-950 px-4 py-2 rounded-xl font-sans text-xs font-bold transition-colors shrink-0"
+          className="flex items-center gap-1.5 bg-[var(--primary)] hover:bg-[var(--primary-hover)] disabled:opacity-50 text-[var(--on-primary)] px-4 py-2 rounded-xl font-sans text-xs font-bold transition-colors shrink-0"
         >
           <span className={`material-symbols-outlined text-[16px] ${loading ? "animate-spin" : ""}`}>
             {loading ? "progress_activity" : "bolt"}

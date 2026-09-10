@@ -180,7 +180,12 @@ class MasterAgent:
 
         return plan
 
-    async def plan_and_execute(self, query: str, tools_config: Optional[dict] = None) -> dict[str, Any]:
+    async def plan_and_execute(
+        self,
+        query: str,
+        tools_config: Optional[dict] = None,
+        llm_model: Optional[str] = None,
+    ) -> dict[str, Any]:
         plan = self.parse_query(query)
         plan = self._apply_tool_config(plan, tools_config)
 
@@ -229,6 +234,8 @@ class MasterAgent:
             intent=plan.intent,
             domain=plan.domain,
             domain_label=plan.domain_label,
+            llm_model=llm_model,
+            web_search_tool=self.data_agent.web_search,
         )
         response_text = self._append_news_articles(response["text"], news_articles)
         analytics = {**social_analytics, **domain_analytics}

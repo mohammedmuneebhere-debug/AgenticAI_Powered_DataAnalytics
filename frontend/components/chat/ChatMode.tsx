@@ -112,7 +112,7 @@ export default function ChatMode() {
           ))}
 
           {loading && (
-            <div className="flex items-center gap-3 p-4 bg-[#13151b] border border-border-subtle rounded-2xl text-xs font-mono text-slate-400">
+            <div className="flex items-center gap-3 p-4 bg-[var(--bg-surface)] border border-border-subtle rounded-2xl text-xs font-mono text-slate-400">
               <span className="material-symbols-outlined text-secondary text-[18px] animate-spin">
                 progress_activity
               </span>

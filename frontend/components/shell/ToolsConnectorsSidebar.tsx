@@ -73,19 +73,19 @@ export default function ToolsConnectorsSidebar() {
       />
       <span
         aria-hidden="true"
-        className="relative z-10 ml-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5"
+        className="relative z-10 ml-0.5 h-5 w-5 rounded-full bg-[var(--primary)] shadow-sm transition-transform peer-checked:translate-x-5"
       />
     </label>
   );
 
   if (toolsCollapsed) {
     return (
-      <aside className="w-12 h-[calc(100vh-4rem)] sticky top-16 bg-[#090a0f] border-l border-border-subtle flex flex-col items-center py-4 justify-between shrink-0">
+      <aside className="w-12 h-[calc(100vh-4rem)] sticky top-16 bg-[var(--bg-app)] border-l border-border-subtle flex flex-col items-center py-4 justify-between shrink-0">
         <button
           type="button"
           onClick={() => setToolsCollapsed(false)}
           title="Expand Tools & Connectors"
-          className="p-2 rounded-lg hover:bg-[#1a1d24] text-on-surface-variant hover:text-white transition-colors"
+          className="p-2 rounded-lg hover:bg-[var(--bg-elevated)] text-on-surface-variant hover:text-[var(--text-primary)] transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">hub</span>
         </button>
@@ -97,20 +97,20 @@ export default function ToolsConnectorsSidebar() {
   }
 
   return (
-    <aside className="w-full lg:w-[24%] xl:w-[24%] h-[calc(100vh-4rem)] sticky top-16 bg-[#090a0f] border-l border-border-subtle flex flex-col justify-between overflow-y-auto p-4 shrink-0 transition-all">
+    <aside className="w-full lg:w-[24%] xl:w-[24%] h-[calc(100vh-4rem)] sticky top-16 bg-[var(--bg-app)] border-l border-border-subtle flex flex-col justify-between overflow-y-auto p-4 shrink-0 transition-all">
       <div className="space-y-5">
         {/* Sidebar Header */}
         <div className="flex items-center justify-between pb-2 border-b border-border-subtle">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-white text-[17px]">hub</span>
-            <span className="text-[11px] font-mono uppercase tracking-wider text-white font-semibold">
+            <span className="material-symbols-outlined text-[var(--text-primary)] text-[17px]">hub</span>
+            <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--text-primary)] font-semibold">
               Tools &amp; Connectors
             </span>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={() => refreshToolsCatalog()}
-              className="p-1 text-on-surface-variant hover:text-white hover:bg-[#1a1d24] rounded-full transition-colors"
+              className="p-1 text-on-surface-variant hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
               title="Refresh Connectors"
               type="button"
             >
@@ -120,7 +120,7 @@ export default function ToolsConnectorsSidebar() {
             </button>
             <button
               onClick={() => setToolsCollapsed(true)}
-              className="p-1 text-on-surface-variant hover:text-white hover:bg-[#1a1d24] rounded-full transition-colors"
+              className="p-1 text-on-surface-variant hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
               title="Collapse Sidebar"
               type="button"
             >
@@ -132,10 +132,10 @@ export default function ToolsConnectorsSidebar() {
         {/* Auto Orchestration Status Card */}
         <div
           onClick={toggleOrchestration}
-          className="bg-[#13151b] p-3.5 border border-border-subtle hover:border-slate-600 rounded-2xl shadow-sm cursor-pointer transition-colors"
+          className="bg-[var(--bg-surface)] p-3.5 border border-border-subtle hover:border-slate-600 rounded-2xl shadow-sm cursor-pointer transition-colors"
         >
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[11px] font-mono uppercase font-semibold text-white">Auto Orchestration</span>
+            <span className="text-[11px] font-mono uppercase font-semibold text-[var(--text-primary)]">Auto Orchestration</span>
             <span
               className={`w-2 h-2 rounded-full ${
                 isAuto ? "bg-secondary" : "bg-tertiary"
@@ -160,10 +160,10 @@ export default function ToolsConnectorsSidebar() {
               return (
               <div
                 key={agent.id}
-                className="flex items-center justify-between px-3 py-2 bg-[#13151b] border border-border-subtle rounded-xl text-xs"
+                className="flex items-center justify-between px-3 py-2 bg-[var(--bg-surface)] border border-border-subtle rounded-xl text-xs"
               >
                 <div className="min-w-0 pr-2">
-                  <span className="block truncate text-white font-medium">{agent.name}</span>
+                  <span className="block truncate text-[var(--text-primary)] font-medium">{agent.name}</span>
                   <span className="block truncate text-[10px] text-on-surface-variant">{agent.description}</span>
                 </div>
                 <Toggle enabled={enabled} onChange={() => toggleAgent(agent.id)} label={`Toggle ${agent.name}`} />
@@ -184,10 +184,10 @@ export default function ToolsConnectorsSidebar() {
               return (
                 <div
                   key={src.id}
-                  className="flex items-center justify-between px-3 py-2 bg-[#13151b] border border-border-subtle rounded-xl text-xs"
+                  className="flex items-center justify-between px-3 py-2 bg-[var(--bg-surface)] border border-border-subtle rounded-xl text-xs"
                 >
                   <div className="min-w-0 pr-2">
-                    <span className="block truncate text-white font-medium">{src.name}</span>
+                    <span className="block truncate text-[var(--text-primary)] font-medium">{src.name}</span>
                     <span className="block truncate text-[10px] text-on-surface-variant">
                       {src.requires_key ? `Uses ${src.requires_key}` : "No API key required"}
                     </span>

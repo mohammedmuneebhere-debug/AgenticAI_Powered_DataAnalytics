@@ -6,11 +6,13 @@ import {
   getTools,
   getSession,
   listSessions,
+  getLLMModels,
   type ChatResponse,
   type ToolConfig,
   type ToolsCatalog,
   type DataSource,
   type SessionSummary,
+  type LLMModelsResponse,
 } from "@/lib/api";
 import {
   DEFAULT_AGENTS,
@@ -46,6 +48,10 @@ interface SocialIQContextType {
   sessions: SessionSummary[];
   sessionsLoading: boolean;
   refreshSessions: () => Promise<void>;
+  llmModels: LLMModelsResponse | null;
+  selectedModel: string | null;
+  setSelectedModel: (model: string) => void;
+  refreshLLMModels: () => Promise<void>;
   loadSession: (id: string) => Promise<void>;
   sessionId?: string;
   setSessionId: (id?: string) => void;
@@ -80,6 +86,8 @@ export function SocialIQProvider({ children }: { children: React.ReactNode }) {
   const [toolsLoading, setToolsLoading] = useState(false);
   const [sessions, setSessions] = useState<SessionSummary[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(false);
+  const [llmModels, setLLMModels] = useState<LLMModelsResponse | null>(null);
+  const [selectedModel, setSelectedModel] = useState<string | null>(null);
 
   // Initial demonstration message aligned with design placeholders for first visit
   const [chatMessages, setChatMessages] = useState<ChatMessageItem[]>(DEMO_MESSAGES);
@@ -136,6 +144,20 @@ export function SocialIQProvider({ children }: { children: React.ReactNode }) {
     refreshSessions();
   }, [refreshSessions]);
 
+  const refreshLLMModels = useCallback(async () => {
+    try {
+      const catalog = await getLLMModels();
+      setLLMModels(catalog);
+      setSelectedModel((prev) => prev ?? catalog.default_model ?? catalog.models[0]?.id ?? null);
+    } catch (err) {
+      console.error("Failed to load LLM models:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshLLMModels();
+  }, [refreshLLMModels]);
+
   const loadSession = useCallback(async (id: string) => {
     if (id === DEMO_SESSION_ID) {
       setSessionId(id);
@@ -177,7 +199,7 @@ export function SocialIQProvider({ children }: { children: React.ReactNode }) {
       setIsAnalyzing(true);
       try {
         const queryText = `${normalized} topic analysis and social signal telemetry. Include Google Trends interest by region, related topics, and related queries.`;
-        const res = await sendMessage(queryText, sessionId, toolConfig);
+        const res = await sendMessage(queryText, sessionId, toolConfig, selectedModel);
         setAnalysisCache((prev) => ({ ...prev, [normalized]: res }));
         if (res.session_id) {
           setSessionId(res.session_id);
@@ -190,7 +212,7 @@ export function SocialIQProvider({ children }: { children: React.ReactNode }) {
         setIsAnalyzing(false);
       }
     },
-    [analysisCache, sessionId, toolConfig]
+    [analysisCache, sessionId, toolConfig, selectedModel]
   );
 
   const addChatMessage = (msg: ChatMessageItem) => {
@@ -221,6 +243,10 @@ export function SocialIQProvider({ children }: { children: React.ReactNode }) {
         sessions,
         sessionsLoading,
         refreshSessions,
+        llmModels,
+        selectedModel,
+        setSelectedModel,
+        refreshLLMModels,
         loadSession,
         sessionId,
         setSessionId,

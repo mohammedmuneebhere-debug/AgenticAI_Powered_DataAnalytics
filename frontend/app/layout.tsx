@@ -20,8 +20,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("socialiq-theme");if(t==="light"){document.documentElement.classList.remove("dark");document.documentElement.classList.add("light")}}catch(e){}`,
+          }}
+        />
       </head>
-      <body className="bg-[#090a0f] font-sans text-on-surface antialiased selection:bg-white selection:text-black">
+      <body className="bg-[var(--bg-app)] font-sans text-[var(--text-primary)] antialiased selection:bg-[var(--primary)] selection:text-[var(--on-primary)]">
         {children}
       </body>
     </html>

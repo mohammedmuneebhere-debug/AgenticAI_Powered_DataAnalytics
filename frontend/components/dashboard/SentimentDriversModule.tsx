@@ -92,7 +92,7 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
                     <div className="w-20 h-1.5 bg-surface-highest rounded-full overflow-hidden">
                       <div className={`h-1.5 rounded-full ${barColor}`} style={{ width: `${emo.percentage}%` }} />
                     </div>
-                    <span className="font-mono text-xs text-white font-semibold w-8 text-right">
+                    <span className="font-mono text-xs text-[var(--text-primary)] font-semibold w-8 text-right">
                       {emo.percentage}%
                     </span>
                   </div>

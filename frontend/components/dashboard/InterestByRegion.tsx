@@ -84,9 +84,9 @@ export default function InterestByRegion({
               onClick={() => setActiveCategory(key)}
               className={`px-2 py-1 rounded-full font-mono text-[9px] uppercase tracking-wide transition-colors ${
                 selectedCategory === key
-                  ? "bg-white text-slate-950 font-bold"
+                  ? "bg-[var(--primary)] text-[var(--on-primary)] font-bold"
                   : counts[key]
-                    ? "text-slate-400 hover:text-white"
+                    ? "text-slate-400 hover:text-[var(--text-primary)]"
                     : "text-slate-600 cursor-not-allowed"
               }`}
             >
@@ -104,11 +104,11 @@ export default function InterestByRegion({
               layout="vertical"
               margin={{ top: 4, right: 8, left: 4, bottom: 4 }}
             >
-              <CartesianGrid horizontal={false} stroke="#292e3a" />
+              <CartesianGrid horizontal={false} stroke="var(--border)" />
               <XAxis
                 type="number"
                 domain={[0, "auto"]}
-                tick={{ fill: "#64748b", fontSize: 9 }}
+                tick={{ fill: "var(--text-muted)", fontSize: 9 }}
                 axisLine={false}
                 tickLine={false}
               />
@@ -116,13 +116,13 @@ export default function InterestByRegion({
                 type="category"
                 dataKey="label"
                 width={92}
-                tick={{ fill: "#cbd5e1", fontSize: 9 }}
+                tick={{ fill: "var(--text-secondary)", fontSize: 9 }}
                 axisLine={false}
                 tickLine={false}
               />
               <Tooltip
-                cursor={{ fill: "#1e222d" }}
-                contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a", borderRadius: 8 }}
+                cursor={{ fill: "var(--bg-elevated)" }}
+                contentStyle={{ background: "var(--bg-elevated)", border: "1px solid var(--bg-elevated)", borderRadius: 8 }}
                 formatter={(value: number, _name: string, item: { payload?: { displayValue?: string } }) => [
                   item.payload?.displayValue || value,
                   "Interest",

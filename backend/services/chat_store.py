@@ -1,4 +1,10 @@
-"""JSON-backed chat session persistence."""
+"""User-scoped, JSON-backed chat session persistence.
+
+Each session is owned by a user id. Legacy files store sessions at the top
+level; on first load they are migrated into a per-user ``{"by_user": {...}}``
+structure. Ownership is added lazily for unknown sessions (single-user local
+mode), so existing local data keeps working.
+"""
 
 import json
 import uuid
@@ -6,76 +12,126 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-STORE_PATH = Path(__file__).resolve().parents[2] / "data" / "sessions.json"
+from backend.config import get_settings
+
+DEFAULT_USER_ID = "local"
+
+
+def _store_path() -> Path:
+    path = Path(get_settings().sessions_store_path)
+    return path if path.is_absolute() else (Path(__file__).resolve().parents[2] / path)
 
 
 class ChatStore:
-    def __init__(self):
-        STORE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        if not STORE_PATH.exists():
-            self._save({"sessions": {}})
+    def __init__(self, store_path: Optional[Path] = None):
+        self.store_path = Path(store_path) if store_path else _store_path()
+        self.store_path.parent.mkdir(parents=True, exist_ok=True)
+        if not self.store_path.exists():
+            self._save({"by_user": {}})
 
     def _load(self) -> dict:
-        return json.loads(STORE_PATH.read_text(encoding="utf-8"))
+        data = json.loads(self.store_path.read_text(encoding="utf-8"))
+        if "by_user" not in data:
+            # Migrate legacy top-level {"sessions": {...}} layout
+            data = {"by_user": {DEFAULT_USER_ID: data.get("sessions", {})}}
+            self._save(data)
+        data["by_user"].setdefault(DEFAULT_USER_ID, {})
+        return data
 
-    def _save(self, data: dict):
-        STORE_PATH.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+    def _save(self, data: dict) -> None:
+        self.store_path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
 
-    def list_sessions(self) -> list[dict]:
+    @staticmethod
+    def _bucket(data: dict, user_id: str) -> dict:
+        return data["by_user"].setdefault(user_id, {})
+
+    def list_sessions(self, user_id: str) -> list[dict]:
         data = self._load()
         sessions = []
-        for sid, s in data["sessions"].items():
-            sessions.append({
-                "id": sid,
-                "title": s.get("title", "New chat"),
-                "domain": s.get("last_domain"),
-                "updated_at": s.get("updated_at"),
-                "message_count": len(s.get("messages", [])),
-            })
+        for sid, s in self._bucket(data, user_id).items():
+            sessions.append(
+                {
+                    "id": sid,
+                    "title": s.get("title", "New chat"),
+                    "domain": s.get("last_domain"),
+                    "updated_at": s.get("updated_at"),
+                    "message_count": len(s.get("messages", [])),
+                }
+            )
         sessions.sort(key=lambda x: x.get("updated_at", ""), reverse=True)
         return sessions
 
-    def get_session(self, session_id: str) -> Optional[dict]:
-        return self._load()["sessions"].get(session_id)
+    def get_session(self, session_id: str, user_id: str) -> Optional[dict]:
+        return self._bucket(self._load(), user_id).get(session_id)
 
-    def create_session(self, title: str = "New chat") -> dict:
+    def owns_session(self, session_id: str, user_id: str) -> bool:
+        data = self._load()
+        return session_id in self._bucket(data, user_id) or any(
+            session_id in bucket for bucket in data["by_user"].values()
+        )
+
+    def create_session(self, user_id: str, title: str = "New chat") -> dict:
         sid = str(uuid.uuid4())
         now = datetime.now(timezone.utc).isoformat()
-        session = {"id": sid, "title": title, "created_at": now, "updated_at": now, "messages": [], "last_domain": None}
+        session = {
+            "id": sid,
+            "title": title,
+            "created_at": now,
+            "updated_at": now,
+            "messages": [],
+            "last_domain": None,
+            "owner_user_id": user_id,
+        }
         data = self._load()
-        data["sessions"][sid] = session
+        self._bucket(data, user_id)[sid] = session
         self._save(data)
         return session
 
-    def delete_session(self, session_id: str) -> bool:
+    def delete_session(self, session_id: str, user_id: str) -> bool:
         data = self._load()
-        if session_id not in data["sessions"]:
+        bucket = self._bucket(data, user_id)
+        if session_id not in bucket:
             return False
-        del data["sessions"][session_id]
+        del bucket[session_id]
         self._save(data)
         return True
 
-    def ensure_session(self, session_id: str) -> dict:
+    def ensure_session(self, session_id: str, user_id: str) -> dict:
         data = self._load()
-        if session_id not in data["sessions"]:
+        bucket = self._bucket(data, user_id)
+        if session_id not in bucket:
             now = datetime.now(timezone.utc).isoformat()
-            data["sessions"][session_id] = {
-                "id": session_id, "title": "New chat", "created_at": now,
-                "updated_at": now, "messages": [], "last_domain": None,
+            bucket[session_id] = {
+                "id": session_id,
+                "title": "New chat",
+                "created_at": now,
+                "updated_at": now,
+                "messages": [],
+                "last_domain": None,
+                "owner_user_id": user_id,
             }
             self._save(data)
-        return data["sessions"][session_id]
+        return bucket[session_id]
 
-    def add_message(self, session_id: str, role: str, content: str, metadata: Optional[dict] = None) -> dict:
+    def add_message(
+        self, session_id: str, role: str, content: str,
+        metadata: Optional[dict] = None, user_id: str = DEFAULT_USER_ID,
+    ) -> dict:
         data = self._load()
-        if session_id not in data["sessions"]:
+        bucket = self._bucket(data, user_id)
+        if session_id not in bucket:
             now = datetime.now(timezone.utc).isoformat()
-            data["sessions"][session_id] = {
-                "id": session_id, "title": "New chat", "created_at": now,
-                "updated_at": now, "messages": [], "last_domain": None,
+            bucket[session_id] = {
+                "id": session_id,
+                "title": "New chat",
+                "created_at": now,
+                "updated_at": now,
+                "messages": [],
+                "last_domain": None,
+                "owner_user_id": user_id,
             }
 
-        session = data["sessions"][session_id]
+        session = bucket[session_id]
         msg = {
             "id": str(uuid.uuid4()),
             "role": role,
@@ -94,6 +150,6 @@ class ChatStore:
         self._save(data)
         return msg
 
-    def get_messages(self, session_id: str) -> list[dict]:
-        session = self.get_session(session_id)
+    def get_messages(self, session_id: str, user_id: str) -> list[dict]:
+        session = self.get_session(session_id, user_id)
         return session["messages"] if session else []

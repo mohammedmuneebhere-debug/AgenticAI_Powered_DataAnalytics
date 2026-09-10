@@ -487,7 +487,66 @@ class DataAcquisitionAgent:
             })
         return records
 
-    # ── Sample data fallbacks ──────────────────────────────────────────
+    async def web_search(self, query: str, max_results: int = 6) -> list[dict]:
+        """Live web search tool exposed to the LLM (function calling).
+
+        Uses SerpAPI when configured, then NewsAPI; returns [] when neither
+        key is present so the agent degrades gracefully to offline templates.
+        """
+        results: list[dict] = []
+        if self.settings.serpapi_api_key:
+            try:
+                async with httpx.AsyncClient(timeout=20) as client:
+                    resp = await client.get(
+                        "https://serpapi.com/search.json",
+                        params={
+                            "api_key": self.settings.serpapi_api_key,
+                            "engine": "google",
+                            "q": query,
+                            "num": max(6, min(max_results, 10)),
+                            "hl": "en",
+                        },
+                    )
+                    resp.raise_for_status()
+                    data = resp.json()
+                for item in data.get("organic_results", []):
+                    results.append({
+                        "title": item.get("title", ""),
+                        "url": item.get("link", ""),
+                        "source": item.get("source") or item.get("displayed_link", "web"),
+                        "content": item.get("snippet", ""),
+                    })
+            except Exception as exc:
+                logger.warning("web_search SerpAPI lookup failed: %s", type(exc).__name__)
+
+        if not results and self.settings.news_api_key:
+            try:
+                async with httpx.AsyncClient(timeout=20) as client:
+                    resp = await client.get(
+                        "https://newsapi.org/v2/everything",
+                        params={
+                            "apiKey": self.settings.news_api_key,
+                            "q": query,
+                            "language": "en",
+                            "sortBy": "relevancy",
+                            "pageSize": max_results,
+                        },
+                    )
+                    resp.raise_for_status()
+                    data = resp.json()
+                for article in data.get("articles", []):
+                    results.append({
+                        "title": article.get("title", ""),
+                        "url": article.get("url", ""),
+                        "source": (article.get("source") or {}).get("name", "news"),
+                        "content": article.get("description") or article.get("content") or "",
+                    })
+            except Exception as exc:
+                logger.warning("web_search NewsAPI lookup failed: %s", type(exc).__name__)
+
+        return results[:max_results]
+
+    # ── Sample data fallbacks ──────────────────────────────────────
 
     def _load_platform_sample(
         self, platform: str, entities: list[str], query: str, domain: str

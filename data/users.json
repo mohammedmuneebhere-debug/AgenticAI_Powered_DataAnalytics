@@ -13,6 +13,13 @@
       "name": "Duplicate",
       "password_hash": "pbkdf2_sha256$600000$822fdb78a0f31c820de19e140f30b766$e3c5bb605dbfedb868823dbf3d27b72a5f6bda33aab15749d941cf19070e30cd",
       "created_at": "2026-09-06T16:37:33.922675+00:00"
+    },
+    "50bc6ffa-1bcc-418a-b1ec-1ef21bddd510": {
+      "id": "50bc6ffa-1bcc-418a-b1ec-1ef21bddd510",
+      "email": "tayexa1207@crybio.com",
+      "name": "Omair Mohiuddin",
+      "password_hash": "pbkdf2_sha256$600000$f1b0a49b00716d3bba4585e5617bf0fd$a83cade565217e1b0806ffe09a7500e6e68d1b7764ea35f3e1d2cd4c7db15b4b",
+      "created_at": "2026-09-09T07:39:38.152604+00:00"
     }
   }
 }

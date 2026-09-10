@@ -36,7 +36,7 @@ export default function SourceContributionModule({ data }: SourceContributionMod
                 <span>{source.name}</span>
               </span>
               <span className="text-slate-400">
-                {source.signals} <strong className="text-white">({source.percentage}%)</strong>
+                {source.signals} <strong className="text-[var(--text-primary)]">({source.percentage}%)</strong>
               </span>
             </div>
 

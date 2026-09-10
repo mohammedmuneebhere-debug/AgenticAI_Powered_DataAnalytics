@@ -18,7 +18,7 @@ function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
       onClick={onToggle}
       className={`toggle-track relative w-9 h-5 rounded-full ${on ? "on" : "off"}`}
     >
-      <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-transform ${on ? "left-[18px]" : "left-0.5"}`} />
+      <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-[var(--primary)] transition-transform ${on ? "left-[18px]" : "left-0.5"}`} />
     </button>
   );
 }
@@ -156,7 +156,7 @@ export default function ToolsPanel({ config, onChange, collapsed, onToggleCollap
         <div className="space-y-1.5">
           {sources.map((s) => {
             const active = isAuto ? (s.default_enabled ?? true) : enabledSources.includes(s.id);
-            const icon = SOURCE_ICONS[s.id] ?? "🔗";
+            const icon = SOURCE_ICONS[s.id] ?? "link";
             return (
               <button
                 key={s.id}
@@ -165,7 +165,7 @@ export default function ToolsPanel({ config, onChange, collapsed, onToggleCollap
                 className={`tool-chip w-full text-left px-3 py-2 rounded-lg border text-xs ${active ? "active" : "inactive"} ${isAuto ? "opacity-80 cursor-default" : "cursor-pointer"}`}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-base leading-none">{icon}</span>
+                  <span className="material-symbols-outlined text-[16px] leading-none">{icon}</span>
                   <p className="font-medium">{s.name}</p>
                 </div>
                 <p className="text-[10px] mt-1 ml-6 opacity-70">{s.description}</p>

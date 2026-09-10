@@ -12,7 +12,7 @@ export default function SocialIQLayout() {
   const { activeMode } = useSocialIQ();
 
   return (
-    <div className="min-h-screen bg-[#090a0f] text-on-surface antialiased flex flex-col">
+    <div className="min-h-screen bg-[var(--bg-app)] text-on-surface antialiased flex flex-col">
       {/* Top Navigation */}
       <TopNavigation />
 
@@ -20,7 +20,7 @@ export default function SocialIQLayout() {
       <div className="flex w-full pt-16 flex-1">
         <ConversationSidebar />
         {/* Main Content Area: Chat or Dashboard (Never both simultaneously) */}
-        <main className="flex-1 min-h-[calc(100vh-4rem)] bg-[#090a0f] p-4 sm:p-6 overflow-y-auto">
+        <main className="flex-1 min-h-[calc(100vh-4rem)] bg-[var(--bg-app)] p-4 sm:p-6 overflow-y-auto">
           {activeMode === "chat" ? <ChatMode /> : <DashboardMode />}
         </main>
 

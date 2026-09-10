@@ -27,12 +27,12 @@ export default function SuggestedInquiries({ onSelectQuery }: SuggestedInquiries
             key={idx}
             type="button"
             onClick={() => onSelectQuery(query)}
-            className="group flex items-center gap-2 px-3.5 py-1.5 bg-[#13151b] border border-border-subtle hover:border-white/40 text-on-surface hover:text-white rounded-full text-xs transition-all shadow-sm text-left"
+            className="group flex items-center gap-2 px-3.5 py-1.5 bg-[var(--bg-surface)] border border-border-subtle hover:border-white/40 text-on-surface hover:text-[var(--text-primary)] rounded-full text-xs transition-all shadow-sm text-left"
           >
-            <span className="font-mono text-slate-500 group-hover:text-white text-xs font-semibold">
+            <span className="font-mono text-slate-500 group-hover:text-[var(--text-primary)] text-xs font-semibold">
               &gt;
             </span>
-            <span className="group-hover:text-white transition-colors">{query}</span>
+            <span className="group-hover:text-[var(--text-primary)] transition-colors">{query}</span>
           </button>
         ))}
       </div>

@@ -101,7 +101,7 @@ export default function ChatArea({ sessionId, onSessionId, toolConfig }: Props) 
         {messages.length === 0 && (
           <div className="max-w-2xl mx-auto text-center pt-16">
             <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#4285f4] via-[#8ab4f8] to-[#c58af9] flex items-center justify-center">
-              <span className="text-2xl font-bold text-white">S</span>
+              <span className="text-2xl font-bold text-[var(--text-primary)]">S</span>
             </div>
             <h2 className="text-2xl font-normal text-[var(--text-primary)] mb-2">Hello, how can I help?</h2>
             <p className="text-sm text-[var(--text-secondary)] mb-8">
@@ -236,7 +236,7 @@ export default function ChatArea({ sessionId, onSessionId, toolConfig }: Props) 
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] hover:opacity-90 disabled:opacity-30 text-[#131314] transition-opacity shrink-0"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] hover:opacity-90 disabled:opacity-30 text-[var(--bg-app)] transition-opacity shrink-0"
             >
               <Send size={18} />
             </button>

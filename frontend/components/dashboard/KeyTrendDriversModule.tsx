@@ -36,13 +36,13 @@ export default function KeyTrendDriversModule({ data }: KeyTrendDriversModulePro
               <div className="flex items-start gap-2.5 flex-1 min-w-0">
                 <span
                   className={`font-mono text-xs font-bold mt-0.5 ${
-                    isHigh ? "text-white" : "text-slate-500"
+                    isHigh ? "text-[var(--text-primary)]" : "text-slate-500"
                   }`}
                 >
                   {driver.rank}
                 </span>
                 <div className="min-w-0">
-                  <div className="font-sans text-xs text-white font-semibold truncate">
+                  <div className="font-sans text-xs text-[var(--text-primary)] font-semibold truncate">
                     {driver.title}
                   </div>
                   <div className="flex items-center gap-2 mt-0.5 font-mono text-[11px] text-slate-400 flex-wrap">

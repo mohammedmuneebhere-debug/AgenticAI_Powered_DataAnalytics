@@ -31,7 +31,7 @@ export default function AudienceSegmentsModule({ data }: AudienceSegmentsModuleP
             <div key={idx}>
               <div className="flex justify-between font-sans text-xs mb-1.5">
                 <span className="text-slate-200 font-medium">{segment.label}</span>
-                <span className="font-mono text-xs text-white font-bold">{segment.percentage}%</span>
+                <span className="font-mono text-xs text-[var(--text-primary)] font-bold">{segment.percentage}%</span>
               </div>
               <div className="w-full h-1.5 bg-surface-highest rounded-full overflow-hidden">
                 <div

@@ -5,11 +5,12 @@ export const DOMAIN_COLORS: Record<string, string> = {
   general: "var(--domain-general)",
 };
 
+/** Material Symbols icon names per domain (icons, not emojis). */
 export const DOMAIN_ICONS: Record<string, string> = {
-  consumer: "☕",
-  financial: "📈",
-  creator: "📱",
-  general: "🔍",
+  consumer: "local_cafe",
+  financial: "trending_up",
+  creator: "smartphone",
+  general: "search",
 };
 
 export const DEFAULT_AGENTS = [
@@ -67,16 +68,17 @@ export const FALLBACK_SOURCES = [
   { id: "sample", name: "Sample Data", description: "Offline demo datasets", default_enabled: true },
 ];
 
+/** Material Symbols icon names per data source (icons, not emojis). */
 export const SOURCE_ICONS: Record<string, string> = {
-  x: "𝕏",
-  telegram: "✈️",
-  instagram: "📸",
-  pinterest: "📌",
-  google_search: "🔍",
-  google_trends: "📊",
-  reddit: "🔴",
-  news: "📰",
-  sample: "💾",
+  x: "alternate_email",
+  telegram: "send",
+  instagram: "photo_camera",
+  pinterest: "push_pin",
+  google_search: "search",
+  google_trends: "monitoring",
+  reddit: "forum",
+  news: "newspaper",
+  sample: "dataset",
 };
 
 export const DEMO_QUERIES = [

@@ -44,7 +44,8 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
           </span>
         </div>
         <div className="flex items-center gap-1.5 bg-secondary-container/30 text-secondary border border-secondary/30 px-2.5 py-0.5 rounded-full">
-          <span className="font-mono text-[10px] font-bold">✓ Provenance Recorded</span>
+          <span className="material-symbols-outlined text-[12px]">verified</span>
+          <span className="font-mono text-[10px] font-bold">Provenance Recorded</span>
         </div>
       </div>
 
@@ -62,7 +63,7 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
 
           <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
             <span className="text-slate-400">Orchestrator Pipeline</span>
-            <span className="text-white font-semibold">{provenance.pipeline}</span>
+            <span className="text-[var(--text-primary)] font-semibold">{provenance.pipeline}</span>
           </div>
 
           <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
@@ -87,7 +88,7 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
           type="button"
           onClick={handleVerify}
           disabled={verifying}
-          className="w-full flex items-center justify-center gap-2 bg-surface-high hover:bg-surface-highest border border-surface-border text-white px-4 py-2.5 rounded-xl font-mono text-xs transition-colors font-bold disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2 bg-surface-high hover:bg-surface-highest border border-surface-border text-[var(--text-primary)] px-4 py-2.5 rounded-xl font-mono text-xs transition-colors font-bold disabled:opacity-50"
         >
           <span className={`material-symbols-outlined text-[16px] ${verifying ? "animate-spin" : ""}`}>
             {verifying ? "progress_activity" : "fingerprint"}

@@ -35,7 +35,7 @@ export default function DossierHeader({ data }: DossierHeaderProps) {
     <div className="flex flex-wrap items-center justify-between gap-3 bg-surface p-4 rounded-2xl border border-surface-border/60 shadow-sm">
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2.5">
-          <span className="text-2xl font-bold text-white tracking-tight">{data.topic}</span>
+          <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">{data.topic}</span>
           <span className="font-mono text-[10px] uppercase bg-secondary-container/30 text-secondary border border-secondary/30 px-2.5 py-1 rounded-full font-semibold">
             Live Social Intelligence
           </span>
@@ -81,7 +81,7 @@ export default function DossierHeader({ data }: DossierHeaderProps) {
         <button
           type="button"
           onClick={handleSetAlert}
-          className="flex items-center gap-1.5 bg-white hover:bg-slate-200 text-slate-950 px-4 py-1.5 rounded-full font-sans text-xs font-bold transition-colors"
+          className="flex items-center gap-1.5 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--on-primary)] px-4 py-1.5 rounded-full font-sans text-xs font-bold transition-colors"
         >
           <span className="material-symbols-outlined text-[15px]">notifications_active</span>
           <span>Set Alert</span>

@@ -64,6 +64,9 @@ class ChatRequest(BaseModel):
     message: str
     session_id: Optional[str] = None
     tools: Optional[ToolConfig] = None
+    # Explicit model override, e.g. "gpt-4o-mini" or "ollama:llama3.2".
+    # None => server default (OpenAI when configured, otherwise Ollama).
+    llm_model: Optional[str] = None
 
 
 class UserRegisterRequest(BaseModel):
@@ -146,6 +149,17 @@ class SessionSummary(BaseModel):
     domain: Optional[str] = None
     updated_at: Optional[str] = None
     message_count: int = 0
+
+
+class AvailableModel(BaseModel):
+    id: str  # value sent back in ChatRequest.llm_model, e.g. "ollama:llama3.2"
+    label: str
+    provider: Literal["openai", "ollama"]
+
+
+class LLMModelsResponse(BaseModel):
+    default_model: Optional[str] = None
+    models: list[AvailableModel]
 
 
 class SessionDetail(BaseModel):

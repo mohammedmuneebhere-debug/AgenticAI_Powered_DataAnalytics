@@ -72,19 +72,19 @@ export default function TrendingVectorsStrip({
               <div className="flex items-center gap-2 min-w-0">
                 <span
                   className={`font-mono text-[11px] font-bold ${
-                    isActive ? "text-white" : "text-slate-500"
+                    isActive ? "text-[var(--text-primary)]" : "text-slate-500"
                   }`}
                 >
                   {item.rank}
                 </span>
                 <span
                   className={`font-sans text-xs font-semibold truncate ${
-                    isActive ? "text-white" : "text-slate-300 font-medium"
+                    isActive ? "text-[var(--text-primary)]" : "text-slate-300 font-medium"
                   }`}
                 >
                   {item.topic}
                 </span>
-                <span className="font-mono text-xs text-secondary font-bold">↗</span>
+                <span className="material-symbols-outlined text-[13px] text-[var(--secondary)] font-bold">trending_up</span>
               </div>
 
               <div className="flex items-center gap-1.5 shrink-0">
@@ -94,10 +94,10 @@ export default function TrendingVectorsStrip({
                   </span>
                 ) : isActive ? (
                   <>
-                    <span className="font-mono text-[9px] uppercase bg-white text-slate-950 px-2 py-0.5 rounded-full font-bold">
+                    <span className="font-mono text-[9px] uppercase bg-[var(--primary)] text-[var(--on-primary)] px-2 py-0.5 rounded-full font-bold">
                       ACTIVE
                     </span>
-                    <span className="material-symbols-outlined text-[14px] text-white">
+                    <span className="material-symbols-outlined text-[14px] text-[var(--text-primary)]">
                       arrow_forward
                     </span>
                   </>

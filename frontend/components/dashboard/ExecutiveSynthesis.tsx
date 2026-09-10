@@ -15,9 +15,9 @@ export default function ExecutiveSynthesis({ data }: ExecutiveSynthesisProps) {
       <div className="flex flex-wrap items-center justify-between pb-3 mb-3 border-b border-surface-border gap-2">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-surface-highest flex items-center justify-center">
-            <span className="material-symbols-outlined text-white text-[16px]">neurology</span>
+            <span className="material-symbols-outlined text-[var(--text-primary)] text-[16px]">neurology</span>
           </div>
-          <span className="font-mono text-xs uppercase text-white font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-[var(--text-primary)] font-bold tracking-wider">
             {executiveSynthesis.title}
           </span>
         </div>

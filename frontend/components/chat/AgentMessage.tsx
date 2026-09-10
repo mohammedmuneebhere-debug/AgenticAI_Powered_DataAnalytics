@@ -39,16 +39,16 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
       {/* Header Meta Row */}
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-2.5 flex-wrap">
-          <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0">
+          <div className="w-6 h-6 rounded-full bg-[var(--primary)] text-[var(--on-primary)] flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[15px]">token</span>
           </div>
-          <span className="text-[12px] font-mono font-semibold text-white tracking-wider uppercase">
+          <span className="text-[12px] font-mono font-semibold text-[var(--text-primary)] tracking-wider uppercase">
             SOCIALIQ Agentic Core
           </span>
-          <span className="text-[11px] font-mono text-on-surface-variant px-2 py-0.5 rounded-full bg-[#13151b] border border-border-subtle">
+          <span className="text-[11px] font-mono text-on-surface-variant px-2 py-0.5 rounded-full bg-[var(--bg-surface)] border border-border-subtle">
             {sourcesCount} Sources Analyzed
           </span>
-          <span className="text-[11px] font-mono text-secondary px-2 py-0.5 rounded-full bg-[#13151b] border border-border-subtle">
+          <span className="text-[11px] font-mono text-secondary px-2 py-0.5 rounded-full bg-[var(--bg-surface)] border border-border-subtle">
             {confidence} Confidence
           </span>
         </div>
@@ -57,7 +57,7 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
           <span className="text-[11px] font-mono text-slate-500">184ms</span>
           <button
             onClick={handleCopy}
-            className="hover:text-white transition-colors p-1"
+            className="hover:text-[var(--text-primary)] transition-colors p-1"
             title={copied ? "Copied!" : "Copy response"}
             type="button"
           >
@@ -75,9 +75,9 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
         </div>
 
         {/* Dashboard Switcher Callout */}
-        <div className="border-l-2 border-slate-700 pl-4 py-2 flex items-center justify-between gap-3 text-xs text-slate-300 bg-[#13151b]/40 rounded-r-xl">
+        <div className="border-l-2 border-slate-700 pl-4 py-2 flex items-center justify-between gap-3 text-xs text-slate-300 bg-[var(--bg-surface)]/40 rounded-r-xl">
           <div className="flex items-center gap-2.5">
-            <span className="material-symbols-outlined text-white text-[18px]">query_stats</span>
+            <span className="material-symbols-outlined text-[var(--text-primary)] text-[18px]">query_stats</span>
             <span>
               Explore full quantitative breakdown and live vectors in the Intelligence Dashboard.
             </span>
@@ -85,7 +85,7 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
           <button
             type="button"
             onClick={() => setActiveMode("dashboard")}
-            className="shrink-0 px-3 py-1 bg-white text-black font-semibold rounded-full text-xs hover:bg-slate-200 transition-colors"
+            className="shrink-0 px-3 py-1 bg-[var(--primary)] text-[var(--on-primary)] font-semibold rounded-full text-xs hover:bg-slate-200 transition-colors"
           >
             Open Dashboard
           </button>

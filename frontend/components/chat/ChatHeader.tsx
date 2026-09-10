@@ -35,7 +35,7 @@ export default function ChatHeader() {
         <span className="material-symbols-outlined text-on-surface-variant text-[17px]">terminal</span>
         <span className="text-on-surface-variant">Workspace</span>
         <span className="text-slate-600">/</span>
-        <span className="text-white font-medium">AI Assistant</span>
+        <span className="text-[var(--text-primary)] font-medium">AI Assistant</span>
       </div>
 
       {/* Workspace Actions */}
@@ -43,16 +43,16 @@ export default function ChatHeader() {
         <button
           onClick={newInvestigation}
           type="button"
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#13151b] border border-border-subtle text-on-surface hover:text-white hover:bg-[#1a1d24] rounded-full text-xs font-medium transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--bg-surface)] border border-border-subtle text-on-surface hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full text-xs font-medium transition-colors"
         >
-          <span className="material-symbols-outlined text-[15px] text-white">add_box</span>
+          <span className="material-symbols-outlined text-[15px] text-[var(--text-primary)]">add_box</span>
           <span>New Investigation</span>
         </button>
 
         <button
           onClick={handleExportBriefing}
           type="button"
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#13151b] border border-border-subtle text-on-surface hover:text-white hover:bg-[#1a1d24] rounded-full text-xs font-medium transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--bg-surface)] border border-border-subtle text-on-surface hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full text-xs font-medium transition-colors"
         >
           <span className="material-symbols-outlined text-[15px] text-on-surface-variant">ios_share</span>
           <span>Export Briefing</span>
@@ -61,7 +61,7 @@ export default function ChatHeader() {
         <button
           onClick={handleAuditLog}
           type="button"
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#13151b] border border-border-subtle text-on-surface hover:text-white hover:bg-[#1a1d24] rounded-full text-xs font-medium transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--bg-surface)] border border-border-subtle text-on-surface hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full text-xs font-medium transition-colors"
         >
           <span className="material-symbols-outlined text-[15px] text-on-surface-variant">history</span>
           <span>Agent Audit Log</span>

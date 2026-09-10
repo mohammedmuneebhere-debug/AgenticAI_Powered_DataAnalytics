@@ -40,9 +40,9 @@ function renderChart(viz: VisualizationSpec) {
     return (
       <ResponsiveContainer width="100%" height={150}>
         <LineChart data={chartData}>
-          <XAxis dataKey="day" tick={{ fill: "#9090a0", fontSize: 10 }} />
-          <YAxis domain={[0, 1]} tick={{ fill: "#9090a0", fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <XAxis dataKey="day" tick={{ fill: "var(--text-secondary)", fontSize: 10 }} />
+          <YAxis domain={[0, 1]} tick={{ fill: "var(--text-secondary)", fontSize: 10 }} />
+          <Tooltip contentStyle={{ background: "var(--bg-elevated)", border: "1px solid var(--bg-elevated)" }} />
           <Line type="monotone" dataKey="score" stroke="#6366f1" strokeWidth={2} dot={false} />
         </LineChart>
       </ResponsiveContainer>
@@ -57,9 +57,9 @@ function renderChart(viz: VisualizationSpec) {
     return (
       <ResponsiveContainer width="100%" height={150}>
         <BarChart data={chartData}>
-          <XAxis dataKey="topic" tick={{ fill: "#9090a0", fontSize: 9 }} />
-          <YAxis tick={{ fill: "#9090a0", fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <XAxis dataKey="topic" tick={{ fill: "var(--text-secondary)", fontSize: 9 }} />
+          <YAxis tick={{ fill: "var(--text-secondary)", fontSize: 10 }} />
+          <Tooltip contentStyle={{ background: "var(--bg-elevated)", border: "1px solid var(--bg-elevated)" }} />
           <Bar dataKey="velocity" fill="#a855f7" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
@@ -113,7 +113,7 @@ function renderChart(viz: VisualizationSpec) {
               <Cell key={i} fill={COLORS[i % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <Tooltip contentStyle={{ background: "var(--bg-elevated)", border: "1px solid var(--bg-elevated)" }} />
         </PieChart>
       </ResponsiveContainer>
     );
@@ -143,9 +143,9 @@ function renderChart(viz: VisualizationSpec) {
     return (
       <ResponsiveContainer width="100%" height={150}>
         <BarChart data={scenarios.map((scenario) => ({ name: scenario.name, probability: scenario.probability * 100 }))}>
-          <XAxis dataKey="name" tick={{ fill: "#9090a0", fontSize: 9 }} />
-          <YAxis unit="%" tick={{ fill: "#9090a0", fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <XAxis dataKey="name" tick={{ fill: "var(--text-secondary)", fontSize: 9 }} />
+          <YAxis unit="%" tick={{ fill: "var(--text-secondary)", fontSize: 10 }} />
+          <Tooltip contentStyle={{ background: "var(--bg-elevated)", border: "1px solid var(--bg-elevated)" }} />
           <Bar dataKey="probability" fill="#22c55e" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
@@ -159,9 +159,9 @@ function renderChart(viz: VisualizationSpec) {
     return (
       <ResponsiveContainer width="100%" height={150}>
         <BarChart data={opportunities.map((item) => ({ name: item.product, score: item.score * 100 }))}>
-          <XAxis dataKey="name" tick={{ fill: "#9090a0", fontSize: 9 }} />
-          <YAxis unit="%" tick={{ fill: "#9090a0", fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: "#1a1a24", border: "1px solid #2a2a3a" }} />
+          <XAxis dataKey="name" tick={{ fill: "var(--text-secondary)", fontSize: 9 }} />
+          <YAxis unit="%" tick={{ fill: "var(--text-secondary)", fontSize: 10 }} />
+          <Tooltip contentStyle={{ background: "var(--bg-elevated)", border: "1px solid var(--bg-elevated)" }} />
           <Bar dataKey="score" fill="#f59e0b" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>

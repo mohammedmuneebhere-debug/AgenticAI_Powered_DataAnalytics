@@ -18,7 +18,7 @@ export default function MetricCards({ data }: MetricCardsProps) {
           {metrics.totalMentions.title}
         </span>
         <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-white tracking-tight">
+          <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
             {metrics.totalMentions.value}
           </span>
           {metrics.totalMentions.subValue && (
@@ -38,7 +38,7 @@ export default function MetricCards({ data }: MetricCardsProps) {
           {metrics.engagementVolume.title}
         </span>
         <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-white tracking-tight">
+          <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
             {metrics.engagementVolume.value}
           </span>
           <span className="font-mono text-xs text-slate-400 font-medium">
@@ -76,7 +76,7 @@ export default function MetricCards({ data }: MetricCardsProps) {
           {metrics.trendVelocity.title}
         </span>
         <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-white tracking-tight">
+          <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
             {metrics.trendVelocity.value.split("/")[0]}
             <span className="text-sm font-normal text-slate-500">/100</span>
           </span>
@@ -97,7 +97,7 @@ export default function MetricCards({ data }: MetricCardsProps) {
           {metrics.activeSources.title}
         </span>
         <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-white tracking-tight">
+          <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
             {metrics.activeSources.value.split("/")[0]}
             <span className="text-sm font-normal text-slate-500">/{metrics.activeSources.value.split("/")[1] || "8"}</span>
           </span>

@@ -95,7 +95,7 @@ export default function ChatInterface({ sessionId, onSessionId }: Props) {
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                   msg.role === "user"
-                    ? "bg-[var(--accent)] text-white"
+                    ? "bg-[var(--accent)] text-[var(--text-primary)]"
                     : "bg-[var(--bg-card)] border border-[var(--border)]"
                 }`}
               >
@@ -171,7 +171,7 @@ export default function ChatInterface({ sessionId, onSessionId }: Props) {
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="bg-[var(--accent)] hover:opacity-90 disabled:opacity-40 text-white rounded-xl px-4 py-3 transition-opacity"
+              className="bg-[var(--accent)] hover:opacity-90 disabled:opacity-40 text-[var(--text-primary)] rounded-xl px-4 py-3 transition-opacity"
             >
               <Send size={18} />
             </button>

@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export interface EvidenceItem {
   type: string;
@@ -93,23 +93,54 @@ export interface ToolsCatalog {
   sources: DataSource[];
 }
 
-async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_URL}/api/v1${path}`, {
-    headers: { "Content-Type": "application/json" },
-    ...options,
-  });
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
+export interface AvailableModel {
+  id: string;
+  label: string;
+  provider: "openai" | "ollama";
+}
+
+export interface LLMModelsResponse {
+  default_model: string | null;
+  models: AvailableModel[];
+}
+
+/** Redirect to login when the API reports an expired/missing session. */
+function handleUnauthorized(): void {
+  if (typeof window !== "undefined") {
+    window.localStorage.removeItem("socialiq-token");
+    window.localStorage.removeItem("socialiq-user");
+    window.location.href = "/login";
+  }
+}
+
+export async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
+  const token = typeof window !== "undefined" ? window.localStorage.getItem("socialiq-token") : null;
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...(options?.headers as Record<string, string>),
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  const res = await fetch(`${API_URL}/api/v1${path}`, { ...options, headers });
+  if (!res.ok) {
+    if (res.status === 401) {
+      handleUnauthorized();
+    }
+    throw new Error(`API error: ${res.status}`);
+  }
   return res.json();
 }
 
 export async function sendMessage(
   message: string,
   sessionId?: string,
-  tools?: ToolConfig
+  tools?: ToolConfig,
+  llmModel?: string | null
 ): Promise<ChatResponse> {
   return apiFetch<ChatResponse>("/chat", {
     method: "POST",
-    body: JSON.stringify({ message, session_id: sessionId, tools }),
+    body: JSON.stringify({ message, session_id: sessionId, tools, llm_model: llmModel ?? undefined }),
   });
 }
 
@@ -138,4 +169,8 @@ export async function deleteSession(id: string): Promise<void> {
 
 export async function getTools(): Promise<ToolsCatalog> {
   return apiFetch<ToolsCatalog>("/tools");
+}
+
+export async function getLLMModels(): Promise<LLMModelsResponse> {
+  return apiFetch<LLMModelsResponse>("/llm/models");
 }

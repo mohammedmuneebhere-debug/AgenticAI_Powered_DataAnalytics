@@ -18,6 +18,15 @@
         "sendBody": true,
         "contentType": "json",
         "specifyBody": "json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.N8N_API_KEY }}"
+            }
+          ]
+        },
         "jsonBody": "={{ JSON.stringify({ message: ($json.body || $json).message, session_id: ($json.body || $json).session_id, tools: ($json.body || $json).tools }) }}"
       },
       "name": "Call SOCIALIQ API",

@@ -59,7 +59,7 @@ export default function Sidebar({ activeSessionId, onSelectSession, onNewChat, c
     <aside className="w-[var(--sidebar-width)] flex flex-col border-r border-[var(--border-subtle)] bg-[var(--bg-sidebar)] h-full">
       <div className="flex items-center justify-between px-4 py-4 border-b border-[var(--border-subtle)]">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4285f4] to-[#8ab4f8] flex items-center justify-center text-white text-xs font-bold">S</div>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4285f4] to-[#8ab4f8] flex items-center justify-center text-[var(--text-primary)] text-xs font-bold">S</div>
           <div>
             <h1 className="text-sm font-medium text-[var(--text-primary)]">SOCIALIQ</h1>
             <p className="text-[10px] text-[var(--text-muted)]">Enterprise Intelligence</p>

@@ -6,12 +6,12 @@ from jose import JWTError, jwt
 
 from backend.config import get_settings
 
-ACCESS_TOKEN_MINUTES = 60
-
 
 def create_access_token(user_id: str) -> str:
     settings = get_settings()
-    expires = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_MINUTES)
+    expires = datetime.now(timezone.utc) + timedelta(
+        minutes=settings.access_token_expire_minutes
+    )
     return jwt.encode(
         {"sub": user_id, "exp": expires},
         settings.jwt_secret,

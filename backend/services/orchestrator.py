@@ -29,13 +29,17 @@ class OrchestratorService:
         self.ledger = BlockchainLedger()
         self.chat_store = ChatStore()
 
-    async def process_query(self, request: ChatRequest) -> ChatResponse:
+    async def process_query(self, request: ChatRequest, user_id: str) -> ChatResponse:
         session_id = request.session_id or str(uuid.uuid4())
 
         tools_config = request.tools.model_dump() if request.tools else None
-        plan = await self.master_agent.plan_and_execute(request.message, tools_config=tools_config)
+        plan = await self.master_agent.plan_and_execute(
+            request.message,
+            tools_config=tools_config,
+            llm_model=request.llm_model,
+        )
 
-        self.chat_store.add_message(session_id, "user", request.message)
+        self.chat_store.add_message(session_id, "user", request.message, user_id=user_id)
 
         provenance = None
         if not tools_config or "provenance" in (tools_config.get("enabled_agents") or ["provenance"]):
@@ -61,7 +65,7 @@ class OrchestratorService:
             "news_articles": plan.get("news_articles", []),
             "analytics": plan.get("analytics", {}),
         }
-        self.chat_store.add_message(session_id, "assistant", plan["response"], metadata)
+        self.chat_store.add_message(session_id, "assistant", plan["response"], metadata, user_id=user_id)
 
         return ChatResponse(
             session_id=session_id,
@@ -92,21 +96,21 @@ class OrchestratorService:
             record=result.get("record"),
         )
 
-    def list_sessions(self) -> list[SessionSummary]:
-        return [SessionSummary(**s) for s in self.chat_store.list_sessions()]
+    def list_sessions(self, user_id: str) -> list[SessionSummary]:
+        return [SessionSummary(**s) for s in self.chat_store.list_sessions(user_id)]
 
-    def get_session(self, session_id: str) -> SessionDetail | None:
-        session = self.chat_store.get_session(session_id)
+    def get_session(self, session_id: str, user_id: str) -> SessionDetail | None:
+        session = self.chat_store.get_session(session_id, user_id)
         if not session:
             return None
         return SessionDetail(**session)
 
-    def create_session(self) -> SessionDetail:
-        session = self.chat_store.create_session()
+    def create_session(self, user_id: str) -> SessionDetail:
+        session = self.chat_store.create_session(user_id)
         return SessionDetail(**session)
 
-    def delete_session(self, session_id: str) -> bool:
-        return self.chat_store.delete_session(session_id)
+    def delete_session(self, session_id: str, user_id: str) -> bool:
+        return self.chat_store.delete_session(session_id, user_id)
 
     def get_tools(self) -> ToolsCatalogResponse:
         catalog = get_tools_catalog()

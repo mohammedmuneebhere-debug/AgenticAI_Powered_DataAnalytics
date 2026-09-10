@@ -33,7 +33,7 @@ export default function EmergingNarrativesModule({ data }: EmergingNarrativesMod
             <div className="flex items-center gap-2.5 min-w-0">
               <span className={`w-1.5 h-6 rounded-full shrink-0 ${item.color}`} />
               <div className="min-w-0">
-                <div className="font-sans text-xs text-white font-semibold truncate">
+                <div className="font-sans text-xs text-[var(--text-primary)] font-semibold truncate">
                   {item.title}
                 </div>
                 <div className="font-sans text-[11px] text-slate-400 truncate">
