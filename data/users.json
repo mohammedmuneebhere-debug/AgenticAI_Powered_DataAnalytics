@@ -1,0 +1,25 @@
+{
+  "users": {
+    "ec3250c3-fbac-44d7-94e3-00511eedcce8": {
+      "id": "ec3250c3-fbac-44d7-94e3-00511eedcce8",
+      "email": "qa398418528@example.com",
+      "name": "QA User",
+      "password_hash": "pbkdf2_sha256$600000$a3ce0fab647ac71d4137de0421c11738$9c8773544419a065f9e332f0d73b739f6eb275664ebe82f69dea7db8d8867c07",
+      "created_at": "2026-09-06T16:37:30.213099+00:00"
+    },
+    "16e56976-aea4-4929-a98e-c6a4dc5ee7cc": {
+      "id": "16e56976-aea4-4929-a98e-c6a4dc5ee7cc",
+      "email": "dup2133144698@example.com",
+      "name": "Duplicate",
+      "password_hash": "pbkdf2_sha256$600000$822fdb78a0f31c820de19e140f30b766$e3c5bb605dbfedb868823dbf3d27b72a5f6bda33aab15749d941cf19070e30cd",
+      "created_at": "2026-09-06T16:37:33.922675+00:00"
+    },
+    "50bc6ffa-1bcc-418a-b1ec-1ef21bddd510": {
+      "id": "50bc6ffa-1bcc-418a-b1ec-1ef21bddd510",
+      "email": "tayexa1207@crybio.com",
+      "name": "Omair Mohiuddin",
+      "password_hash": "pbkdf2_sha256$600000$f1b0a49b00716d3bba4585e5617bf0fd$a83cade565217e1b0806ffe09a7500e6e68d1b7764ea35f3e1d2cd4c7db15b4b",
+      "created_at": "2026-09-09T07:39:38.152604+00:00"
+    }
+  }
+}

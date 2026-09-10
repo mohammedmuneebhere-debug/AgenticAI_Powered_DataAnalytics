@@ -1,0 +1,16 @@
+{
+  "by_user": {
+    "local": {},
+    "0e1ec540-265f-463b-b2a3-f2b01e0a3647": {
+      "839730eb-7253-4f9f-a881-7133dda78478": {
+        "id": "839730eb-7253-4f9f-a881-7133dda78478",
+        "title": "New chat",
+        "created_at": "2026-09-09T07:09:22.775631+00:00",
+        "updated_at": "2026-09-09T07:09:22.775631+00:00",
+        "messages": [],
+        "last_domain": null,
+        "owner_user_id": "0e1ec540-265f-463b-b2a3-f2b01e0a3647"
+      }
+    }
+  }
+}
