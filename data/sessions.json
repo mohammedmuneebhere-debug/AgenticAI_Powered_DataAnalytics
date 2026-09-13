@@ -7008,6 +7008,1208 @@
         "last_domain": "general",
         "owner_user_id": "50bc6ffa-1bcc-418a-b1ec-1ef21bddd510"
       }
+    },
+    "799e9094-5302-480f-97bd-96325c474e14": {
+      "local-demo-showcase": {
+        "id": "local-demo-showcase",
+        "title": "AI Agents topic analysis and social signal telemetry. Includ\u2026",
+        "created_at": "2026-09-10T16:45:38.292141+00:00",
+        "updated_at": "2026-09-10T16:45:38.339666+00:00",
+        "messages": [
+          {
+            "id": "d34c224c-3cbe-4640-896a-efa287837598",
+            "role": "user",
+            "content": "AI Agents topic analysis and social signal telemetry. Include Google Trends interest by region, related topics, and related queries.",
+            "metadata": {},
+            "created_at": "2026-09-10T16:45:38.292141+00:00"
+          },
+          {
+            "id": "08bb6e0e-df2d-4686-865a-9b5eb20afd4a",
+            "role": "assistant",
+            "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 1 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+            "metadata": {
+              "intent": "trend",
+              "domain": "general",
+              "domain_label": "General Social Intelligence",
+              "entities": [
+                "general"
+              ],
+              "confidence": 0.78,
+              "workflow_used": [
+                "data",
+                "trends",
+                "sentiment",
+                "correlation",
+                "llm"
+              ],
+              "agents_used": [
+                "master",
+                "data_acquisition",
+                "data_intelligence",
+                "social_intelligence",
+                "domain_analytics",
+                "graph_analysis",
+                "visualization",
+                "insight",
+                "provenance"
+              ],
+              "sources_used": [
+                "google_trends"
+              ],
+              "evidence": [
+                {
+                  "type": "statistical",
+                  "label": "Overall Sentiment",
+                  "value": "neutral",
+                  "confidence": 0.72,
+                  "source": "sentiment_model"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: interest",
+                  "value": "velocity=0.60",
+                  "confidence": 0.6000000000000001,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: related",
+                  "value": "velocity=0.60",
+                  "confidence": 0.6000000000000001,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: agents",
+                  "value": "velocity=0.30",
+                  "confidence": 0.5,
+                  "source": "trend_detector"
+                }
+              ],
+              "visualizations": [
+                {
+                  "type": "sentiment_timeline",
+                  "title": "Sentiment Over Time",
+                  "data": {
+                    "labels": [
+                      "Signal 1"
+                    ],
+                    "values": [
+                      0.5
+                    ]
+                  }
+                },
+                {
+                  "type": "trend_bars",
+                  "title": "Top Trends",
+                  "data": {
+                    "labels": [
+                      "interest",
+                      "related",
+                      "agents",
+                      "topic",
+                      "analysis"
+                    ],
+                    "values": [
+                      0.6,
+                      0.6,
+                      0.3,
+                      0.3,
+                      0.3
+                    ]
+                  }
+                }
+              ],
+              "provenance": {
+                "dataset_hash": "5e7ec5330e9026010813c5fcf8b089cf24feec4dd87fd326bebd9608dec9812b",
+                "insight_hash": "db727b9badce09ed38fe2492e996d541fcd447f968de73e890a18dcf082ae4e2",
+                "evidence_hash": "a570f2d77b8820c9ef301f28b2f05df6b9ddb785fd9fb170a2a59730ab987845",
+                "model_version": "socialiq-template-0.2",
+                "analysis_version": "socialiq-0.1.0",
+                "timestamp": "2026-09-10 16:45:38.322306+00:00",
+                "blockchain_tx_id": "aff37f09-501"
+              },
+              "news_articles": [],
+              "analytics": {
+                "record_count": 1,
+                "source_counts": {
+                  "google_trends": 1
+                },
+                "source_content": {
+                  "news": [],
+                  "google_search": []
+                },
+                "live_sources": [
+                  "google_trends"
+                ],
+                "sentiment": {
+                  "overall_label": "neutral",
+                  "average_score": 0.5,
+                  "confidence": 0.72,
+                  "distribution": {
+                    "positive": 0,
+                    "negative": 0,
+                    "neutral": 1
+                  },
+                  "scores": [
+                    0.5
+                  ]
+                },
+                "emotion": {
+                  "dominant_emotion": "excitement",
+                  "distribution": {
+                    "excitement": 0,
+                    "anxiety": 0,
+                    "support": 0,
+                    "frustration": 0
+                  },
+                  "confidence": 0.65
+                },
+                "temporal": {
+                  "timeline": [
+                    {
+                      "period": "Signal 1",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    }
+                  ],
+                  "spike_detected": false
+                },
+                "topics": {
+                  "topics": [
+                    {
+                      "term": "interest",
+                      "count": 2
+                    },
+                    {
+                      "term": "related",
+                      "count": 2
+                    },
+                    {
+                      "term": "agents",
+                      "count": 1
+                    },
+                    {
+                      "term": "topic",
+                      "count": 1
+                    },
+                    {
+                      "term": "analysis",
+                      "count": 1
+                    },
+                    {
+                      "term": "social",
+                      "count": 1
+                    },
+                    {
+                      "term": "signal",
+                      "count": 1
+                    },
+                    {
+                      "term": "telemetry",
+                      "count": 1
+                    },
+                    {
+                      "term": "include",
+                      "count": 1
+                    },
+                    {
+                      "term": "google",
+                      "count": 1
+                    }
+                  ],
+                  "topic_count": 10
+                },
+                "trends": {
+                  "top_trends": [
+                    {
+                      "topic": "interest",
+                      "mentions": 2,
+                      "engagement": 0,
+                      "velocity": 0.6,
+                      "confidence": 0.6000000000000001
+                    },
+                    {
+                      "topic": "related",
+                      "mentions": 2,
+                      "engagement": 0,
+                      "velocity": 0.6,
+                      "confidence": 0.6000000000000001
+                    },
+                    {
+                      "topic": "agents",
+                      "mentions": 1,
+                      "engagement": 0,
+                      "velocity": 0.3,
+                      "confidence": 0.5
+                    },
+                    {
+                      "topic": "topic",
+                      "mentions": 1,
+                      "engagement": 0,
+                      "velocity": 0.3,
+                      "confidence": 0.5
+                    },
+                    {
+                      "topic": "analysis",
+                      "mentions": 1,
+                      "engagement": 0,
+                      "velocity": 0.3,
+                      "confidence": 0.5
+                    }
+                  ],
+                  "trend_count": 5
+                }
+              }
+            },
+            "created_at": "2026-09-10T16:45:38.339666+00:00"
+          }
+        ],
+        "last_domain": "general",
+        "owner_user_id": "799e9094-5302-480f-97bd-96325c474e14"
+      },
+      "52d884ff-179a-474b-8c72-77896d146acf": {
+        "id": "52d884ff-179a-474b-8c72-77896d146acf",
+        "title": "Valorant News",
+        "created_at": "2026-09-13T16:45:57.111344+00:00",
+        "updated_at": "2026-09-13T16:45:57.141612+00:00",
+        "messages": [
+          {
+            "id": "5243db1d-7922-4b74-ae0c-f9d130a47a1b",
+            "role": "user",
+            "content": "Valorant News",
+            "metadata": {},
+            "created_at": "2026-09-13T16:45:57.111344+00:00"
+          },
+          {
+            "id": "dafe5378-ed7d-4d37-b29b-61e0f7aa6242",
+            "role": "assistant",
+            "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.51) across 42 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.\n\n**Top 3 relevant news from NewsAPI:**\n1. [\u2018X-Men \u201997\u2019 Star Talks Bringing Polaris to Animated Life](https://gizmodo.com/x-men-97-star-talks-bringing-polaris-to-animated-life-2000797532) \u2014 Gizmodo.com\n   'Overwatch' actor Carolina Ravassa opens up on playing the big new addition to the heroes of 'X-Men '97.'\n2. [Razer Releases Huntsman V3 Pro Tenkeyless 8KHz Sentinels Edition](https://bleedingcool.com/pop-culture/razer-releases-huntsman-v3-pro-tenkeyless-8khz-sentinels-edition/) \u2014 Bleeding Cool News\n   Razer released a new version of their Huntsman V3 Pro Tenkeyless 8KHz Keyboard this month, dropping the Sentinels Edition tied to the esports organization. As you can see from the images here, the keyboard provides everything you would need from this model, j\u2026\n3. [Intel-backed auto-overclocking tool Hypertune optimizes individual systems, not test profiles \u2014 tool claims FPS improvement of up to 60% on Intel-based systems](https://www.tomshardware.com/pc-components/cpus/intel-backed-auto-overclocking-tool-hypertune-optimizes-individual-systems-not-test-profiles-tool-claims-fps-improvement-of-up-to-60-percent-on-intel-based-systems) \u2014 Tom's Hardware UK\n   Hypertune is an automated overclocking tool built on top of Intel's Extreme Tuning Utility (XTU) SDK and built in collaboration with engineers at Intel.",
+            "metadata": {
+              "intent": "general",
+              "domain": "general",
+              "domain_label": "General Social Intelligence",
+              "entities": [
+                "general"
+              ],
+              "confidence": 0.78,
+              "workflow_used": [
+                "data",
+                "trends",
+                "sentiment",
+                "correlation",
+                "llm"
+              ],
+              "agents_used": [
+                "master",
+                "data_acquisition",
+                "data_intelligence",
+                "social_intelligence",
+                "domain_analytics",
+                "graph_analysis",
+                "visualization",
+                "insight",
+                "provenance"
+              ],
+              "sources_used": [
+                "google_search",
+                "google_trends",
+                "x_scraper",
+                "news"
+              ],
+              "evidence": [
+                {
+                  "type": "statistical",
+                  "label": "Overall Sentiment",
+                  "value": "neutral",
+                  "confidence": 0.72,
+                  "source": "sentiment_model"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: valorant",
+                  "value": "velocity=25.93",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: url",
+                  "value": "velocity=13.08",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: 2026",
+                  "value": "velocity=10.46",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                }
+              ],
+              "visualizations": [
+                {
+                  "type": "sentiment_timeline",
+                  "title": "Sentiment Over Time",
+                  "data": {
+                    "labels": [
+                      "2026-08-12",
+                      "2026-08-15",
+                      "2026-08-21",
+                      "2026-08-24",
+                      "2026-08-25",
+                      "2026-08-26",
+                      "2026-08-31",
+                      "2026-09-08",
+                      "2026-09-09",
+                      "2026-09-11",
+                      "2026-09-12",
+                      "2026-09-13"
+                    ],
+                    "values": [
+                      0.5,
+                      0.65,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.575,
+                      0.5,
+                      0.5,
+                      0.5
+                    ]
+                  }
+                },
+                {
+                  "type": "trend_bars",
+                  "title": "Top Trends",
+                  "data": {
+                    "labels": [
+                      "valorant",
+                      "url",
+                      "2026",
+                      "news",
+                      "for"
+                    ],
+                    "values": [
+                      25.93,
+                      13.08,
+                      10.46,
+                      4.25,
+                      3.0
+                    ]
+                  }
+                },
+                {
+                  "type": "source_cards",
+                  "title": "NewsAPI Results",
+                  "data": {
+                    "source": "news",
+                    "items": [
+                      {
+                        "title": "\u2018X-Men \u201997\u2019 Star Talks Bringing Polaris to Animated Life",
+                        "description": "'Overwatch' actor Carolina Ravassa opens up on playing the big new addition to the heroes of 'X-Men '97.'",
+                        "source": "Gizmodo.com",
+                        "url": "https://gizmodo.com/x-men-97-star-talks-bringing-polaris-to-animated-life-2000797532"
+                      },
+                      {
+                        "title": "Razer Releases Huntsman V3 Pro Tenkeyless 8KHz Sentinels Edition",
+                        "description": "Razer released a new version of their Huntsman V3 Pro Tenkeyless 8KHz Keyboard this month, dropping the Sentinels Edition tied to the esports organization. As you can see from the images here, the keyboard provides everything you would need from this model, j\u2026",
+                        "source": "Bleeding Cool News",
+                        "url": "https://bleedingcool.com/pop-culture/razer-releases-huntsman-v3-pro-tenkeyless-8khz-sentinels-edition/"
+                      },
+                      {
+                        "title": "Intel-backed auto-overclocking tool Hypertune optimizes individual systems, not test profiles \u2014 tool claims FPS improvement of up to 60% on Intel-based systems",
+                        "description": "Hypertune is an automated overclocking tool built on top of Intel's Extreme Tuning Utility (XTU) SDK and built in collaboration with engineers at Intel.",
+                        "source": "Tom's Hardware UK",
+                        "url": "https://www.tomshardware.com/pc-components/cpus/intel-backed-auto-overclocking-tool-hypertune-optimizes-individual-systems-not-test-profiles-tool-claims-fps-improvement-of-up-to-60-percent-on-intel-based-systems"
+                      },
+                      {
+                        "title": "The new Fortnite League of Legends skin could hint at what's next after Arcane",
+                        "description": "The latest Fortnite League of Legends collab features Ahri, and is the only non-Arcane League skin to hit the shop.",
+                        "source": "Pockettactics.com",
+                        "url": "https://www.pockettactics.com/fortnite/ahri-skin"
+                      },
+                      {
+                        "title": "TMR vs Hall Effect: which magnetic tech is best for your gaming keyboards and controllers? It's not just about better accuracy and faster response times",
+                        "description": "TMR and Hall Effect sensors and switches are becoming more widely adopted for keyboards and controllers, but what do they mean, and which is best?",
+                        "source": "TechRadar",
+                        "url": "https://www.techradar.com/computing/keyboards/hall-effect-vs-tmr"
+                      },
+                      {
+                        "title": "ROG Swift OLED PG27AQWP Hits 540 Hz at 1440P Resolution",
+                        "description": "The ROG Swift OLED PG27AQWP G Edition 20 is a gaming monitor designed to deliver high performance for both competitive and casual players. According to ETA Prime, its OLED panel achieves a remarkable 540 Hz refresh rate at 1440p resolution, with the option to\u2026",
+                        "source": "Geeky Gadgets",
+                        "url": "https://www.geeky-gadgets.com/rog-swift-oled-pg27aqwp/"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "source_cards",
+                  "title": "Google Search Results",
+                  "data": {
+                    "source": "google_search",
+                    "items": [
+                      {
+                        "title": "News \u2014 VALORANT Patch Notes. Phoenix ult change, new maps added to Retakes, and loads of bug fixes.",
+                        "description": "News \u2014 VALORANT Patch Notes. Phoenix ult change, new maps added to Retakes, and loads of bug fixes.",
+                        "source": "VALORANT",
+                        "url": "https://playvalorant.com/en-us/news/"
+                      },
+                      {
+                        "title": "ValorIntel \u2014 The leading source in Valorant and PC gaming news. Prices range from $28 (Tier 4) to $169 (Tier 1 Bundle).",
+                        "description": "ValorIntel \u2014 The leading source in Valorant and PC gaming news. Prices range from $28 (Tier 4) to $169 (Tier 1 Bundle).",
+                        "source": "X \u00b7 ValorINTEL",
+                        "url": "https://x.com/ValorINTEL?lang=en"
+                      },
+                      {
+                        "title": "News \u2014 The first Main Event of the 2026 Game Changers NA season has arrived, following an electric Swiss Stage that set the tone for the year ahead. READ MORE.",
+                        "description": "News \u2014 The first Main Event of the 2026 Game Changers NA season has arrived, following an electric Swiss Stage that set the tone for the year ahead. READ MORE.",
+                        "source": "VALORANT Esports | Schedule",
+                        "url": "https://valorantesports.com/news"
+                      },
+                      {
+                        "title": "Valorant esports News \u2014 Esports pulls off miraculous reverse-sweep to lift first VCT title. Global Esports are the Pacific Stage 2 champions. VARREL sent home as Global,",
+                        "description": "Valorant esports News \u2014 Esports pulls off miraculous reverse-sweep to lift first VCT title. Global Esports are the Pacific Stage 2 champions. VARREL sent home as Global,",
+                        "source": "VLR.gg",
+                        "url": "https://www.vlr.gg/news"
+                      },
+                      {
+                        "title": "r/VALORANT \u2014 VALORANTTM is a free to play 5v5, character-based tactical shooter by Riot Games. The amount of toxic, ragebait, afk and lately also hackers on ...",
+                        "description": "r/VALORANT \u2014 VALORANTTM is a free to play 5v5, character-based tactical shooter by Riot Games. The amount of toxic, ragebait, afk and lately also hackers on ...",
+                        "source": "Reddit \u00b7 r/VALORANT",
+                        "url": "https://www.reddit.com/r/VALORANT/"
+                      },
+                      {
+                        "title": "Mike | Valorant Leaks & News \u2014 NEW RANKED REWARDS CONFIRMED FOR DAY 1 IN 2027. | #VALORANT This year will be the last year for Gunbuddies, New reward will evolve with you over the year.",
+                        "description": "Mike | Valorant Leaks & News \u2014 NEW RANKED REWARDS CONFIRMED FOR DAY 1 IN 2027. | #VALORANT This year will be the last year for Gunbuddies, New reward will evolve with you over the year.",
+                        "source": "X \u00b7 ValorLeaks",
+                        "url": "https://x.com/ValorLeaks"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "provenance": {
+                "dataset_hash": "fe5b368394004121c5cdd59856a09b61ce708db03a06386271315ba66222689e",
+                "insight_hash": "3291d5fa83c5c1d4485f523d3b9ab1980d25a2c1dfb3097bc9ec12955a5fbce0",
+                "evidence_hash": "b2456b159864a77507c59dc6844eae1a8b3ee5eb7d7feeab221212c96a0aa87f",
+                "model_version": "socialiq-template-0.2",
+                "analysis_version": "socialiq-0.1.0",
+                "timestamp": "2026-09-13 16:45:57.132643+00:00",
+                "blockchain_tx_id": "9a28f0b9-efc"
+              },
+              "news_articles": [
+                {
+                  "title": "\u2018X-Men \u201997\u2019 Star Talks Bringing Polaris to Animated Life",
+                  "description": "'Overwatch' actor Carolina Ravassa opens up on playing the big new addition to the heroes of 'X-Men '97.'",
+                  "source": "Gizmodo.com",
+                  "published_at": "2026-08-12T17:00:39Z",
+                  "url": "https://gizmodo.com/x-men-97-star-talks-bringing-polaris-to-animated-life-2000797532"
+                },
+                {
+                  "title": "Razer Releases Huntsman V3 Pro Tenkeyless 8KHz Sentinels Edition",
+                  "description": "Razer released a new version of their Huntsman V3 Pro Tenkeyless 8KHz Keyboard this month, dropping the Sentinels Edition tied to the esports organization. As you can see from the images here, the keyboard provides everything you would need from this model, j\u2026",
+                  "source": "Bleeding Cool News",
+                  "published_at": "2026-09-11T15:42:10Z",
+                  "url": "https://bleedingcool.com/pop-culture/razer-releases-huntsman-v3-pro-tenkeyless-8khz-sentinels-edition/"
+                },
+                {
+                  "title": "Intel-backed auto-overclocking tool Hypertune optimizes individual systems, not test profiles \u2014 tool claims FPS improvement of up to 60% on Intel-based systems",
+                  "description": "Hypertune is an automated overclocking tool built on top of Intel's Extreme Tuning Utility (XTU) SDK and built in collaboration with engineers at Intel.",
+                  "source": "Tom's Hardware UK",
+                  "published_at": "2026-09-09T16:03:05Z",
+                  "url": "https://www.tomshardware.com/pc-components/cpus/intel-backed-auto-overclocking-tool-hypertune-optimizes-individual-systems-not-test-profiles-tool-claims-fps-improvement-of-up-to-60-percent-on-intel-based-systems"
+                }
+              ],
+              "analytics": {
+                "record_count": 42,
+                "source_counts": {
+                  "google_search": 8,
+                  "google_trends": 29,
+                  "x_scraper": 20,
+                  "news": 14
+                },
+                "source_content": {
+                  "news": [
+                    {
+                      "title": "\u2018X-Men \u201997\u2019 Star Talks Bringing Polaris to Animated Life",
+                      "description": "'Overwatch' actor Carolina Ravassa opens up on playing the big new addition to the heroes of 'X-Men '97.'",
+                      "source": "Gizmodo.com",
+                      "url": "https://gizmodo.com/x-men-97-star-talks-bringing-polaris-to-animated-life-2000797532"
+                    },
+                    {
+                      "title": "Razer Releases Huntsman V3 Pro Tenkeyless 8KHz Sentinels Edition",
+                      "description": "Razer released a new version of their Huntsman V3 Pro Tenkeyless 8KHz Keyboard this month, dropping the Sentinels Edition tied to the esports organization. As you can see from the images here, the keyboard provides everything you would need from this model, j\u2026",
+                      "source": "Bleeding Cool News",
+                      "url": "https://bleedingcool.com/pop-culture/razer-releases-huntsman-v3-pro-tenkeyless-8khz-sentinels-edition/"
+                    },
+                    {
+                      "title": "Intel-backed auto-overclocking tool Hypertune optimizes individual systems, not test profiles \u2014 tool claims FPS improvement of up to 60% on Intel-based systems",
+                      "description": "Hypertune is an automated overclocking tool built on top of Intel's Extreme Tuning Utility (XTU) SDK and built in collaboration with engineers at Intel.",
+                      "source": "Tom's Hardware UK",
+                      "url": "https://www.tomshardware.com/pc-components/cpus/intel-backed-auto-overclocking-tool-hypertune-optimizes-individual-systems-not-test-profiles-tool-claims-fps-improvement-of-up-to-60-percent-on-intel-based-systems"
+                    },
+                    {
+                      "title": "The new Fortnite League of Legends skin could hint at what's next after Arcane",
+                      "description": "The latest Fortnite League of Legends collab features Ahri, and is the only non-Arcane League skin to hit the shop.",
+                      "source": "Pockettactics.com",
+                      "url": "https://www.pockettactics.com/fortnite/ahri-skin"
+                    },
+                    {
+                      "title": "TMR vs Hall Effect: which magnetic tech is best for your gaming keyboards and controllers? It's not just about better accuracy and faster response times",
+                      "description": "TMR and Hall Effect sensors and switches are becoming more widely adopted for keyboards and controllers, but what do they mean, and which is best?",
+                      "source": "TechRadar",
+                      "url": "https://www.techradar.com/computing/keyboards/hall-effect-vs-tmr"
+                    },
+                    {
+                      "title": "ROG Swift OLED PG27AQWP Hits 540 Hz at 1440P Resolution",
+                      "description": "The ROG Swift OLED PG27AQWP G Edition 20 is a gaming monitor designed to deliver high performance for both competitive and casual players. According to ETA Prime, its OLED panel achieves a remarkable 540 Hz refresh rate at 1440p resolution, with the option to\u2026",
+                      "source": "Geeky Gadgets",
+                      "url": "https://www.geeky-gadgets.com/rog-swift-oled-pg27aqwp/"
+                    }
+                  ],
+                  "google_search": [
+                    {
+                      "title": "News \u2014 VALORANT Patch Notes. Phoenix ult change, new maps added to Retakes, and loads of bug fixes.",
+                      "description": "News \u2014 VALORANT Patch Notes. Phoenix ult change, new maps added to Retakes, and loads of bug fixes.",
+                      "source": "VALORANT",
+                      "url": "https://playvalorant.com/en-us/news/"
+                    },
+                    {
+                      "title": "ValorIntel \u2014 The leading source in Valorant and PC gaming news. Prices range from $28 (Tier 4) to $169 (Tier 1 Bundle).",
+                      "description": "ValorIntel \u2014 The leading source in Valorant and PC gaming news. Prices range from $28 (Tier 4) to $169 (Tier 1 Bundle).",
+                      "source": "X \u00b7 ValorINTEL",
+                      "url": "https://x.com/ValorINTEL?lang=en"
+                    },
+                    {
+                      "title": "News \u2014 The first Main Event of the 2026 Game Changers NA season has arrived, following an electric Swiss Stage that set the tone for the year ahead. READ MORE.",
+                      "description": "News \u2014 The first Main Event of the 2026 Game Changers NA season has arrived, following an electric Swiss Stage that set the tone for the year ahead. READ MORE.",
+                      "source": "VALORANT Esports | Schedule",
+                      "url": "https://valorantesports.com/news"
+                    },
+                    {
+                      "title": "Valorant esports News \u2014 Esports pulls off miraculous reverse-sweep to lift first VCT title. Global Esports are the Pacific Stage 2 champions. VARREL sent home as Global,",
+                      "description": "Valorant esports News \u2014 Esports pulls off miraculous reverse-sweep to lift first VCT title. Global Esports are the Pacific Stage 2 champions. VARREL sent home as Global,",
+                      "source": "VLR.gg",
+                      "url": "https://www.vlr.gg/news"
+                    },
+                    {
+                      "title": "r/VALORANT \u2014 VALORANTTM is a free to play 5v5, character-based tactical shooter by Riot Games. The amount of toxic, ragebait, afk and lately also hackers on ...",
+                      "description": "r/VALORANT \u2014 VALORANTTM is a free to play 5v5, character-based tactical shooter by Riot Games. The amount of toxic, ragebait, afk and lately also hackers on ...",
+                      "source": "Reddit \u00b7 r/VALORANT",
+                      "url": "https://www.reddit.com/r/VALORANT/"
+                    },
+                    {
+                      "title": "Mike | Valorant Leaks & News \u2014 NEW RANKED REWARDS CONFIRMED FOR DAY 1 IN 2027. | #VALORANT This year will be the last year for Gunbuddies, New reward will evolve with you over the year.",
+                      "description": "Mike | Valorant Leaks & News \u2014 NEW RANKED REWARDS CONFIRMED FOR DAY 1 IN 2027. | #VALORANT This year will be the last year for Gunbuddies, New reward will evolve with you over the year.",
+                      "source": "X \u00b7 ValorLeaks",
+                      "url": "https://x.com/ValorLeaks"
+                    }
+                  ]
+                },
+                "live_sources": [
+                  "google_search",
+                  "google_trends",
+                  "x_scraper",
+                  "news"
+                ],
+                "sentiment": {
+                  "overall_label": "neutral",
+                  "average_score": 0.507,
+                  "confidence": 0.72,
+                  "distribution": {
+                    "positive": 2,
+                    "negative": 0,
+                    "neutral": 40
+                  },
+                  "scores": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.65,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.65,
+                    0.5,
+                    0.5
+                  ]
+                },
+                "emotion": {
+                  "dominant_emotion": "support",
+                  "distribution": {
+                    "excitement": 0,
+                    "anxiety": 0,
+                    "support": 4,
+                    "frustration": 0
+                  },
+                  "confidence": 0.65
+                },
+                "temporal": {
+                  "timeline": [
+                    {
+                      "period": "2026-08-12",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-08-15",
+                      "sentiment_score": 0.65,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 1,
+                        "neutral": 0,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-08-21",
+                      "sentiment_score": 0.5,
+                      "signal_count": 3,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 3,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-08-24",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-08-25",
+                      "sentiment_score": 0.5,
+                      "signal_count": 2,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 2,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-08-26",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-08-31",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-08",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-09",
+                      "sentiment_score": 0.575,
+                      "signal_count": 2,
+                      "distribution": {
+                        "positive": 1,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-11",
+                      "sentiment_score": 0.5,
+                      "signal_count": 2,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 2,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-12",
+                      "sentiment_score": 0.5,
+                      "signal_count": 12,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 12,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-13",
+                      "sentiment_score": 0.5,
+                      "signal_count": 15,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 15,
+                        "negative": 0
+                      }
+                    }
+                  ],
+                  "spike_detected": false
+                },
+                "topics": {
+                  "topics": [
+                    {
+                      "term": "valorant",
+                      "count": 23
+                    },
+                    {
+                      "term": "news",
+                      "count": 14
+                    },
+                    {
+                      "term": "url",
+                      "count": 14
+                    },
+                    {
+                      "term": "esports",
+                      "count": 10
+                    },
+                    {
+                      "term": "new",
+                      "count": 8
+                    },
+                    {
+                      "term": "game",
+                      "count": 8
+                    },
+                    {
+                      "term": "year",
+                      "count": 7
+                    },
+                    {
+                      "term": "games",
+                      "count": 7
+                    },
+                    {
+                      "term": "will",
+                      "count": 7
+                    },
+                    {
+                      "term": "first",
+                      "count": 6
+                    }
+                  ],
+                  "topic_count": 10
+                },
+                "trends": {
+                  "top_trends": [
+                    {
+                      "topic": "valorant",
+                      "mentions": 24,
+                      "engagement": 18729,
+                      "velocity": 25.93,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "url",
+                      "mentions": 14,
+                      "engagement": 8883,
+                      "velocity": 13.08,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "2026",
+                      "mentions": 10,
+                      "engagement": 7462,
+                      "velocity": 10.46,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "news",
+                      "mentions": 14,
+                      "engagement": 47,
+                      "velocity": 4.25,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "for",
+                      "mentions": 10,
+                      "engagement": 0,
+                      "velocity": 3.0,
+                      "confidence": 0.9
+                    }
+                  ],
+                  "trend_count": 5
+                }
+              }
+            },
+            "created_at": "2026-09-13T16:45:57.141612+00:00"
+          }
+        ],
+        "last_domain": "general",
+        "owner_user_id": "799e9094-5302-480f-97bd-96325c474e14"
+      },
+      "ca69026b-7b88-4a1d-9e93-dff8f83aa8cd": {
+        "id": "ca69026b-7b88-4a1d-9e93-dff8f83aa8cd",
+        "title": "Valorant News",
+        "created_at": "2026-09-13T16:48:21.064524+00:00",
+        "updated_at": "2026-09-13T16:48:21.099509+00:00",
+        "messages": [
+          {
+            "id": "5e70370d-7d9d-46e9-8d69-14ac84aa93f6",
+            "role": "user",
+            "content": "Valorant News",
+            "metadata": {},
+            "created_at": "2026-09-13T16:48:21.064524+00:00"
+          },
+          {
+            "id": "a61cbafd-5086-45dd-8698-d50ffb0d54bb",
+            "role": "assistant",
+            "content": "**Domain:** General Social Intelligence\n\n**Observed:** Overall sentiment is **neutral** (score: 0.50) across 20 signals.\n\n**Evidence:** 4 correlation signals support this assessment.\n\n**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis.",
+            "metadata": {
+              "intent": "general",
+              "domain": "general",
+              "domain_label": "General Social Intelligence",
+              "entities": [
+                "general"
+              ],
+              "confidence": 0.78,
+              "workflow_used": [
+                "data",
+                "trends",
+                "sentiment",
+                "correlation",
+                "llm"
+              ],
+              "agents_used": [
+                "master",
+                "data_acquisition",
+                "data_intelligence",
+                "social_intelligence",
+                "domain_analytics",
+                "graph_analysis",
+                "visualization",
+                "insight",
+                "provenance"
+              ],
+              "sources_used": [
+                "x_scraper"
+              ],
+              "evidence": [
+                {
+                  "type": "statistical",
+                  "label": "Overall Sentiment",
+                  "value": "neutral",
+                  "confidence": 0.72,
+                  "source": "sentiment_model"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: valorant",
+                  "value": "velocity=23.31",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: url",
+                  "value": "velocity=13.12",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: 2026",
+                  "value": "velocity=9.28",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                }
+              ],
+              "visualizations": [
+                {
+                  "type": "sentiment_timeline",
+                  "title": "Sentiment Over Time",
+                  "data": {
+                    "labels": [
+                      "2026-09-11",
+                      "2026-09-12",
+                      "2026-09-13"
+                    ],
+                    "values": [
+                      0.5,
+                      0.5,
+                      0.5
+                    ]
+                  }
+                },
+                {
+                  "type": "trend_bars",
+                  "title": "Top Trends",
+                  "data": {
+                    "labels": [
+                      "valorant",
+                      "url",
+                      "2026",
+                      "que",
+                      "news"
+                    ],
+                    "values": [
+                      23.31,
+                      13.12,
+                      9.28,
+                      1.6,
+                      1.55
+                    ]
+                  }
+                }
+              ],
+              "provenance": {
+                "dataset_hash": "eeab198a007ea066ff69d6e811ae5bdc690eaf8cd93d793297043c34189d8249",
+                "insight_hash": "137877c479291ae7d1fb88eb73d3b1ecbb8f2abcd1775fb78f3e88b39788c1d4",
+                "evidence_hash": "a95facd921b337f409ded9087a113755603348a18da357dbabf5955923362975",
+                "model_version": "socialiq-template-0.2",
+                "analysis_version": "socialiq-0.1.0",
+                "timestamp": "2026-09-13 16:48:21.088455+00:00",
+                "blockchain_tx_id": "b7fc8e0f-dde"
+              },
+              "news_articles": [],
+              "analytics": {
+                "record_count": 20,
+                "source_counts": {
+                  "x_scraper": 20
+                },
+                "source_content": {
+                  "news": [],
+                  "google_search": []
+                },
+                "live_sources": [
+                  "x_scraper"
+                ],
+                "sentiment": {
+                  "overall_label": "neutral",
+                  "average_score": 0.5,
+                  "confidence": 0.72,
+                  "distribution": {
+                    "positive": 0,
+                    "negative": 0,
+                    "neutral": 20
+                  },
+                  "scores": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5
+                  ]
+                },
+                "emotion": {
+                  "dominant_emotion": "support",
+                  "distribution": {
+                    "excitement": 0,
+                    "anxiety": 0,
+                    "support": 3,
+                    "frustration": 0
+                  },
+                  "confidence": 0.65
+                },
+                "temporal": {
+                  "timeline": [
+                    {
+                      "period": "2026-09-11",
+                      "sentiment_score": 0.5,
+                      "signal_count": 1,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 1,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-12",
+                      "sentiment_score": 0.5,
+                      "signal_count": 12,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 12,
+                        "negative": 0
+                      }
+                    },
+                    {
+                      "period": "2026-09-13",
+                      "sentiment_score": 0.5,
+                      "signal_count": 7,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 7,
+                        "negative": 0
+                      }
+                    }
+                  ],
+                  "spike_detected": false
+                },
+                "topics": {
+                  "topics": [
+                    {
+                      "term": "valorant",
+                      "count": 14
+                    },
+                    {
+                      "term": "url",
+                      "count": 14
+                    },
+                    {
+                      "term": "news",
+                      "count": 5
+                    },
+                    {
+                      "term": "que",
+                      "count": 5
+                    },
+                    {
+                      "term": "game",
+                      "count": 3
+                    },
+                    {
+                      "term": "will",
+                      "count": 3
+                    },
+                    {
+                      "term": "september",
+                      "count": 3
+                    },
+                    {
+                      "term": "champions",
+                      "count": 3
+                    },
+                    {
+                      "term": "anthem",
+                      "count": 3
+                    },
+                    {
+                      "term": "vctgamechangers",
+                      "count": 3
+                    }
+                  ],
+                  "topic_count": 10
+                },
+                "trends": {
+                  "top_trends": [
+                    {
+                      "topic": "valorant",
+                      "mentions": 15,
+                      "engagement": 18808,
+                      "velocity": 23.31,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "url",
+                      "mentions": 14,
+                      "engagement": 8916,
+                      "velocity": 13.12,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "2026",
+                      "mentions": 6,
+                      "engagement": 7475,
+                      "velocity": 9.28,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "que",
+                      "mentions": 5,
+                      "engagement": 100,
+                      "velocity": 1.6,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "news",
+                      "mentions": 5,
+                      "engagement": 47,
+                      "velocity": 1.55,
+                      "confidence": 0.9
+                    }
+                  ],
+                  "trend_count": 5
+                }
+              }
+            },
+            "created_at": "2026-09-13T16:48:21.099509+00:00"
+          }
+        ],
+        "last_domain": "general",
+        "owner_user_id": "799e9094-5302-480f-97bd-96325c474e14"
+      }
     }
   }
 }

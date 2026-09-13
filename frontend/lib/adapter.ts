@@ -23,7 +23,7 @@ export interface NormalizedDashboardData {
 }
 
 const colors = ["bg-white", "bg-secondary", "bg-tertiary", "bg-slate-500", "bg-[#292e3a]"];
-const sourceNames: Record<string, string> = { x: "X", telegram: "Telegram", instagram: "Instagram", pinterest: "Pinterest", google_search: "Google Search", google_trends: "Google Trends", news: "News API", reddit: "Reddit", sample: "Sample Data" };
+const sourceNames: Record<string, string> = { x: "X", x_scraper: "X (Apify)", telegram: "Telegram", instagram: "Instagram", pinterest: "Pinterest", google_search: "Google Search", google_trends: "Google Trends", news: "News API", reddit: "Reddit", sample: "Sample Data" };
 
 export type DashboardRange = "1H" | "24H" | "7D" | "30D";
 

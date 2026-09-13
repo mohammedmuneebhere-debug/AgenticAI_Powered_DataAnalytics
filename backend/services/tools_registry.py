@@ -4,7 +4,7 @@ from backend.models.schemas import AgentTool, DataSource
 
 AGENTS: list[AgentTool] = [
     AgentTool(id="master", name="Master Planner", description="Intent detection & workflow orchestration", category="core", default_enabled=True),
-    AgentTool(id="data_acquisition", name="Data Acquisition", description="Fetch from X, Telegram, Instagram, Pinterest & Google", category="data", default_enabled=True),
+    AgentTool(id="data_acquisition", name="Data Acquisition", description="Fetch from X, Telegram, Instagram, Pinterest, Google & Apify scraping", category="data", default_enabled=True),
     AgentTool(id="data_intelligence", name="Data Intelligence", description="Clean, dedupe, PII mask, normalize", category="data", default_enabled=True),
     AgentTool(id="social_intelligence", name="Social Intelligence", description="Sentiment, emotion, topics, trends", category="analytics", default_enabled=True),
     AgentTool(id="domain_analytics", name="Domain Analytics", description="Consumer, financial, creator insights", category="analytics", default_enabled=True),
@@ -16,6 +16,7 @@ AGENTS: list[AgentTool] = [
 
 SOURCES: list[DataSource] = [
     DataSource(id="x", name="X (Twitter)", description="Posts, trends, mentions", default_enabled=True, requires_key="X_BEARER_TOKEN"),
+    DataSource(id="x_scraper", name="X Scraper (Apify)", description="X posts via Apify web scraping (pay-per-result)", default_enabled=False, requires_key="APIFY_API_KEY"),
     DataSource(id="telegram", name="Telegram", description="Channel & group messages", default_enabled=True, requires_key="TELEGRAM_BOT_TOKEN"),
     DataSource(id="instagram", name="Instagram", description="Reels, posts & captions", default_enabled=True, requires_key="INSTAGRAM_ACCESS_TOKEN"),
     DataSource(id="pinterest", name="Pinterest", description="Pins, trends & saves", default_enabled=True, requires_key="PINTEREST_ACCESS_TOKEN"),

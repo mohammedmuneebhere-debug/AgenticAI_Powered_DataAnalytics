@@ -58,6 +58,7 @@ export const FALLBACK_AGENTS = DEFAULT_AGENTS.map((id) => ({
 /** Fallback catalog — used if API is stale/unreachable; must match backend tools_registry.py */
 export const FALLBACK_SOURCES = [
   { id: "x", name: "X (Twitter)", description: "Posts, trends, mentions", default_enabled: true, requires_key: "X_BEARER_TOKEN" },
+  { id: "x_scraper", name: "X Scraper (Apify)", description: "X posts via Apify web scraping (pay-per-result)", default_enabled: false, requires_key: "APIFY_API_KEY" },
   { id: "telegram", name: "Telegram", description: "Channel & group messages", default_enabled: true, requires_key: "TELEGRAM_BOT_TOKEN" },
   { id: "instagram", name: "Instagram", description: "Reels, posts & captions", default_enabled: true, requires_key: "INSTAGRAM_ACCESS_TOKEN" },
   { id: "pinterest", name: "Pinterest", description: "Pins, trends & saves", default_enabled: true, requires_key: "PINTEREST_ACCESS_TOKEN" },
@@ -71,6 +72,7 @@ export const FALLBACK_SOURCES = [
 /** Material Symbols icon names per data source (icons, not emojis). */
 export const SOURCE_ICONS: Record<string, string> = {
   x: "alternate_email",
+  x_scraper: "travel_explore",
   telegram: "send",
   instagram: "photo_camera",
   pinterest: "push_pin",

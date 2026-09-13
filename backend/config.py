@@ -29,6 +29,12 @@ class Settings(BaseSettings):
     instagram_access_token: str = ""
     instagram_user_id: str = ""
     pinterest_access_token: str = ""
+    apify_api_key: str = ""
+    # Apify X/Twitter scraper (run-sync actor; pay-per-result alternative to the X API)
+    # NOTE: kaitoeasyapi's actor allows API runs on the Apify Free plan; apidojo's does not.
+    apify_x_scraper_actor: str = "kaitoeasyapi~twitter-x-data-tweet-scraper-pay-per-result-cheapest"
+    apify_x_max_items: int = 20
+    apify_timeout_seconds: int = 90
     serpapi_api_key: str = ""
     serpapi_google_domain: str = "google.com"
     serpapi_trends_geo: str = ""

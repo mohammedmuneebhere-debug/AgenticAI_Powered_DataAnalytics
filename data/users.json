@@ -20,6 +20,13 @@
       "name": "Omair Mohiuddin",
       "password_hash": "pbkdf2_sha256$600000$f1b0a49b00716d3bba4585e5617bf0fd$a83cade565217e1b0806ffe09a7500e6e68d1b7764ea35f3e1d2cd4c7db15b4b",
       "created_at": "2026-09-09T07:39:38.152604+00:00"
+    },
+    "799e9094-5302-480f-97bd-96325c474e14": {
+      "id": "799e9094-5302-480f-97bd-96325c474e14",
+      "email": "omair.mohiuddin05@gmail.com",
+      "name": "Omair",
+      "password_hash": "pbkdf2_sha256$600000$99688daa58b79451483dc1c3222940a5$e9bfa056d9d67df61d2c45197921139e0b83d2785619ed2e0623757c2f2bec33",
+      "created_at": "2026-09-10T16:45:02.569512+00:00"
     }
   }
 }

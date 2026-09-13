@@ -17,6 +17,7 @@ SAMPLE_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "sample"
 
 PLATFORM_SAMPLE_FILES = {
     "x": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
+    "x_scraper": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
     "telegram": {"coffee": "coffee_posts.json", "btc": "btc_posts.json", "default": "coffee_posts.json"},
     "instagram": {"default": "instagram_posts.json"},
     "pinterest": {"default": "pinterest_pins.json"},
@@ -47,6 +48,10 @@ class DataAcquisitionAgent:
 
         fetchers: dict[str, tuple[bool, Callable[..., Awaitable[list[dict]]]]] = {
             "x": (bool(self.settings.x_bearer_token), self._fetch_x),
+            "x_scraper": (
+                bool(self.settings.apify_api_key),
+                self._fetch_x_scraper,
+            ),
             "telegram": (bool(self.settings.telegram_bot_token), self._fetch_telegram),
             "instagram": (bool(self.settings.instagram_access_token), self._fetch_instagram),
             "pinterest": (bool(self.settings.pinterest_access_token), self._fetch_pinterest),
@@ -64,7 +69,7 @@ class DataAcquisitionAgent:
 
         active_platforms = [p for p in platforms if p != "sample"]
         if not active_platforms:
-            active_platforms = ["x", "telegram", "instagram", "pinterest", "google_search", "google_trends", "news", "reddit"]
+            active_platforms = ["x", "x_scraper", "telegram", "instagram", "pinterest", "google_search", "google_trends", "news", "reddit"]
 
         for platform in active_platforms:
             has_creds, fetcher = fetchers.get(platform, (False, None))
@@ -147,6 +152,82 @@ class DataAcquisitionAgent:
                 },
             })
         return records
+
+    async def _fetch_x_scraper(self, query: str, entities: list[str]) -> list[dict]:
+        """X posts via an Apify scraping actor (pay-per-result, no X API required).
+
+        Uses Apify's run-sync endpoint so the actor run and dataset retrieval
+        happen in one HTTP call —
+        https://docs.apify.com/api/v2/act-run-sync-get-dataset-items
+        """
+        actor = self.settings.apify_x_scraper_actor.replace("/", "~")
+        search_query = self._build_search_query(query, entities)
+        timeout = max(30, int(self.settings.apify_timeout_seconds))
+        url = f"https://api.apify.com/v2/acts/{actor}/run-sync-get-dataset-items"
+        params = {"token": self.settings.apify_api_key, "timeout": timeout}
+        payload = {
+            "searchTerms": [search_query],
+            "maxItems": max(1, int(self.settings.apify_x_max_items)),
+        }
+
+        async with httpx.AsyncClient(timeout=timeout + 30) as client:
+            resp = await client.post(url, params=params, json=payload)
+            resp.raise_for_status()
+            items = resp.json()
+        if isinstance(items, dict):  # some actors wrap results in an envelope
+            items = items.get("items") or items.get("data") or []
+
+        records = []
+        for item in items:
+            if item.get("noResults"):
+                continue  # placeholder rows some actors emit when a search finds nothing
+            author = item.get("author")
+            if isinstance(author, dict):
+                author_name = (
+                    author.get("userName")
+                    or author.get("username")
+                    or author.get("name")
+                    or "unknown"
+                )
+            else:
+                author_name = item.get("author_id") or item.get("username") or "unknown"
+            text = item.get("text") or item.get("full_text") or ""
+            if not text:
+                continue
+            records.append({
+                "id": str(item.get("id") or item.get("tweet_id") or item.get("url") or ""),
+                "platform": "x_scraper",
+                "text": text,
+                "author": author_name,
+                "timestamp": self._parse_tweet_timestamp(item),
+                "engagement": {
+                    "likes": int(item.get("likeCount") or item.get("favorite_count") or 0),
+                    "reposts": int(item.get("retweetCount") or item.get("retweet_count") or 0),
+                    "replies": int(item.get("replyCount") or item.get("reply_count") or 0),
+                    "views": int(item.get("viewCount") or item.get("view_count") or 0),
+                },
+                "url": item.get("url") or item.get("tweet_url"),
+            })
+        return records
+
+    @staticmethod
+    def _parse_tweet_timestamp(item: dict) -> str:
+        """Normalize the varied date formats Apify tweet actors emit to ISO 8601."""
+        raw = item.get("createdAt") or item.get("created_at") or item.get("date")
+        if not raw:
+            return datetime.now(timezone.utc).isoformat()
+        if isinstance(raw, (int, float)):  # epoch seconds or milliseconds
+            seconds = raw / 1000 if raw > 1e12 else raw
+            return datetime.fromtimestamp(seconds, tz=timezone.utc).isoformat()
+        text = str(raw)
+        try:  # legacy Twitter format: "Wed Oct 10 20:19:24 +0000 2018"
+            return datetime.strptime(text, "%a %b %d %H:%M:%S %z %Y").isoformat()
+        except ValueError:
+            pass
+        try:  # ISO 8601 with trailing Z
+            return datetime.fromisoformat(text.replace("Z", "+00:00")).isoformat()
+        except ValueError:
+            return datetime.now(timezone.utc).isoformat()
 
     async def _fetch_telegram(self, query: str, entities: list[str]) -> list[dict]:
         """Telegram Bot API — https://core.telegram.org/bots/api#getupdates"""
@@ -565,7 +646,9 @@ class DataAcquisitionAgent:
 
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
-        return [r for r in data if r.get("platform") == platform]
+        # The Apify X scraper reuses the X sample datasets (records carry platform "x")
+        sample_platform = "x" if platform == "x_scraper" else platform
+        return [r for r in data if r.get("platform") == sample_platform]
 
     def _load_domain_sample(self, entities: list[str], query: str, domain: str) -> list[dict]:
         entity_key = self._resolve_entity_key(entities, query, domain)
