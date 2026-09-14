@@ -52,7 +52,7 @@ export default function DashboardMode() {
 
       {!normalizedData ? (
         <div className="rounded-2xl border border-border-subtle bg-[var(--bg-surface)] p-10 text-center">
-          <span className="material-symbols-outlined text-4xl text-slate-500">query_stats</span>
+          <span className="material-symbols-outlined text-4xl text-outline">query_stats</span>
           <h2 className="mt-3 text-lg font-semibold text-[var(--text-primary)]">No intelligence dossier yet</h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-on-surface-variant">
             Send a query from Chat Mode or use the search above to generate dashboard insights.

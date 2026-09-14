@@ -18,7 +18,7 @@ export default function SuggestedInquiries({ onSelectQuery }: SuggestedInquiries
 
   return (
     <div className="flex flex-col gap-2.5 pt-2 pl-0 sm:pl-8">
-      <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold tracking-wider">
+      <span className="text-[11px] font-mono uppercase text-outline font-semibold tracking-wider">
         Suggested Intelligence Inquiries:
       </span>
       <div className="flex flex-wrap items-center gap-2">
@@ -29,7 +29,7 @@ export default function SuggestedInquiries({ onSelectQuery }: SuggestedInquiries
             onClick={() => onSelectQuery(query)}
             className="group flex items-center gap-2 px-3.5 py-1.5 bg-[var(--bg-surface)] border border-border-subtle hover:border-white/40 text-on-surface hover:text-[var(--text-primary)] rounded-full text-xs transition-all shadow-sm text-left"
           >
-            <span className="font-mono text-slate-500 group-hover:text-[var(--text-primary)] text-xs font-semibold">
+            <span className="font-mono text-outline group-hover:text-[var(--text-primary)] text-xs font-semibold">
               &gt;
             </span>
             <span className="group-hover:text-[var(--text-primary)] transition-colors">{query}</span>

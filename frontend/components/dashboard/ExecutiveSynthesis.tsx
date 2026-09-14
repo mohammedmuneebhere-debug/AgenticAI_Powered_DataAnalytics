@@ -23,30 +23,30 @@ export default function ExecutiveSynthesis({ data }: ExecutiveSynthesisProps) {
         </div>
 
         <div className="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-          <span className="text-slate-400">
+          <span className="text-on-surface-variant">
             Confidence: <span className="text-secondary font-bold">{executiveSynthesis.confidence}%</span>
           </span>
           <span className="text-surface-border">|</span>
-          <span className="text-slate-400">
-            Sources: <span className="text-slate-200 font-medium">{executiveSynthesis.sourcesCount} verified</span>
+          <span className="text-on-surface-variant">
+            Sources: <span className="text-on-surface font-medium">{executiveSynthesis.sourcesCount} verified</span>
           </span>
           <span className="text-surface-border">|</span>
-          <span className="text-slate-400">
-            Signals Analyzed: <span className="text-slate-200 font-medium">{executiveSynthesis.signalsCount.toLocaleString()}</span>
+          <span className="text-on-surface-variant">
+            Signals Analyzed: <span className="text-on-surface font-medium">{executiveSynthesis.signalsCount.toLocaleString()}</span>
           </span>
         </div>
       </div>
 
-      <p className="font-sans text-sm text-slate-200 leading-relaxed">
+      <p className="font-sans text-sm text-on-surface leading-relaxed">
         {executiveSynthesis.text}
       </p>
 
       <div className="flex flex-wrap items-center gap-2 mt-4">
-        <span className="font-mono text-[10px] uppercase text-slate-400">Primary Vectors:</span>
+        <span className="font-mono text-[10px] uppercase text-on-surface-variant">Primary Vectors:</span>
         {executiveSynthesis.primaryVectors.map((vec, i) => (
           <span
             key={i}
-            className="font-mono text-[11px] bg-surface-lowest text-slate-200 px-3 py-1 border border-surface-border rounded-full font-medium"
+            className="font-mono text-[11px] bg-surface-lowest text-on-surface px-3 py-1 border border-surface-border rounded-full font-medium"
           >
             {vec}
           </span>

@@ -15,6 +15,7 @@ os.environ.setdefault("SERPAPI_API_KEY", "")
 os.environ.setdefault("NEWS_API_KEY", "")
 os.environ.setdefault("OPENAI_API_KEY", "")
 os.environ.setdefault("OLLAMA_BASE_URL", "http://localhost:11434")
+os.environ.setdefault("OLLAMA_AUTO_FALLBACK", "false")
 os.environ.setdefault("USERS_STORE_PATH", "./data/test_users.json")
 os.environ.setdefault("SESSIONS_STORE_PATH", "./data/test_sessions.json")
 

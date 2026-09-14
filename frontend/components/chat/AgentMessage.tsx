@@ -54,7 +54,7 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
         </div>
 
         <div className="flex items-center gap-3 text-on-surface-variant">
-          <span className="text-[11px] font-mono text-slate-500">184ms</span>
+          <span className="text-[11px] font-mono text-outline">184ms</span>
           <button
             onClick={handleCopy}
             className="hover:text-[var(--text-primary)] transition-colors p-1"
@@ -70,12 +70,12 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
 
       {/* Content Payload (Open document flow) */}
       <div className="pl-0 sm:pl-8 space-y-4 text-sm text-on-surface leading-relaxed">
-        <div className="text-[15px] leading-relaxed text-slate-200">
+        <div className="text-[15px] leading-relaxed text-on-surface">
           <MarkdownMessage content={content} />
         </div>
 
         {/* Dashboard Switcher Callout */}
-        <div className="border-l-2 border-slate-700 pl-4 py-2 flex items-center justify-between gap-3 text-xs text-slate-300 bg-[var(--bg-surface)]/40 rounded-r-xl">
+        <div className="border-l-2 border-slate-700 pl-4 py-2 flex items-center justify-between gap-3 text-xs text-on-surface bg-[var(--bg-surface)]/40 rounded-r-xl">
           <div className="flex items-center gap-2.5">
             <span className="material-symbols-outlined text-[var(--text-primary)] text-[18px]">query_stats</span>
             <span>
@@ -118,9 +118,9 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
         )}
 
         {/* Provenance Footnote */}
-        <div className="pt-2 flex items-center justify-between text-slate-500 text-xs font-mono border-t border-border-subtle flex-wrap gap-2">
+        <div className="pt-2 flex items-center justify-between text-outline text-xs font-mono border-t border-border-subtle flex-wrap gap-2">
           <span>Provenance: {sourcesList}</span>
-          <div className="flex items-center gap-1.5 text-slate-400">
+          <div className="flex items-center gap-1.5 text-on-surface-variant">
             <span className="material-symbols-outlined text-[15px] text-secondary">verified</span>
             <span className="text-[11px]">Cross-Referenced &amp; Verified</span>
           </div>

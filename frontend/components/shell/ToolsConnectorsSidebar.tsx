@@ -89,7 +89,7 @@ export default function ToolsConnectorsSidebar() {
         >
           <span className="material-symbols-outlined text-[18px]">hub</span>
         </button>
-        <span className="text-[9px] font-mono rotate-90 text-slate-500 whitespace-nowrap tracking-wider uppercase">
+        <span className="text-[9px] font-mono rotate-90 text-outline whitespace-nowrap tracking-wider uppercase">
           TOOLS
         </span>
       </aside>
@@ -202,7 +202,7 @@ export default function ToolsConnectorsSidebar() {
 
       {/* System Telemetry Footer */}
       <div className="pt-3 border-t border-border-subtle text-center">
-        <span className="text-[10px] font-mono tracking-wider text-slate-500 uppercase">
+        <span className="text-[10px] font-mono tracking-wider text-outline uppercase">
           SYSTEM TELEMETRY 99.98% OK
         </span>
       </div>

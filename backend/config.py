@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     # Local Ollama instance (fully configurable via env)
     ollama_base_url: str = "http://localhost:11434"
     ollama_model: str = "llama3.2"
+    # When no OpenAI key is configured, automatically try local Ollama before
+    # resorting to the offline analytics composer (true/false)
+    ollama_auto_fallback: bool = True
     # LLM runtime behavior
     llm_max_output_tokens: int = 700
     # Web search tool-calling (used by the insight agent for live lookups)

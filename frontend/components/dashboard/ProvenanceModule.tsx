@@ -39,7 +39,7 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
           <span className="material-symbols-outlined text-[18px] text-secondary">
             verified_user
           </span>
-          <span className="font-mono text-xs uppercase text-slate-200 font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-on-surface font-bold tracking-wider">
             Verification &amp; Provenance
           </span>
         </div>
@@ -52,22 +52,22 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
       <div className="p-4 flex flex-col justify-between flex-1 gap-3">
         <div className="space-y-1.5 font-mono text-[11px]">
           <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
-            <span className="text-slate-400">Dataset Snapshot</span>
-            <span className="text-slate-200 font-semibold">{provenance.datasetSnapshot}</span>
+            <span className="text-on-surface-variant">Dataset Snapshot</span>
+            <span className="text-on-surface font-semibold">{provenance.datasetSnapshot}</span>
           </div>
 
           <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
-            <span className="text-slate-400">Timestamp ISO-8601</span>
-            <span className="text-slate-200">{provenance.timestamp}</span>
+            <span className="text-on-surface-variant">Timestamp ISO-8601</span>
+            <span className="text-on-surface">{provenance.timestamp}</span>
           </div>
 
           <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
-            <span className="text-slate-400">Orchestrator Pipeline</span>
+            <span className="text-on-surface-variant">Orchestrator Pipeline</span>
             <span className="text-[var(--text-primary)] font-semibold">{provenance.pipeline}</span>
           </div>
 
           <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
-            <span className="text-slate-400">Blockchain Anchoring</span>
+            <span className="text-on-surface-variant">Blockchain Anchoring</span>
             <span className="text-secondary font-semibold">{provenance.blockchainAnchoring}</span>
           </div>
         </div>

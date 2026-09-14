@@ -83,6 +83,7 @@ class OrchestratorService:
             sources_used=plan.get("sources_used", []),
             news_articles=plan.get("news_articles", []),
             analytics=plan.get("analytics", {}),
+            model_version=plan.get("model_version", "socialiq-0.1"),
         )
 
     async def verify_insight(self, request: VerifyRequest) -> VerifyResponse:

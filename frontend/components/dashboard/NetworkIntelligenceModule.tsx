@@ -20,11 +20,11 @@ export default function NetworkIntelligenceModule({ data }: NetworkIntelligenceM
       <div className="flex items-center justify-between px-4 py-3 bg-surface-high/60 border-b border-surface-border/50">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[18px] text-secondary">hub</span>
-          <span className="font-mono text-xs uppercase text-slate-200 font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-on-surface font-bold tracking-wider">
             Network Intelligence
           </span>
         </div>
-        <span className="font-mono text-[10px] text-slate-300">
+        <span className="font-mono text-[10px] text-on-surface">
           Graph Density: {networkIntelligence.graphDensity}
         </span>
       </div>
@@ -49,21 +49,21 @@ export default function NetworkIntelligenceModule({ data }: NetworkIntelligenceM
         {/* Quick Stats Strip */}
         <div className="grid grid-cols-3 gap-2">
           <div className="bg-surface-lowest p-2.5 border border-surface-border/70 rounded-xl">
-            <span className="font-mono text-[9px] uppercase text-slate-500 block">Top Community</span>
+            <span className="font-mono text-[9px] uppercase text-outline block">Top Community</span>
             <span className="font-sans text-xs text-[var(--text-primary)] font-semibold truncate block">
               {networkIntelligence.topCommunity}
             </span>
           </div>
 
           <div className="bg-surface-lowest p-2.5 border border-surface-border/70 rounded-xl">
-            <span className="font-mono text-[9px] uppercase text-slate-500 block">Fastest Growing</span>
+            <span className="font-mono text-[9px] uppercase text-outline block">Fastest Growing</span>
             <span className="font-sans text-xs text-secondary font-semibold truncate block">
               {networkIntelligence.fastestGrowing}
             </span>
           </div>
 
           <div className="bg-surface-lowest p-2.5 border border-surface-border/70 rounded-xl">
-            <span className="font-mono text-[9px] uppercase text-slate-500 block">Top Influencer</span>
+            <span className="font-mono text-[9px] uppercase text-outline block">Top Influencer</span>
             <span className="font-sans text-xs text-tertiary font-semibold truncate block">
               {networkIntelligence.topInfluencer}
             </span>

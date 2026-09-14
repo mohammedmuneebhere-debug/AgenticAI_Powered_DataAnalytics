@@ -15,11 +15,11 @@ export default function EmergingNarrativesModule({ data }: EmergingNarrativesMod
       <div className="flex items-center justify-between px-4 py-3 bg-surface-high/60 border-b border-surface-border/50">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[18px] text-tertiary">chat</span>
-          <span className="font-mono text-xs uppercase text-slate-200 font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-on-surface font-bold tracking-wider">
             Emerging Narratives
           </span>
         </div>
-        <span className="font-mono text-[10px] uppercase bg-surface-highest text-slate-200 border border-surface-border px-2.5 py-0.5 rounded-full font-bold">
+        <span className="font-mono text-[10px] uppercase bg-surface-highest text-on-surface border border-surface-border px-2.5 py-0.5 rounded-full font-bold">
           {narratives.length} Tracked
         </span>
       </div>
@@ -36,7 +36,7 @@ export default function EmergingNarrativesModule({ data }: EmergingNarrativesMod
                 <div className="font-sans text-xs text-[var(--text-primary)] font-semibold truncate">
                   {item.title}
                 </div>
-                <div className="font-sans text-[11px] text-slate-400 truncate">
+                <div className="font-sans text-[11px] text-on-surface-variant truncate">
                   {item.subtitle}
                 </div>
               </div>

@@ -24,7 +24,7 @@ export default function TrajectoryModule({ data, activeRange, onRangeChange }: T
       <div className="flex items-center justify-between px-4 py-3 bg-surface-high/60 border-b border-surface-border/50">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[18px] text-[var(--text-primary)]">show_chart</span>
-          <span className="font-mono text-xs uppercase text-slate-200 font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-on-surface font-bold tracking-wider">
             Conversation Volume &amp; Trajectory
           </span>
         </div>
@@ -37,7 +37,7 @@ export default function TrajectoryModule({ data, activeRange, onRangeChange }: T
               className={`px-2.5 py-0.5 font-mono text-[10px] rounded-full transition-colors ${
                 activeRange === range
                   ? "bg-[var(--primary)] text-[var(--on-primary)] font-bold"
-                  : "text-slate-400 hover:text-slate-200"
+                  : "text-on-surface-variant hover:text-on-surface"
               }`}
             >
               {range}
@@ -50,18 +50,18 @@ export default function TrajectoryModule({ data, activeRange, onRangeChange }: T
         <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
           <div className="flex items-center gap-4">
             <div>
-              <div className="font-mono text-[10px] uppercase text-slate-500">Peak Volume ({activeRange})</div>
+              <div className="font-mono text-[10px] uppercase text-outline">Peak Volume ({activeRange})</div>
               <div className="font-sans text-lg font-bold text-[var(--text-primary)]">{visiblePoints.length ? `${Math.max(...visiblePoints.map((point) => point.volume))} / period` : "No records"}</div>
             </div>
             <div className="h-6 w-px bg-surface-border" />
             <div>
-              <div className="font-mono text-[10px] uppercase text-slate-500">Mean Velocity</div>
+              <div className="font-mono text-[10px] uppercase text-outline">Mean Velocity</div>
               <div className="font-sans text-lg font-bold text-secondary">{visiblePoints.length ? `${(visiblePoints.reduce((sum, point) => sum + point.lineValue, 0) / visiblePoints.length).toFixed(2)} avg` : "No records"}</div>
             </div>
           </div>
           <div className="flex items-center gap-2 bg-surface-lowest px-3 py-1 rounded-full border border-surface-border">
             <span className="w-2 h-2 rounded-full bg-[var(--text-primary)]" />
-            <span className="font-sans text-xs text-slate-200 font-medium">
+            <span className="font-sans text-xs text-on-surface font-medium">
               {visiblePoints.length ? `Records in ${activeRange}: ${visiblePoints.reduce((sum, point) => sum + point.volume, 0)}` : `No records in ${activeRange}`}
             </span>
           </div>
@@ -87,7 +87,7 @@ export default function TrajectoryModule({ data, activeRange, onRangeChange }: T
           </svg>
 
           {/* Timeline X-Axis */}
-          <div className="flex justify-between font-mono text-[10px] text-slate-500 pt-2 border-t border-surface-border/50 relative z-10">
+          <div className="flex justify-between font-mono text-[10px] text-outline pt-2 border-t border-surface-border/50 relative z-10">
             {visiblePoints.map((point) => <span key={point.time}>{point.time}</span>)}
           </div>
         </div>

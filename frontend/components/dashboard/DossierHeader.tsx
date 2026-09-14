@@ -43,16 +43,16 @@ export default function DossierHeader({ data }: DossierHeaderProps) {
 
         <div className="h-4 w-px bg-surface-border hidden sm:block" />
 
-        <div className="flex flex-wrap items-center gap-2 font-sans text-xs text-slate-400">
-          <span className="bg-surface-high px-2.5 py-1 rounded-full border border-surface-border flex items-center gap-1.5 text-slate-300">
+        <div className="flex flex-wrap items-center gap-2 font-sans text-xs text-on-surface-variant">
+          <span className="bg-surface-high px-2.5 py-1 rounded-full border border-surface-border flex items-center gap-1.5 text-on-surface">
             <span className="material-symbols-outlined text-[13px] text-secondary">schedule</span>
             <span>{data.lastUpdated}</span>
           </span>
-          <span className="bg-surface-high px-2.5 py-1 rounded-full border border-surface-border flex items-center gap-1.5 text-slate-300">
-            <span className="material-symbols-outlined text-[13px] text-slate-300">analytics</span>
+          <span className="bg-surface-high px-2.5 py-1 rounded-full border border-surface-border flex items-center gap-1.5 text-on-surface">
+            <span className="material-symbols-outlined text-[13px] text-on-surface">analytics</span>
             <span>{data.signalsAnalyzed}</span>
           </span>
-          <span className="bg-surface-high px-2.5 py-1 rounded-full border border-surface-border flex items-center gap-1.5 text-slate-300">
+          <span className="bg-surface-high px-2.5 py-1 rounded-full border border-surface-border flex items-center gap-1.5 text-on-surface">
             <span className="material-symbols-outlined text-[13px] text-tertiary">hub</span>
             <span>{data.activeSourcesCount} active sources</span>
           </span>
@@ -63,7 +63,7 @@ export default function DossierHeader({ data }: DossierHeaderProps) {
         <button
           type="button"
           onClick={handleShare}
-          className="flex items-center gap-1.5 bg-surface-high hover:bg-surface-highest border border-surface-border text-slate-200 px-3.5 py-1.5 rounded-full font-sans text-xs transition-colors"
+          className="flex items-center gap-1.5 bg-surface-high hover:bg-surface-highest border border-surface-border text-on-surface px-3.5 py-1.5 rounded-full font-sans text-xs transition-colors"
         >
           <span className="material-symbols-outlined text-[15px]">share</span>
           <span>Share Dossier</span>
@@ -72,7 +72,7 @@ export default function DossierHeader({ data }: DossierHeaderProps) {
         <button
           type="button"
           onClick={handleExportRaw}
-          className="flex items-center gap-1.5 bg-surface-high hover:bg-surface-highest border border-surface-border text-slate-200 px-3.5 py-1.5 rounded-full font-sans text-xs transition-colors"
+          className="flex items-center gap-1.5 bg-surface-high hover:bg-surface-highest border border-surface-border text-on-surface px-3.5 py-1.5 rounded-full font-sans text-xs transition-colors"
         >
           <span className="material-symbols-outlined text-[15px]">file_download</span>
           <span>Export Raw Data</span>

@@ -16,7 +16,7 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
       <div className="flex items-center justify-between px-4 py-3 bg-surface-high/60 border-b border-surface-border/50">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[18px] text-secondary">mood</span>
-          <span className="font-mono text-xs uppercase text-slate-200 font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-on-surface font-bold tracking-wider">
             Sentiment Drivers
           </span>
         </div>
@@ -29,8 +29,8 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
         {/* Segmented Solid Bar */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <span className="font-mono text-[10px] uppercase text-slate-400">Polarity Distribution</span>
-            <span className="font-mono text-xs text-slate-300 font-semibold">{sentimentDrivers.signalsCount}</span>
+            <span className="font-mono text-[10px] uppercase text-on-surface-variant">Polarity Distribution</span>
+            <span className="font-mono text-xs text-on-surface font-semibold">{sentimentDrivers.signalsCount}</span>
           </div>
 
           <div className="w-full h-3 flex rounded-full overflow-hidden bg-surface-lowest border border-surface-border">
@@ -42,11 +42,11 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
           <div className="flex items-center justify-between mt-2 font-mono text-[11px] flex-wrap gap-1">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-secondary" />
-              <span className="text-slate-300">Positive ({polarity.positive}%)</span>
+              <span className="text-on-surface">Positive ({polarity.positive}%)</span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-slate-500" />
-              <span className="text-slate-400">Neutral ({polarity.neutral}%)</span>
+              <span className="text-on-surface-variant">Neutral ({polarity.neutral}%)</span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-error" />
@@ -57,7 +57,7 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
 
         {/* Dominant Emotional Signatures */}
         <div className="flex flex-col gap-2">
-          <span className="font-mono text-[10px] uppercase text-slate-400 tracking-wider">
+          <span className="font-mono text-[10px] uppercase text-on-surface-variant tracking-wider">
             Dominant Emotional Signatures
           </span>
 
@@ -67,7 +67,7 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
               let iconColor = "text-secondary";
               if (emo.color === "slate") {
                 barColor = "bg-slate-300";
-                iconColor = "text-slate-300";
+                iconColor = "text-on-surface";
               } else if (emo.color === "tertiary") {
                 barColor = "bg-tertiary";
                 iconColor = "text-tertiary";
@@ -81,7 +81,7 @@ export default function SentimentDriversModule({ data }: SentimentDriversModuleP
                   key={idx}
                   className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl"
                 >
-                  <span className="font-sans text-xs text-slate-200 flex items-center gap-2">
+                  <span className="font-sans text-xs text-on-surface flex items-center gap-2">
                     <span className={`material-symbols-outlined text-[16px] ${iconColor}`}>
                       {emo.icon}
                     </span>

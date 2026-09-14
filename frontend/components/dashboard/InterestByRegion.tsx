@@ -68,10 +68,10 @@ export default function InterestByRegion({
     <div className={compact ? "p-0" : "rounded-xl border border-surface-border/70 bg-surface-lowest p-3"}>
       <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-wider text-slate-300 font-bold">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-on-surface font-bold">
             Interest by Region & Related Signals
           </div>
-          <div className="font-sans text-[11px] text-slate-500 mt-0.5">
+          <div className="font-sans text-[11px] text-outline mt-0.5">
             Relative search interest, not search volume
           </div>
         </div>
@@ -86,8 +86,8 @@ export default function InterestByRegion({
                 selectedCategory === key
                   ? "bg-[var(--primary)] text-[var(--on-primary)] font-bold"
                   : counts[key]
-                    ? "text-slate-400 hover:text-[var(--text-primary)]"
-                    : "text-slate-600 cursor-not-allowed"
+                    ? "text-on-surface-variant hover:text-[var(--text-primary)]"
+                    : "text-outline cursor-not-allowed"
               }`}
             >
               {label}
@@ -133,7 +133,7 @@ export default function InterestByRegion({
           </ResponsiveContainer>
         </div>
       ) : (
-        <p className="py-8 text-center text-xs text-slate-500">No data for this category.</p>
+        <p className="py-8 text-center text-xs text-outline">No data for this category.</p>
       )}
     </div>
   );

@@ -16,7 +16,7 @@ export default function AudienceSegmentsModule({ data }: AudienceSegmentsModuleP
       <div className="flex items-center justify-between px-4 py-3 bg-surface-high/60 border-b border-surface-border/50">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[18px] text-tertiary">groups</span>
-          <span className="font-mono text-xs uppercase text-slate-200 font-bold tracking-wider">
+          <span className="font-mono text-xs uppercase text-on-surface font-bold tracking-wider">
             Estimated Audience Segments
           </span>
         </div>
@@ -30,7 +30,7 @@ export default function AudienceSegmentsModule({ data }: AudienceSegmentsModuleP
           {audienceSegments.map((segment, idx) => (
             <div key={idx}>
               <div className="flex justify-between font-sans text-xs mb-1.5">
-                <span className="text-slate-200 font-medium">{segment.label}</span>
+                <span className="text-on-surface font-medium">{segment.label}</span>
                 <span className="font-mono text-xs text-[var(--text-primary)] font-bold">{segment.percentage}%</span>
               </div>
               <div className="w-full h-1.5 bg-surface-highest rounded-full overflow-hidden">
@@ -50,8 +50,8 @@ export default function AudienceSegmentsModule({ data }: AudienceSegmentsModuleP
         />
 
         <div className="p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl flex items-center gap-2">
-          <span className="material-symbols-outlined text-slate-500 text-[16px] shrink-0">info</span>
-          <span className="font-sans text-[11px] text-slate-400 leading-tight">
+          <span className="material-symbols-outlined text-outline text-[16px] shrink-0">info</span>
+          <span className="font-sans text-[11px] text-on-surface-variant leading-tight">
             AI-inferred aggregate audience estimates calculated from syntax and engagement telemetry.
           </span>
         </div>

@@ -34,7 +34,7 @@ export default function ChatHeader() {
       <div className="flex items-center gap-2 text-xs">
         <span className="material-symbols-outlined text-on-surface-variant text-[17px]">terminal</span>
         <span className="text-on-surface-variant">Workspace</span>
-        <span className="text-slate-600">/</span>
+        <span className="text-outline">/</span>
         <span className="text-[var(--text-primary)] font-medium">AI Assistant</span>
       </div>
 

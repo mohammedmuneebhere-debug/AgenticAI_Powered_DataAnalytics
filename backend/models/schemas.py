@@ -141,6 +141,9 @@ class ChatResponse(BaseModel):
     sources_used: list[str] = []
     news_articles: list[NewsArticle] = []
     analytics: dict[str, Any] = {}
+    # Which engine produced the narrative: gpt-4o-mini, ollama:<model>, or
+    # socialiq-template-0.3 (offline composer)
+    model_version: str = "socialiq-0.1"
 
 
 class SessionSummary(BaseModel):

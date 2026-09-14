@@ -36,13 +36,13 @@ export default function TrendingVectorsStrip({
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="flex items-center gap-1.5 font-sans text-xs text-slate-400 hover:text-slate-200 transition-colors"
+            className="flex items-center gap-1.5 font-sans text-xs text-on-surface-variant hover:text-on-surface transition-colors"
           >
             <span className="material-symbols-outlined text-[15px]">arrow_back</span>
             <span>Back to Trending Feed</span>
           </button>
           <div className="h-3 w-px bg-surface-border" />
-          <span className="font-mono text-[11px] uppercase tracking-wider text-slate-300 font-semibold">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-on-surface font-semibold">
             Top 5 Trending Vectors
           </span>
         </div>
@@ -72,14 +72,14 @@ export default function TrendingVectorsStrip({
               <div className="flex items-center gap-2 min-w-0">
                 <span
                   className={`font-mono text-[11px] font-bold ${
-                    isActive ? "text-[var(--text-primary)]" : "text-slate-500"
+                    isActive ? "text-[var(--text-primary)]" : "text-outline"
                   }`}
                 >
                   {item.rank}
                 </span>
                 <span
                   className={`font-sans text-xs font-semibold truncate ${
-                    isActive ? "text-[var(--text-primary)]" : "text-slate-300 font-medium"
+                    isActive ? "text-[var(--text-primary)]" : "text-on-surface font-medium"
                   }`}
                 >
                   {item.topic}
@@ -102,13 +102,13 @@ export default function TrendingVectorsStrip({
                     </span>
                   </>
                 ) : (
-                  <div className="flex items-center gap-1 text-slate-500">
+                  <div className="flex items-center gap-1 text-outline">
                     {item.icons.map((ic, i) => (
                       <span key={i} className="material-symbols-outlined text-[14px]">
                         {ic}
                       </span>
                     ))}
-                    <span className="material-symbols-outlined text-[14px] hover:text-slate-300">
+                    <span className="material-symbols-outlined text-[14px] hover:text-on-surface">
                       chevron_right
                     </span>
                   </div>

@@ -148,7 +148,7 @@ class TestModelRouting:
         result = await InsightAgent().generate(
             query="test", evidence=[], analytics={}, intent="general",
         )
-        assert result["model_version"] == "socialiq-template-0.2"
+        assert result["model_version"] == "socialiq-template-0.3"
 
     def test_resolve_provider(self):
         agent = InsightAgent()
@@ -208,3 +208,291 @@ class TestUserStoreProviders:
 
         store.link_provider(user["id"], "google", "gid-1")
         assert store.get_by_provider_id("google", "gid-1")["id"] == user["id"]
+
+
+# ── Dynamic offline composer ──────────────────────────────────────────
+
+
+class TestDynamicComposer:
+    def _analytics(self) -> dict:
+        """Realistic analytics with distinctive values nothing can hardcode."""
+        return {
+            "record_count": 14,
+            "source_counts": {"x": 8, "reddit": 4, "news": 2},
+            "sentiment": {
+                "overall_label": "positive",
+                "average_score": 0.68,
+                "confidence": 0.72,
+                "distribution": {"positive": 9, "negative": 2, "neutral": 3},
+            },
+            "emotion": {
+                "dominant_emotion": "excitement",
+                "distribution": {"excitement": 7, "anxiety": 1, "support": 2, "frustration": 0},
+                "confidence": 0.65,
+            },
+            "topics": {"topics": [{"term": "semiconductor", "count": 11}], "topic_count": 1},
+            "trends": {
+                "top_trends": [
+                    {"topic": "semiconductor", "mentions": 11, "engagement": 4200, "velocity": 6.9, "confidence": 0.9},
+                    {"topic": "chip supply", "mentions": 4, "engagement": 800, "velocity": 2.1, "confidence": 0.7},
+                ],
+                "trend_count": 2,
+            },
+            "temporal": {
+                "timeline": [
+                    {"period": "2026-09-12", "sentiment_score": 0.55, "signal_count": 6, "distribution": {}},
+                    {"period": "2026-09-13", "sentiment_score": 0.71, "signal_count": 8, "distribution": {}},
+                ],
+                "spike_detected": True,
+            },
+        }
+
+    def _evidence(self) -> list:
+        return [
+            {"type": "statistical", "label": "Overall Sentiment", "value": "positive", "confidence": 0.72, "source": "sentiment_model"},
+            {"type": "semantic", "label": "Trend: semiconductor", "value": "velocity=6.90", "confidence": 0.9, "source": "trend_detector"},
+        ]
+
+    @pytest.mark.asyncio
+    async def test_composer_renders_real_values_no_canned_claims(self):
+        result = await InsightAgent().generate(
+            query="What is happening with semiconductor supply?",
+            evidence=self._evidence(),
+            analytics=self._analytics(),
+            intent="trend",
+            domain="consumer",
+            domain_label="Consumer Social Intelligence",
+        )
+        text = result["text"]
+        assert result["model_version"] == "socialiq-template-0.3"
+
+        # Real values rendered
+        assert "semiconductor" in text
+        assert "14" in text
+        assert "x (8)" in text
+        assert "0.68" in text
+        assert "excitement" in text
+        assert "4200" in text or "4,200" in text
+        assert "rose from 0.55" in text
+        assert "spike was detected" in text
+
+        # The old fabricated claims must be gone for good
+        assert "cold brew" not in text.lower()
+        assert "+34%" not in text
+        assert "tue/thu" not in text.lower()
+        assert "2.4x" not in text
+
+    @pytest.mark.asyncio
+    async def test_composer_handles_empty_analytics_gracefully(self):
+        result = await InsightAgent().generate(
+            query="test", evidence=[], analytics={}, intent="general",
+        )
+        text = result["text"]
+        assert "No records were returned" in text
+        assert "Insufficient signal diversity" in text
+        assert "Re-run with more sources" in text
+
+    @pytest.mark.asyncio
+    async def test_composer_renders_domain_analytics_when_present(self):
+        analytics = self._analytics() | {
+            "volatility": {"level": "HIGH", "index": 0.81},
+            "scenarios": [
+                {"name": "Breakout", "probability": 0.35, "trigger": "ETF inflow acceleration"},
+            ],
+            "demographics": {"segments": [{"label": "18-34 urban", "percentage": 46, "confidence": 0.6}]},
+        }
+        result = await InsightAgent().generate(
+            query="test", evidence=self._evidence(), analytics=analytics,
+            intent="market", domain="financial", domain_label="Financial Market Intelligence",
+        )
+        text = result["text"]
+        assert "HIGH" in text and "0.81" in text
+        assert "Breakout" in text and "35%" in text and "ETF inflow acceleration" in text
+        assert "18-34 urban (46%)" in text
+
+
+# ── Auto-fallback chain (OpenAI → Ollama → composer) ──────────────────
+
+
+class TestAutoFallbackChain:
+    @pytest.mark.asyncio
+    async def test_ollama_auto_fallback_when_reachable(self, monkeypatch):
+        from backend.config import get_settings
+
+        monkeypatch.setenv("OLLAMA_AUTO_FALLBACK", "true")
+        get_settings.cache_clear()
+        try:
+            agent = InsightAgent()
+
+            async def fake_get(self, url):
+                class Resp:
+                    status_code = 200
+
+                return Resp()
+
+            async def fake_post(self, url, json=None, **kwargs):
+                class Resp:
+                    def raise_for_status(self):
+                        return None
+
+                    def json(self):
+                        return {"message": {"content": "local ollama answer"}}
+
+                return Resp()
+
+            monkeypatch.setattr(httpx.AsyncClient, "get", fake_get)
+            monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+
+            result = await agent.generate(
+                query="test", evidence=[], analytics={}, intent="general",
+            )
+            assert result["model_version"] == f"ollama:{agent.settings.ollama_model}"
+            assert "local ollama answer" in result["text"]
+        finally:
+            get_settings.cache_clear()
+
+    @pytest.mark.asyncio
+    async def test_falls_back_to_composer_when_ollama_unreachable(self, monkeypatch):
+        from backend.config import get_settings
+
+        monkeypatch.setenv("OLLAMA_AUTO_FALLBACK", "true")
+        get_settings.cache_clear()
+        try:
+            agent = InsightAgent()
+
+            async def fail_get(self, url):
+                raise httpx.ConnectError("connection refused")
+
+            monkeypatch.setattr(httpx.AsyncClient, "get", fail_get)
+
+            result = await agent.generate(
+                query="test", evidence=[], analytics={}, intent="general",
+            )
+            assert result["model_version"] == "socialiq-template-0.3"
+        finally:
+            get_settings.cache_clear()
+
+    @pytest.mark.asyncio
+    async def test_openai_failure_still_tries_ollama(self, monkeypatch):
+        """Chain requirement: OpenAI failing must NOT skip Ollama."""
+        from backend.config import get_settings
+
+        monkeypatch.setenv("OPENAI_API_KEY", "sk-invalid")
+        monkeypatch.setenv("OLLAMA_AUTO_FALLBACK", "true")
+        get_settings.cache_clear()
+        try:
+            agent = InsightAgent()
+
+            async def fake_get(self, url):
+                class Resp:
+                    status_code = 200
+
+                return Resp()
+
+            async def fake_post(self, url, json=None, **kwargs):
+                class Resp:
+                    def raise_for_status(self):
+                        return None
+
+                    def json(self):
+                        return {"message": {"content": "ollama rescued the answer"}}
+
+                return Resp()
+
+            monkeypatch.setattr(httpx.AsyncClient, "get", fake_get)
+            monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+
+            class FailingCompletions:
+                async def create(self, **kwargs):
+                    raise RuntimeError("simulated openai outage")
+
+            class FailingChat:
+                completions = FailingCompletions()
+
+            class FailingOpenAI:
+                def __init__(self, **kwargs):
+                    self.chat = FailingChat()
+
+            import sys
+            import types
+
+            fake_module = types.ModuleType("openai")
+            fake_module.AsyncOpenAI = FailingOpenAI
+            monkeypatch.setitem(sys.modules, "openai", fake_module)
+
+            result = await agent.generate(
+                query="test", evidence=[], analytics={}, intent="general",
+            )
+            assert result["model_version"].startswith("ollama:")
+            assert "ollama rescued the answer" in result["text"]
+        finally:
+            get_settings.cache_clear()
+
+    @pytest.mark.asyncio
+    async def test_openai_takes_priority_over_live_ollama(self, monkeypatch):
+        from backend.config import get_settings
+
+        monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
+        monkeypatch.setenv("OLLAMA_AUTO_FALLBACK", "true")
+        get_settings.cache_clear()
+        try:
+            agent = InsightAgent()
+
+            ollama_called = {"post": False}
+
+            async def fake_get(self, url):
+                class Resp:
+                    status_code = 200
+
+                return Resp()
+
+            async def fake_post(self, url, json=None, **kwargs):
+                if "ollama" in url or ":11434" in url:
+                    ollama_called["post"] = True
+                    raise httpx.ConnectError("ollama must not be called")
+
+                class Resp:
+                    def json(self):
+                        return {}
+
+                raise AssertionError("openai SDK should be used, not raw httpx POST")
+
+            monkeypatch.setattr(httpx.AsyncClient, "get", fake_get)
+            monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+
+            class FakeCompletions:
+                async def create(self, **kwargs):
+                    class FakeMessage:
+                        content = "openai narrative"
+                        tool_calls = None
+
+                    class FakeChoice:
+                        message = FakeMessage()
+
+                    class FakeResponse:
+                        choices = [FakeChoice()]
+
+                    return FakeResponse()
+
+            class FakeChat:
+                completions = FakeCompletions()
+
+            class FakeOpenAI:
+                def __init__(self, **kwargs):
+                    self.chat = FakeChat()
+
+            import sys
+            import types
+
+            fake_module = types.ModuleType("openai")
+            fake_module.AsyncOpenAI = FakeOpenAI
+            monkeypatch.setitem(sys.modules, "openai", fake_module)
+
+            result = await agent.generate(
+                query="test", evidence=[], analytics={}, intent="general",
+            )
+            assert result["model_version"] == "gpt-4o-mini"
+            assert "openai narrative" in result["text"]
+            assert not ollama_called["post"]
+        finally:
+            get_settings.cache_clear()

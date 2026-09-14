@@ -59,7 +59,7 @@ export default function ContextScopeBar() {
             <button
               type="button"
               onClick={() => setIsPivoting(false)}
-              className="text-xs text-slate-400 hover:text-[var(--text-primary)] px-1"
+              className="text-xs text-on-surface-variant hover:text-[var(--text-primary)] px-1"
             >
               Cancel
             </button>

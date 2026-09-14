@@ -1,10 +1,13 @@
 """Insight & Recommendation Agent — LLM-powered evidence-backed responses.
 
-Supports two providers, selected per request via ``llm_model``:
-- OpenAI chat models (default, ``gpt-4o-mini`` unless configured otherwise)
-- Local Ollama models (``ollama:<model>``), base URL configurable via env
+Provider chain, in order:
+1. OpenAI chat models (default ``gpt-4o-mini``; per request via ``llm_model``)
+2. Local Ollama models (``ollama:<model>`` explicit, or auto-selected when no
+   OpenAI key is configured and the local instance responds; base URL from env)
+3. Offline dynamic composer — a deterministic summary built ONLY from the real
+   pipeline analytics; used when both providers are unavailable or fail
 
-When the pipeline supplies a web-search tool, both providers can call it
+When the pipeline supplies a web-search tool, both LLM providers can call it
 (OpenAI via native function calling, Ollama via a JSON tool protocol) to pull
 additional live results before composing the final answer.
 """
@@ -77,7 +80,22 @@ class InsightAgent:
             return await self._llm_generate(
                 requested, query, evidence, analytics, intent, domain, domain_label, web_search_tool
             )
-        return self._template_generate(query, evidence, analytics, intent, domain, domain_label)
+
+        # No OpenAI key: try the local Ollama instance before the offline
+        # composer (opt-out via OLLAMA_AUTO_FALLBACK=false).
+        if self.settings.ollama_auto_fallback and await self._ollama_available():
+            return await self._ollama_generate(
+                self.settings.ollama_model,
+                query,
+                evidence,
+                analytics,
+                intent,
+                domain,
+                domain_label,
+                web_search_tool,
+            )
+
+        return self._compose_dynamic_response(query, evidence, analytics, intent, domain, domain_label)
 
     # ── Provider resolution ────────────────────────────────────────────
 
@@ -87,6 +105,16 @@ class InsightAgent:
         if requested.startswith("ollama:"):
             return "ollama", requested.split(":", 1)[1].strip() or self.settings.ollama_model
         return "openai", requested
+
+    async def _ollama_available(self) -> bool:
+        """Probe the configured Ollama instance (sub-second timeout)."""
+        base_url = self.settings.ollama_base_url.rstrip("/")
+        try:
+            async with httpx.AsyncClient(timeout=1.5) as client:
+                response = await client.get(f"{base_url}/api/tags")
+                return response.status_code == 200
+        except Exception:
+            return False
 
     # ── OpenAI ─────────────────────────────────────────────────────────
 
@@ -167,8 +195,19 @@ class InsightAgent:
             header = f"**Domain:** {domain_label}\n\n"
             return {"text": header + text, "confidence": 0.85, "model_version": model}
         except Exception:
-            logger.exception("OpenAI generation failed; falling back to templates")
-            return self._template_generate(query, evidence, analytics, intent, domain, domain_label)
+            logger.exception("OpenAI generation failed; trying local Ollama before composer")
+            if self.settings.ollama_auto_fallback and await self._ollama_available():
+                return await self._ollama_generate(
+                    self.settings.ollama_model,
+                    query,
+                    evidence,
+                    analytics,
+                    intent,
+                    domain,
+                    domain_label,
+                    web_search_tool,
+                )
+            return self._compose_dynamic_response(query, evidence, analytics, intent, domain, domain_label)
 
     # ── Ollama ─────────────────────────────────────────────────────────
 
@@ -241,8 +280,8 @@ class InsightAgent:
             header = f"**Domain:** {domain_label}\n\n"
             return {"text": header + text, "confidence": 0.8, "model_version": f"ollama:{model}"}
         except Exception:
-            logger.exception("Ollama generation failed (%s at %s); falling back to templates", model, base_url)
-            return self._template_generate(query, evidence, analytics, intent, domain, domain_label)
+            logger.exception("Ollama generation failed (%s at %s); falling back to offline composer", model, base_url)
+            return self._compose_dynamic_response(query, evidence, analytics, intent, domain, domain_label)
 
     # ── Web search tool execution ──────────────────────────────────────
 
@@ -329,103 +368,217 @@ Analytics Summary: {json.dumps({k: v for k, v in analytics.items() if not k.star
 
 Analyze ONLY within the {domain_label} scope. Do not reference unrelated domains."""
 
-    # ── Template fallback (offline, deterministic) ─────────────────────
+    # ── Offline fallback: dynamic analytics composer ───────────────────
 
-    def _template_generate(
-        self, query: str, evidence: list, analytics: dict, intent: str, domain: str, domain_label: str
+    def _compose_dynamic_response(
+        self,
+        query: str,
+        evidence: list,
+        analytics: dict,
+        intent: str,
+        domain: str,
+        domain_label: str,
     ) -> dict:
-        generators = {
-            ("consumer", "strategy"): self._consumer_strategy,
-            ("consumer", "trend"): self._consumer_trends,
-            ("financial", "market"): self._financial_analysis,
-            ("financial", "trend"): self._financial_analysis,
-            ("financial", "sentiment"): self._financial_analysis,
-            ("creator", "strategy"): self._creator_strategy,
-            ("creator", "trend"): self._creator_trends,
+        """Deterministic offline response composed ONLY from real analytics.
+
+        Used when both OpenAI and local Ollama are unavailable or fail. Every
+        number and label is drawn from the supplied ``analytics``/``evidence``;
+        sections with no data are omitted rather than fabricated.
+        """
+        sentiment = analytics.get("sentiment") or {}
+        trends = (analytics.get("trends") or {}).get("top_trends") or []
+        emotion = analytics.get("emotion") or {}
+        temporal = analytics.get("temporal") or {}
+        timeline = temporal.get("timeline") or []
+        source_counts: dict = analytics.get("source_counts") or {}
+        demographics = (analytics.get("demographics") or {}).get("segments") or []
+        scenarios = analytics.get("scenarios") or []
+        volatility = analytics.get("volatility") or {}
+        try:
+            record_count = int(analytics.get("record_count") or 0)
+        except (TypeError, ValueError):
+            record_count = 0
+
+        lines: list[str] = [f"**Domain:** {domain_label}", ""]
+
+        # ── Observed ──────────────────────────────────────────────
+        lines.append("**Observed**")
+        if record_count:
+            ranked = sorted(source_counts.items(), key=lambda kv: -kv[1])
+            source_desc = ", ".join(f"{platform} ({count})" for platform, count in ranked)
+            lines.append(
+                f"- Analyzed **{record_count}** social signal(s)"
+                + (f" from: {source_desc}." if source_desc else ".")
+            )
+        else:
+            lines.append("- No records were returned by the enabled data sources for this query.")
+
+        dist = sentiment.get("distribution") or {}
+        dist_total = sum(dist.values())
+        if sentiment:
+            mix = ""
+            if dist_total:
+                parts = [
+                    f"{key} {value / dist_total * 100:.0f}%"
+                    for key, value in sorted(dist.items(), key=lambda kv: -kv[1])
+                    if value
+                ]
+                mix = " — mix: " + ", ".join(parts)
+            lines.append(
+                f"- Overall sentiment is **{sentiment.get('overall_label', 'neutral')}**"
+                f" (score {float(sentiment.get('average_score', 0.5)):.2f} on 0-1){mix}."
+            )
+
+        for trend in trends[:3]:
+            engagement = int(trend.get("engagement") or 0)
+            lines.append(
+                f"- Trend **{trend.get('topic', 'unknown')}**: {int(trend.get('mentions') or 0)} mention(s),"
+                f" engagement {engagement:,}, velocity {float(trend.get('velocity') or 0):.2f}."
+            )
+
+        dominant_emotion = emotion.get("dominant_emotion")
+        if dominant_emotion and dominant_emotion != "neutral":
+            lines.append(f"- Dominant expressed emotion: **{dominant_emotion}**.")
+
+        # ── Temporal movement ─────────────────────────────────────
+        if timeline:
+            lines += ["", "**Temporal movement**"]
+            first, last = timeline[0], timeline[-1]
+            first_score = float(first.get("sentiment_score") or 0)
+            last_score = float(last.get("sentiment_score") or 0)
+            if len(timeline) >= 2:
+                delta = last_score - first_score
+                direction = "rose" if delta > 0.02 else "dipped" if delta < -0.02 else "held steady"
+                lines.append(
+                    f"- Sentiment {direction} from {first_score:.2f} ({first.get('period', 'start')})"
+                    f" to {last_score:.2f} ({last.get('period', 'end')}) across {len(timeline)} period(s)."
+                )
+            else:
+                lines.append(
+                    f"- Single-period snapshot ({first.get('period', 'all signals')}): sentiment {last_score:.2f}."
+                )
+            if temporal.get("spike_detected"):
+                lines.append("- A positive sentiment spike was detected in this window.")
+
+        # ── Inferred ──────────────────────────────────────────────
+        inferred: list[str] = []
+        top = trends[0] if trends else None
+        label = sentiment.get("overall_label")
+        avg_score = float(sentiment.get("average_score", 0.5))
+        if top and label:
+            topic = top.get("topic", "the leading trend")
+            if label == "positive":
+                inferred.append(
+                    f"Conversation around **{topic}** carries favorable sentiment ({avg_score:.2f}),"
+                    " consistent with growing organic interest."
+                )
+            elif label == "negative":
+                inferred.append(
+                    f"Discussion of **{topic}** is net-negative ({avg_score:.2f}); high volume with"
+                    " negative tone warrants closer review of the underlying complaints."
+                )
+            else:
+                inferred.append(
+                    f"**{topic}** leads mentions while sentiment stays neutral ({avg_score:.2f}) —"
+                    " interest without a strong emotional charge."
+                )
+        if volatility:
+            inferred.append(
+                f"Domain analytics put volatility at **{volatility.get('level', 'unspecified')}**"
+                f" (index {float(volatility.get('index') or 0):.2f})."
+            )
+        for scenario in scenarios[:3]:
+            try:
+                prob = float(scenario.get("probability") or 0) * 100
+            except (TypeError, ValueError):
+                prob = 0.0
+            inferred.append(
+                f"Scenario **{scenario.get('name', 'unnamed')}** (~{prob:.0f}%):"
+                f" {scenario.get('trigger', 'trigger unspecified')}."
+            )
+        if demographics:
+            leading = demographics[0]
+            inferred.append(
+                f"Largest inferred audience segment: **{leading.get('label', 'unlabeled')}"
+                f" ({leading.get('percentage', 0)}%)** (probabilistic estimate)."
+            )
+
+        lines += ["", "**Inferred**"]
+        if inferred:
+            lines += [f"- {item}" for item in inferred]
+        else:
+            lines.append(
+                "- Insufficient signal diversity in the returned data to infer"
+                " relationships beyond the counts above."
+            )
+
+        # ── Recommended ───────────────────────────────────────────
+        recs: list[str] = []
+        if top:
+            recs.append(
+                f"Track **{top.get('topic', 'the leading trend')}** velocity over the next"
+                " 48-72 hours before committing resources."
+            )
+        if dist_total:
+            neg_share = dist.get("negative", 0) / dist_total
+            pos_share = dist.get("positive", 0) / dist_total
+            if neg_share >= 0.4:
+                recs.append(
+                    f"Negative signals are {neg_share * 100:.0f}% of the sample — review recurring"
+                    " complaints in the evidence before acting."
+                )
+            elif pos_share >= 0.5:
+                recs.append(
+                    f"Positive signals are {pos_share * 100:.0f}% of the sample — a favorable window"
+                    " to amplify the leading themes."
+                )
+        if record_count and record_count < 10:
+            recs.append(
+                f"Sample is small ({record_count} record(s)) — enable more sources or widen the"
+                " query for sturdier conclusions."
+            )
+        if not recs:
+            recs.append("Re-run with more sources or a refined query to gather a usable evidence base.")
+
+        lines += ["", "**Recommended**", *[f"- {rec}" for rec in recs]]
+
+        # ── Evidence ──────────────────────────────────────────────
+        lines += ["", "**Evidence**"]
+        if evidence:
+            for item in evidence[:6]:
+                try:
+                    conf = float(item.get("confidence") or 0)
+                except (TypeError, ValueError):
+                    conf = 0.0
+                value = item.get("value")
+                value_part = f" — {value}" if value else ""
+                lines.append(
+                    f"- {item.get('label', 'unnamed signal')}{value_part}"
+                    f" (confidence {conf * 100:.0f}%, via {item.get('source', 'unknown')})"
+                )
+        else:
+            lines.append("- No correlation evidence was produced for this query.")
+
+        lines += [
+            "",
+            "*Offline summary composed directly from pipeline analytics (no LLM available)."
+            " Configure OPENAI_API_KEY or start local Ollama for narrative analysis.*",
+        ]
+
+        confidence = 0.5
+        if sentiment:
+            confidence += 0.1
+        if trends:
+            confidence += 0.1
+        if timeline:
+            confidence += 0.05
+        if evidence:
+            confidence += 0.05
+
+        return {
+            "text": "\n".join(lines),
+            "confidence": round(min(confidence, 0.8), 2),
+            "model_version": "socialiq-template-0.3",
         }
-        generator = generators.get((domain, intent), None)
-        if not generator:
-            generator = {
-                "consumer": self._consumer_trends,
-                "financial": self._financial_analysis,
-                "creator": self._creator_strategy,
-            }.get(domain, self._general_analysis)
 
-        body = generator(query, evidence, analytics)
-        text = f"**Domain:** {domain_label}\n\n{body}"
-        return {"text": text, "confidence": 0.78, "model_version": "socialiq-template-0.2"}
 
-    def _consumer_strategy(self, query: str, evidence: list, analytics: dict) -> str:
-        trends = analytics.get("trends", {}).get("top_trends", [])
-        top_trend = trends[0]["topic"] if trends else "cold brew"
-        demo = analytics.get("demographics", {}).get("segments", [])
-        young_pct = next((s["percentage"] for s in demo if "18-34" in s.get("label", "")), 42)
-
-        return f"""**Observed:** In the **consumer/coffee** space, {top_trend.title()} is the fastest-growing trend with strong cross-platform momentum. Winter seasonal demand is elevated (+34% projected lift).
-
-**Inferred:** Young consumers ({young_pct}%) are driving this trend, motivated by convenience and health-conscious formulations.
-
-**Predicted:** Cold brew concentrate and functional coffee products are likely to see sustained Q1 demand.
-
-**Recommended:**
-- Launch a **Winter Cold Brew Concentrate** targeting 18-34 urban consumers
-- Partner with micro-influencers in the coffee/lifestyle niche
-- Campaign timeline: teasers in 2 weeks, full launch early winter
-
-**Limitations:** Demographic segments are probabilistic aggregates. Confidence: 78%."""
-
-    def _consumer_trends(self, query: str, evidence: list, analytics: dict) -> str:
-        trends = analytics.get("trends", {}).get("top_trends", [])
-        trend_list = ", ".join(t["topic"] for t in trends[:3]) if trends else "no strong signals"
-        return f"""**Observed:** Top **consumer/coffee** trends: {trend_list}.
-
-**Inferred:** Cross-platform spread suggests organic adoption in the beverage/consumer segment.
-
-**Recommended:** Monitor trend velocity over 48-72 hours before committing product resources."""
-
-    def _financial_analysis(self, query: str, evidence: list, analytics: dict) -> str:
-        vol = analytics.get("volatility", {}) or {}
-        scenarios = analytics.get("scenarios", [])
-
-        return f"""**Observed:** **BTC/market** volatility is **{vol.get('level', 'HIGH')}** (index: {vol.get('index', 0.78)}). Elevated mention velocity on X and Reddit.
-
-**Inferred:** Dominant narratives: ETF flow speculation, macro uncertainty, fear/greed oscillation.
-
-**Predicted Scenarios:**
-{chr(10).join(f"- **{s['name']}** ({s['probability']*100:.0f}%): {s['trigger']}" for s in scenarios) if scenarios else "- Range-bound trading likely near term"}
-
-**Recommended:** Monitor sentiment spikes and volume divergence. Prepare for correction scenarios.
-
-**Disclaimer:** Scenario analysis only — not financial advice. Confidence: 75%."""
-
-    def _creator_strategy(self, query: str, evidence: list, analytics: dict) -> str:
-        calendar = analytics.get("seven_day_calendar", [])
-        windows = analytics.get("posting_windows", [])
-
-        return f"""**Observed:** **Creator/content** segment shows Reels and carousel formats outperforming static posts (2.4x engagement).
-
-**Inferred:** Audience peaks Tue/Thu evenings and Sat mornings.
-
-**Recommended 7-Day Content Plan:**
-{chr(10).join(f"- Day {c['day']}: {c['theme']} ({c['format']})" for c in calendar[:7]) if calendar else "- Focus on short-form Reels with trend hooks"}
-
-**Best posting windows:** {", ".join(windows) if windows else "Tue 7-9 PM, Thu 12-1 PM"}
-
-**Limitations:** Based on aggregate engagement patterns. Confidence: 76%."""
-
-    def _creator_trends(self, query: str, evidence: list, analytics: dict) -> str:
-        trends = analytics.get("trends", {}).get("top_trends", [])
-        trend_list = ", ".join(t["topic"] for t in trends[:3]) if trends else "emerging creator topics"
-        return f"""**Observed:** Top **creator/content** trends: {trend_list}.
-
-**Recommended:** Adapt trending formats into Reels within 24-48 hours for maximum reach."""
-
-    def _general_analysis(self, query: str, evidence: list, analytics: dict) -> str:
-        sentiment = analytics.get("sentiment", {})
-        score = sentiment.get("average_score", 0.5)
-        label = sentiment.get("overall_label", "neutral")
-        return f"""**Observed:** Overall sentiment is **{label}** (score: {score:.2f}) across {analytics.get('record_count', 0)} signals.
-
-**Evidence:** {len(evidence)} correlation signals support this assessment.
-
-**Recommended:** Specify a domain (consumer, financial, creator) for deeper analysis."""
