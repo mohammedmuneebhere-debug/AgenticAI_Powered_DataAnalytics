@@ -1,4 +1,4 @@
-"""Social Intelligence Agent — sentiment, trends, demographics, graph analytics."""
+"""Social Intelligence Agent — sentiment, trends, topics, regional interest, graph analytics."""
 
 from typing import Any
 
@@ -6,7 +6,6 @@ from ml.sentiment.analyzer import SentimentAnalyzer
 from ml.emotion.analyzer import EmotionAnalyzer
 from ml.topics.detector import TopicDetector
 from ml.trends.detector import TrendDetector
-from ml.demographics.segmenter import DemographicSegmenter
 from graph.analyzer import GraphAnalyzer
 
 
@@ -18,7 +17,6 @@ class SocialIntelligenceAgent:
         self.emotion = EmotionAnalyzer()
         self.topics = TopicDetector()
         self.trends = TrendDetector()
-        self.demographics = DemographicSegmenter()
         self.graph = GraphAnalyzer()
 
     async def analyze(self, dataset: dict[str, Any], capabilities: list[str]) -> dict[str, Any]:
@@ -63,9 +61,6 @@ class SocialIntelligenceAgent:
         google_trends = self._google_trends_analysis(records)
         if google_trends["interest_by_region"] or google_trends["related_topics"] or google_trends["related_queries"]:
             results["google_trends"] = google_trends
-
-        if "demographics" in capabilities:
-            results["demographics"] = self.demographics.segment(records)
 
         if any(c in capabilities for c in ["graph", "propagation", "influence"]):
             results["network"] = self.graph.analyze(records)

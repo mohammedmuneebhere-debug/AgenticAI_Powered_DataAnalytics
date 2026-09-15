@@ -16,6 +16,7 @@ import SourceContributionModule from "./SourceContributionModule";
 import NetworkIntelligenceModule from "./NetworkIntelligenceModule";
 import AudienceSegmentsModule from "./AudienceSegmentsModule";
 import ProvenanceModule from "./ProvenanceModule";
+import RelevantPostsModule from "./RelevantPostsModule";
 import DashboardFooter from "./DashboardFooter";
 
 export default function DashboardMode() {
@@ -84,8 +85,11 @@ export default function DashboardMode() {
         {/* Module F: Network Intelligence & Key Clusters (6 cols) */}
         <NetworkIntelligenceModule data={normalizedData} />
 
-        {/* Module G: Estimated Audience Segments (6 cols) */}
+        {/* Module G: Estimated Audience Segments (interim: real Google Trends regional interest; real author-demographic segmentation comes later) (6 cols) */}
         <AudienceSegmentsModule data={normalizedData} />
+
+        {/* Module H: Most Relevant X Posts (6 cols) */}
+        <RelevantPostsModule data={normalizedData} />
 
         {/* Module I: Insight Verification & Data Provenance (6 cols) */}
         <ProvenanceModule data={normalizedData} />

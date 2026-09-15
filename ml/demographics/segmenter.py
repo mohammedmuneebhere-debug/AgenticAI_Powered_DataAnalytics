@@ -1,5 +1,15 @@
 """Aggregate probabilistic demographic segmentation."""
 
+# FUTURE: Real audience segmentation is planned once author-demographic
+# extraction is available (Apify actor author metadata: followers,
+# verified status, bio, location). Until then this module is DORMANT —
+# it is not imported anywhere. Interim audience signal shown in the
+# dashboard: Google Trends regional interest.
+#
+# TODO(reimplement): wire this into SocialIntelligenceAgent (capability
+# "demographics"), the offline composer, and AudienceSegmentsModule once
+# real author data flows through the pipeline.
+
 from typing import Any
 
 

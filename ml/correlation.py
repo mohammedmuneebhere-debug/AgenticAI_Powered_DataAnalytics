@@ -34,14 +34,16 @@ class EvidenceCorrelationEngine:
                 "source": "trend_detector",
             })
 
-        demographics = social_analytics.get("demographics", {})
-        for seg in demographics.get("segments", [])[:2]:
+        # Regional interest from real Google Trends data (replaces the removed
+        # fake demographic segmenter as the audience/geography signal).
+        google_trends = social_analytics.get("google_trends", {})
+        for region in google_trends.get("interest_by_region", [])[:2]:
             evidence.append({
-                "type": "demographic",
-                "label": seg["label"],
-                "value": f"{seg['percentage']}%",
-                "confidence": seg.get("confidence", 0.6),
-                "source": "demographic_segmenter",
+                "type": "regional",
+                "label": f"Search interest: {region.get('location', 'unknown')}",
+                "value": str(region.get("value", 0)),
+                "confidence": 0.9,
+                "source": "google_trends",
             })
 
         network = social_analytics.get("network", {})

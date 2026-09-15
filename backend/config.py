@@ -1,13 +1,23 @@
-from pydantic_settings import BaseSettings
 from functools import lru_cache
+
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
+    # NOTE: an invalid OPENAI_API_KEY once leaked in via Windows *system*
+    # environment variables (OS env beats .env in pydantic's default source
+    # order, so the stale key silently overrode the project config).
+    # backend/main.py neutralizes leaked OS-env keys at startup; keep API
+    # keys in `.env` — it is the single source of truth.
     openai_api_key: str = ""
     llm_model: str = "gpt-4o-mini"
     # Local Ollama instance (fully configurable via env)
     ollama_base_url: str = "http://localhost:11434"
     ollama_model: str = "llama3.2"
+    # How long Ollama keeps a model loaded after a request (e.g. "30m", "1h",
+    # "-1" = forever). Prevents cold-start stalls on the first request after
+    # an idle period.
+    ollama_keep_alive: str = "30m"
     # When no OpenAI key is configured, automatically try local Ollama before
     # resorting to the offline analytics composer (true/false)
     ollama_auto_fallback: bool = True

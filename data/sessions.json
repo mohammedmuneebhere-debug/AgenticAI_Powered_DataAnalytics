@@ -1180,23 +1180,23 @@
         "last_domain": "general",
         "owner_user_id": "799e9094-5302-480f-97bd-96325c474e14"
       },
-      "59253bc6-b302-4526-8b44-b41b28dd8155": {
-        "id": "59253bc6-b302-4526-8b44-b41b28dd8155",
-        "title": "GTA 6",
-        "created_at": "2026-09-14T12:38:31.469477+00:00",
-        "updated_at": "2026-09-14T12:38:31.490403+00:00",
+      "9a8464fc-cf27-42d3-9abc-37a14dc102bf": {
+        "id": "9a8464fc-cf27-42d3-9abc-37a14dc102bf",
+        "title": "Valorant new update",
+        "created_at": "2026-09-15T17:26:02.949636+00:00",
+        "updated_at": "2026-09-15T17:28:24.467006+00:00",
         "messages": [
           {
-            "id": "9541ce97-1e31-4ff3-86a7-d2f6f624a308",
+            "id": "834b463f-187b-4960-9767-7ecaece26702",
             "role": "user",
-            "content": "GTA 6",
+            "content": "Valorant new update",
             "metadata": {},
-            "created_at": "2026-09-14T12:38:31.469477+00:00"
+            "created_at": "2026-09-15T17:26:02.949636+00:00"
           },
           {
-            "id": "0b776fef-b869-4af1-95df-0f4316d0fbaa",
+            "id": "624b1999-a715-44c8-bdea-689f7c8215a7",
             "role": "assistant",
-            "content": "**Domain:** General Social Intelligence\n\n**General Social Intelligence Domain Scope:**\n\nThe General Social Intelligence domain encompasses the ability to understand and navigate social interactions, including emotional intelligence, social norms, and relationships.\n\n**Observed:**\n\nBased on the provided data, the overall sentiment towards GTA 6 is neutral, with a confidence level of 0.72. The sentiment analysis tool detected a dominant emotion of excitement, with a confidence level of 0.65. The social media buzz around GTA 6 is evident, with many users expressing their enthusiasm and excitement for the game.\n\n**Inferred:**\n\nFrom the observed sentiment and emotional tone, it can be inferred that the gaming community is eagerly anticipating the release of GTA 6. The excitement and enthusiasm expressed by fans suggest that the game is generating significant social interest and engagement.\n\n**Predicted:**\n\nBased on the observed and inferred trends, it is predicted that the social media conversation around GTA 6 will continue to build momentum in the coming weeks and months leading up to its release. The dominant emotion of excitement will likely persist, with fans eagerly sharing their thoughts, theories, and reactions to the game.\n\n**Recommended:**\n\nTo maximize the social impact of GTA 6, Rockstar Games and the gaming community should leverage the excitement and enthusiasm surrounding the game. This could involve engaging with fans on social media, sharing behind-the-scenes content, and fostering a sense of community and shared experience among players. By doing so, the game's release can be made even more anticipated and enjoyable for fans.\n\n**Evidence:**\n\nThe evidence for this analysis comes from the provided data, including the sentiment analysis, emotional tone, and social media buzz around GTA 6. The data suggests that the game is generating significant social interest and engagement, and that the gaming community is eagerly anticipating its release.\n\n**Top 3 relevant news from NewsAPI:**\n1. [6 Takeaways From the GTA VI Extended Look](https://www.wired.com/story/5-takeaways-from-the-gta-vi-extended-look/) \u2014 Wired\n   \u2018Grand Theft Auto VI\u2019 is nigh. Here\u2019s what the developer revealed about its highly anticipated game.\n2. [What we know after the big Grand Theft Auto 6 preview](https://www.bbc.co.uk/news/articles/c3d7exngd5no) \u2014 BBC News\n   The official look at the blockbuster video game leaves fans and critics impressed.\n3. [GTA 6 leaks - a nightmare or a blip for the biggest video game of the year?](https://www.bbc.co.uk/news/articles/c07r3183gn3o) \u2014 BBC News\n   Clips appearing to show the highly anticipated game have appeared online, but will they really hurt it?",
+            "content": "**Domain:** General Social Intelligence\n\nDomain Scope: General Social Intelligence analysis of community trends and sentiment regarding Valorant updates.\n\n**Observed**\n*   **Current Trends:** There is high velocity in social discourse surrounding \"new\" (2.40), \"valorant\" (2.10), and \"updates\" (1.50) [Source: trend_detector].\n*   **Recent Content:** Official communications highlight Patch 13.02, which includes changes to Phoenix's ultimate, new maps for Retakes, and the \"NEO FRONTIER\" skin reveal [Source: https://playvalorant.com/en-us/news/game-updates/].\n*   **Major Announcements:** A significant 2026 update has been teased, featuring a new game mode, a new rifle, and new systems [Source: https://playvalorant.com/en-us/news/].\n*   **Community Leaks/News:** Social media accounts are circulating a first look at a new gun called the \"Warden\" [Source: https://x.com/ValorantUpdated].\n*   **Sentiment:** The overall community sentiment is currently categorized as neutral with a confidence level of 0.72 [Source: sentiment_model].\n\n**Inferred**\n*   **Community Anticipation:** Despite a \"neutral\" statistical sentiment, the dominant emotion is identified as \"excitement,\" likely driven by the introduction of new weaponry (Warden) and the \"biggest update of 2026\" [Source: Analytics Summary].\n*   **Update Cadence:** The community expects a consistent rhythm of updates, as patches typically arrive every two weeks [Source: https://valorant.fandom.com/wiki/Patch_Notes].\n\n**Predicted**\n*   **Engagement Spike:** Social velocity is likely to increase further as the \"biggest update of 2026\" transitions from a teaser to a full release, specifically regarding the new rifle and game mode.\n*   **Sentiment Shift:** Neutral sentiment may shift toward positive or negative once the \"Warden\" gun and new systems are playable and their balance is assessed by the player base.\n\n**Recommended**\n*   **Monitoring:** Track the specific reception of the \"Warden\" rifle and the Phoenix ultimate change to identify if the neutral sentiment shifts toward frustration or support.\n*   **Content Focus:** Align community engagement strategies around the \"biggest update of 2026\" themes (new mode/systems) to capitalize on the current trend velocity.",
             "metadata": {
               "intent": "general",
               "domain": "general",
@@ -1225,9 +1225,7 @@
               ],
               "sources_used": [
                 "google_search",
-                "google_trends",
-                "x_scraper",
-                "news"
+                "google_trends"
               ],
               "evidence": [
                 {
@@ -1239,9 +1237,23 @@
                 },
                 {
                   "type": "semantic",
-                  "label": "Trend: btc etf",
-                  "value": "velocity=0.30",
-                  "confidence": 0.6,
+                  "label": "Trend: new",
+                  "value": "velocity=2.40",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: valorant",
+                  "value": "velocity=2.10",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: updates",
+                  "value": "velocity=1.50",
+                  "confidence": 0.9,
                   "source": "trend_detector"
                 }
               ],
@@ -1251,27 +1263,9 @@
                   "title": "Sentiment Over Time",
                   "data": {
                     "labels": [
-                      "2026-08-19",
-                      "2026-08-21",
-                      "2026-08-24",
-                      "2026-08-25",
-                      "2026-08-26",
-                      "2026-08-27",
-                      "2026-08-28",
-                      "2026-08-30",
-                      "2026-09-01",
-                      "2026-09-14"
+                      "2026-09-15"
                     ],
                     "values": [
-                      0.5,
-                      0.55,
-                      0.5,
-                      0.5,
-                      0.5,
-                      0.5,
-                      0.5,
-                      0.65,
-                      0.5,
                       0.5
                     ]
                   }
@@ -1281,55 +1275,18 @@
                   "title": "Top Trends",
                   "data": {
                     "labels": [
-                      "btc etf"
+                      "new",
+                      "valorant",
+                      "updates",
+                      "game",
+                      "patch"
                     ],
                     "values": [
-                      0.3
-                    ]
-                  }
-                },
-                {
-                  "type": "source_cards",
-                  "title": "NewsAPI Results",
-                  "data": {
-                    "source": "news",
-                    "items": [
-                      {
-                        "title": "6 Takeaways From the GTA VI Extended Look",
-                        "description": "\u2018Grand Theft Auto VI\u2019 is nigh. Here\u2019s what the developer revealed about its highly anticipated game.",
-                        "source": "Wired",
-                        "url": "https://www.wired.com/story/5-takeaways-from-the-gta-vi-extended-look/"
-                      },
-                      {
-                        "title": "What we know after the big Grand Theft Auto 6 preview",
-                        "description": "The official look at the blockbuster video game leaves fans and critics impressed.",
-                        "source": "BBC News",
-                        "url": "https://www.bbc.co.uk/news/articles/c3d7exngd5no"
-                      },
-                      {
-                        "title": "GTA 6 leaks - a nightmare or a blip for the biggest video game of the year?",
-                        "description": "Clips appearing to show the highly anticipated game have appeared online, but will they really hurt it?",
-                        "source": "BBC News",
-                        "url": "https://www.bbc.co.uk/news/articles/c07r3183gn3o"
-                      },
-                      {
-                        "title": "Rockstar Games breaks silence on Grand Theft Auto 6 leaks",
-                        "description": "The game developer says the unauthorised footage has caused \"heartbreak\" for those working on the title.",
-                        "source": "BBC News",
-                        "url": "https://www.bbc.co.uk/news/articles/c62eg71e1z2o"
-                      },
-                      {
-                        "title": "GTA 6 Leaks Prompt Take-Two to Seek Subpoenas for Microsoft, Discord Data",
-                        "description": "The requests target Discord accounts and a GitHub repository connected to the ongoing GTA 6 leak investigation.",
-                        "source": "CNET",
-                        "url": "https://www.cnet.com/tech/gta-6-leaks-prompt-take-two-to-seek-subpoenas-for-microsoft-discord-data/"
-                      },
-                      {
-                        "title": "Get Excited for Grand Theft Auto 6 By Watching an Extended Preview on Aug. 27",
-                        "description": "Netflix subscribers can watch the extended preview of GTA 6 a few hours before everyone else, but patient gamers can stream it for free later.",
-                        "source": "CNET",
-                        "url": "https://www.cnet.com/tech/gaming/get-excited-for-grand-theft-auto-6-by-watching-an-extended-preview-on-aug-27/"
-                      }
+                      2.4,
+                      2.1,
+                      1.5,
+                      1.2,
+                      1.2
                     ]
                   }
                 },
@@ -1340,199 +1297,445 @@
                     "source": "google_search",
                     "items": [
                       {
-                        "title": "Rockstar Games: Grand Theft Auto VI \u2014 Grand Theft Auto VI is Now Set to Launch November 19, 2026 ... Get Rockstar PropagandaGet the latest game announcements, updates on special events and offers, and ...",
-                        "description": "Rockstar Games: Grand Theft Auto VI \u2014 Grand Theft Auto VI is Now Set to Launch November 19, 2026 ... Get Rockstar PropagandaGet the latest game announcements, updates on special events and offers, and ...",
-                        "source": "Rockstar Games",
-                        "url": "https://www.rockstargames.com/VI/en-US"
+                        "title": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/27/2026. NEO FRONTIER Skin Reveal Trailer.",
+                        "description": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/27/2026. NEO FRONTIER Skin Reveal Trailer.",
+                        "source": "VALORANT",
+                        "url": "https://playvalorant.com/en-us/news/game-updates/"
                       },
                       {
-                        "title": "Grand Theft Auto VI Trailer 1 \u2014 Grand Theft Auto VI Trailer 2. Rockstar Games \u00b7 182M views ; GTA 6 Trailer 2 but it's GTA 5. quint \u00b7 904K views ; FIRST OFFICIAL GTA 6 GAMEPLAY IS ...",
-                        "description": "Grand Theft Auto VI Trailer 1 \u2014 Grand Theft Auto VI Trailer 2. Rockstar Games \u00b7 182M views ; GTA 6 Trailer 2 but it's GTA 5. quint \u00b7 904K views ; FIRST OFFICIAL GTA 6 GAMEPLAY IS ...",
-                        "source": "YouTube \u00b7 Rockstar Games",
-                        "url": "https://www.youtube.com/watch?v=QdBZY2fkU-0"
+                        "title": "Valorant Updates (@ValorantUpdated ... \u2014 Updated Valorant News, Guides, Leaks, and everything in between for your entertainment and enjoyment. FIRST LOOK AT THE NEW GUN: WARDEN. Sep 13 NEW GUN: Warden",
+                        "description": "Valorant Updates (@ValorantUpdated ... \u2014 Updated Valorant News, Guides, Leaks, and everything in between for your entertainment and enjoyment. FIRST LOOK AT THE NEW GUN: WARDEN. Sep 13 NEW GUN: Warden",
+                        "source": "X \u00b7 ValorantUpdated",
+                        "url": "https://x.com/ValorantUpdated"
                       },
                       {
-                        "title": "Grand Theft Auto VI \u2014 Grand Theft Auto VI was formally revealed in December 2023. Following two delays and further leaks, it is scheduled to be released on 19 November 2026 for the ...",
-                        "description": "Grand Theft Auto VI \u2014 Grand Theft Auto VI was formally revealed in December 2023. Following two delays and further leaks, it is scheduled to be released on 19 November 2026 for the ...",
-                        "source": "Wikipedia",
-                        "url": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI"
+                        "title": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 27/07/2026. NEO FRONTIER Skin Reveal Trailer.",
+                        "description": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 27/07/2026. NEO FRONTIER Skin Reveal Trailer.",
+                        "source": "VALORANT",
+                        "url": "https://playvalorant.com/en-gb/news/game-updates/"
                       },
                       {
-                        "title": "Grand Theft Auto VI - PS5 Games \u2014 Grand Theft Auto VI is released for PlayStation\u00ae5 and PS5\u00ae Pro on November 19, 2026. Will Grand Theft Auto VI be playable on PlayStation\u00ae4 ...",
-                        "description": "Grand Theft Auto VI - PS5 Games \u2014 Grand Theft Auto VI is released for PlayStation\u00ae5 and PS5\u00ae Pro on November 19, 2026. Will Grand Theft Auto VI be playable on PlayStation\u00ae4 ...",
-                        "source": "PlayStation",
-                        "url": "https://www.playstation.com/en-us/games/grand-theft-auto-vi/"
+                        "title": "Patch Notes - Valorant Wiki - Fandom \u2014 Typically, a new patch arrives for VALORANT every two weeks, with each season containing around 22-24 patches (episode formats had around 11-12 patches).",
+                        "description": "Patch Notes - Valorant Wiki - Fandom \u2014 Typically, a new patch arrives for VALORANT every two weeks, with each season containing around 22-24 patches (episode formats had around 11-12 patches).",
+                        "source": "Valorant Wiki",
+                        "url": "https://valorant.fandom.com/wiki/Patch_Notes"
                       },
                       {
-                        "title": "Grand Theft Auto VI \u2014 Given how reactive the world seems to be this time around in GTA 6 it's going to be a complete blast playing with both characters together!",
-                        "description": "Grand Theft Auto VI \u2014 Given how reactive the world seems to be this time around in GTA 6 it's going to be a complete blast playing with both characters together!",
-                        "source": "Reddit \u00b7 r/GTA6",
-                        "url": "https://www.reddit.com/r/GTA6/"
+                        "title": "News \u2014 Insane new mode, new rifle, new systems. Get a look at VALORANT's biggest update of 2026 with the help of some glitched out devs. Esports. 9/11/2026.",
+                        "description": "News \u2014 Insane new mode, new rifle, new systems. Get a look at VALORANT's biggest update of 2026 with the help of some glitched out devs. Esports. 9/11/2026.",
+                        "source": "VALORANT",
+                        "url": "https://playvalorant.com/en-us/news/"
                       }
                     ]
                   }
                 }
               ],
               "provenance": {
-                "dataset_hash": "1fd59148b1e51eab77a48e649d6474a8b6b9a0692401ea4dcd8ebab3a71602b8",
-                "insight_hash": "5fc5319de342a84cd0af7ebb3ab1ba9c38e1c12d7eb0d17543095f5846501f4b",
-                "evidence_hash": "5d38cde822a60f94097ccb315ce433251f1c59a9c74465de8284f6faef545179",
-                "model_version": "ollama:llama3.2",
+                "dataset_hash": "554a626467e896b06a64346de6ef23661fe23f195a84d23fabd2fb74f3d7e1ec",
+                "insight_hash": "a8bd2962184a1f07a002230cad1dc4773919ed1826f994249258aaec742caf11",
+                "evidence_hash": "7417d5729da1d00fe98422f85cc6b04fbdf8f3315095bb11ac51b6185c28dafb",
+                "model_version": "ollama:gemma4:31b-cloud",
                 "analysis_version": "socialiq-0.1.0",
-                "timestamp": "2026-09-14 12:38:31.481005+00:00",
-                "blockchain_tx_id": "15d215c3-3bd"
+                "timestamp": "2026-09-15 17:26:02.959446+00:00",
+                "blockchain_tx_id": "e2b1a0f6-94a"
               },
-              "news_articles": [
-                {
-                  "title": "6 Takeaways From the GTA VI Extended Look",
-                  "description": "\u2018Grand Theft Auto VI\u2019 is nigh. Here\u2019s what the developer revealed about its highly anticipated game.",
-                  "source": "Wired",
-                  "published_at": "2026-08-27T21:30:28Z",
-                  "url": "https://www.wired.com/story/5-takeaways-from-the-gta-vi-extended-look/"
-                },
-                {
-                  "title": "What we know after the big Grand Theft Auto 6 preview",
-                  "description": "The official look at the blockbuster video game leaves fans and critics impressed.",
-                  "source": "BBC News",
-                  "published_at": "2026-08-27T22:10:05Z",
-                  "url": "https://www.bbc.co.uk/news/articles/c3d7exngd5no"
-                },
-                {
-                  "title": "GTA 6 leaks - a nightmare or a blip for the biggest video game of the year?",
-                  "description": "Clips appearing to show the highly anticipated game have appeared online, but will they really hurt it?",
-                  "source": "BBC News",
-                  "published_at": "2026-08-21T23:13:00Z",
-                  "url": "https://www.bbc.co.uk/news/articles/c07r3183gn3o"
-                }
-              ],
+              "news_articles": [],
+              "top_posts": [],
               "analytics": {
-                "record_count": 41,
+                "record_count": 5,
                 "source_counts": {
                   "google_search": 5,
-                  "google_trends": 21,
-                  "x_scraper": 20,
-                  "news": 16
+                  "google_trends": 28
                 },
                 "source_content": {
-                  "news": [
-                    {
-                      "title": "6 Takeaways From the GTA VI Extended Look",
-                      "description": "\u2018Grand Theft Auto VI\u2019 is nigh. Here\u2019s what the developer revealed about its highly anticipated game.",
-                      "source": "Wired",
-                      "url": "https://www.wired.com/story/5-takeaways-from-the-gta-vi-extended-look/"
-                    },
-                    {
-                      "title": "What we know after the big Grand Theft Auto 6 preview",
-                      "description": "The official look at the blockbuster video game leaves fans and critics impressed.",
-                      "source": "BBC News",
-                      "url": "https://www.bbc.co.uk/news/articles/c3d7exngd5no"
-                    },
-                    {
-                      "title": "GTA 6 leaks - a nightmare or a blip for the biggest video game of the year?",
-                      "description": "Clips appearing to show the highly anticipated game have appeared online, but will they really hurt it?",
-                      "source": "BBC News",
-                      "url": "https://www.bbc.co.uk/news/articles/c07r3183gn3o"
-                    },
-                    {
-                      "title": "Rockstar Games breaks silence on Grand Theft Auto 6 leaks",
-                      "description": "The game developer says the unauthorised footage has caused \"heartbreak\" for those working on the title.",
-                      "source": "BBC News",
-                      "url": "https://www.bbc.co.uk/news/articles/c62eg71e1z2o"
-                    },
-                    {
-                      "title": "GTA 6 Leaks Prompt Take-Two to Seek Subpoenas for Microsoft, Discord Data",
-                      "description": "The requests target Discord accounts and a GitHub repository connected to the ongoing GTA 6 leak investigation.",
-                      "source": "CNET",
-                      "url": "https://www.cnet.com/tech/gta-6-leaks-prompt-take-two-to-seek-subpoenas-for-microsoft-discord-data/"
-                    },
-                    {
-                      "title": "Get Excited for Grand Theft Auto 6 By Watching an Extended Preview on Aug. 27",
-                      "description": "Netflix subscribers can watch the extended preview of GTA 6 a few hours before everyone else, but patient gamers can stream it for free later.",
-                      "source": "CNET",
-                      "url": "https://www.cnet.com/tech/gaming/get-excited-for-grand-theft-auto-6-by-watching-an-extended-preview-on-aug-27/"
-                    }
-                  ],
+                  "news": [],
                   "google_search": [
                     {
-                      "title": "Rockstar Games: Grand Theft Auto VI \u2014 Grand Theft Auto VI is Now Set to Launch November 19, 2026 ... Get Rockstar PropagandaGet the latest game announcements, updates on special events and offers, and ...",
-                      "description": "Rockstar Games: Grand Theft Auto VI \u2014 Grand Theft Auto VI is Now Set to Launch November 19, 2026 ... Get Rockstar PropagandaGet the latest game announcements, updates on special events and offers, and ...",
-                      "source": "Rockstar Games",
-                      "url": "https://www.rockstargames.com/VI/en-US"
+                      "title": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/27/2026. NEO FRONTIER Skin Reveal Trailer.",
+                      "description": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/27/2026. NEO FRONTIER Skin Reveal Trailer.",
+                      "source": "VALORANT",
+                      "url": "https://playvalorant.com/en-us/news/game-updates/"
                     },
                     {
-                      "title": "Grand Theft Auto VI Trailer 1 \u2014 Grand Theft Auto VI Trailer 2. Rockstar Games \u00b7 182M views ; GTA 6 Trailer 2 but it's GTA 5. quint \u00b7 904K views ; FIRST OFFICIAL GTA 6 GAMEPLAY IS ...",
-                      "description": "Grand Theft Auto VI Trailer 1 \u2014 Grand Theft Auto VI Trailer 2. Rockstar Games \u00b7 182M views ; GTA 6 Trailer 2 but it's GTA 5. quint \u00b7 904K views ; FIRST OFFICIAL GTA 6 GAMEPLAY IS ...",
-                      "source": "YouTube \u00b7 Rockstar Games",
-                      "url": "https://www.youtube.com/watch?v=QdBZY2fkU-0"
+                      "title": "Valorant Updates (@ValorantUpdated ... \u2014 Updated Valorant News, Guides, Leaks, and everything in between for your entertainment and enjoyment. FIRST LOOK AT THE NEW GUN: WARDEN. Sep 13 NEW GUN: Warden",
+                      "description": "Valorant Updates (@ValorantUpdated ... \u2014 Updated Valorant News, Guides, Leaks, and everything in between for your entertainment and enjoyment. FIRST LOOK AT THE NEW GUN: WARDEN. Sep 13 NEW GUN: Warden",
+                      "source": "X \u00b7 ValorantUpdated",
+                      "url": "https://x.com/ValorantUpdated"
                     },
                     {
-                      "title": "Grand Theft Auto VI \u2014 Grand Theft Auto VI was formally revealed in December 2023. Following two delays and further leaks, it is scheduled to be released on 19 November 2026 for the ...",
-                      "description": "Grand Theft Auto VI \u2014 Grand Theft Auto VI was formally revealed in December 2023. Following two delays and further leaks, it is scheduled to be released on 19 November 2026 for the ...",
-                      "source": "Wikipedia",
-                      "url": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI"
+                      "title": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 27/07/2026. NEO FRONTIER Skin Reveal Trailer.",
+                      "description": "Game Updates \u2014 VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 27/07/2026. NEO FRONTIER Skin Reveal Trailer.",
+                      "source": "VALORANT",
+                      "url": "https://playvalorant.com/en-gb/news/game-updates/"
                     },
                     {
-                      "title": "Grand Theft Auto VI - PS5 Games \u2014 Grand Theft Auto VI is released for PlayStation\u00ae5 and PS5\u00ae Pro on November 19, 2026. Will Grand Theft Auto VI be playable on PlayStation\u00ae4 ...",
-                      "description": "Grand Theft Auto VI - PS5 Games \u2014 Grand Theft Auto VI is released for PlayStation\u00ae5 and PS5\u00ae Pro on November 19, 2026. Will Grand Theft Auto VI be playable on PlayStation\u00ae4 ...",
-                      "source": "PlayStation",
-                      "url": "https://www.playstation.com/en-us/games/grand-theft-auto-vi/"
+                      "title": "Patch Notes - Valorant Wiki - Fandom \u2014 Typically, a new patch arrives for VALORANT every two weeks, with each season containing around 22-24 patches (episode formats had around 11-12 patches).",
+                      "description": "Patch Notes - Valorant Wiki - Fandom \u2014 Typically, a new patch arrives for VALORANT every two weeks, with each season containing around 22-24 patches (episode formats had around 11-12 patches).",
+                      "source": "Valorant Wiki",
+                      "url": "https://valorant.fandom.com/wiki/Patch_Notes"
                     },
                     {
-                      "title": "Grand Theft Auto VI \u2014 Given how reactive the world seems to be this time around in GTA 6 it's going to be a complete blast playing with both characters together!",
-                      "description": "Grand Theft Auto VI \u2014 Given how reactive the world seems to be this time around in GTA 6 it's going to be a complete blast playing with both characters together!",
-                      "source": "Reddit \u00b7 r/GTA6",
-                      "url": "https://www.reddit.com/r/GTA6/"
+                      "title": "News \u2014 Insane new mode, new rifle, new systems. Get a look at VALORANT's biggest update of 2026 with the help of some glitched out devs. Esports. 9/11/2026.",
+                      "description": "News \u2014 Insane new mode, new rifle, new systems. Get a look at VALORANT's biggest update of 2026 with the help of some glitched out devs. Esports. 9/11/2026.",
+                      "source": "VALORANT",
+                      "url": "https://playvalorant.com/en-us/news/"
                     }
                   ]
                 },
                 "live_sources": [
                   "google_search",
-                  "google_trends",
-                  "x_scraper",
-                  "news"
+                  "google_trends"
                 ],
                 "sentiment": {
                   "overall_label": "neutral",
-                  "average_score": 0.507,
+                  "average_score": 0.5,
                   "confidence": 0.72,
                   "distribution": {
-                    "positive": 2,
+                    "positive": 0,
                     "negative": 0,
-                    "neutral": 39
+                    "neutral": 5
                   },
                   "scores": [
                     0.5,
                     0.5,
                     0.5,
                     0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.5,
-                    0.65,
-                    0.65,
+                    0.5
+                  ]
+                },
+                "emotion": {
+                  "dominant_emotion": "excitement",
+                  "distribution": {
+                    "excitement": 0,
+                    "anxiety": 0,
+                    "support": 0,
+                    "frustration": 0
+                  },
+                  "confidence": 0.65
+                },
+                "temporal": {
+                  "timeline": [
+                    {
+                      "period": "2026-09-15",
+                      "sentiment_score": 0.5,
+                      "signal_count": 5,
+                      "distribution": {
+                        "positive": 0,
+                        "neutral": 5,
+                        "negative": 0
+                      }
+                    }
+                  ],
+                  "spike_detected": false
+                },
+                "topics": {
+                  "topics": [
+                    {
+                      "term": "new",
+                      "count": 8
+                    },
+                    {
+                      "term": "valorant",
+                      "count": 7
+                    },
+                    {
+                      "term": "updates",
+                      "count": 5
+                    },
+                    {
+                      "term": "game",
+                      "count": 4
+                    },
+                    {
+                      "term": "patch",
+                      "count": 4
+                    },
+                    {
+                      "term": "notes",
+                      "count": 3
+                    },
+                    {
+                      "term": "phoenix",
+                      "count": 2
+                    },
+                    {
+                      "term": "ult",
+                      "count": 2
+                    },
+                    {
+                      "term": "change",
+                      "count": 2
+                    },
+                    {
+                      "term": "maps",
+                      "count": 2
+                    }
+                  ],
+                  "topic_count": 10
+                },
+                "trends": {
+                  "top_trends": [
+                    {
+                      "topic": "new",
+                      "mentions": 8,
+                      "engagement": 0,
+                      "velocity": 2.4,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "valorant",
+                      "mentions": 7,
+                      "engagement": 0,
+                      "velocity": 2.1,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "updates",
+                      "mentions": 5,
+                      "engagement": 0,
+                      "velocity": 1.5,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "game",
+                      "mentions": 4,
+                      "engagement": 0,
+                      "velocity": 1.2,
+                      "confidence": 0.8
+                    },
+                    {
+                      "topic": "patch",
+                      "mentions": 4,
+                      "engagement": 0,
+                      "velocity": 1.2,
+                      "confidence": 0.8
+                    }
+                  ],
+                  "trend_count": 5
+                }
+              }
+            },
+            "created_at": "2026-09-15T17:26:02.964957+00:00"
+          },
+          {
+            "id": "7c8c3c54-a7c5-4baa-965f-6dbec530b538",
+            "role": "user",
+            "content": "Valorant New Update topic analysis and social signal telemetry. Include Google Trends interest by region, related topics, and related queries.",
+            "metadata": {},
+            "created_at": "2026-09-15T17:27:41.545855+00:00"
+          },
+          {
+            "id": "39075439-2cb3-4f93-a949-fcb6cf3924b7",
+            "role": "assistant",
+            "content": "**Domain:** General Social Intelligence\n\nDomain Scope: General Social Intelligence analysis of community trends and social signals regarding Valorant updates.\n\n**Observed**\n*   **Social Signal Velocity:** There is a high positive velocity for terms related to \"valorant\" (3.60), \"patch\" (2.10), and \"updates\" (1.80) [Source: trend_detector].\n*   **Sentiment & Emotion:** The overall community sentiment is classified as \"neutral\" with a confidence of 0.72 [Source: sentiment_model]. The dominant emotion detected is \"support\" [Source: Analytics Summary].\n*   **Core Discussion Topics:** The most frequent terms in the social discourse are \"valorant\" (12 mentions), \"patch\" (7 mentions), and \"updates\" (6 mentions) [Source: Analytics Summary].\n*   **Content Focus:** Social signals are centering on \"Season 2025\" developments, agent balance, ranked rewards, and map rotations [Source: YouTube \u00b7 VALORANT, Reddit \u00b7 r/VALORANT].\n\n**Inferred**\n*   **Community Engagement Pattern:** The high velocity of \"patch\" and \"notes\" relative to general \"valorant\" mentions suggests the community is currently in a \"consumption and analysis\" phase, specifically seeking technical details of changes rather than general gameplay discussion.\n*   **Stability of Reception:** The neutral sentiment combined with a \"support\" emotion suggests that while the updates may not be causing extreme excitement or outrage, the community is generally receptive to the developer's direction.\n\n**Predicted**\n*   **Short-term Signal Shift:** As players transition from reading \"patch notes\" to active gameplay, social signals are likely to shift from \"neutral\" to more polarized (positive/negative) as the actual impact of agent balance and map rotations is felt in competitive play.\n*   **Query Volume:** Search interest will likely spike around \"Agent Balance\" and \"Ranked Rewards\" as these are highlighted as primary dev update pillars [Source: YouTube \u00b7 VALORANT].\n\n**Recommended**\n*   **Monitoring Focus:** Track the transition of sentiment from \"neutral\" to \"polarized\" over the next 7\u201314 days to identify specific \"pain points\" in the new update.\n*   **Content Alignment:** Focus social engagement on \"Season 2025\" and \"Ranked Rewards,\" as these are the primary drivers of current interest and developer communication.",
+            "metadata": {
+              "intent": "trend",
+              "domain": "general",
+              "domain_label": "General Social Intelligence",
+              "entities": [
+                "general"
+              ],
+              "confidence": 0.8,
+              "workflow_used": [
+                "data",
+                "trends",
+                "sentiment",
+                "correlation",
+                "llm"
+              ],
+              "agents_used": [
+                "master",
+                "data_acquisition",
+                "data_intelligence",
+                "social_intelligence",
+                "domain_analytics",
+                "graph_analysis",
+                "visualization",
+                "insight",
+                "provenance"
+              ],
+              "sources_used": [
+                "google_search"
+              ],
+              "evidence": [
+                {
+                  "type": "statistical",
+                  "label": "Overall Sentiment",
+                  "value": "neutral",
+                  "confidence": 0.72,
+                  "source": "sentiment_model"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: valorant",
+                  "value": "velocity=3.60",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: patch",
+                  "value": "velocity=2.10",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: updates",
+                  "value": "velocity=1.80",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                }
+              ],
+              "visualizations": [
+                {
+                  "type": "sentiment_timeline",
+                  "title": "Sentiment Over Time",
+                  "data": {
+                    "labels": [
+                      "2026-09-15"
+                    ],
+                    "values": [
+                      0.5
+                    ]
+                  }
+                },
+                {
+                  "type": "trend_bars",
+                  "title": "Top Trends",
+                  "data": {
+                    "labels": [
+                      "valorant",
+                      "patch",
+                      "updates",
+                      "notes",
+                      "update"
+                    ],
+                    "values": [
+                      3.6,
+                      2.1,
+                      1.8,
+                      1.8,
+                      1.8
+                    ]
+                  }
+                },
+                {
+                  "type": "source_cards",
+                  "title": "Google Search Results",
+                  "data": {
+                    "source": "google_search",
+                    "items": [
+                      {
+                        "title": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                        "description": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                        "source": "Google Trends",
+                        "url": "https://trends.google.com/trends/"
+                      },
+                      {
+                        "title": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                        "description": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                        "source": "YouTube \u00b7 VALORANT",
+                        "url": "https://www.youtube.com/watch?v=z7oMjTZH0k4"
+                      },
+                      {
+                        "title": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                        "description": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                        "source": "YouTube \u00b7 VALORANT",
+                        "url": "https://www.youtube.com/watch?v=YpNsGFd74fk"
+                      },
+                      {
+                        "title": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                        "description": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                        "source": "VALORANT",
+                        "url": "https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-6-07/"
+                      },
+                      {
+                        "title": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                        "description": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                        "source": "Reddit \u00b7 r/VALORANT",
+                        "url": "https://www.reddit.com/r/VALORANT/comments/1cx9zua/map_rotations_replays_and_more_dev_updates/"
+                      },
+                      {
+                        "title": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                        "description": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                        "source": "ExitLag",
+                        "url": "https://www.exitlag.com/blog/valorant-patch-notes/"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "provenance": {
+                "dataset_hash": "5f2d6f723e7478fd4fc7e73b83784f51dfcf337dabd256133f2fa09a28cbd93b",
+                "insight_hash": "8cc08d52d093c929de8171a43ab882150801bb94c6df015d03b4bc33dfd2afe9",
+                "evidence_hash": "bcb789f4144c06d536e7cc172e73bf37798ee307062e2e1caeaa04fec3a48bce",
+                "model_version": "ollama:gemma4:31b-cloud",
+                "analysis_version": "socialiq-0.1.0",
+                "timestamp": "2026-09-15 17:27:41.555365+00:00",
+                "blockchain_tx_id": "a2137a50-868"
+              },
+              "news_articles": [],
+              "top_posts": [],
+              "analytics": {
+                "record_count": 9,
+                "source_counts": {
+                  "google_search": 9
+                },
+                "source_content": {
+                  "news": [],
+                  "google_search": [
+                    {
+                      "title": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                      "description": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                      "source": "Google Trends",
+                      "url": "https://trends.google.com/trends/"
+                    },
+                    {
+                      "title": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                      "description": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                      "source": "YouTube \u00b7 VALORANT",
+                      "url": "https://www.youtube.com/watch?v=z7oMjTZH0k4"
+                    },
+                    {
+                      "title": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                      "description": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                      "source": "YouTube \u00b7 VALORANT",
+                      "url": "https://www.youtube.com/watch?v=YpNsGFd74fk"
+                    },
+                    {
+                      "title": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                      "description": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                      "source": "VALORANT",
+                      "url": "https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-6-07/"
+                    },
+                    {
+                      "title": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                      "description": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                      "source": "Reddit \u00b7 r/VALORANT",
+                      "url": "https://www.reddit.com/r/VALORANT/comments/1cx9zua/map_rotations_replays_and_more_dev_updates/"
+                    },
+                    {
+                      "title": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                      "description": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                      "source": "ExitLag",
+                      "url": "https://www.exitlag.com/blog/valorant-patch-notes/"
+                    }
+                  ]
+                },
+                "live_sources": [
+                  "google_search"
+                ],
+                "sentiment": {
+                  "overall_label": "neutral",
+                  "average_score": 0.5,
+                  "confidence": 0.72,
+                  "distribution": {
+                    "positive": 0,
+                    "negative": 0,
+                    "neutral": 9
+                  },
+                  "scores": [
                     0.5,
                     0.5,
                     0.5,
@@ -1545,11 +1748,11 @@
                   ]
                 },
                 "emotion": {
-                  "dominant_emotion": "excitement",
+                  "dominant_emotion": "support",
                   "distribution": {
-                    "excitement": 2,
+                    "excitement": 0,
                     "anxiety": 0,
-                    "support": 2,
+                    "support": 1,
                     "frustration": 0
                   },
                   "confidence": 0.65
@@ -1557,102 +1760,12 @@
                 "temporal": {
                   "timeline": [
                     {
-                      "period": "2026-08-19",
+                      "period": "2026-09-15",
                       "sentiment_score": 0.5,
-                      "signal_count": 1,
+                      "signal_count": 9,
                       "distribution": {
                         "positive": 0,
-                        "neutral": 1,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-21",
-                      "sentiment_score": 0.55,
-                      "signal_count": 3,
-                      "distribution": {
-                        "positive": 1,
-                        "neutral": 2,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-24",
-                      "sentiment_score": 0.5,
-                      "signal_count": 2,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 2,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-25",
-                      "sentiment_score": 0.5,
-                      "signal_count": 1,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 1,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-26",
-                      "sentiment_score": 0.5,
-                      "signal_count": 2,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 2,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-27",
-                      "sentiment_score": 0.5,
-                      "signal_count": 3,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 3,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-28",
-                      "sentiment_score": 0.5,
-                      "signal_count": 2,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 2,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-08-30",
-                      "sentiment_score": 0.65,
-                      "signal_count": 1,
-                      "distribution": {
-                        "positive": 1,
-                        "neutral": 0,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-09-01",
-                      "sentiment_score": 0.5,
-                      "signal_count": 1,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 1,
-                        "negative": 0
-                      }
-                    },
-                    {
-                      "period": "2026-09-14",
-                      "sentiment_score": 0.5,
-                      "signal_count": 25,
-                      "distribution": {
-                        "positive": 0,
-                        "neutral": 25,
+                        "neutral": 9,
                         "negative": 0
                       }
                     }
@@ -1662,44 +1775,44 @@
                 "topics": {
                   "topics": [
                     {
-                      "term": "gta",
-                      "count": 49
+                      "term": "valorant",
+                      "count": 12
                     },
                     {
-                      "term": "grand",
-                      "count": 15
-                    },
-                    {
-                      "term": "theft",
-                      "count": 15
-                    },
-                    {
-                      "term": "auto",
-                      "count": 15
-                    },
-                    {
-                      "term": "game",
-                      "count": 10
-                    },
-                    {
-                      "term": "rockstar",
+                      "term": "patch",
                       "count": 7
                     },
                     {
-                      "term": "games",
+                      "term": "updates",
                       "count": 6
                     },
                     {
-                      "term": "trailer",
+                      "term": "notes",
                       "count": 6
                     },
                     {
-                      "term": "leaks",
+                      "term": "update",
+                      "count": 6
+                    },
+                    {
+                      "term": "dev",
                       "count": 5
                     },
                     {
-                      "term": "how",
+                      "term": "new",
                       "count": 5
+                    },
+                    {
+                      "term": "changes",
+                      "count": 4
+                    },
+                    {
+                      "term": "game",
+                      "count": 3
+                    },
+                    {
+                      "term": "full",
+                      "count": 3
                     }
                   ],
                   "topic_count": 10
@@ -1707,18 +1820,405 @@
                 "trends": {
                   "top_trends": [
                     {
-                      "topic": "btc etf",
-                      "mentions": 1,
+                      "topic": "valorant",
+                      "mentions": 12,
                       "engagement": 0,
-                      "velocity": 0.3,
-                      "confidence": 0.6
+                      "velocity": 3.6,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "patch",
+                      "mentions": 7,
+                      "engagement": 0,
+                      "velocity": 2.1,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "updates",
+                      "mentions": 6,
+                      "engagement": 0,
+                      "velocity": 1.8,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "notes",
+                      "mentions": 6,
+                      "engagement": 0,
+                      "velocity": 1.8,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "update",
+                      "mentions": 6,
+                      "engagement": 0,
+                      "velocity": 1.8,
+                      "confidence": 0.9
                     }
                   ],
-                  "trend_count": 1
+                  "trend_count": 5
                 }
               }
             },
-            "created_at": "2026-09-14T12:38:31.490403+00:00"
+            "created_at": "2026-09-15T17:27:41.561884+00:00"
+          },
+          {
+            "id": "f9bbd7fc-1ff1-4df0-8196-a15c15319b3b",
+            "role": "user",
+            "content": "Valorant New Update topic analysis and social signal telemetry. Include Google Trends interest by region, related topics, and related queries.",
+            "metadata": {},
+            "created_at": "2026-09-15T17:28:24.450989+00:00"
+          },
+          {
+            "id": "1489a0b8-fda2-486f-9f77-8739ba4a3a91",
+            "role": "assistant",
+            "content": "**Domain:** General Social Intelligence\n\nDomain Scope: General Social Intelligence analysis of community trends and social signals regarding Valorant updates.\n\n**Observed**\n*   **Social Signal Velocity:** There is a high velocity of interest surrounding \"valorant\" (3.60), \"patch\" (2.10), and \"updates\" (1.80) [Source: trend_detector].\n*   **Sentiment & Emotion:** The overall community sentiment is categorized as neutral (confidence 0.72), with a dominant emotion of \"support\" [Source: sentiment_model].\n*   **Key Discussion Pillars:** Social discourse is centered on \"patch notes,\" \"dev updates,\" \"agent balance,\" \"ranked rewards,\" and \"map rotations\" [Source: YouTube VALORANT, Reddit r/VALORANT].\n*   **Content Distribution:** Information is primarily flowing through Google Search (9 records) and X (1 record), with significant engagement on YouTube and Reddit [Source: Analytics Summary].\n\n**Inferred**\n*   **Community State:** The neutral sentiment combined with \"support\" as the dominant emotion suggests a community that is cautiously optimistic or awaiting implementation of the discussed changes rather than reacting with strong volatility.\n*   **Information Consumption Pattern:** Users are actively seeking structured data (patch notes, dev updates) to understand gameplay shifts, indicating a high level of competitive investment.\n\n**Predicted**\n*   **Trend Trajectory:** Given the high velocity of \"valorant\" and \"patch\" keywords, social volume is expected to spike immediately following the official release of the Season 2025 updates [Source: trend_detector].\n*   **Sentiment Shift:** Sentiment is likely to shift from neutral to either positive or negative once \"Agent Balance\" and \"Map Rotations\" are experienced in live gameplay, as these are high-friction topics [Source: YouTube VALORANT, Reddit r/VALORANT].\n\n**Recommended**\n*   **Engagement Strategy:** Focus community management on \"Dev Updates\" and \"Balance Overviews,\" as these are the primary drivers of current social telemetry.\n*   **Monitoring Focus:** Track the \"Ranked Rewards\" and \"New Game Modes\" topics specifically, as these typically generate the highest emotional variance in social signals.\n\n**Most relevant X posts for this query:**\n1. @unknown \u2014 *0 engagements*\n   > From KaitoEasyAPI, a reminder:Our API pricing is based on the volume of data returned. However, to ensure we can cover our costs on the Apify platform, we have a minimum charge of $X per API call,even if the response contains no results.Thus, we returned N pieces of mock data. We",
+            "metadata": {
+              "intent": "trend",
+              "domain": "general",
+              "domain_label": "General Social Intelligence",
+              "entities": [
+                "general"
+              ],
+              "confidence": 0.8,
+              "workflow_used": [
+                "data",
+                "trends",
+                "sentiment",
+                "correlation",
+                "llm"
+              ],
+              "agents_used": [
+                "master",
+                "data_acquisition",
+                "data_intelligence",
+                "social_intelligence",
+                "domain_analytics",
+                "graph_analysis",
+                "visualization",
+                "insight",
+                "provenance"
+              ],
+              "sources_used": [
+                "google_search",
+                "x_scraper"
+              ],
+              "evidence": [
+                {
+                  "type": "statistical",
+                  "label": "Overall Sentiment",
+                  "value": "neutral",
+                  "confidence": 0.72,
+                  "source": "sentiment_model"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: valorant",
+                  "value": "velocity=3.60",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: patch",
+                  "value": "velocity=2.10",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                },
+                {
+                  "type": "semantic",
+                  "label": "Trend: updates",
+                  "value": "velocity=1.80",
+                  "confidence": 0.9,
+                  "source": "trend_detector"
+                }
+              ],
+              "visualizations": [
+                {
+                  "type": "sentiment_timeline",
+                  "title": "Sentiment Over Time",
+                  "data": {
+                    "labels": [
+                      "2026-09-15"
+                    ],
+                    "values": [
+                      0.515
+                    ]
+                  }
+                },
+                {
+                  "type": "trend_bars",
+                  "title": "Top Trends",
+                  "data": {
+                    "labels": [
+                      "valorant",
+                      "patch",
+                      "updates",
+                      "notes",
+                      "update"
+                    ],
+                    "values": [
+                      3.6,
+                      2.1,
+                      1.8,
+                      1.8,
+                      1.8
+                    ]
+                  }
+                },
+                {
+                  "type": "source_cards",
+                  "title": "Google Search Results",
+                  "data": {
+                    "source": "google_search",
+                    "items": [
+                      {
+                        "title": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                        "description": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                        "source": "Google Trends",
+                        "url": "https://trends.google.com/trends/"
+                      },
+                      {
+                        "title": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                        "description": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                        "source": "YouTube \u00b7 VALORANT",
+                        "url": "https://www.youtube.com/watch?v=z7oMjTZH0k4"
+                      },
+                      {
+                        "title": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                        "description": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                        "source": "YouTube \u00b7 VALORANT",
+                        "url": "https://www.youtube.com/watch?v=YpNsGFd74fk"
+                      },
+                      {
+                        "title": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                        "description": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                        "source": "VALORANT",
+                        "url": "https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-6-07/"
+                      },
+                      {
+                        "title": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                        "description": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                        "source": "Reddit \u00b7 r/VALORANT",
+                        "url": "https://www.reddit.com/r/VALORANT/comments/1cx9zua/map_rotations_replays_and_more_dev_updates/"
+                      },
+                      {
+                        "title": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                        "description": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                        "source": "ExitLag",
+                        "url": "https://www.exitlag.com/blog/valorant-patch-notes/"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "provenance": {
+                "dataset_hash": "34638a98bc85231a6d7c31028926ea7c5e4d243a8ebf9c064e83d30b68651a6d",
+                "insight_hash": "6a7a11f30ecdbf57f5fba71459bd3a6ec789df0806f4e81e6322c32b30c589da",
+                "evidence_hash": "bcb789f4144c06d536e7cc172e73bf37798ee307062e2e1caeaa04fec3a48bce",
+                "model_version": "ollama:gemma4:31b-cloud",
+                "analysis_version": "socialiq-0.1.0",
+                "timestamp": "2026-09-15 17:28:24.461007+00:00",
+                "blockchain_tx_id": "5b7261f2-bbc"
+              },
+              "news_articles": [],
+              "top_posts": [
+                {
+                  "rank": 1,
+                  "text": "From KaitoEasyAPI, a reminder:Our API pricing is based on the volume of data returned. However, to ensure we can cover our costs on the Apify platform, we have a minimum charge of $X per API call,even if the response contains no results.Thus, we returned N pieces of mock data. We will monitor and adjust the size of N based on the infrastructure costs incurred by Apify.This helps offset the infrast",
+                  "author": "unknown",
+                  "platform": "x_scraper",
+                  "url": "",
+                  "timestamp": "2026-09-15T17:28:16.375196+00:00",
+                  "engagement_total": 0,
+                  "relevance_score": 20.0
+                }
+              ],
+              "analytics": {
+                "record_count": 10,
+                "source_counts": {
+                  "google_search": 9,
+                  "x_scraper": 1
+                },
+                "source_content": {
+                  "news": [],
+                  "google_search": [
+                    {
+                      "title": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                      "description": "Google Trends \u2014 Explore search interest of terms and topics by time, location and popularity on Google Trends.",
+                      "source": "Google Trends",
+                      "url": "https://trends.google.com/trends/"
+                    },
+                    {
+                      "title": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                      "description": "Ranked, Modes, Agent Balance, and more // Dev Updates ... \u2014 0:00 Competitive Experience: ; 0:35 Immortal and Radiant: ; 1:58 Ranked Rewards: ; 2:44 New Game Modes: ; 3:40 Balance Overview: ...",
+                      "source": "YouTube \u00b7 VALORANT",
+                      "url": "https://www.youtube.com/watch?v=z7oMjTZH0k4"
+                    },
+                    {
+                      "title": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                      "description": "What's New for Season 2025 // Dev Updates - VALORANT \u2014 Andy and the dev team are here to welcome you to a new year of VALORANT\u2014VAL's 5th year! Watch to find out what the devs are cooking up in ...",
+                      "source": "YouTube \u00b7 VALORANT",
+                      "url": "https://www.youtube.com/watch?v=YpNsGFd74fk"
+                    },
+                    {
+                      "title": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                      "description": "VALORANT Patch Notes 6.07 \u2014 Game Updates. 7/28/2026. VALORANT Patch Notes 13.02. Phoenix ult change, new maps added to Retakes, and loads of bug fixes. Game Updates. 7/14 ...",
+                      "source": "VALORANT",
+                      "url": "https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-6-07/"
+                    },
+                    {
+                      "title": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                      "description": "Map Rotations, Replays, and More // Dev Updates ... \u2014 There are a lots of issues with maps, abilities, weapons and audio visual issues to be dealt with, and introduce a lots of defects. Couple of ...",
+                      "source": "Reddit \u00b7 r/VALORANT",
+                      "url": "https://www.reddit.com/r/VALORANT/comments/1cx9zua/map_rotations_replays_and_more_dev_updates/"
+                    },
+                    {
+                      "title": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                      "description": "Valorant Update: Full Patch Notes and Changes [June 2025] \u2014 Check out the latest Valorant update with full patch notes, agent changes, weapon balances, and map tweaks. Stay ahead with all gameplay ...",
+                      "source": "ExitLag",
+                      "url": "https://www.exitlag.com/blog/valorant-patch-notes/"
+                    }
+                  ]
+                },
+                "live_sources": [
+                  "google_search",
+                  "x_scraper"
+                ],
+                "sentiment": {
+                  "overall_label": "neutral",
+                  "average_score": 0.515,
+                  "confidence": 0.72,
+                  "distribution": {
+                    "positive": 1,
+                    "negative": 0,
+                    "neutral": 9
+                  },
+                  "scores": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.65
+                  ]
+                },
+                "emotion": {
+                  "dominant_emotion": "support",
+                  "distribution": {
+                    "excitement": 1,
+                    "anxiety": 0,
+                    "support": 2,
+                    "frustration": 0
+                  },
+                  "confidence": 0.65
+                },
+                "temporal": {
+                  "timeline": [
+                    {
+                      "period": "2026-09-15",
+                      "sentiment_score": 0.515,
+                      "signal_count": 10,
+                      "distribution": {
+                        "positive": 1,
+                        "neutral": 9,
+                        "negative": 0
+                      }
+                    }
+                  ],
+                  "spike_detected": false
+                },
+                "topics": {
+                  "topics": [
+                    {
+                      "term": "valorant",
+                      "count": 12
+                    },
+                    {
+                      "term": "patch",
+                      "count": 7
+                    },
+                    {
+                      "term": "updates",
+                      "count": 6
+                    },
+                    {
+                      "term": "notes",
+                      "count": 6
+                    },
+                    {
+                      "term": "update",
+                      "count": 6
+                    },
+                    {
+                      "term": "dev",
+                      "count": 5
+                    },
+                    {
+                      "term": "new",
+                      "count": 5
+                    },
+                    {
+                      "term": "our",
+                      "count": 5
+                    },
+                    {
+                      "term": "changes",
+                      "count": 4
+                    },
+                    {
+                      "term": "data",
+                      "count": 4
+                    }
+                  ],
+                  "topic_count": 10
+                },
+                "trends": {
+                  "top_trends": [
+                    {
+                      "topic": "valorant",
+                      "mentions": 12,
+                      "engagement": 0,
+                      "velocity": 3.6,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "patch",
+                      "mentions": 7,
+                      "engagement": 0,
+                      "velocity": 2.1,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "updates",
+                      "mentions": 6,
+                      "engagement": 0,
+                      "velocity": 1.8,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "notes",
+                      "mentions": 6,
+                      "engagement": 0,
+                      "velocity": 1.8,
+                      "confidence": 0.9
+                    },
+                    {
+                      "topic": "update",
+                      "mentions": 6,
+                      "engagement": 0,
+                      "velocity": 1.8,
+                      "confidence": 0.9
+                    }
+                  ],
+                  "trend_count": 5
+                }
+              }
+            },
+            "created_at": "2026-09-15T17:28:24.467006+00:00"
           }
         ],
         "last_domain": "general",

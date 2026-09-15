@@ -54,8 +54,14 @@ WEB_SEARCH_TOOL_SPEC = {
 class InsightAgent:
     """Final LLM layer: synthesizes evidence into actionable insights."""
 
+    # After an OpenAI AuthenticationError (401/invalid key) the provider is
+    # skipped entirely for this cooldown window so every chat doesn't pay the
+    # dead-key round-trip before Ollama gets its turn.
+    OPENAI_CIRCUIT_BREAKER_SECONDS = 900  # 15 minutes
+
     def __init__(self):
         self.settings = get_settings()
+        self._openai_disabled_until: float = 0.0
 
     async def generate(
         self,
@@ -76,10 +82,12 @@ class InsightAgent:
                 model, query, evidence, analytics, intent, domain, domain_label, web_search_tool
             )
 
-        if self.settings.openai_api_key:
+        if self.settings.openai_api_key and not self._openai_circuit_open():
             return await self._llm_generate(
                 requested, query, evidence, analytics, intent, domain, domain_label, web_search_tool
             )
+        if self._openai_circuit_open():
+            logger.info("OpenAI circuit breaker open (bad key); going straight to Ollama")
 
         # No OpenAI key: try the local Ollama instance before the offline
         # composer (opt-out via OLLAMA_AUTO_FALLBACK=false).
@@ -105,6 +113,20 @@ class InsightAgent:
         if requested.startswith("ollama:"):
             return "ollama", requested.split(":", 1)[1].strip() or self.settings.ollama_model
         return "openai", requested
+
+    def _openai_circuit_open(self) -> bool:
+        import time
+
+        return time.monotonic() < self._openai_disabled_until
+
+    def _trip_openai_circuit(self) -> None:
+        import time
+
+        self._openai_disabled_until = time.monotonic() + self.OPENAI_CIRCUIT_BREAKER_SECONDS
+        logger.warning(
+            "OpenAI authentication failed - circuit breaker open for %s minutes",
+            self.OPENAI_CIRCUIT_BREAKER_SECONDS // 60,
+        )
 
     async def _ollama_available(self) -> bool:
         """Probe the configured Ollama instance (sub-second timeout)."""
@@ -194,7 +216,17 @@ class InsightAgent:
 
             header = f"**Domain:** {domain_label}\n\n"
             return {"text": header + text, "confidence": 0.85, "model_version": model}
-        except Exception:
+        except Exception as exc:
+            # Authentication failures mean the key itself is bad: retrying on
+            # the next request cannot succeed, so open the circuit breaker.
+            try:
+                from openai import AuthenticationError
+
+                auth_failure = isinstance(exc, AuthenticationError)
+            except ImportError:
+                auth_failure = False
+            if auth_failure:
+                self._trip_openai_circuit()
             logger.exception("OpenAI generation failed; trying local Ollama before composer")
             if self.settings.ollama_auto_fallback and await self._ollama_available():
                 return await self._ollama_generate(
@@ -243,6 +275,7 @@ class InsightAgent:
                             "model": model,
                             "messages": messages,
                             "stream": False,
+                            "keep_alive": self.settings.ollama_keep_alive,
                             "options": {"temperature": 0.3},
                         },
                     )
@@ -391,7 +424,9 @@ Analyze ONLY within the {domain_label} scope. Do not reference unrelated domains
         temporal = analytics.get("temporal") or {}
         timeline = temporal.get("timeline") or []
         source_counts: dict = analytics.get("source_counts") or {}
-        demographics = (analytics.get("demographics") or {}).get("segments") or []
+        regional_interest = (
+            (analytics.get("google_trends") or {}).get("interest_by_region") or []
+        )
         scenarios = analytics.get("scenarios") or []
         volatility = analytics.get("volatility") or {}
         try:
@@ -496,11 +531,19 @@ Analyze ONLY within the {domain_label} scope. Do not reference unrelated domains
                 f"Scenario **{scenario.get('name', 'unnamed')}** (~{prob:.0f}%):"
                 f" {scenario.get('trigger', 'trigger unspecified')}."
             )
-        if demographics:
-            leading = demographics[0]
+        if regional_interest:
+            top_regions = [
+                f"**{region.get('location', 'Unknown')}" f" ({region.get('value', 0)})**"
+                for region in regional_interest[:3]
+            ]
             inferred.append(
-                f"Largest inferred audience segment: **{leading.get('label', 'unlabeled')}"
-                f" ({leading.get('percentage', 0)}%)** (probabilistic estimate)."
+                "Google Trends interest concentrates in: " + ", ".join(top_regions)
+                + " (relative 0-100 search-interest scores)."
+            )
+        elif record_count:
+            inferred.append(
+                "No regional interest data was returned for this query, so geographic"
+                " audience patterns cannot be assessed from this dataset."
             )
 
         lines += ["", "**Inferred**"]

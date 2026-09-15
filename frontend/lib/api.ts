@@ -1,4 +1,12 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+// Call the backend directly instead of via the Next.js proxy: the dev proxy
+// aborts long-running requests (LLM generations can take 30-60s) with
+// ECONNRESET / "socket hang up", which the UI then misreports as a 500.
+// NEXT_PUBLIC_API_URL can still override this for deployments.
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+// Generations through a cold-started local LLM can legitimately take a while;
+// give the backend a generous ceiling before the UI gives up.
+const API_TIMEOUT_MS = 180_000;
 
 export interface EvidenceItem {
   type: string;
@@ -24,6 +32,17 @@ export interface ProvenanceRecord {
   blockchain_tx_id?: string;
 }
 
+export interface TopPost {
+  rank: number;
+  text: string;
+  author: string;
+  platform: string;
+  url?: string;
+  timestamp?: string;
+  engagement_total: number;
+  relevance_score: number;
+}
+
 export interface ToolConfig {
   mode: "auto" | "manual";
   enabled_agents?: string[];
@@ -44,7 +63,10 @@ export interface ChatResponse {
   workflow_used: string[];
   agents_used: string[];
   sources_used: string[];
+  news_articles?: Array<{ title: string; description?: string; source: string; published_at?: string; url: string }>;
+  top_posts?: TopPost[];
   analytics?: Record<string, unknown>;
+  model_version?: string;
 }
 
 export interface SessionSummary {
@@ -122,12 +144,35 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
-  const res = await fetch(`${API_URL}/api/v1${path}`, { ...options, headers });
+  let res: Response;
+  try {
+    res = await fetch(`${API_URL}/api/v1${path}`, {
+      ...options,
+      headers,
+      signal: AbortSignal.timeout(API_TIMEOUT_MS),
+    });
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "TimeoutError") {
+      throw new Error(
+        "The request timed out - the intelligence pipeline is taking longer than 3 minutes. Try a narrower query or a faster model."
+      );
+    }
+    throw new Error(
+      "Unable to reach the SOCIALIQ backend. Please ensure the backend server is running on port 8000."
+    );
+  }
   if (!res.ok) {
     if (res.status === 401) {
       handleUnauthorized();
     }
-    throw new Error(`API error: ${res.status}`);
+    let detail = "";
+    try {
+      const body = await res.json();
+      detail = typeof body?.detail === "string" ? `: ${body.detail}` : "";
+    } catch {
+      /* body was not JSON - fall back to the status code only */
+    }
+    throw new Error(`API error: ${res.status}${detail}`);
   }
   return res.json();
 }

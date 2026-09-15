@@ -63,6 +63,7 @@ class OrchestratorService:
             "visualizations": plan.get("visualizations"),
             "provenance": provenance.model_dump() if provenance else None,
             "news_articles": plan.get("news_articles", []),
+            "top_posts": plan.get("top_posts", []),
             "analytics": plan.get("analytics", {}),
         }
         self.chat_store.add_message(session_id, "assistant", plan["response"], metadata, user_id=user_id)
@@ -82,6 +83,7 @@ class OrchestratorService:
             agents_used=plan.get("agents_used", []),
             sources_used=plan.get("sources_used", []),
             news_articles=plan.get("news_articles", []),
+            top_posts=plan.get("top_posts", []),
             analytics=plan.get("analytics", {}),
             model_version=plan.get("model_version", "socialiq-0.1"),
         )

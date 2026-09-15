@@ -299,7 +299,6 @@ class TestDynamicComposer:
             "scenarios": [
                 {"name": "Breakout", "probability": 0.35, "trigger": "ETF inflow acceleration"},
             ],
-            "demographics": {"segments": [{"label": "18-34 urban", "percentage": 46, "confidence": 0.6}]},
         }
         result = await InsightAgent().generate(
             query="test", evidence=self._evidence(), analytics=analytics,
@@ -308,7 +307,36 @@ class TestDynamicComposer:
         text = result["text"]
         assert "HIGH" in text and "0.81" in text
         assert "Breakout" in text and "35%" in text and "ETF inflow acceleration" in text
-        assert "18-34 urban (46%)" in text
+
+    @pytest.mark.asyncio
+    async def test_composer_renders_real_regional_interest(self):
+        """Regional interest comes from real Google Trends data, never invented."""
+        analytics = self._analytics() | {
+            "google_trends": {
+                "interest_by_region": [
+                    {"location": "United States", "geo": "US", "value": 87},
+                    {"location": "Germany", "geo": "DE", "value": 64},
+                ],
+                "related_topics": [],
+                "related_queries": [],
+            },
+        }
+        result = await InsightAgent().generate(
+            query="test", evidence=self._evidence(), analytics=analytics,
+            intent="trend", domain="general", domain_label="General Social Intelligence",
+        )
+        text = result["text"]
+        assert "United States (87)" in text
+        assert "Germany (64)" in text
+        assert "0-100" in text  # honest unit disclosure
+
+    @pytest.mark.asyncio
+    async def test_composer_discloses_missing_regional_data(self):
+        result = await InsightAgent().generate(
+            query="test", evidence=self._evidence(), analytics=self._analytics(),
+            intent="trend", domain="general", domain_label="General Social Intelligence",
+        )
+        assert "No regional interest data" in result["text"]
 
 
 # ── Auto-fallback chain (OpenAI → Ollama → composer) ──────────────────
@@ -496,3 +524,176 @@ class TestAutoFallbackChain:
             assert not ollama_called["post"]
         finally:
             get_settings.cache_clear()
+
+
+# ── OpenAI 401 circuit breaker ────────────────────────────────────────
+
+
+class TestOpenAICircuitBreaker:
+    @pytest.mark.asyncio
+    async def test_auth_error_trips_breaker_and_next_call_skips_openai(self, monkeypatch):
+        """After an OpenAI AuthenticationError, the next request must go
+        straight to Ollama without touching OpenAI again."""
+        from backend.config import get_settings
+
+        monkeypatch.setenv("OPENAI_API_KEY", "sk-invalid")
+        monkeypatch.setenv("OLLAMA_AUTO_FALLBACK", "true")
+        get_settings.cache_clear()
+        try:
+            agent = InsightAgent()
+            openai_calls = {"count": 0}
+
+            async def fake_get(self, url):
+                class Resp:
+                    status_code = 200
+
+                return Resp()
+
+            async def fake_post(self, url, json=None, **kwargs):
+                class Resp:
+                    def raise_for_status(self):
+                        return None
+
+                    def json(self):
+                        return {"message": {"content": "ollama after breaker"}}
+
+                return Resp()
+
+            monkeypatch.setattr(httpx.AsyncClient, "get", fake_get)
+            monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+
+            class AuthFailCompletions:
+                async def create(self, **kwargs):
+                    openai_calls["count"] += 1
+                    import openai
+
+                    raise openai.AuthenticationError(
+                        message="bad key",
+                        response=httpx.Response(401, request=httpx.Request("POST", "https://api.openai.com")),
+                        body=None,
+                    )
+
+            class AuthFailChat:
+                completions = AuthFailCompletions()
+
+            class AuthFailOpenAI:
+                def __init__(self, **kwargs):
+                    self.chat = AuthFailChat()
+
+            import sys
+            import types
+
+            fake_module = types.ModuleType("openai")
+            fake_module.AsyncOpenAI = AuthFailOpenAI
+            fake_module.AuthenticationError = __import__("openai").AuthenticationError
+            monkeypatch.setitem(sys.modules, "openai", fake_module)
+
+            # First call: OpenAI attempted, 401s, breaker trips, Ollama answers
+            first = await agent.generate(query="q1", evidence=[], analytics={}, intent="general")
+            assert openai_calls["count"] == 1
+            assert first["model_version"].startswith("ollama:")
+
+            # Second call: breaker open -> OpenAI must NOT be attempted
+            second = await agent.generate(query="q2", evidence=[], analytics={}, intent="general")
+            assert openai_calls["count"] == 1, "OpenAI retried despite open breaker"
+            assert second["model_version"].startswith("ollama:")
+        finally:
+            get_settings.cache_clear()
+
+
+# ── Ollama keep_alive (cold-start prevention) ─────────────────────────
+
+
+class TestOllamaKeepAlive:
+    @pytest.mark.asyncio
+    async def test_keep_alive_sent_in_ollama_payload(self, monkeypatch):
+        """Every /api/chat payload must carry keep_alive so models stay warm."""
+        from backend.config import get_settings
+
+        monkeypatch.setenv("OLLAMA_KEEP_ALIVE", "45m")
+        get_settings.cache_clear()
+        try:
+            agent = InsightAgent()
+            captured: dict = {}
+
+            async def fake_post(self, url, json=None, **kwargs):
+                captured["url"] = url
+                captured["payload"] = json
+
+                class Resp:
+                    def raise_for_status(self):
+                        return None
+
+                    def json(self):
+                        return {"message": {"content": "warm answer"}}
+
+                return Resp()
+
+            monkeypatch.setattr(httpx.AsyncClient, "post", fake_post)
+
+            result = await agent._ollama_generate(
+                "test-model", "q", [], {}, "general", "general", "General"
+            )
+            assert captured["payload"]["keep_alive"] == "45m"
+            assert captured["payload"]["model"] == "test-model"
+            assert result["model_version"] == "ollama:test-model"
+        finally:
+            get_settings.cache_clear()
+
+
+# ── Top relevant posts ranking ────────────────────────────────────────
+
+
+class TestTopRelevantPosts:
+    def _planner(self):
+        from agents.master.planner import MasterAgent
+
+        return MasterAgent()
+
+    def test_ranks_by_engagement_plus_term_overlap(self):
+        planner = self._planner()
+        records = [
+            {"platform": "x_scraper", "text": "GTA 6 looks incredible, can't wait for the trailer", "author": "gamer1", "engagement": {"likes": 10, "replies": 1, "reposts": 2, "views": 100}},
+            {"platform": "x_scraper", "text": "Random unrelated post about cooking pasta", "author": "chef", "engagement": {"likes": 5000, "replies": 100, "reposts": 900, "views": 90000}},
+            {"platform": "x_scraper", "text": "GTA 6 release date rumors are everywhere", "author": "newsbot", "engagement": {"likes": 300, "replies": 20, "reposts": 40, "views": 20000}, "url": "https://x.com/newsbot/1"},
+            {"platform": "news", "text": "Not an X post", "author": "reuters", "engagement": {}},
+        ]
+        posts = planner._top_relevant_posts(records, "What is new with GTA 6?")
+
+        assert len(posts) == 3  # news record excluded
+        # Relevant posts beat raw engagement: the pasta post has 50x the
+        # engagement but zero term overlap with the query
+        assert posts[0]["author"] in ("gamer1", "newsbot")
+        assert all("GTA" in p["text"] or "GTA" in p["text"].lower() or p["author"] == "chef" for p in posts)
+        assert posts[0]["rank"] == 1
+        assert posts[0]["engagement_total"] >= 0
+
+    def test_no_x_records_returns_empty(self):
+        planner = self._planner()
+        posts = planner._top_relevant_posts(
+            [{"platform": "news", "text": "hello", "author": "x"}], "query"
+        )
+        assert posts == []
+
+    def test_sample_posts_rank_below_live_data(self):
+        planner = self._planner()
+        records = [
+            {"platform": "x", "text": "query topic here", "author": "@live_user", "engagement": {"likes": 5, "replies": 0, "reposts": 0, "views": 0}},
+            {"platform": "x", "text": "query topic here", "author": "@sample_user", "engagement": {"likes": 500, "replies": 50, "reposts": 60, "views": 9000}},
+        ]
+        posts = planner._top_relevant_posts(records, "query topic")
+        assert posts[0]["author"] == "@live_user"
+
+    def test_append_top_posts_formats_markdown(self):
+        planner = self._planner()
+        posts = [{
+            "rank": 1, "text": "GTA 6 news", "author": "newsbot", "platform": "x_scraper",
+            "url": "https://x.com/newsbot/1", "engagement_total": 1234, "relevance_score": 88.0,
+        }]
+        out = planner._append_top_posts("Base response.", posts)
+        assert "Most relevant X posts" in out
+        assert "@newsbot" in out
+        assert "1,234 engagements" in out
+        assert "https://x.com/newsbot/1" in out
+        # No posts -> unchanged response
+        assert planner._append_top_posts("Base.", []) == "Base."

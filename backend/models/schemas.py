@@ -115,6 +115,19 @@ class NewsArticle(BaseModel):
     url: str
 
 
+class TopPost(BaseModel):
+    """A social post surfaced as directly relevant to the user's query."""
+
+    rank: int
+    text: str
+    author: str
+    platform: str
+    url: str = ""
+    timestamp: Optional[str] = None
+    engagement_total: int = 0
+    relevance_score: float = 0.0
+
+
 class ProvenanceRecord(BaseModel):
     dataset_hash: str
     insight_hash: str
@@ -140,6 +153,8 @@ class ChatResponse(BaseModel):
     agents_used: list[str] = []
     sources_used: list[str] = []
     news_articles: list[NewsArticle] = []
+    # Most relevant X posts for this query (engagement + term overlap ranked)
+    top_posts: list[TopPost] = []
     analytics: dict[str, Any] = {}
     # Which engine produced the narrative: gpt-4o-mini, ollama:<model>, or
     # socialiq-template-0.3 (offline composer)

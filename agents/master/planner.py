@@ -203,6 +203,7 @@ class MasterAgent:
             cleaned.get("records", []),
             raw_data.get("live_sources", []),
         )
+        top_posts = self._top_relevant_posts(cleaned.get("records", []), query)
 
         social_analytics = {}
         if "data_acquisition" in plan.agents_used or "social_intelligence" in plan.agents_used:
@@ -238,6 +239,7 @@ class MasterAgent:
             web_search_tool=self.data_agent.web_search,
         )
         response_text = self._append_news_articles(response["text"], news_articles)
+        response_text = self._append_top_posts(response_text, top_posts)
         analytics = {**social_analytics, **domain_analytics}
 
         return {
@@ -253,10 +255,97 @@ class MasterAgent:
             "agents_used": plan.agents_used,
             "sources_used": plan.sources_used,
             "news_articles": news_articles,
+            "top_posts": top_posts,
             "analytics": analytics,
             "dataset_snapshot": cleaned.get("snapshot", {}),
             "model_version": response.get("model_version", "socialiq-0.1"),
         }
+
+    def _top_relevant_posts(
+        self, records: list[dict[str, Any]], query: str, limit: int = 5
+    ) -> list[dict[str, Any]]:
+        """Rank X-platform posts by engagement + query-term overlap.
+
+        Deterministic scoring so the same dataset always yields the same
+        posts: engagement_total (likes weighted highest, then replies/quotes,
+        then reposts/views) plus 40 points per distinct query term present in
+        the post text. Sample-data posts (no real engagement) rank last.
+        """
+        post_records = [
+            r for r in records
+            if r.get("platform") in ("x", "x_scraper") and r.get("text")
+        ]
+        if not post_records:
+            return []
+
+        # Distinct meaningful query terms (3+ chars, deduped)
+        stop = {"the", "and", "for", "with", "about", "what", "how", "why", "who", "new"}
+        terms = {
+            t for t in re.findall(r"[a-z0-9]{3,}", query.lower())
+            if t not in stop
+        }
+
+        scored: list[tuple[float, int, dict[str, Any]]] = []
+        for index, record in enumerate(post_records):
+            engagement = record.get("engagement") or {}
+            if not isinstance(engagement, dict):
+                engagement = {}
+            likes = int(engagement.get("likes") or 0)
+            replies = int(engagement.get("replies") or 0)
+            reposts = int(engagement.get("reposts") or 0)
+            views = int(engagement.get("views") or 0)
+            # Log scale: engagement separates orders of magnitude, not linear
+            # magnitude, so a viral off-topic post cannot bury every relevant one.
+            import math
+
+            engagement_score = (
+                math.log10(10 + likes * 3 + (replies + reposts) * 2 + views * 0.01) * 20
+            )
+
+            text_lower = str(record.get("text", "")).lower()
+            term_hits = sum(1 for t in terms if t in text_lower)
+            relevance_score = term_hits * 40
+
+            is_sample = str(record.get("author", "")).startswith("@sample_user")
+            sample_penalty = 0 if not is_sample else -1000  # deprioritize sample data
+
+            total = engagement_score + relevance_score + sample_penalty
+            scored.append((total, index, record))
+
+        scored.sort(key=lambda item: (-item[0], item[1]))
+
+        posts: list[dict[str, Any]] = []
+        for rank, (score, _, record) in enumerate(scored[:limit], start=1):
+            engagement = record.get("engagement") or {}
+            engagement = engagement if isinstance(engagement, dict) else {}
+            engagement_total = int(engagement.get("likes") or 0) + int(engagement.get("reposts") or 0) + int(engagement.get("replies") or 0)
+            posts.append({
+                "rank": rank,
+                "text": str(record.get("text", ""))[:400],
+                "author": str(record.get("author", "unknown")),
+                "platform": str(record.get("platform", "x")),
+                "url": record.get("url") or "",
+                "timestamp": record.get("timestamp"),
+                "engagement_total": engagement_total,
+                "relevance_score": round(score, 1),
+            })
+        return posts
+
+    def _append_top_posts(self, response: str, posts: list[dict[str, Any]]) -> str:
+        if not posts:
+            return response
+
+        lines = ["**Most relevant X posts for this query:**"]
+        for post in posts:
+            author = post["author"]
+            url = post.get("url") or ""
+            author_part = f"[@{author.lstrip('@')}]({url})" if url else f"@{author.lstrip('@')}"
+            escaped = str(post["text"]).replace("[", "\\[").replace("]", "\\]")
+            lines.append(
+                f"{post['rank']}. {author_part} — *{post['engagement_total']:,} engagements*"
+            )
+            lines.append(f"   > {escaped[:280]}")
+        return f"{response.rstrip()}\n\n" + "\n".join(lines)
 
     def _top_news_articles(
         self, records: list[dict[str, Any]], live_sources: list[str]

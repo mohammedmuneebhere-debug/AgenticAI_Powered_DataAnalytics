@@ -68,8 +68,11 @@ async def list_llm_models():
             for entry in resp.json().get("models", []):
                 name = entry.get("name", "")
                 if name:
+                    # Cloud-routed models (remote_host set) are served via
+                    # ollama.com, not the local runtime - label them honestly.
+                    suffix = "(Ollama cloud)" if entry.get("remote_host") else "(local Ollama)"
                     models.append(
-                        AvailableModel(id=f"ollama:{name}", label=f"{name} (local Ollama)", provider="ollama")
+                        AvailableModel(id=f"ollama:{name}", label=f"{name} {suffix}", provider="ollama")
                     )
     except Exception:
         pass  # Ollama offline — offer its configured default anyway

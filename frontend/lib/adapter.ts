@@ -1,4 +1,4 @@
-import type { ChatResponse } from "./api";
+import type { ChatResponse, TopPost } from "./api";
 
 export interface DashboardMetric { title: string; value: string; subValue?: string; note: string; badge?: string; badgeType?: "positive" | "warning" | "error" | "neutral"; }
 export interface TrajectoryPoint { time: string; volume: number; lineValue: number; }
@@ -6,6 +6,7 @@ export interface TrendDriverItem { rank: string; title: string; source: string; 
 export interface NarrativeItem { title: string; subtitle: string; growth: string; color: string; }
 export interface SourceContributionItem { name: string; signals: string; percentage: number; dotColor: string; }
 export interface AudienceSegmentItem { label: string; percentage: number; barColor: string; }
+export interface RelevantPostItem { rank: number; text: string; author: string; platform: string; url?: string; engagementTotal: number; }
 export interface GoogleTrendsRegion { location: string; geo?: string; value: number; coordinates?: { latitude?: number; longitude?: number; lat?: number; lng?: number; }; }
 export interface GoogleTrendsRelatedItem { label: string; category: "top" | "rising" | string; value: number; valueLabel?: string; type?: string; url?: string; }
 
@@ -18,6 +19,7 @@ export interface NormalizedDashboardData {
   trendDrivers: TrendDriverItem[]; narratives: NarrativeItem[]; sourceContribution: SourceContributionItem[];
   networkIntelligence: { graphDensity: string; topCommunity: string; fastestGrowing: string; topInfluencer: string; nodes: Array<{ id: string; label: string; inf: string; border: string; text: string }>; };
   audienceSegments: AudienceSegmentItem[];
+  relevantPosts: RelevantPostItem[];
   googleTrends: { regions: GoogleTrendsRegion[]; relatedTopics: GoogleTrendsRelatedItem[]; relatedQueries: GoogleTrendsRelatedItem[]; };
   provenance: { datasetSnapshot: string; timestamp: string; pipeline: string; blockchainAnchoring: string; insightHash?: string; datasetHash?: string; };
 }
@@ -75,6 +77,15 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
   const emotionDistribution = asRecord(analytics.emotion).distribution;
   const emotions = Object.entries(asRecord(emotionDistribution)).filter(([, value]) => numberValue(value) > 0).map(([label, value], index) => ({ label: label.replace(/\b\w/g, (char) => char.toUpperCase()), percentage: percent(numberValue(value), Math.max(1, records)), icon: index === 0 ? "mood" : "psychology", color: (index % 3 === 0 ? "secondary" : index % 3 === 1 ? "slate" : "tertiary") as "secondary" | "slate" | "tertiary" }));
   const segments = listRecords(asRecord(analytics.demographics).segments).map((segment, index) => ({ label: String(segment.label || "Audience"), percentage: numberValue(segment.percentage), barColor: colors[index % colors.length] }));
+  const relevantPosts: RelevantPostItem[] = (response.top_posts || []).map((post: TopPost) => ({
+    rank: numberValue(post.rank, 0),
+    text: String(post.text || ""),
+    author: String(post.author || "unknown"),
+    platform: String(post.platform || "x"),
+    url: post.url ? String(post.url) : undefined,
+    engagementTotal: numberValue(post.engagement_total),
+  }));
+
   const network = asRecord(analytics.network);
   const nodes = listRecords(network.nodes).map((node, index) => ({ id: String(node.id || index), label: String(node.label || node.id || "Node"), inf: `${numberValue(node.size)} impact`, border: colors[index % colors.length].replace("bg-", "border-"), text: "text-white" }));
   const sourceCounts = asRecord(analytics.source_counts);
@@ -103,7 +114,7 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
     sentimentDrivers: { netScore: `${Math.round((scopedScore - 0.5) * 200)} NET`, signalsCount: `${records.toLocaleString()} Signals`, polarity: scopedPolarity, emotions },
     trendDrivers, narratives: emergingNarratives,
     sourceContribution, networkIntelligence: { graphDensity: nodes.length ? `${nodes.length} nodes` : "No graph data", topCommunity: String(network.community_count || "No community data"), fastestGrowing: trendDrivers[0]?.title || "No trend data", topInfluencer: nodes[0]?.label || "No influencer data", nodes },
-    audienceSegments: segments, googleTrends, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
+    audienceSegments: segments, relevantPosts, googleTrends, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
   };
 }
 

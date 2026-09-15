@@ -77,8 +77,7 @@ export default function ChatMode() {
       console.error("Chat error:", err);
       addChatMessage({
         role: "assistant",
-        content:
-          "Unable to reach SOCIALIQ Agentic Core. Please ensure the backend server is running on port 8000.",
+        content: `**Request failed.** ${err instanceof Error ? err.message : "Unknown error"}`,
         timestamp: new Date().toISOString().slice(11, 19) + " UTC",
       });
     } finally {
