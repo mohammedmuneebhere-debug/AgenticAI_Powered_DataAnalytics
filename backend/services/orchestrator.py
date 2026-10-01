@@ -65,6 +65,7 @@ class OrchestratorService:
             "news_articles": plan.get("news_articles", []),
             "top_posts": plan.get("top_posts", []),
             "analytics": plan.get("analytics", {}),
+            "synthetic_data": plan.get("synthetic_data"),
         }
         self.chat_store.add_message(session_id, "assistant", plan["response"], metadata, user_id=user_id)
 
@@ -85,6 +86,7 @@ class OrchestratorService:
             news_articles=plan.get("news_articles", []),
             top_posts=plan.get("top_posts", []),
             analytics=plan.get("analytics", {}),
+            synthetic_data=plan.get("synthetic_data", {}),
             model_version=plan.get("model_version", "socialiq-0.1"),
         )
 

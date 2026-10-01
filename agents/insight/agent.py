@@ -14,6 +14,7 @@ additional live results before composing the final answer.
 
 import json
 import logging
+import re
 from typing import Any, Awaitable, Callable, Optional
 from urllib.parse import urlparse
 
@@ -62,6 +63,9 @@ class InsightAgent:
     def __init__(self):
         self.settings = get_settings()
         self._openai_disabled_until: float = 0.0
+        # Set by generate_json to the engine that actually served the last
+        # structured generation (honest attribution for synthetic data).
+        self._last_json_model_version: Optional[str] = None
 
     async def generate(
         self,
@@ -113,6 +117,121 @@ class InsightAgent:
         if requested.startswith("ollama:"):
             return "ollama", requested.split(":", 1)[1].strip() or self.settings.ollama_model
         return "openai", requested
+
+    # ── Structured JSON generation ──────────────────────────────────
+
+    async def generate_json(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        llm_model: Optional[str] = None,
+        timeout: Optional[int] = None,
+    ) -> Optional[dict]:
+        """Single-turn structured generation returning a parsed JSON object.
+
+        Uses the same provider chain as narrative generation: explicit
+        ``ollama:<model>`` requests, then OpenAI (with json_object response
+        format), then auto-detected local Ollama (``format: "json"``).
+        Returns ``None`` when every provider is unavailable or fails —
+        callers must handle the ``None`` case, never fabricate themselves.
+        """
+        requested = llm_model or self.settings.llm_model
+        if timeout is None:
+            timeout = int(self.settings.llm_json_timeout_seconds)
+        self._last_json_model_version = None
+        if requested.startswith("ollama:"):
+            model = requested.split(":", 1)[1].strip() or self.settings.ollama_model
+            return await self._ollama_generate_json(model, system_prompt, user_prompt, timeout)
+
+        if self.settings.openai_api_key and not self._openai_circuit_open():
+            return await self._openai_generate_json(requested, system_prompt, user_prompt, timeout)
+
+        if self.settings.ollama_auto_fallback and await self._ollama_available():
+            return await self._ollama_generate_json(
+                self.settings.ollama_model, system_prompt, user_prompt, timeout
+            )
+        return None
+
+    async def _openai_generate_json(
+        self, model: str, system_prompt: str, user_prompt: str, timeout: int
+    ) -> Optional[dict]:
+        try:
+            from openai import AsyncOpenAI
+
+            client = AsyncOpenAI(api_key=self.settings.openai_api_key, timeout=timeout)
+            response = await client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=0.4,
+                response_format={"type": "json_object"},
+            )
+            parsed = self._extract_json(response.choices[0].message.content or "")
+            if parsed is not None:
+                self._last_json_model_version = model
+            return parsed
+        except Exception:
+            logger.exception("OpenAI JSON generation failed (%s)", model)
+            if self.settings.ollama_auto_fallback and await self._ollama_available():
+                return await self._ollama_generate_json(
+                    self.settings.ollama_model, system_prompt, user_prompt, timeout
+                )
+            return None
+
+    async def _ollama_generate_json(
+        self, model: str, system_prompt: str, user_prompt: str, timeout: int
+    ) -> Optional[dict]:
+        base_url = self.settings.ollama_base_url.rstrip("/")
+        try:
+            async with httpx.AsyncClient(timeout=timeout) as client:
+                response = await client.post(
+                    f"{base_url}/api/chat",
+                    json={
+                        "model": model,
+                        "messages": [
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt},
+                        ],
+                        "stream": False,
+                        "format": "json",
+                        "keep_alive": self.settings.ollama_keep_alive,
+                        "options": {"temperature": 0.4},
+                    },
+                )
+                response.raise_for_status()
+                content = (response.json().get("message") or {}).get("content") or ""
+            parsed = self._extract_json(content)
+            if parsed is not None:
+                self._last_json_model_version = f"ollama:{model}"
+            return parsed
+        except Exception:
+            logger.exception("Ollama JSON generation failed (%s at %s)", model, base_url)
+            return None
+
+    @staticmethod
+    def _extract_json(text: str) -> Optional[dict]:
+        """Parse the first JSON object from a completion, tolerating fences."""
+        if not text:
+            return None
+        text = text.strip()
+        if text.startswith("```"):
+            text = re.sub(r"^```[a-zA-Z]*\s*|\s*```$", "", text).strip()
+        try:
+            parsed = json.loads(text)
+            return parsed if isinstance(parsed, dict) else None
+        except json.JSONDecodeError:
+            pass
+        start = text.find("{")
+        end = text.rfind("}")
+        if start == -1 or end <= start:
+            return None
+        try:
+            parsed = json.loads(text[start:end + 1])
+            return parsed if isinstance(parsed, dict) else None
+        except json.JSONDecodeError:
+            return None
 
     def _openai_circuit_open(self) -> bool:
         import time

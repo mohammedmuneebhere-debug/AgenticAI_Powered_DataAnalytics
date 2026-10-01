@@ -697,3 +697,276 @@ class TestTopRelevantPosts:
         assert "https://x.com/newsbot/1" in out
         # No posts -> unchanged response
         assert planner._append_top_posts("Base.", []) == "Base."
+
+
+# ── Synthetic data fallback (blank-retrieval substitutes) ─────────────
+
+
+class TestSyntheticDataFallback:
+    """When retrieval is blank/insufficient, the LLM generates clearly-tagged
+    substitutes grounded in the real retrieved context."""
+
+    def _agent(self):
+        from agents.synthetic_data.agent import SyntheticDataAgent
+
+        return SyntheticDataAgent(generate_json=None)
+
+    def _analytics_with_gaps(self) -> dict:
+        return {
+            "record_count": 6,
+            "source_counts": {"news": 6},
+            "sentiment": {"overall_label": "positive", "average_score": 0.66, "distribution": {"positive": 4, "neutral": 1, "negative": 1}},
+            # no "trends" and no "google_trends" keys -> both are gaps
+        }
+
+    def _generated(self) -> dict:
+        return {
+            "google_trends": {
+                "interest_by_region": [
+                    {"location": "United States", "geo": "US", "value": 88},
+                    {"location": "Nowhere Land", "geo": "NX", "value": 55},
+                ],
+                "related_topics": [{"label": "GTA 6 trailer", "category": "top", "value": 90}],
+                "related_queries": [{"label": "gta 6 release", "category": "rising", "value": 77}],
+            },
+            "trends": {
+                "top_trends": [
+                    {"topic": "gta 6 hype", "mentions": 9, "engagement": 1200, "velocity": 3.2, "confidence": 0.7},
+                ],
+            },
+            "posts": [
+                {"text": "GTA 6 simulated buzz post one", "author": "fictional_fan", "engagement_total": 340},
+                {"text": "", "author": ""},  # dropped: empty text
+                "not-a-dict",
+                {"text": "Another simulated take on GTA 6", "author": "x" * 80, "engagement_total": 12},
+            ],
+        }
+
+    def _bind_generator(self, monkeypatch, agent, payload):
+        captured = {}
+
+        async def fake_generate_json(**kwargs):
+            captured.update(kwargs)
+            return payload
+
+        agent._generate_json = fake_generate_json
+        return captured
+
+    @pytest.mark.asyncio
+    async def test_fills_blank_sections_with_tagged_synthetic_data(self, monkeypatch):
+        agent = self._agent()
+        captured = self._bind_generator(monkeypatch, agent, self._generated())
+
+        report = await agent.fill_gaps(
+            query="What is the buzz around GTA 6?",
+            intent="trend",
+            domain="general",
+            analytics=self._analytics_with_gaps(),
+            # news records only -> no X posts -> posts gap fires too
+            records=[{"platform": "news", "text": f"GTA 6 update {i}", "author": "w"} for i in range(3)],
+        )
+
+        # Context pack grounding: the prompt carries the real query AND
+        # samples from the records that WERE retrieved
+        assert "GTA 6" in captured["user_prompt"]
+        assert "GTA 6 update 0" in captured["user_prompt"]
+        assert "missing_sections" in captured["user_prompt"]
+
+        wrapper = report["sections"]["google_trends"]
+        assert wrapper["synthetic"] is True
+        regions = wrapper["data"]["interest_by_region"]
+        assert regions[0]["location"] == "United States"
+        assert all(item["synthetic"] is True for item in regions)
+
+        trends_wrapper = report["sections"]["trends"]
+        assert trends_wrapper["data"]["top_trends"][0]["topic"] == "gta 6 hype"
+
+        posts = report["synthetic_posts"]
+        assert len(posts) == 2  # empty-text and non-dict entries dropped
+        assert all(p["platform"] == "synthetic" for p in posts)
+        assert all(p["author"].startswith("sim_") for p in posts)
+        assert all(p["url"] == "" for p in posts)  # never fabricate URLs
+
+        assert report["disclosure"] and "Synthetic data used" in report["disclosure"]
+
+    @pytest.mark.asyncio
+    async def test_no_gaps_means_no_llm_call(self, monkeypatch):
+        agent = self._agent()
+        called = {"count": 0}
+
+        async def fail_generate_json(**kwargs):
+            called["count"] += 1
+            return {}
+
+        agent._generate_json = fail_generate_json
+
+        analytics = self._analytics_with_gaps() | {
+            "google_trends": {"interest_by_region": [{"location": "US", "geo": "US", "value": 80}], "related_topics": [], "related_queries": []},
+            "trends": {"top_trends": [{"topic": "real", "mentions": 3, "velocity": 1.0}], "trend_count": 1},
+        }
+        records = [{"platform": "x", "text": f"post {i}", "author": "u"} for i in range(12)]
+
+        report = await agent.fill_gaps(
+            query="q", intent="trend", domain="general",
+            analytics=analytics, records=records,
+        )
+        assert called["count"] == 0
+        assert report == {"sections": {}, "synthetic_posts": [], "disclosure": None}
+
+    @pytest.mark.asyncio
+    async def test_posts_gap_fires_when_non_x_retrieval_is_plentiful(self):
+        """Six news articles satisfy record counts but NOT the X-posts card:
+        only the posts gap should fire (trends + google_trends are present)."""
+        agent = self._agent()
+        requested_gaps = {}
+
+        async def capture_generate_json(**kwargs):
+            # The prompt lists the blank sections explicitly
+            import json as _json
+            requested_gaps["prompt"] = kwargs["user_prompt"]
+            return {"posts": [{"text": "simulated post", "author": "voice", "engagement_total": 5}]}
+
+        agent._generate_json = capture_generate_json
+
+        analytics = {
+            "record_count": 6,
+            "source_counts": {"news": 6},
+            "sentiment": {"overall_label": "positive", "average_score": 0.6, "distribution": {}},
+            "trends": {"top_trends": [{"topic": "real", "mentions": 2, "velocity": 0.6}], "trend_count": 1},
+            "google_trends": {"interest_by_region": [{"location": "US", "geo": "US", "value": 70}], "related_topics": [], "related_queries": []},
+        }
+        records = [{"platform": "news", "text": f"article {i}", "author": "w"} for i in range(6)]
+
+        report = await agent.fill_gaps(
+            query="q", intent="trend", domain="general", analytics=analytics, records=records,
+        )
+        assert "posts" in requested_gaps["prompt"]
+        assert report["synthetic_posts"] and report["synthetic_posts"][0]["platform"] == "synthetic"
+        assert "posts" in report["disclosure"]
+
+    @pytest.mark.asyncio
+    async def test_llm_unreachable_returns_empty_report(self):
+        """Pipeline must degrade to honest blanks when the LLM is down."""
+        agent = self._agent()
+
+        async def none_generate_json(**kwargs):
+            return None
+
+        agent._generate_json = none_generate_json
+
+        report = await agent.fill_gaps(
+            query="q", intent="general", domain="general",
+            analytics=self._analytics_with_gaps(), records=[],
+        )
+        assert report == {"sections": {}, "synthetic_posts": [], "disclosure": None}
+
+    @pytest.mark.asyncio
+    async def test_malformed_llm_payload_is_sanitized(self):
+        agent = self._agent()
+
+        async def garbage_generate_json(**kwargs):
+            return {
+                "google_trends": {
+                    "interest_by_region": ["oops", {"value": 5000}, {"location": "France", "value": "72"}],
+                    "related_topics": "not-a-list",
+                },
+                "trends": {"top_trends": [{"topic": ""}, 42, {"topic": "valid topic"}]},
+                "posts": [{"author": "no_text"}],
+            }
+
+        agent._generate_json = garbage_generate_json
+
+        report = await agent.fill_gaps(
+            query="q", intent="general", domain="general",
+            analytics=self._analytics_with_gaps(), records=[],
+        )
+        regions = report["sections"]["google_trends"]["data"]["interest_by_region"]
+        # "oops" dropped (no location), value 5000 clamped to 100, "72" coerced
+        assert regions == [
+            {"location": "France", "geo": None, "value": 72, "synthetic": True},
+        ]
+        assert report["sections"]["google_trends"]["data"]["related_topics"] == []
+        trends = report["sections"]["trends"]["data"]["top_trends"]
+        assert [t["topic"] for t in trends] == ["valid topic"]
+        assert report["synthetic_posts"] == []
+
+    @pytest.mark.asyncio
+    async def test_disabled_flag_leaves_analytics_untouched(self, monkeypatch):
+        """SYNTHETIC_DATA_FALLBACK=false keeps the pipeline honest-blank."""
+        from backend.config import get_settings
+
+        monkeypatch.setenv("SYNTHETIC_DATA_FALLBACK", "false")
+        get_settings.cache_clear()
+        try:
+            from agents.master.planner import MasterAgent
+
+            planner = MasterAgent()
+            called = {"count": 0}
+
+            async def fail_generate_json(**kwargs):
+                called["count"] += 1
+                return {}
+
+            planner.synthetic_agent._generate_json = fail_generate_json
+
+            result = await planner.plan_and_execute(
+                "What is happening with GTA 6?",
+                tools_config={"mode": "manual", "enabled_agents": ["master", "data_acquisition", "social_intelligence", "insight"], "enabled_sources": ["news"]},
+            )
+            assert called["count"] == 0
+            assert result["synthetic_data"] == {"sections": {}, "synthetic_posts": [], "disclosure": None}
+            assert "google_trends" not in result["analytics"]
+        finally:
+            get_settings.cache_clear()
+
+    @pytest.mark.asyncio
+    async def test_planner_merges_synthetic_sections_and_posts(self, monkeypatch):
+        from backend.config import get_settings
+
+        monkeypatch.setenv("SYNTHETIC_DATA_FALLBACK", "true")
+        get_settings.cache_clear()
+        try:
+            from agents.master.planner import MasterAgent
+
+            planner = MasterAgent()
+
+            async def fake_generate_json(**kwargs):
+                return self._generated()
+
+            planner.synthetic_agent._generate_json = fake_generate_json
+
+            # Blank retrieval: zero records -> google_trends + trends + posts gaps
+            async def fake_acquire(**kwargs):
+                return {
+                    "records": [],
+                    "platforms": ["news"],
+                    "live_sources": [],
+                    "query": kwargs.get("query", "q"),
+                    "time_range": "recent",
+                    "snapshot_id": "abc123",
+                    "acquired_at": "2026-09-20T00:00:00+00:00",
+                    "count": 0,
+                }
+
+            monkeypatch.setattr(planner.data_agent, "acquire", fake_acquire)
+
+            result = await planner.plan_and_execute(
+                "What is the buzz around GTA 6?",
+                tools_config={"mode": "manual", "enabled_agents": ["master", "data_acquisition", "social_intelligence", "insight"], "enabled_sources": ["news"]},
+            )
+
+            # Sections merged flat into analytics (consumers keep reading the
+            # same keys) with the synthetic tag riding alongside
+            gt = result["analytics"]["google_trends"]
+            assert gt["synthetic"] is True
+            assert gt["interest_by_region"][0]["location"] == "United States"
+            assert result["analytics"]["trends"]["top_trends"][0]["topic"] == "gta 6 hype"
+
+            # Synthetic posts appended after any real top posts, clearly marked
+            synthetic = [p for p in result["top_posts"] if p["platform"] == "synthetic"]
+            assert len(synthetic) == 2
+            assert all(p["author"].startswith("sim_") for p in synthetic)
+
+            assert "Synthetic data used" in result["synthetic_data"]["disclosure"]
+        finally:
+            get_settings.cache_clear()

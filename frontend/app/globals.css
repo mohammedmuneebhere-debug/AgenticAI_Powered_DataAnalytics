@@ -140,3 +140,30 @@ body * {
 .live-dot {
   animation: pulse-dot 2s ease-in-out infinite;
 }
+
+/* ── Toggle Switch Styles ─────────────────────────────────────────── */
+/* Dark mode: slate unchecked, emerald checked */
+.toggle-track {
+  border-color: #475569;
+  background-color: #334155;
+}
+.toggle-track[data-checked="true"] {
+  border-color: #6ee7b7;
+  background-color: var(--secondary);
+}
+.toggle-thumb {
+  background-color: var(--primary);
+}
+
+/* Light mode: light green track when checked, white thumb */
+html.light .toggle-track {
+  border-color: #cbd5e1;
+  background-color: #e2e8f0;
+}
+html.light .toggle-track[data-checked="true"] {
+  border-color: #4ade80;
+  background-color: #86efac;
+}
+html.light .toggle-thumb {
+  background-color: #ffffff;
+}

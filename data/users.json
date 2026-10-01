@@ -13,6 +13,20 @@
       "name": "Omair",
       "password_hash": "pbkdf2_sha256$600000$99688daa58b79451483dc1c3222940a5$e9bfa056d9d67df61d2c45197921139e0b83d2785619ed2e0623757c2f2bec33",
       "created_at": "2026-09-10T16:45:02.569512+00:00"
+    },
+    "07c53f7a-01b1-4957-b3f4-c98c9e78403b": {
+      "id": "07c53f7a-01b1-4957-b3f4-c98c9e78403b",
+      "email": "uitest@socialiq.test",
+      "name": "UITest Pilot",
+      "password_hash": "pbkdf2_sha256$600000$18a921b9c44b445977e2a68d5e67bd18$40c57417556bf599e582d24e102307d570862e53cb833c5c52ca746a5693747f",
+      "created_at": "2026-09-30T14:47:17.939287+00:00"
+    },
+    "6b504361-2dfc-477c-bc61-7343707424b1": {
+      "id": "6b504361-2dfc-477c-bc61-7343707424b1",
+      "email": "rafey-ki-neya-saheli@yahoo.com",
+      "name": "SocialIQ",
+      "password_hash": "pbkdf2_sha256$600000$708d812cc9b27f73f41f2cf9cdea3579$35f1acc4bf01bda7373e20629ea297830f926401aeba6e0e26f34c720860c101",
+      "created_at": "2026-09-30T15:33:13.239685+00:00"
     }
   }
 }

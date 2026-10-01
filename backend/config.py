@@ -21,7 +21,15 @@ class Settings(BaseSettings):
     # When no OpenAI key is configured, automatically try local Ollama before
     # resorting to the offline analytics composer (true/false)
     ollama_auto_fallback: bool = True
+    # Synthetic data fallback: when retrieval comes back blank (no Google
+    # Trends regions, no trend topics, no X posts), generate clearly-flagged
+    # placeholder data from the LLM, grounded in whatever context WAS
+    # retrieved. Disclosed in the API response via synthetic_data metadata.
+    synthetic_data_fallback: bool = True
     # LLM runtime behavior
+    # Per-request timeout (seconds) for structured JSON generation. Remote/cloud
+    # models (e.g. ollama.com 31B) can exceed 90s under load — keep generous.
+    llm_json_timeout_seconds: int = 240
     llm_max_output_tokens: int = 700
     # Web search tool-calling (used by the insight agent for live lookups)
     web_search_max_results: int = 6

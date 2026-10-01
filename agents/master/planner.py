@@ -4,12 +4,14 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 import re
 
+from backend.config import get_settings
 from agents.data_acquisition.agent import DataAcquisitionAgent
 from agents.data_intelligence.agent import DataIntelligenceAgent
 from agents.social_intelligence.agent import SocialIntelligenceAgent
 from agents.domain.agent import DomainAnalyticsAgent
 from agents.visualization.agent import VisualizationAgent
 from agents.insight.agent import InsightAgent
+from agents.synthetic_data.agent import SyntheticDataAgent
 from ml.correlation import EvidenceCorrelationEngine
 
 
@@ -86,6 +88,7 @@ class MasterAgent:
         self.domain_agent = DomainAnalyticsAgent()
         self.viz_agent = VisualizationAgent()
         self.insight_agent = InsightAgent()
+        self.synthetic_agent = SyntheticDataAgent(self.insight_agent.generate_json)
         self.correlation_engine = EvidenceCorrelationEngine()
 
     def parse_query(self, query: str) -> QueryPlan:
@@ -242,6 +245,34 @@ class MasterAgent:
         response_text = self._append_top_posts(response_text, top_posts)
         analytics = {**social_analytics, **domain_analytics}
 
+        # ── Synthetic fallback for blank/insufficient sections ────────
+        # When retrieval came back with blanks (no trends regions, no trend
+        # topics, too few records) and SYNTHETIC_DATA_FALLBACK is enabled,
+        # generate clearly-tagged substitutes grounded in the real context.
+        synthetic_fill: dict[str, Any] = {"sections": {}, "synthetic_posts": [], "disclosure": None}
+        if get_settings().synthetic_data_fallback:
+            synthetic_fill = await self.synthetic_agent.fill_gaps(
+                query=query,
+                intent=plan.intent,
+                domain=plan.domain,
+                analytics=analytics,
+                records=cleaned.get("records", []),
+                llm_model=llm_model,
+            )
+            for section_name, wrapper in synthetic_fill["sections"].items():
+                # Merge flat so downstream consumers (insight composer, frontend
+                # adapter) keep reading e.g. analytics["google_trends"]
+                # ["interest_by_region"] exactly as before — the synthetic flag
+                # rides alongside as extra keys.
+                analytics[section_name] = {
+                    **wrapper["data"],
+                    "synthetic": True,
+                    "generated_by": wrapper.get("generated_by"),
+                }
+            synthetic_posts = synthetic_fill["synthetic_posts"]
+            if synthetic_posts:
+                top_posts = top_posts + synthetic_posts
+
         return {
             "response": response_text,
             "intent": plan.intent,
@@ -257,6 +288,7 @@ class MasterAgent:
             "news_articles": news_articles,
             "top_posts": top_posts,
             "analytics": analytics,
+            "synthetic_data": synthetic_fill,
             "dataset_snapshot": cleaned.get("snapshot", {}),
             "model_version": response.get("model_version", "socialiq-0.1"),
         }

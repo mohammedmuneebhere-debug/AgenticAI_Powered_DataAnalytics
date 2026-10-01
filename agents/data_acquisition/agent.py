@@ -153,6 +153,16 @@ class DataAcquisitionAgent:
             })
         return records
 
+    # Phrases injected as placeholder rows by some pay-per-result Apify actors
+    # when a search returns nothing (e.g. KaitoEasyAPI's minimum-charge notice).
+    # These are billing notices, not tweets, and must never enter the pipeline.
+    _ACTOR_NOTICE_MARKERS = (
+        "from kaitoeasyapi",
+        "minimum charge",
+        "pieces of mock data",
+        "to ensure we can cover our costs",
+    )
+
     async def _fetch_x_scraper(self, query: str, entities: list[str]) -> list[dict]:
         """X posts via an Apify scraping actor (pay-per-result, no X API required).
 
@@ -194,6 +204,9 @@ class DataAcquisitionAgent:
             text = item.get("text") or item.get("full_text") or ""
             if not text:
                 continue
+            notice_text = text.lower()
+            if any(marker in notice_text for marker in self._ACTOR_NOTICE_MARKERS):
+                continue  # actor billing notice masquerading as a tweet
             records.append({
                 "id": str(item.get("id") or item.get("tweet_id") or item.get("url") or ""),
                 "platform": "x_scraper",

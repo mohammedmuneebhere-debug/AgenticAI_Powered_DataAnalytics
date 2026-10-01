@@ -128,6 +128,33 @@ class TopPost(BaseModel):
     relevance_score: float = 0.0
 
 
+class SyntheticPostsRequest(BaseModel):
+    """On-demand request for LLM-generated simulated posts (relevant-posts card)."""
+
+    query: str = Field(min_length=1, max_length=500)
+    count: int = Field(default=5, ge=1, le=5)
+    context: Optional[str] = Field(default=None, max_length=2000)
+
+
+class SyntheticPost(BaseModel):
+    """A single LLM-generated simulated post (never a real retrieved one)."""
+
+    rank: int
+    text: str
+    author: str
+    platform: str = "synthetic"
+    url: str = ""
+    engagement_total: int = 0
+    synthetic: bool = True
+
+
+class SyntheticPostsResponse(BaseModel):
+    query: str
+    generated_by: str
+    disclosure: str
+    synthetic_posts: list[SyntheticPost] = []
+
+
 class ProvenanceRecord(BaseModel):
     dataset_hash: str
     insight_hash: str
@@ -156,6 +183,9 @@ class ChatResponse(BaseModel):
     # Most relevant X posts for this query (engagement + term overlap ranked)
     top_posts: list[TopPost] = []
     analytics: dict[str, Any] = {}
+    # Disclosure of LLM-generated synthetic fallback data (blank-retrieval
+    # substitutes): {"sections": {...}, "synthetic_posts": [...], "disclosure": str|None}
+    synthetic_data: dict[str, Any] = {}
     # Which engine produced the narrative: gpt-4o-mini, ollama:<model>, or
     # socialiq-template-0.3 (offline composer)
     model_version: str = "socialiq-0.1"

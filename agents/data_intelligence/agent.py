@@ -1,6 +1,7 @@
 """Data Intelligence Agent — cleaning, normalization, PII masking."""
 
 import hashlib
+import html
 import json
 import re
 from typing import Any
@@ -61,6 +62,7 @@ class DataIntelligenceAgent:
         return text
 
     def _normalize(self, text: str) -> str:
+        text = html.unescape(text)  # scrapers often emit &gt; &amp; etc. in tweet text
         text = re.sub(r"http\S+", "[URL]", text)
         text = re.sub(r"\s+", " ", text)
         return text.strip()

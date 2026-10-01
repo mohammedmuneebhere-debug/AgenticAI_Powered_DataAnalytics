@@ -67,13 +67,19 @@ export default function ToolsConnectorsSidebar() {
         onChange={onChange}
         aria-label={label}
       />
+      {/* Track: dark mode = emerald/secondary on check; light mode = light green (#86efac) on check */}
       <span
         aria-hidden="true"
-        className="absolute inset-0 rounded-full border border-slate-600 bg-slate-700 transition-colors peer-checked:border-emerald-300 peer-checked:bg-secondary peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-secondary"
+        className="toggle-track absolute inset-0 rounded-full border transition-colors peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-secondary"
+        data-checked={enabled ? "true" : "false"}
       />
+      {/* Thumb: dark mode = var(--primary); light mode = white */}
       <span
         aria-hidden="true"
-        className="relative z-10 ml-0.5 h-5 w-5 rounded-full bg-[var(--primary)] shadow-sm transition-transform peer-checked:translate-x-5"
+        className="toggle-thumb relative z-10 ml-0.5 h-5 w-5 rounded-full shadow-sm transition-transform"
+        style={{
+          transform: enabled ? "translateX(1.25rem)" : "translateX(0)",
+        }}
       />
     </label>
   );

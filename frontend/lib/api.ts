@@ -6,7 +6,7 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000
 
 // Generations through a cold-started local LLM can legitimately take a while;
 // give the backend a generous ceiling before the UI gives up.
-const API_TIMEOUT_MS = 180_000;
+const API_TIMEOUT_MS = 300_000;
 
 export interface EvidenceItem {
   type: string;

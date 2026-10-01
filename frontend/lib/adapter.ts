@@ -6,7 +6,7 @@ export interface TrendDriverItem { rank: string; title: string; source: string; 
 export interface NarrativeItem { title: string; subtitle: string; growth: string; color: string; }
 export interface SourceContributionItem { name: string; signals: string; percentage: number; dotColor: string; }
 export interface AudienceSegmentItem { label: string; percentage: number; barColor: string; }
-export interface RelevantPostItem { rank: number; text: string; author: string; platform: string; url?: string; engagementTotal: number; }
+export interface RelevantPostItem { rank: number; text: string; author: string; platform: string; url?: string; engagementTotal: number; synthetic?: boolean; }
 export interface GoogleTrendsRegion { location: string; geo?: string; value: number; coordinates?: { latitude?: number; longitude?: number; lat?: number; lng?: number; }; }
 export interface GoogleTrendsRelatedItem { label: string; category: "top" | "rising" | string; value: number; valueLabel?: string; type?: string; url?: string; }
 
@@ -21,6 +21,8 @@ export interface NormalizedDashboardData {
   audienceSegments: AudienceSegmentItem[];
   relevantPosts: RelevantPostItem[];
   googleTrends: { regions: GoogleTrendsRegion[]; relatedTopics: GoogleTrendsRelatedItem[]; relatedQueries: GoogleTrendsRelatedItem[]; };
+  // Which analytics sections were LLM-synthesized fallbacks (blank retrieval)
+  syntheticFlags: { googleTrends: boolean; trends: boolean; };
   provenance: { datasetSnapshot: string; timestamp: string; pipeline: string; blockchainAnchoring: string; insightHash?: string; datasetHash?: string; };
 }
 
@@ -84,6 +86,7 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
     platform: String(post.platform || "x"),
     url: post.url ? String(post.url) : undefined,
     engagementTotal: numberValue(post.engagement_total),
+    synthetic: String(post.platform || "") === "synthetic" || Boolean((post as unknown as Record<string, unknown>).synthetic),
   }));
 
   const network = asRecord(analytics.network);
@@ -114,7 +117,12 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
     sentimentDrivers: { netScore: `${Math.round((scopedScore - 0.5) * 200)} NET`, signalsCount: `${records.toLocaleString()} Signals`, polarity: scopedPolarity, emotions },
     trendDrivers, narratives: emergingNarratives,
     sourceContribution, networkIntelligence: { graphDensity: nodes.length ? `${nodes.length} nodes` : "No graph data", topCommunity: String(network.community_count || "No community data"), fastestGrowing: trendDrivers[0]?.title || "No trend data", topInfluencer: nodes[0]?.label || "No influencer data", nodes },
-    audienceSegments: segments, relevantPosts, googleTrends, provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
+    audienceSegments: segments, relevantPosts, googleTrends,
+    syntheticFlags: {
+      googleTrends: Boolean(googleTrendsAnalytics.synthetic),
+      trends: Boolean(asRecord(analytics.trends).synthetic),
+    },
+    provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
   };
 }
 

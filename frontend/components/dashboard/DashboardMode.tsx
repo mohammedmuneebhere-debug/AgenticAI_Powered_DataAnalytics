@@ -13,11 +13,12 @@ import SentimentDriversModule from "./SentimentDriversModule";
 import KeyTrendDriversModule from "./KeyTrendDriversModule";
 import EmergingNarrativesModule from "./EmergingNarrativesModule";
 import SourceContributionModule from "./SourceContributionModule";
-import NetworkIntelligenceModule from "./NetworkIntelligenceModule";
+import NetworkIntelligenceModule, { NetworkIntelligenceExpanded } from "./NetworkIntelligenceModule";
 import AudienceSegmentsModule from "./AudienceSegmentsModule";
 import ProvenanceModule from "./ProvenanceModule";
 import RelevantPostsModule from "./RelevantPostsModule";
 import DashboardFooter from "./DashboardFooter";
+import ExpandableCard from "./ExpandableCard";
 
 export default function DashboardMode() {
   const { activeTopic, setActiveTopic, analysisCache, runTopicAnalysis, isAnalyzing, chatMessages } =
@@ -67,32 +68,58 @@ export default function DashboardMode() {
         <MetricCards data={normalizedData} />
         <ExecutiveSynthesis data={normalizedData} />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        {/* Every module is wrapped in ExpandableCard: hovering a card shows a
+            small expand icon top-left; clicking opens it enlarged in a modal.
+            The wrapper carries the grid col-span. */}
+
         {/* Module A: Conversation Volume & Trajectory (8 cols) */}
-        <TrajectoryModule data={normalizedData} activeRange={activeRange} onRangeChange={setActiveRange} />
+        <ExpandableCard title="Conversation Trajectory" className="lg:col-span-8">
+          <TrajectoryModule data={normalizedData} activeRange={activeRange} onRangeChange={setActiveRange} />
+        </ExpandableCard>
 
         {/* Module B: Sentiment Drivers (4 cols) */}
-        <SentimentDriversModule data={normalizedData} />
+        <ExpandableCard title="Sentiment Drivers" className="lg:col-span-4">
+          <SentimentDriversModule data={normalizedData} />
+        </ExpandableCard>
 
         {/* Module C: Key Trend Drivers (7 cols) */}
-        <KeyTrendDriversModule data={normalizedData} />
+        <ExpandableCard title="Key Trend Drivers" className="lg:col-span-7">
+          <KeyTrendDriversModule data={normalizedData} />
+        </ExpandableCard>
 
         {/* Module D: Emerging Narratives (5 cols) */}
-        <EmergingNarrativesModule data={normalizedData} />
+        <ExpandableCard title="Emerging Narratives" className="lg:col-span-5">
+          <EmergingNarrativesModule data={normalizedData} />
+        </ExpandableCard>
 
         {/* Module E: Source Contribution Ingestion (6 cols) */}
-        <SourceContributionModule data={normalizedData} />
+        <ExpandableCard title="Source Contribution Ingestion" className="lg:col-span-6">
+          <SourceContributionModule data={normalizedData} />
+        </ExpandableCard>
 
-        {/* Module F: Network Intelligence & Key Clusters (6 cols) */}
-        <NetworkIntelligenceModule data={normalizedData} />
+        {/* Module F: Network Intelligence & Key Clusters (6 cols) — enlarges to the full clustering graph */}
+        <ExpandableCard
+          title="Network Intelligence"
+          className="lg:col-span-6"
+          expandedBody={<NetworkIntelligenceExpanded data={normalizedData} />}
+        >
+          <NetworkIntelligenceModule data={normalizedData} />
+        </ExpandableCard>
 
         {/* Module G: Estimated Audience Segments (interim: real Google Trends regional interest; real author-demographic segmentation comes later) (6 cols) */}
-        <AudienceSegmentsModule data={normalizedData} />
+        <ExpandableCard title="Audience Segments" className="lg:col-span-6">
+          <AudienceSegmentsModule data={normalizedData} />
+        </ExpandableCard>
 
-        {/* Module H: Most Relevant X Posts (6 cols) */}
-        <RelevantPostsModule data={normalizedData} />
+        {/* Module H: Most Relevant Posts (6 cols) — fixed-height scrollable card */}
+        <ExpandableCard title="Most Relevant Posts" className="lg:col-span-6 self-start">
+          <RelevantPostsModule data={normalizedData} />
+        </ExpandableCard>
 
         {/* Module I: Insight Verification & Data Provenance (6 cols) */}
-        <ProvenanceModule data={normalizedData} />
+        <ExpandableCard title="Insight Verification & Provenance" className="lg:col-span-6">
+          <ProvenanceModule data={normalizedData} />
+        </ExpandableCard>
         </div>
 
         <DashboardFooter />

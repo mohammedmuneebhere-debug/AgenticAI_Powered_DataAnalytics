@@ -91,8 +91,20 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
           </button>
         </div>
 
-        {/* Expandable Visualizations/Evidence if available */}
-        {response?.visualizations && response.visualizations.length > 0 && (
+        {/* Expandable Visualizations — NewsAPI & X source_cards excluded from chat view */}
+        {(() => {
+          const chatViz = (response?.visualizations ?? []).filter((v) => {
+            if (v.type !== "source_cards") return true;
+            const titleLower = (v.title ?? "").toLowerCase();
+            return (
+              !titleLower.includes("news") &&
+              !titleLower.includes("newsapi") &&
+              !titleLower.includes("x result") &&
+              !titleLower.includes("twitter") &&
+              !titleLower.includes("x / twitter")
+            );
+          });
+          return chatViz.length > 0 ? (
           <div className="pt-2">
             <button
               onClick={() => setShowViz((p) => !p)}
@@ -101,15 +113,16 @@ export default function AgentMessage({ content, response }: AgentMessageProps) {
               <span className="material-symbols-outlined text-[16px]">
                 {showViz ? "expand_less" : "expand_more"}
               </span>
-              <span>{showViz ? "Hide" : "Show"} Analytics Visualizations ({response.visualizations.length})</span>
+              <span>{showViz ? "Hide" : "Show"} Analytics Visualizations ({chatViz.length})</span>
             </button>
             {showViz && (
               <div className="mt-3">
-                <VisualizationPanel visualizations={response.visualizations} />
+                <VisualizationPanel visualizations={chatViz} />
               </div>
             )}
           </div>
-        )}
+          ) : null;
+        })()}
 
         {response?.evidence && response.evidence.length > 0 && (
           <div className="pt-1">

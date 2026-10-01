@@ -8,7 +8,10 @@ from backend.models.schemas import (
     ChatRequest, ChatResponse, VerifyRequest, VerifyResponse,
     HealthResponse, SessionSummary, SessionDetail, ToolsCatalogResponse,
     LLMModelsResponse, AvailableModel,
+    SyntheticPostsRequest, SyntheticPostsResponse,
 )
+from agents.insight.agent import InsightAgent
+from agents.synthetic_data.agent import SyntheticDataAgent
 from backend.services.orchestrator import OrchestratorService
 from backend.auth.dependencies import get_current_user
 
@@ -80,6 +83,45 @@ async def list_llm_models():
     if not any(m.id == default_id for m in models) and default_id:
         models.append(AvailableModel(id=default_id, label=f"{default_id} (default)", provider="openai"))
     return LLMModelsResponse(default_model=default_id, models=models)
+
+
+@router.post("/synthetic-posts", response_model=SyntheticPostsResponse)
+async def generate_synthetic_posts(
+    request: SyntheticPostsRequest,
+    user: Optional[dict] = Depends(_authenticate),
+):
+    """LLM-generate simulated posts for the relevant-posts card (on demand).
+
+    Used by the dashboard when no posts were retrieved for the query. Posts are
+    always platform="synthetic" with fictional sim_ handles and no URLs.
+    """
+    settings = get_settings()
+    if not settings.synthetic_data_fallback:
+        raise HTTPException(status_code=409, detail="Synthetic data fallback is disabled (SYNTHETIC_DATA_FALLBACK=false)")
+
+    insight_agent = InsightAgent()
+    agent = SyntheticDataAgent(insight_agent.generate_json)
+    report = await agent.fill_gaps(
+        query=request.query,
+        intent="general",
+        domain="general",
+        analytics={},
+        records=[],
+        llm_model=None,
+        only=["posts"],
+    )
+    if not report["synthetic_posts"]:
+        raise HTTPException(status_code=503, detail="LLM unavailable - could not generate simulated posts")
+
+    # Honest attribution: which engine actually served this generation
+    generated_by = insight_agent._last_json_model_version or "llm"
+
+    return SyntheticPostsResponse(
+        query=request.query,
+        generated_by=generated_by,
+        disclosure=report["disclosure"] or "LLM-generated simulated posts (not retrieved posts).",
+        synthetic_posts=report["synthetic_posts"],
+    )
 
 
 @router.get("/sessions", response_model=list[SessionSummary])
