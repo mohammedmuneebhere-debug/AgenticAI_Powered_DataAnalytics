@@ -7,4 +7,13 @@ sys.path.insert(0, str(ROOT))
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run(
+        "backend.main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        # Never watch virtualenvs/data dirs: a stale backend/venv made the
+        # reloader restart on every pip file touch and left the worker serving
+        # stale imports (chat requests failed with HTTP 500).
+        reload_excludes=["backend/venv/*", "backend/.venv/*", ".venv/*", "venv/*", "data/*", "frontend/*", "*.log"],
+    )
