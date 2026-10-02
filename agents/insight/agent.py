@@ -594,6 +594,20 @@ Analyze ONLY within the {domain_label} scope. Do not reference unrelated domains
         if dominant_emotion and dominant_emotion != "neutral":
             lines.append(f"- Dominant expressed emotion: **{dominant_emotion}**.")
 
+        demographics = analytics.get("demographics") or {}
+        demo_segments = demographics.get("segments") or []
+        demo_coverage = demographics.get("coverage") or {}
+        if demo_segments:
+            authors = demo_coverage.get("authors_with_metadata") or 0
+            tier_desc = ", ".join(
+                f"{seg.get('label')} {float(seg.get('percentage') or 0):.0f}%"
+                for seg in demo_segments[:3]
+            )
+            lines.append(
+                f"- Audience tiers (from {authors} unique authors): {tier_desc}"
+                + f"; verified share {float(demo_coverage.get('verified_share_pct') or 0):.0f}%."
+            )
+
         # ── Temporal movement ─────────────────────────────────────
         if timeline:
             lines += ["", "**Temporal movement**"]
@@ -659,6 +673,21 @@ Analyze ONLY within the {domain_label} scope. Do not reference unrelated domains
                 "Google Trends interest concentrates in: " + ", ".join(top_regions)
                 + " (relative 0-100 search-interest scores)."
             )
+        elif demo_segments:
+            top_locations = demo_coverage.get("top_locations") or []
+            if top_locations:
+                loc_desc = ", ".join(
+                    f"**{loc.get('location')}** ({loc.get('authors')})" for loc in top_locations[:3]
+                )
+                inferred.append(
+                    "Author locations concentrate in: " + loc_desc
+                    + " (from public profile metadata, not search volume)."
+                )
+            else:
+                inferred.append(
+                    "Audience tiers are derived from author metadata; no geographic"
+                    " concentration was detected in this dataset."
+                )
         elif record_count:
             inferred.append(
                 "No regional interest data was returned for this query, so geographic"

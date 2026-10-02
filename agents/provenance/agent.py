@@ -39,6 +39,12 @@ class ProvenanceAgent:
 
         tx_id = self.ledger.record(record_data)
 
+        # The ledger pinned the canonical record bytes to IPFS (best effort)
+        # and stored the CID on the block; read it back for the response.
+        block = self.ledger.find_by_tx(tx_id) or {}
+        cid = block.get("cid")
+        pinned = bool(block.get("pinned"))
+
         return ProvenanceRecord(
             dataset_hash=dataset_hash,
             insight_hash=insight_hash,
@@ -47,6 +53,10 @@ class ProvenanceAgent:
             analysis_version=self.ANALYSIS_VERSION,
             timestamp=datetime.now(timezone.utc),
             blockchain_tx_id=tx_id,
+            content_sha256=block.get("content_sha256"),
+            cid=cid,
+            pinned=pinned,
+            verification_mode="ipfs" if pinned else "hash_chain",
         )
 
     def _hash(self, data: Any) -> str:

@@ -1,5 +1,7 @@
 """Master AI Agent — intent detection, workflow planning, and orchestration."""
 
+import asyncio
+import logging
 from dataclasses import dataclass, field
 from typing import Any, Optional
 import re
@@ -13,6 +15,8 @@ from agents.visualization.agent import VisualizationAgent
 from agents.insight.agent import InsightAgent
 from agents.synthetic_data.agent import SyntheticDataAgent
 from ml.correlation import EvidenceCorrelationEngine
+
+logger = logging.getLogger(__name__)
 
 
 DOMAIN_LABELS = {
@@ -208,24 +212,57 @@ class MasterAgent:
         )
         top_posts = self._top_relevant_posts(cleaned.get("records", []), query)
 
-        social_analytics = {}
-        if "data_acquisition" in plan.agents_used or "social_intelligence" in plan.agents_used:
-            social_analytics = await self.social_agent.analyze(cleaned, capabilities=plan.required_capabilities)
-
-        domain_analytics = {}
+        # Social and domain analytics read the same dataset and are fully
+        # independent, so they run concurrently instead of back-to-back.
+        run_social = (
+            "data_acquisition" in plan.agents_used or "social_intelligence" in plan.agents_used
+        )
         run_domain = (
             plan.domain != "general"
             and ("domain_analytics" in plan.agents_used or "domain" in plan.workflow)
         )
+
+        stages: list[tuple[str, Any]] = []
+        if run_social:
+            stages.append((
+                "social",
+                self._run_stage(
+                    "social_intelligence",
+                    self.social_agent.analyze(cleaned, capabilities=plan.required_capabilities),
+                ),
+            ))
         if run_domain:
-            domain_analytics = await self.domain_agent.analyze(cleaned, domain=plan.domain, query=query)
+            stages.append((
+                "domain",
+                self._run_stage(
+                    "domain_analytics",
+                    self.domain_agent.analyze(cleaned, domain=plan.domain, query=query),
+                ),
+            ))
+
+        social_analytics: dict[str, Any] = {}
+        domain_analytics: dict[str, Any] = {}
+        if stages:
+            outcomes = await asyncio.gather(*(coro for _, coro in stages))
+            for (key, _), outcome in zip(stages, outcomes):
+                if key == "social":
+                    social_analytics = outcome or {}
+                else:
+                    domain_analytics = outcome or {}
+        if run_domain and domain_analytics:
             domain_analytics["_active_domain"] = plan.domain
 
         evidence = self.correlation_engine.correlate(
             social_analytics=social_analytics,
             domain_analytics=domain_analytics,
             query=query,
+            records=cleaned.get("records", []),
         )
+
+        # Semantic index for the dataset (Phase 4). Runs alongside the other
+        # analytics and is best-effort: any failure degrades to "no semantic
+        # index" rather than failing the query.
+        semantic = await self._run_stage("embeddings", self._index_embeddings(cleaned.get("records", [])))
 
         visualizations = []
         if "visualization" in plan.agents_used:
@@ -244,6 +281,8 @@ class MasterAgent:
         response_text = self._append_news_articles(response["text"], news_articles)
         response_text = self._append_top_posts(response_text, top_posts)
         analytics = {**social_analytics, **domain_analytics}
+        if semantic:
+            analytics["semantic"] = semantic
 
         # ── Synthetic fallback for blank/insufficient sections ────────
         # When retrieval came back with blanks (no trends regions, no trend
@@ -292,6 +331,74 @@ class MasterAgent:
             "dataset_snapshot": cleaned.get("snapshot", {}),
             "model_version": response.get("model_version", "socialiq-0.1"),
         }
+
+    async def _index_embeddings(self, records: list[dict], limit: int = 40) -> dict:
+        """Embed this dataset's records and upsert them into pgvector.
+
+        Runs as a pipeline stage (own timeout, failures isolated). Returns a
+        summary for the response: how many records were indexed, and whether
+        the semantic index is available at all.
+        """
+        summary: dict = {"available": False, "indexed": 0, "backend": None}
+        if not records:
+            return summary
+
+        from backend.db.session import pg_available
+
+        if not pg_available():
+            return summary
+
+        from ml.embeddings.service import get_embedding_service, record_hash
+
+        service = get_embedding_service()
+        subset = [
+            record
+            for record in records
+            if str(record.get("text") or record.get("title") or "").strip()
+        ][:limit]
+        if not subset:
+            return summary
+
+        texts = [str(record.get("text") or record.get("title") or "") for record in subset]
+        vectors = service.encode(texts)
+        if not vectors:
+            return summary
+
+        from backend.db.repository import upsert_record_embeddings
+
+        entries = [
+            {
+                "record_hash": record_hash(text),
+                "content": text,
+                "vector": vector,
+                "metadata": {
+                    "platform": subset[index].get("platform"),
+                    "author": subset[index].get("author"),
+                    "url": subset[index].get("url"),
+                    "timestamp": subset[index].get("timestamp"),
+                },
+            }
+            for index, (text, vector) in enumerate(zip(texts, vectors))
+        ]
+        indexed = upsert_record_embeddings(entries)
+        summary.update({"available": True, "indexed": indexed, "backend": service.model_name})
+        return summary
+
+    async def _run_stage(self, name: str, coro):
+        """Await one pipeline stage with a timeout and failure isolation.
+
+        A crashing or pathologically slow analytics stage must not take down
+        the whole response: it degrades to an empty result and the pipeline
+        continues with whatever the other stages produced.
+        """
+        timeout = get_settings().agent_timeout_seconds
+        try:
+            return await asyncio.wait_for(coro, timeout=timeout)
+        except asyncio.TimeoutError:
+            logger.warning("%s exceeded %ss budget - continuing without it", name, timeout)
+        except Exception as exc:
+            logger.warning("%s failed (%s: %s) - continuing without it", name, exc.__class__.__name__, exc)
+        return {}
 
     def _top_relevant_posts(
         self, records: list[dict[str, Any]], query: str, limit: int = 5

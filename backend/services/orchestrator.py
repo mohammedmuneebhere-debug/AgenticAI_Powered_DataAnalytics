@@ -122,11 +122,15 @@ class OrchestratorService:
         return ToolsCatalogResponse(**catalog)
 
     async def health_check(self) -> HealthResponse:
+        from backend.services.redis_client import get_redis_cache
+
         return HealthResponse(
             status="healthy",
             services={
                 "master_agent": "ready",
                 "blockchain": "ready" if self.ledger.is_available() else "degraded",
                 "chat_store": "ready",
+                "persistence": getattr(self.chat_store, "backend_name", "json"),
+                "redis": "ready" if get_redis_cache().available() else "unavailable",
             },
         )

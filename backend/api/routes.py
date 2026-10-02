@@ -9,6 +9,8 @@ from backend.models.schemas import (
     HealthResponse, SessionSummary, SessionDetail, ToolsCatalogResponse,
     LLMModelsResponse, AvailableModel,
     SyntheticPostsRequest, SyntheticPostsResponse,
+    SimilarRecord, SimilarRecordsResponse,
+    ProvenanceVerifyRequest, ProvenanceVerifyResponse,
 )
 from agents.insight.agent import InsightAgent
 from agents.synthetic_data.agent import SyntheticDataAgent
@@ -156,6 +158,61 @@ async def chat(request: ChatRequest, user: Optional[dict] = Depends(_authenticat
     except Exception:
         logger.exception("Chat request failed")
         raise HTTPException(status_code=500, detail="Unable to process chat request")
+
+
+@router.get("/records/{record_hash}/similar", response_model=SimilarRecordsResponse)
+async def similar_records(
+    record_hash: str,
+    limit: int = 5,
+    min_similarity: float = 0.3,
+    user: Optional[dict] = Depends(_authenticate),
+):
+    """Records semantically closest to a stored record (pgvector cosine).
+
+    Returns an empty match list when semantic storage is unavailable, so the
+    endpoint is safe to call in any deployment mode.
+    """
+    from backend.db.repository import get_embedding_record, similar_records as find_similar
+
+    record = get_embedding_record(record_hash)
+    if not record:
+        raise HTTPException(status_code=404, detail="No embedded record with that hash")
+
+    matches = find_similar(record_hash, limit=max(1, min(limit, 25)), min_similarity=min_similarity)
+    return SimilarRecordsResponse(
+        record_hash=record_hash,
+        count=len(matches),
+        min_similarity=min_similarity,
+        matches=[SimilarRecord(**match) for match in matches],
+    )
+
+
+@router.post("/provenance/verify", response_model=ProvenanceVerifyResponse)
+async def verify_provenance(
+    request: ProvenanceVerifyRequest,
+    user: Optional[dict] = Depends(_authenticate),
+):
+    """Re-fetch a pinned provenance record from IPFS and recompute its hash.
+
+    Two independent checks run: the local hash chain must be intact, and (when
+    the record was pinned) the bytes served by IPFS must hash to the same
+    SHA-256 recorded in the ledger.
+    """
+    from blockchain.ledger import BlockchainLedger
+
+    result = BlockchainLedger().verify_content(request.content_sha256, request.cid)
+    return ProvenanceVerifyResponse(
+        verified=bool(result.get("verified", False)),
+        checked=bool(result.get("checked", False)),
+        mode=result.get("mode", "hash_chain"),
+        message=result.get("message", ""),
+        tx_id=result.get("tx_id"),
+        cid=result.get("cid"),
+        pinned=bool(result.get("pinned", False)),
+        chain_valid=result.get("chain_valid"),
+        computed_sha256=result.get("computed_sha256"),
+        record=result.get("record"),
+    )
 
 
 @router.post("/verify", response_model=VerifyResponse)

@@ -6,6 +6,7 @@ export interface TrendDriverItem { rank: string; title: string; source: string; 
 export interface NarrativeItem { title: string; subtitle: string; growth: string; color: string; }
 export interface SourceContributionItem { name: string; signals: string; percentage: number; dotColor: string; }
 export interface AudienceSegmentItem { label: string; percentage: number; barColor: string; }
+export interface AudienceMeta { methodology?: string; disclaimer?: string; authorsWithMetadata: number; verifiedSharePct: number; topLocations: Array<{ location: string; authors: number }>; }
 export interface RelevantPostItem { rank: number; text: string; author: string; platform: string; url?: string; engagementTotal: number; synthetic?: boolean; }
 export interface GoogleTrendsRegion { location: string; geo?: string; value: number; coordinates?: { latitude?: number; longitude?: number; lat?: number; lng?: number; }; }
 export interface GoogleTrendsRelatedItem { label: string; category: "top" | "rising" | string; value: number; valueLabel?: string; type?: string; url?: string; }
@@ -19,11 +20,12 @@ export interface NormalizedDashboardData {
   trendDrivers: TrendDriverItem[]; narratives: NarrativeItem[]; sourceContribution: SourceContributionItem[];
   networkIntelligence: { graphDensity: string; topCommunity: string; fastestGrowing: string; topInfluencer: string; nodes: Array<{ id: string; label: string; inf: string; border: string; text: string }>; };
   audienceSegments: AudienceSegmentItem[];
+  audienceMeta: AudienceMeta;
   relevantPosts: RelevantPostItem[];
   googleTrends: { regions: GoogleTrendsRegion[]; relatedTopics: GoogleTrendsRelatedItem[]; relatedQueries: GoogleTrendsRelatedItem[]; };
   // Which analytics sections were LLM-synthesized fallbacks (blank retrieval)
   syntheticFlags: { googleTrends: boolean; trends: boolean; };
-  provenance: { datasetSnapshot: string; timestamp: string; pipeline: string; blockchainAnchoring: string; insightHash?: string; datasetHash?: string; };
+  provenance: { datasetSnapshot: string; timestamp: string; pipeline: string; blockchainAnchoring: string; insightHash?: string; datasetHash?: string; contentSha256?: string; cid?: string; pinned: boolean; verificationMode: string; };
 }
 
 const colors = ["bg-white", "bg-secondary", "bg-tertiary", "bg-slate-500", "bg-[#292e3a]"];
@@ -78,7 +80,16 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
   const points = temporal.map((point, index) => ({ time: String(point.period || `Signal ${index + 1}`), volume: Math.max(0, numberValue(point.signal_count, records / Math.max(1, temporal.length))), lineValue: Math.round(numberValue(point.sentiment_score, score) * 100) }));
   const emotionDistribution = asRecord(analytics.emotion).distribution;
   const emotions = Object.entries(asRecord(emotionDistribution)).filter(([, value]) => numberValue(value) > 0).map(([label, value], index) => ({ label: label.replace(/\b\w/g, (char) => char.toUpperCase()), percentage: percent(numberValue(value), Math.max(1, records)), icon: index === 0 ? "mood" : "psychology", color: (index % 3 === 0 ? "secondary" : index % 3 === 1 ? "slate" : "tertiary") as "secondary" | "slate" | "tertiary" }));
-  const segments = listRecords(asRecord(analytics.demographics).segments).map((segment, index) => ({ label: String(segment.label || "Audience"), percentage: numberValue(segment.percentage), barColor: colors[index % colors.length] }));
+  const demographics = asRecord(analytics.demographics);
+  const demoCoverage = asRecord(demographics.coverage);
+  const segments = listRecords(demographics.segments).map((segment, index) => ({ label: String(segment.label || "Audience"), percentage: numberValue(segment.percentage), barColor: colors[index % colors.length] }));
+  const audienceMeta: AudienceMeta = {
+    methodology: demographics.methodology ? String(demographics.methodology) : undefined,
+    disclaimer: demographics.disclaimer ? String(demographics.disclaimer) : undefined,
+    authorsWithMetadata: numberValue(demoCoverage.authors_with_metadata),
+    verifiedSharePct: numberValue(demoCoverage.verified_share_pct),
+    topLocations: listRecords(demoCoverage.top_locations).map((loc) => ({ location: String(loc.location || "Unknown"), authors: numberValue(loc.authors) })),
+  };
   const relevantPosts: RelevantPostItem[] = (response.top_posts || []).map((post: TopPost) => ({
     rank: numberValue(post.rank, 0),
     text: String(post.text || ""),
@@ -117,12 +128,12 @@ export function normalizeDashboardData(response: ChatResponse, topic: string, ra
     sentimentDrivers: { netScore: `${Math.round((scopedScore - 0.5) * 200)} NET`, signalsCount: `${records.toLocaleString()} Signals`, polarity: scopedPolarity, emotions },
     trendDrivers, narratives: emergingNarratives,
     sourceContribution, networkIntelligence: { graphDensity: nodes.length ? `${nodes.length} nodes` : "No graph data", topCommunity: String(network.community_count || "No community data"), fastestGrowing: trendDrivers[0]?.title || "No trend data", topInfluencer: nodes[0]?.label || "No influencer data", nodes },
-    audienceSegments: segments, relevantPosts, googleTrends,
+    audienceSegments: segments, audienceMeta, relevantPosts, googleTrends,
     syntheticFlags: {
       googleTrends: Boolean(googleTrendsAnalytics.synthetic),
       trends: Boolean(asRecord(analytics.trends).synthetic),
     },
-    provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash },
+    provenance: { datasetSnapshot: prov?.dataset_hash ? `#DS-${prov.dataset_hash.slice(0, 12)}` : "Dataset hash unavailable", timestamp: prov?.timestamp || new Date().toISOString(), pipeline: prov?.model_version || "Generated analytics", blockchainAnchoring: prov?.blockchain_tx_id ? `Confirmed Tx #${prov.blockchain_tx_id.slice(0, 8)}` : "Local provenance", insightHash: prov?.insight_hash, datasetHash: prov?.dataset_hash, contentSha256: prov?.content_sha256 ?? undefined, cid: prov?.cid ?? undefined, pinned: Boolean(prov?.pinned), verificationMode: prov?.verification_mode || "hash_chain" },
   };
 }
 

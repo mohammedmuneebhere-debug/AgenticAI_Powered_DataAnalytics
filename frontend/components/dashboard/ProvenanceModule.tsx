@@ -1,36 +1,94 @@
 "use client";
 
+// Verification is real, not decorative: the button calls the backend, which
+// re-fetches the pinned record from IPFS, recomputes its SHA-256 and checks
+// the local hash chain. A failure is reported as a failure - the previous
+// version showed a green "verified" badge whenever the request threw, and
+// substituted hardcoded dummy hashes when none were present.
+
 import React, { useState } from "react";
-import { verifyInsight } from "@/lib/api";
+import { verifyInsight, verifyProvenance } from "@/lib/api";
+import type { ProvenanceVerifyResult } from "@/lib/api";
 import type { NormalizedDashboardData } from "@/lib/adapter";
 
 interface ProvenanceModuleProps {
   data: NormalizedDashboardData;
 }
 
+type VerifyState =
+  | { kind: "idle" }
+  | { kind: "done"; verified: boolean; message: string; mode: string; checked: boolean }
+  | { kind: "error"; message: string };
+
 export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
   const { provenance } = data;
   const [verifying, setVerifying] = useState(false);
-  const [verifyResult, setVerifyResult] = useState<{ verified: boolean; message: string } | null>(
-    null
-  );
+  const [state, setState] = useState<VerifyState>({ kind: "idle" });
+
+  const canVerifyContent = Boolean(provenance.contentSha256);
+  const canVerifyLedger = Boolean(provenance.insightHash && provenance.datasetHash);
 
   const handleVerify = async () => {
     setVerifying(true);
+    setState({ kind: "idle" });
     try {
-      const insightHash = provenance.insightHash || "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-      const datasetHash = provenance.datasetHash || "88492agentintelhash";
-      const res = await verifyInsight(insightHash, datasetHash);
-      setVerifyResult(res);
-    } catch {
-      setVerifyResult({
-        verified: true,
-        message: "Cryptographic SHA-256 hash matched and anchored on local blockchain ledger.",
+      if (canVerifyContent) {
+        const res: ProvenanceVerifyResult = await verifyProvenance(
+          provenance.contentSha256 as string,
+          provenance.cid
+        );
+        setState({
+          kind: "done",
+          verified: res.verified,
+          checked: res.checked,
+          mode: res.mode,
+          message: res.message,
+        });
+        return;
+      }
+      if (canVerifyLedger) {
+        const res = await verifyInsight(provenance.insightHash as string, provenance.datasetHash as string);
+        setState({
+          kind: "done",
+          verified: res.verified,
+          checked: true,
+          mode: "hash_chain",
+          message: res.message,
+        });
+        return;
+      }
+      setState({
+        kind: "error",
+        message: "This insight carries no provenance hash, so there is nothing to verify.",
+      });
+    } catch (error) {
+      setState({
+        kind: "error",
+        message: error instanceof Error ? error.message : "Verification request failed.",
       });
     } finally {
       setVerifying(false);
     }
   };
+
+  const pinBadge = provenance.pinned ? (
+    <span className="flex items-center gap-1.5 bg-secondary-container/30 text-secondary border border-secondary/30 px-2.5 py-0.5 rounded-full">
+      <span className="material-symbols-outlined text-[12px]">cloud_done</span>
+      <span className="font-mono text-[10px] font-bold">Pinned to IPFS</span>
+    </span>
+  ) : (
+    <span className="flex items-center gap-1.5 bg-surface-high text-on-surface-variant border border-surface-border/60 px-2.5 py-0.5 rounded-full">
+      <span className="material-symbols-outlined text-[12px]">cloud_off</span>
+      <span className="font-mono text-[10px] font-bold">Hash Chain Only</span>
+    </span>
+  );
+
+  const resultTone =
+    state.kind === "error"
+      ? "bg-amber-500/10 border-amber-500/30 text-amber-300"
+      : state.kind === "done" && state.verified
+        ? "bg-secondary-container/20 border-secondary/40 text-secondary"
+        : "bg-red-500/10 border-red-500/30 text-red-300";
 
   return (
     <div className="lg:col-span-6 bg-surface border border-surface-border/60 rounded-2xl flex flex-col overflow-hidden shadow-sm">
@@ -43,10 +101,7 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
             Verification &amp; Provenance
           </span>
         </div>
-        <div className="flex items-center gap-1.5 bg-secondary-container/30 text-secondary border border-secondary/30 px-2.5 py-0.5 rounded-full">
-          <span className="material-symbols-outlined text-[12px]">verified</span>
-          <span className="font-mono text-[10px] font-bold">Provenance Recorded</span>
-        </div>
+        <div className="flex items-center gap-1.5">{pinBadge}</div>
       </div>
 
       <div className="p-4 flex flex-col justify-between flex-1 gap-3">
@@ -70,24 +125,42 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
             <span className="text-on-surface-variant">Blockchain Anchoring</span>
             <span className="text-secondary font-semibold">{provenance.blockchainAnchoring}</span>
           </div>
+
+          {provenance.contentSha256 && (
+            <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
+              <span className="text-on-surface-variant">Content SHA-256</span>
+              <span className="text-on-surface">
+                {provenance.contentSha256.slice(0, 16)}…
+              </span>
+            </div>
+          )}
+
+          {provenance.cid && (
+            <div className="flex items-center justify-between p-2.5 bg-surface-lowest border border-surface-border/70 rounded-xl">
+              <span className="text-on-surface-variant">IPFS CID</span>
+              <span className="text-on-surface" title={provenance.cid}>
+                {provenance.cid.slice(0, 16)}…
+              </span>
+            </div>
+          )}
         </div>
 
-        {verifyResult && (
-          <div
-            className={`p-2.5 rounded-xl border text-xs font-mono ${
-              verifyResult.verified
-                ? "bg-secondary-container/20 border-secondary/40 text-secondary"
-                : "bg-amber-500/10 border-amber-500/30 text-amber-300"
-            }`}
-          >
-            {verifyResult.message}
+        {state.kind !== "idle" && (
+          <div className={`p-2.5 rounded-xl border text-xs font-mono ${resultTone}`}>
+            {state.message}
+            {state.kind === "done" && (
+              <div className="mt-1 text-[10px] uppercase opacity-80">
+                mode: {state.mode}
+                {state.verified ? " · content hash matched" : state.checked ? " · mismatch detected" : " · not checked"}
+              </div>
+            )}
           </div>
         )}
 
         <button
           type="button"
           onClick={handleVerify}
-          disabled={verifying}
+          disabled={verifying || (!canVerifyContent && !canVerifyLedger)}
           className="w-full flex items-center justify-center gap-2 bg-surface-high hover:bg-surface-highest border border-surface-border text-[var(--text-primary)] px-4 py-2.5 rounded-xl font-mono text-xs transition-colors font-bold disabled:opacity-50"
         >
           <span className={`material-symbols-outlined text-[16px] ${verifying ? "animate-spin" : ""}`}>
@@ -95,8 +168,10 @@ export default function ProvenanceModule({ data }: ProvenanceModuleProps) {
           </span>
           <span>
             {verifying
-              ? "Verifying Against Blockchain Ledger..."
-              : "Verify Insight Cryptographic Hash (SHA-256)"}
+              ? "Verifying Provenance..."
+              : provenance.pinned
+                ? "Re-fetch from IPFS & Verify SHA-256"
+                : "Verify Against Local Hash Chain"}
           </span>
         </button>
       </div>

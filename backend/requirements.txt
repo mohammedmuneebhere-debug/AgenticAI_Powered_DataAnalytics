@@ -18,3 +18,18 @@ python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.20
 aiofiles==24.1.0
+# ── Phase 0 groundwork (real-stack wiring) ─────────────────────────
+vaderSentiment==3.3.2
+spacy==3.8.16
+# spaCy English model (pip-installable wheel; pinned to match spacy 3.8.x)
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+alembic==1.20.0
+# Optional trend forecasting (Phase 2, behind TREND_FORECAST_ENABLED flag)
+prophet==1.4.0
+# ── Phase 1 persistence (PostgreSQL) ────────────────────────────────
+# Sync driver for the store layer + alembic (asyncpg stays for future async paths)
+psycopg2-binary==2.9.10
+# pgvector column types for the record_embeddings table
+pgvector==0.3.6
+# ── Phase 3 graph analytics ──────────────────────────────────────────
+networkx==3.6.1

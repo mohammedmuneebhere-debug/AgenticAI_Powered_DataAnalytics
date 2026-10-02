@@ -38,6 +38,18 @@ class Settings(BaseSettings):
     # Data store files for users and chat sessions
     users_store_path: str = "./data/users.json"
     sessions_store_path: str = "./data/sessions.json"
+    # Persistence backend: true (default) = JSON files, no Docker needed.
+    # Set JSON_FALLBACK=false to persist to PostgreSQL — run
+    # `alembic upgrade head` first. If the database is unreachable at
+    # startup the stores log a warning and degrade to JSON automatically.
+    json_fallback: bool = True
+    # Redis analysis-cache TTL in seconds (0 disables caching)
+    analysis_cache_ttl_seconds: int = 900
+    # Per-agent timeout for pipeline stages (social/domain analytics)
+    agent_timeout_seconds: int = 180
+    # Graph persistence mirror: "memory" (default) or "neo4j" (writes the
+    # mention graph to Neo4j when the database is reachable)
+    graph_store: str = "memory"
     # Access-token lifetime in minutes
     access_token_expire_minutes: int = 60
     database_url: str = "postgresql+asyncpg://socialiq:socialiq@localhost:5432/socialiq"
@@ -45,6 +57,15 @@ class Settings(BaseSettings):
     neo4j_uri: str = "bolt://localhost:7687"
     neo4j_user: str = "neo4j"
     neo4j_password: str = "socialiq123"
+    # IPFS (provenance content storage; kubo API port)
+    ipfs_api_url: str = "http://localhost:5001"
+    # ML backends (Phase 2 wiring)
+    embedding_model: str = "all-MiniLM-L6-v2"
+    # Sentiment backend: "vader" (default, fast) or "transformer"
+    # (cardiffnlp/twitter-roberta-base-sentiment, lazy-loaded)
+    ml_sentiment_backend: str = "vader"
+    # Optional Prophet-based trend forecasting (off by default)
+    trend_forecast_enabled: bool = False
     x_bearer_token: str = ""
     telegram_bot_token: str = ""
     instagram_access_token: str = ""

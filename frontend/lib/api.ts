@@ -30,6 +30,25 @@ export interface ProvenanceRecord {
   analysis_version: string;
   timestamp: string;
   blockchain_tx_id?: string;
+  /** SHA-256 of the canonical record bytes (Phase 5) */
+  content_sha256?: string | null;
+  /** IPFS content identifier, null when the node was unavailable */
+  cid?: string | null;
+  pinned?: boolean;
+  /** "ipfs" when pinned, "hash_chain" when only the local chain covers it */
+  verification_mode?: "ipfs" | "hash_chain" | string;
+}
+
+export interface ProvenanceVerifyResult {
+  verified: boolean;
+  checked: boolean;
+  mode: string;
+  message: string;
+  tx_id?: string | null;
+  cid?: string | null;
+  pinned: boolean;
+  chain_valid?: boolean | null;
+  computed_sha256?: string | null;
 }
 
 export interface TopPost {
@@ -193,6 +212,17 @@ export async function verifyInsight(insightHash: string, datasetHash: string) {
   return apiFetch<{ verified: boolean; message: string }>("/verify", {
     method: "POST",
     body: JSON.stringify({ insight_hash: insightHash, dataset_hash: datasetHash }),
+  });
+}
+
+/**
+ * Phase 5: verify a provenance record end to end - the backend re-fetches the
+ * pinned bytes from IPFS, recomputes SHA-256 and checks the ledger chain.
+ */
+export async function verifyProvenance(contentSha256: string, cid?: string | null) {
+  return apiFetch<ProvenanceVerifyResult>("/provenance/verify", {
+    method: "POST",
+    body: JSON.stringify({ content_sha256: contentSha256, cid: cid ?? undefined }),
   });
 }
 

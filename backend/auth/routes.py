@@ -4,7 +4,7 @@ from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from backend.auth.dependencies import get_current_user, user_store
+from backend.auth.dependencies import get_current_user, oauth2_scheme, user_store
 from backend.auth.security import create_access_token
 from backend.models.schemas import (
     TokenResponse,
@@ -48,3 +48,30 @@ async def login(request: UserLoginRequest):
 @router.get("/me", response_model=UserResponse)
 async def me(current_user: dict = Depends(get_current_user)):
     return to_user_response(current_user)
+
+
+@router.post("/logout")
+async def logout(token: str = Depends(oauth2_scheme)) -> dict:
+    """Revoke the presented access token (Redis-backed blacklist).
+
+    No-op when Redis is unavailable: the token simply expires naturally,
+    matching the graceful-degradation design.
+    """
+    from datetime import datetime, timezone
+
+    from backend.auth.security import decode_token_payload
+    from backend.services.redis_client import get_redis_cache
+
+    try:
+        payload = decode_token_payload(token)
+    except Exception:
+        return {"detail": "Logged out"}
+
+    jti = payload.get("jti")
+    exp = payload.get("exp")
+    if jti:
+        ttl = 60
+        if exp:
+            ttl = max(0, int(exp - datetime.now(timezone.utc).timestamp()))
+        get_redis_cache().blacklist_token(jti, ttl)
+    return {"detail": "Logged out"}

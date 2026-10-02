@@ -163,6 +163,12 @@ class ProvenanceRecord(BaseModel):
     analysis_version: str
     timestamp: datetime
     blockchain_tx_id: Optional[str] = None
+    # Phase 5: content-addressed provenance
+    content_sha256: Optional[str] = None
+    cid: Optional[str] = None
+    pinned: bool = False
+    # "ipfs" when the record was pinned, "hash_chain" when the node was down
+    verification_mode: str = "hash_chain"
 
 
 class ChatResponse(BaseModel):
@@ -239,3 +245,36 @@ class HealthResponse(BaseModel):
     status: str
     version: str = "0.2.0"
     services: dict[str, str] = {}
+
+
+class SimilarRecord(BaseModel):
+    record_hash: str
+    content: str
+    similarity: float
+    metadata: dict = Field(default_factory=dict)
+
+
+class SimilarRecordsResponse(BaseModel):
+    record_hash: str
+    count: int
+    min_similarity: float
+    matches: list[SimilarRecord] = Field(default_factory=list)
+
+
+class ProvenanceVerifyRequest(BaseModel):
+    content_sha256: str
+    cid: Optional[str] = None
+
+
+class ProvenanceVerifyResponse(BaseModel):
+    verified: bool
+    checked: bool
+    mode: str
+    message: str
+    tx_id: Optional[str] = None
+    cid: Optional[str] = None
+    pinned: bool = False
+    chain_valid: Optional[bool] = None
+    computed_sha256: Optional[str] = None
+    record: Optional[dict] = None
+

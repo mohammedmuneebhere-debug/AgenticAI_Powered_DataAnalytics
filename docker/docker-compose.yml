@@ -37,6 +37,15 @@ services:
     volumes:
       - neo4j_data:/data
 
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: socialiq-ipfs
+    ports:
+      - "5001:5001"   # HTTP RPC API (used by the provenance agent)
+      - "8080:8080"   # HTTP gateway (inspect pinned CIDs in a browser)
+    volumes:
+      - ipfs_data:/data/ipfs
+
   n8n:
     image: n8nio/n8n:latest
     container_name: socialiq-n8n
@@ -98,3 +107,4 @@ volumes:
   redis_data:
   neo4j_data:
   n8n_data:
+  ipfs_data:

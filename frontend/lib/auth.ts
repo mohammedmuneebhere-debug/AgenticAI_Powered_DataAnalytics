@@ -74,6 +74,15 @@ export function login(email: string, password: string): Promise<AuthResponse> {
 }
 
 export function logout(): void {
+  // Best-effort server-side revocation (Redis-blacklists the JWT); the local
+  // session is cleared regardless so logout always succeeds instantly.
+  const token = getToken();
+  if (token) {
+    void fetch(`${API_URL}/api/v1/auth/logout`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    }).catch(() => undefined);
+  }
   clearSession();
   window.location.href = "/login";
 }

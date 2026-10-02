@@ -201,6 +201,40 @@ class DataAcquisitionAgent:
                 )
             else:
                 author_name = item.get("author_id") or item.get("username") or "unknown"
+            # Author metadata feeds real audience segmentation
+            # (ml/demographics/segmenter.py) when the actor provides it.
+            author_meta: dict[str, Any] = {}
+            if isinstance(author, dict):
+                followers = (
+                    author.get("followers")
+                    or author.get("followersCount")
+                    or author.get("followers_count")
+                )
+                if followers is not None:
+                    try:
+                        author_meta["followers"] = int(followers)
+                    except (TypeError, ValueError):
+                        pass
+                verified = (
+                    author.get("isVerified")
+                    if author.get("isVerified") is not None
+                    else author.get("verified")
+                )
+                if verified is not None:
+                    author_meta["verified"] = bool(verified)
+                bio = author.get("description") or author.get("bio")
+                if bio:
+                    author_meta["bio"] = str(bio)[:400]
+                location = author.get("location")
+                if location:
+                    author_meta["location"] = str(location)[:120]
+            if author_meta.get("followers") is None:
+                item_followers = item.get("followersCount") or item.get("followers_count")
+                if item_followers is not None:
+                    try:
+                        author_meta["followers"] = int(item_followers)
+                    except (TypeError, ValueError):
+                        pass
             text = item.get("text") or item.get("full_text") or ""
             if not text:
                 continue
@@ -220,6 +254,7 @@ class DataAcquisitionAgent:
                     "views": int(item.get("viewCount") or item.get("view_count") or 0),
                 },
                 "url": item.get("url") or item.get("tweet_url"),
+                **({"author_meta": author_meta} if author_meta else {}),
             })
         return records
 
